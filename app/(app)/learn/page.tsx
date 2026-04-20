@@ -159,7 +159,8 @@ export default function LearnPage() {
 
                 {/* Chevron */}
                 <div style={{
-                  fontSize: '0.8rem', color: '#444', transition: 'transform 0.2s, color 0.2s',
+                  fontSize: '0.8rem',
+                  transition: 'transform 0.2s, color 0.2s',
                   transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
                   color: isExpanded ? set.color : '#444',
                 }}>
