@@ -22,10 +22,10 @@ export const lessonContentE: Record<string, LessonContent> = {
     },
     culturalTip: "Sırpistan'da 194 numarasını aradığında ambulans geliyor. Acil servis (Hitna pomoć) genellikle oldukça hızlı ve düzgündür. Ama sigortan yoksa cepten ödeme hazır ol. Promaja'dan (cereyan) önce sigortanı dü şün!",
     dialogue: [
-      { speaker: 'Hasta', serbian: 'Dobar dan, boli me grlo i imam temperaturu.', translation: 'İyi günler doktor, boğazım ağrıyor ve ateşim var.' },
-      { speaker: 'Doktor', serbian: 'Od kada? Koliku temperaturu imate?', translation: 'Ne zamandan beri? Ateşiniz kaç?' },
-      { speaker: 'Hasta', serbian: 'Od jutros. Trideset osam i po.', translation: 'Bu sabahtan beri. Otuz sekiz buçuk.' },
-      { speaker: 'Doktor', serbian: 'Razumem. Daću vam recept za antibiotik i lek za temperaturu.', translation: 'Anladım. Size antibiyotik ve ateş düşürücü için reçete yazacağım.' },
+      { speaker: 'A', serbian: 'Dobar dan, boli me grlo i imam temperaturu.', translation: 'İyi günler doktor, boğazım ağrıyor ve ateşim var.' },
+      { speaker: 'B', serbian: 'Od kada? Koliku temperaturu imate?', translation: 'Ne zamandan beri? Ateşiniz kaç?' },
+      { speaker: 'A', serbian: 'Od jutros. Trideset osam i po.', translation: 'Bu sabahtan beri. Otuz sekiz buçuk.' },
+      { speaker: 'B', serbian: 'Razumem. Daću vam recept za antibiotik i lek za temperaturu.', translation: 'Anladım. Size antibiyotik ve ateş düşürücü için reçete yazacağım.' },
     ],
   },
 
@@ -45,10 +45,10 @@ export const lessonContentE: Record<string, LessonContent> = {
     },
     culturalTip: "Sırpistan'da pek çok ilaç Türkiye ya da Batı'ya kıyasla çok daha ucuzdur ve eczaneler genellikle saatlerce açık kalır. Küçük rahatsızlıklar için doktora gitmeden önce eczacıya sor — Sırp eczacılar çok bilgilidir!",
     dialogue: [
-      { speaker: 'Müşteri', serbian: 'Dobar dan. Imate li nešto za jaku glavobolju?', translation: 'İyi günler. Şiddetli baş ağrısı için bir şeyiniz var mı?' },
-      { speaker: 'Eczacı', serbian: 'Da, imam. Jeste li alergični na nešto?', translation: 'Evet var. Herhangi bir şeye alerjiniz var mı?' },
-      { speaker: 'Müşteri', serbian: 'Alergičan sam na penicilin.', translation: 'Penisilline alerjim var.' },
-      { speaker: 'Eczacı', serbian: 'Okej. Dat ću vam brufen. Bez recepta ide.', translation: 'Tamam. Size brufen vereyim. Reçetesiz gidiyor.' },
+      { speaker: 'A', serbian: 'Dobar dan. Imate li nešto za jaku glavobolju?', translation: 'İyi günler. Şiddetli baş ağrısı için bir şeyiniz var mı?' },
+      { speaker: 'B', serbian: 'Da, imam. Jeste li alergični na nešto?', translation: 'Evet var. Herhangi bir şeye alerjiniz var mı?' },
+      { speaker: 'A', serbian: 'Alergičan sam na penicilin.', translation: 'Penisilline alerjim var.' },
+      { speaker: 'B', serbian: 'Okej. Dat ću vam brufen. Bez recepta ide.', translation: 'Tamam. Size brufen vereyim. Reçetesiz gidiyor.' },
     ],
   },
 
@@ -71,10 +71,10 @@ export const lessonContentE: Record<string, LessonContent> = {
     },
     culturalTip: "Belgrad'da 'Knez Mihailova' (Prens Mihail) caddesi tam anlamıyla şehrin nabzıdır. Yürüyüş caddesidir, alışveriş yaparsın, muhabbet edersin, buz dondurması yersin. Buraya gitmeden Belgrad gezdin sayılmazsın!",
     dialogue: [
-      { speaker: 'Turist', serbian: 'Izvinite, kako da dođem do Kalemegdana?', translation: 'Affedersiniz, Kalemegdan\'a nasıl gidebilirim?' },
-      { speaker: 'Yerli', serbian: 'Pravo ovom ulicom, pa levo. Pet minuta hoda.', translation: 'Bu caddeden düz git, sonra sola dön. Beş dakika yürüyüş.' },
-      { speaker: 'Turist', serbian: 'Hvala lepo! A ima li dobar restoran blizu?', translation: 'Çok sağ ol! Yakında iyi bir restoran var mı?' },
-      { speaker: 'Yerli', serbian: 'Skadarlija je tu! Tamo ima svega.', translation: 'Skadarlija tam orada! Orda her şey var kanka.' },
+      { speaker: 'A', serbian: 'Izvinite, kako da dođem do Kalemegdana?', translation: 'Affedersiniz, Kalemegdan\'a nasıl gidebilirim?' },
+      { speaker: 'B', serbian: 'Pravo ovom ulicom, pa levo. Pet minuta hoda.', translation: 'Bu caddeden düz git, sonra sola dön. Beş dakika yürüyüş.' },
+      { speaker: 'A', serbian: 'Hvala lepo! A ima li dobar restoran blizu?', translation: 'Çok sağ ol! Yakında iyi bir restoran var mı?' },
+      { speaker: 'B', serbian: 'Skadarlija je tu! Tamo ima svega.', translation: 'Skadarlija tam orada! Orda her şey var kanka.' },
     ],
   },
 
@@ -123,7 +123,7 @@ export const lessonContentE: Record<string, LessonContent> = {
       { speaker: 'A', serbian: 'Hej ekipa! Idemo večeras na splav?', translation: 'Hey kankalar! Bu gece splay\'a gidiyoruz mu?' },
       { speaker: 'B', serbian: 'Jeste, ali treba rezervacija. Da li si rezervisao?', translation: 'Evet ama rezervasyon lazım. Rezervasyon yaptın mı?' },
       { speaker: 'A', serbian: 'Jesam, za deset osoba u ponoć!', translation: 'Yaptım, gece yarısı için 10 kişilik!' },
-      { speaker: 'C', serbian: 'Odlično! Zovem taksi za pola dvanaest.', translation: 'Süper! On bir buçuk için taksi çağırıyorum.' },
+      { speaker: 'B', serbian: 'Odlično! Zovem taksi za pola dvanaest.', translation: 'Süper! On bir buçuk için taksi çağırıyorum.' },
     ],
   },
 
@@ -144,7 +144,7 @@ export const lessonContentE: Record<string, LessonContent> = {
     culturalTip: "Sırp kafana kültüründe müzisyenler masadan masaya gezerek çalar ve sen bir 'bakšiš' (bahşiş) verirsin. Komşu masa daha yüksek fırlatırsa, müzisyenler o masaya yönelir. Bir tür müzik açık artırması!",
     dialogue: [
       { speaker: 'A', serbian: 'Konobar! Možemo još jednu rundu?', translation: 'Garson! Bir tur daha alabilir miyiz?' },
-      { speaker: 'Garson', serbian: 'Naravno! Isti kao pre?', translation: 'Tabii ki! Aynısından mı?' },
+      { speaker: 'B', serbian: 'Naravno! Isti kao pre?', translation: 'Tabii ki! Aynısından mı?' },
       { speaker: 'A', serbian: 'Da, i još jednu vodu, molim.', translation: 'Evet, bir de su lütfen.' },
       { speaker: 'B', serbian: 'Ova pesma je mrak! Ajde na podijum!', translation: 'Bu şarkı efsane kanka! Dans pistine!' },
     ],
