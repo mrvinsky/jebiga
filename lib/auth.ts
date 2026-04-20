@@ -25,7 +25,7 @@ export const signInWithEmail = (email: string, password: string) =>
 export const signUpWithEmail = async (email: string, password: string, displayName: string) => {
   const result = await createUserWithEmailAndPassword(auth, email, password);
   await updateProfile(result.user, { displayName });
-  await createUserDoc(result.user);
+  await createUserDoc(result.user, displayName);
   return result.user;
 };
 

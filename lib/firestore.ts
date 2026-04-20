@@ -17,12 +17,12 @@ export interface UserData {
   role?: 'user' | 'admin';
 }
 
-export const createUserDoc = async (user: User) => {
+export const createUserDoc = async (user: User, nameOverride?: string) => {
   const ref = doc(db, 'users', user.uid);
   const snap = await getDoc(ref);
   if (!snap.exists()) {
     await setDoc(ref, {
-      displayName: user.displayName || 'Stranger',
+      displayName: nameOverride || user.displayName || 'Stranger',
       email: user.email || '',
       photoURL: user.photoURL || '',
       xp: 0, level: 1, streak: 0,
