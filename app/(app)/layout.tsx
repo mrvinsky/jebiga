@@ -3,9 +3,10 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import Navbar from '@/components/Navbar';
+import KafanaBot from '@/components/KafanaBot';
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
-  const { user, loading } = useAuth();
+  const { user, userData, loading } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
@@ -23,12 +24,15 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
   if (!user) return null;
 
+  const isPro = userData?.subscription === 'pro' || userData?.role === 'admin';
+
   return (
     <div style={{ minHeight: '100dvh', paddingTop: 60, paddingBottom: 80, background: '#080808' }}>
       <Navbar />
       <main style={{ maxWidth: 900, margin: '0 auto', padding: '24px 16px' }}>
         {children}
       </main>
+      {isPro && <KafanaBot />}
     </div>
   );
 }

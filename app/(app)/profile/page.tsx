@@ -26,7 +26,7 @@ export default function ProfilePage() {
   return (
     <div style={{ maxWidth: 600, margin: '0 auto' }}>
       <h1 style={{ fontSize: '1.8rem', fontWeight: 900, fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '-0.02em', marginBottom: 28 }}>
-        {streetMode ? 'Tvoj Profil, brate 👤' : 'Your Profile'}
+        {streetMode ? 'Tvoj Profil, brate 👤' : 'Senin Profilin'}
       </h1>
 
       {/* User card */}
@@ -47,15 +47,15 @@ export default function ProfilePage() {
             </div>
             <div style={{ textAlign: 'center' }}>
               <div style={{ fontWeight: 800, color: '#c0392b', fontSize: '1.1rem' }}>Lv.{level}</div>
-              <div style={{ fontSize: '0.7rem', color: '#555' }}>Level</div>
+              <div style={{ fontSize: '0.7rem', color: '#555' }}>Seviye</div>
             </div>
             <div style={{ textAlign: 'center' }}>
               <div style={{ fontWeight: 800, color: '#ff6b00', fontSize: '1.1rem' }}>{userData?.streak || 0}🔥</div>
-              <div style={{ fontSize: '0.7rem', color: '#555' }}>Streak</div>
+              <div style={{ fontSize: '0.7rem', color: '#555' }}>Seri</div>
             </div>
             <div style={{ textAlign: 'center' }}>
               <div style={{ fontWeight: 800, color: '#00e676', fontSize: '1.1rem' }}>{completed.length}</div>
-              <div style={{ fontSize: '0.7rem', color: '#555' }}>Done</div>
+              <div style={{ fontSize: '0.7rem', color: '#555' }}>Bitti</div>
             </div>
           </div>
         </div>
@@ -64,7 +64,7 @@ export default function ProfilePage() {
       {/* XP to next level */}
       <div className="card" style={{ marginBottom: 20 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 10 }}>
-          <span style={{ fontWeight: 700, fontSize: '0.85rem' }}>Level {level} → {level + 1}</span>
+          <span style={{ fontWeight: 700, fontSize: '0.85rem' }}>Seviye {level} → {level + 1}</span>
           <span style={{ fontSize: '0.8rem', color: '#666' }}>{xp % xpToNext} / {xpToNext} XP</span>
         </div>
         <div className="progress-bar">
@@ -75,7 +75,7 @@ export default function ProfilePage() {
       {/* Progress by section */}
       <div className="card" style={{ marginBottom: 20 }}>
         <h3 style={{ fontWeight: 800, fontFamily: 'Space Grotesk, sans-serif', marginBottom: 16, fontSize: '0.95rem' }}>
-          {streetMode ? 'Tvoj napredak, brate' : 'Progress by section'}
+          {streetMode ? 'Tvoj napredak, brate' : 'Bölümlere göre ilerlemen'}
         </h3>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           {curriculum.map((set) => {
@@ -101,15 +101,15 @@ export default function ProfilePage() {
       {!isPro && (
         <div style={{ background: 'linear-gradient(135deg, rgba(245,197,24,0.1), rgba(255,140,0,0.05))', border: '1px solid rgba(245,197,24,0.25)', borderRadius: 16, padding: 24, textAlign: 'center', marginBottom: 20 }}>
           <div style={{ fontSize: '1.5rem', marginBottom: 8 }}>⚡</div>
-          <h3 style={{ fontWeight: 800, fontFamily: 'Space Grotesk, sans-serif', marginBottom: 8 }}>Upgrade to Jebiga Pro</h3>
-          <p style={{ color: '#888', fontSize: '0.85rem', marginBottom: 16 }}>Unlimited AI lessons, advanced Street Mode, and more.</p>
-          <Link href="/pro" className="btn-primary">Go Pro ⚡</Link>
+          <h3 style={{ fontWeight: 800, fontFamily: 'Space Grotesk, sans-serif', marginBottom: 8 }}>Jebiga Pro'ya Geç</h3>
+          <p style={{ color: '#888', fontSize: '0.85rem', marginBottom: 16 }}>Yapay Zeka botu, daha fazla küfür, sokak jargonu ve fazlası.</p>
+          <Link href="/pro" className="btn-primary">Pro Ol ⚡</Link>
         </div>
       )}
 
       {/* Logout button */}
       <button onClick={handleSignOut} className="btn-primary" style={{ width: '100%', background: '#1c1c1c', border: '1px solid #333', color: '#ff4757', padding: '16px' }}>
-        Log Out / Çıkış Yap 🚪
+        Çıkış Yap 🚪
       </button>
     </div>
   );

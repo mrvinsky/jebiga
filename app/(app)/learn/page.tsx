@@ -16,10 +16,10 @@ export default function LearnPage() {
       {/* Header */}
       <div style={{ marginBottom: 32, textAlign: 'center' }}>
         <h1 style={{ fontSize: '2rem', fontWeight: 900, fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '-0.02em', margin: 0 }}>
-          {streetMode ? <span className="neon-text">Ulični Rečnik 💀</span> : <><span className="gradient-text-red">Learning</span> Path</>}
+          {streetMode ? <span className="neon-text">Ulični Rečnik 💀</span> : <><span className="gradient-text-red">Öğrenme</span> Yolu</>}
         </h1>
         <p style={{ color: '#666', marginTop: 8, fontSize: '0.9rem' }}>
-          {streetMode ? 'Pazi, brate — svaka lekcija te bliže vodi pravom srpskom.' : 'Complete lessons to unlock the next level. Jebiga if you skip!'}
+          {streetMode ? 'Pazi, brate — svaka lekcija te bliže vodi pravom srpskom.' : 'Sonraki seviyenin kilidini açmak için dersleri tamamla. Atlarsan jebiga!'}
         </p>
       </div>
 
@@ -78,13 +78,13 @@ export default function LearnPage() {
                           {streetMode ? lesson.streetTitle : lesson.title}
                         </div>
                         <div style={{ fontSize: '0.75rem', color: '#555', marginTop: 2 }}>
-                          {isProLocked ? 'PRO Content' : isCompleted ? '✓ Completed' : `+${lesson.xpReward} XP`}
+                          {isProLocked ? 'PRO İçerik' : isCompleted ? '✓ Tamamlandı' : `+${lesson.xpReward} XP`}
                         </div>
                       </div>
                       {(isActive || isProLocked) && (
                         <div style={{ marginLeft: 'auto' }}>
                           <div style={{ background: isProLocked ? '#f1c40f' : set.color, color: isProLocked ? '#000' : '#fff', fontSize: '0.7rem', fontWeight: 800, padding: '4px 10px', borderRadius: 20, letterSpacing: '0.05em' }}>
-                            {isProLocked ? 'PRO' : 'START'}
+                            {isProLocked ? 'PRO' : 'BAŞLA'}
                           </div>
                         </div>
                       )}

@@ -35,8 +35,8 @@ export default function LessonPage({ params }: { params: Promise<{ id: string }>
 
   if (!lesson) return (
     <div style={{ textAlign: 'center', paddingTop: 60 }}>
-      <p style={{ color: '#888' }}>Lesson not found. Jebiga 💀</p>
-      <button className="btn-primary" style={{ marginTop: 20 }} onClick={() => router.push('/learn')}>Back to map</button>
+      <p style={{ color: '#888' }}>Ders bulunamadı. Jebiga 💀</p>
+      <button className="btn-primary" style={{ marginTop: 20 }} onClick={() => router.push('/learn')}>Haritaya dön</button>
     </div>
   );
 
@@ -51,11 +51,11 @@ export default function LessonPage({ params }: { params: Promise<{ id: string }>
   const progress = ((current) / questions.length) * 100;
 
   const wrongPhrases = streetMode
-    ? ['Jebiga, try again! 💀', 'Vopi, not quite brate! 🔥', 'Pazi! That\'s wrong 😤', 'Kapiram — almost, but no! 😅']
-    : ['Jebiga, try again! 💀', 'Not quite — give it another shot!', 'Wrong! But you\'ll get it 💪', 'Nope! Try once more'];
+    ? ['Jebiga, tekrar dene! 💀', 'Vopi, tam değil brate! 🔥', 'Pazi! Yanlış oldu 😤', 'Kapiram — az kalsın ama ı-ıh! 😅']
+    : ['Jebiga, tekrar dene! 💀', 'Tam değil — bir şans daha ver!', 'Yanlış! Ama yaparsın 💪', 'Maalesef! Tekrar dene'];
   const correctPhrases = streetMode
     ? ['Bravo, brate! 🔥', 'Kapiram, savršeno! ✨', 'To je to, majstore! 💪', 'Odlično! Full send! ⚡']
-    : ['Correct! Bravo! 🎉', 'Nice one! 🔥', 'Odlično! That\'s right! ✅', 'Perfect! Keep going! ⚡'];
+    : ['Doğru! Bravo! 🎉', 'Çok iyi! 🔥', 'Odlično! Aynen öyle! ✅', 'Mükemmel! Aynen devam! ⚡'];
 
   const randomFrom = (arr: string[]) => arr[Math.floor(Math.random() * arr.length)];
 
@@ -122,18 +122,18 @@ export default function LessonPage({ params }: { params: Promise<{ id: string }>
     <div style={{ textAlign: 'center', paddingTop: 40 }}>
       <div style={{ fontSize: '4rem', marginBottom: 16, animation: 'pop-in 0.3s cubic-bezier(0.34,1.56,0.64,1)' }}>🎉</div>
       <h2 style={{ fontSize: '2rem', fontWeight: 900, fontFamily: 'Space Grotesk, sans-serif', marginBottom: 8 }}>
-        {streetMode ? 'Jebiga, to je to!' : 'Lesson Complete!'}
+        {streetMode ? 'Jebiga, to je to!' : 'Ders Bitti!'}
       </h2>
       <p style={{ color: '#888', marginBottom: 32 }}>
-        {streetMode ? `Bravo brate — ${mistakes} greška${mistakes !== 1 ? 'ke' : ''}!` : `You made ${mistakes} mistake${mistakes !== 1 ? 's' : ''}.`}
+        {streetMode ? `Bravo brate — ${mistakes} greška${mistakes !== 1 ? 'ke' : ''}!` : `Sadece ${mistakes} hata yaptın.`}
       </p>
       <div className={`glass ${streetMode ? 'neon-border' : ''}`} style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', gap: 8, padding: '24px 48px', marginBottom: 32 }}>
         <div style={{ fontSize: '2.5rem', fontWeight: 900, color: '#f5c518', fontFamily: 'Space Grotesk, sans-serif' }}>+{xpEarned} XP</div>
-        <div style={{ color: '#666', fontSize: '0.85rem' }}>earned this lesson</div>
+        <div style={{ color: '#666', fontSize: '0.85rem' }}>bu derste kazanıldı</div>
       </div>
       <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-        <button className="btn-ghost" onClick={() => { setCurrent(0); setFinished(false); setMistakes(0); setXpEarned(0); setStatus('idle'); }}>Try again 🔄</button>
-        <button className="btn-primary" onClick={() => router.push('/learn')}>Back to map 🗺️</button>
+        <button className="btn-ghost" onClick={() => { setCurrent(0); setFinished(false); setMistakes(0); setXpEarned(0); setStatus('idle'); }}>Tekrar Dene 🔄</button>
+        <button className="btn-primary" onClick={() => router.push('/learn')}>Haritaya Dön 🗺️</button>
       </div>
     </div>
   );
@@ -183,7 +183,7 @@ export default function LessonPage({ params }: { params: Promise<{ id: string }>
           onClick={checkAnswer}
           disabled={!selected && !inputVal.trim()}
         >
-          Check answer
+          Cevapla
         </button>
       )}
     </div>

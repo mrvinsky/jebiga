@@ -72,9 +72,9 @@ export default function Navbar() {
       {/* Bottom mobile nav */}
       <nav style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 100, background: 'rgba(8,8,8,0.97)', borderTop: '1px solid #1a1a1a', backdropFilter: 'blur(20px)', display: 'flex', justifyContent: 'space-around', padding: '8px 0 16px' }}>
         {[
-          { href: '/learn', icon: '🗺️', label: 'Learn' },
-          { href: '/profile', icon: '👤', label: 'Profile' },
-          { href: '/pro', icon: '⚡', label: 'Pro' },
+          { href: '/learn', icon: '🗺️', label: 'ÖĞREN' },
+          { href: '/profile', icon: '👤', label: 'PROFİL' },
+          { href: '/pro', icon: '⚡', label: 'PRO' },
         ].map(({ href, icon, label }) => (
           <Link key={href} href={href} style={{
             display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, textDecoration: 'none',

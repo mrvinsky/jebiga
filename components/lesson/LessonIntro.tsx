@@ -31,7 +31,7 @@ export default function LessonIntro({
           {content.scenario}
         </p>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: 'rgba(245,197,24,0.1)', border: '1px solid rgba(245,197,24,0.3)', borderRadius: 20, padding: '6px 16px' }}>
-          <span style={{ color: '#f5c518', fontWeight: 700, fontSize: '0.85rem' }}>⚡ +{xpReward} XP this lesson</span>
+          <span style={{ color: '#f5c518', fontWeight: 700, fontSize: '0.85rem' }}>⚡ bu derste +{xpReward} XP</span>
         </div>
       </div>
 
@@ -40,7 +40,7 @@ export default function LessonIntro({
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
           <span style={{ fontSize: '1.1rem' }}>📚</span>
           <h2 style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 800, fontSize: '1rem', color: '#f5f5f5' }}>
-            {streetMode ? 'Reči koje moraš da znaš' : 'Key Vocabulary'}
+            {streetMode ? 'Reči koje moraš da znaš' : 'Önemli Kelimeler'}
           </h2>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -80,7 +80,7 @@ export default function LessonIntro({
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
             <span style={{ fontSize: '1.1rem' }}>💬</span>
             <h2 style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 800, fontSize: '1rem', color: '#f5f5f5' }}>
-              {streetMode ? 'Kako zvuči uživo' : 'Sample Dialogue'}
+              {streetMode ? 'Kako zvuči uživo' : 'Örnek Diyalog'}
             </h2>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -140,7 +140,7 @@ export default function LessonIntro({
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
             <span style={{ fontSize: '1rem' }}>🇷🇸</span>
             <span style={{ fontWeight: 800, fontSize: '0.85rem', color: streetMode ? '#39ff14' : '#f5c518', fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.04em' }}>
-              {streetMode ? 'Balkanska Mudrost' : 'Cultural Tip'}
+              {streetMode ? 'Balkanska Mudrost' : 'Kültür Notu'}
             </span>
           </div>
           <p style={{ fontSize: '0.88rem', color: '#aaa', lineHeight: 1.65 }}>
@@ -156,7 +156,7 @@ export default function LessonIntro({
         style={{ width: '100%', fontSize: '1.05rem', padding: '18px', marginTop: 4 }}
         onClick={onStart}
       >
-        {streetMode ? '💀 Kreni na kviz, brate!' : '🚀 Start Quiz'}
+        {streetMode ? '💀 Kreni na kviz, brate!' : '🚀 Teste Başla'}
       </button>
     </div>
   );

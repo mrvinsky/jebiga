@@ -27,7 +27,7 @@ export default function QuizCard({
   return (
     <div className="card-lesson" style={{ animation: 'slide-up 0.3s ease', borderColor: status === 'correct' ? '#00e67633' : status === 'wrong' ? '#ff174433' : '#2a2a2a' }}>
       <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#555', letterSpacing: '0.1em', marginBottom: 16, textTransform: 'uppercase' }}>
-        {question.type === 'multiple-choice' ? '🧠 Choose the answer' : '✍️ Translate'}
+        {question.type === 'multiple-choice' ? '🧠 Cevabı Seç' : '✍️ Çevir'}
       </div>
       <p style={{ fontSize: '1.2rem', fontWeight: 700, fontFamily: 'Space Grotesk, sans-serif', marginBottom: 28, lineHeight: 1.4, color: '#f5f5f5' }}>
         {prompt}
@@ -63,11 +63,11 @@ export default function QuizCard({
       {/* Translate input */}
       {question.type === 'translate' && (
         <div>
-          {question.hint && <p style={{ fontSize: '0.78rem', color: '#555', marginBottom: 10 }}>💡 Hint: {question.hint}</p>}
+          {question.hint && <p style={{ fontSize: '0.78rem', color: '#555', marginBottom: 10 }}>💡 İpucu: {question.hint}</p>}
           <input
             id="translate-input"
             type="text"
-            placeholder="Type your answer..."
+            placeholder="Cevabını yaz..."
             value={inputVal}
             onChange={(e) => status === 'idle' && onInputChange(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && status === 'idle' && onCheck()}
