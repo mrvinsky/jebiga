@@ -124,7 +124,6 @@ export default function LessonIntro({
                 ? `${color}22`
                 : 'transparent',
               color: activeTab === t.id ? color : '#555',
-              borderColor: activeTab === t.id ? `${color}44` : 'transparent',
               outline: activeTab === t.id ? `1.5px solid ${color}44` : '1.5px solid transparent',
             }}
           >
@@ -321,7 +320,7 @@ export default function LessonIntro({
           width: '100%',
           display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
           padding: '18px 24px',
-          borderRadius: 14, border: 'none', cursor: 'pointer',
+          borderRadius: 14, cursor: 'pointer',
           fontFamily: 'Space Grotesk, sans-serif',
           fontWeight: 800, fontSize: '1.05rem',
           letterSpacing: '-0.01em',
