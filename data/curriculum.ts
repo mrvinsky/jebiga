@@ -195,6 +195,7 @@ export const curriculum: LessonSet[] = [
     description: 'The real Serbian — slang, expressions, attitude',
     streetDescription: 'Jebiga, ovo je ono pravo. Ulični srpski za prave likove.',
     emoji: '💀', color: '#39ff14',
+    isPro: true,
     lessons: [
       {
         id: 'slang-1', title: 'Essential Slang', streetTitle: 'Mora da znaš ovo', emoji: '🔥', xpReward: 50,
