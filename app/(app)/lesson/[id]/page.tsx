@@ -42,7 +42,7 @@ export default function LessonPage({ params }: { params: Promise<{ id: string }>
 
   // Pro Protection Redirect
   if ((lesson as unknown as { isPro: boolean }).isPro && !isPro) {
-    if (typeof window !== 'undefined') window.location.href = "YOUR_PAYMENT_LINK_HERE";
+    if (typeof window !== 'undefined') router.push('/pro');
     return null; // Return null while redirecting
   }
 
@@ -141,23 +141,32 @@ export default function LessonPage({ params }: { params: Promise<{ id: string }>
   const feedbackMsg = status !== 'idle' ? randomFrom(status === 'correct' ? correctPhrases : wrongPhrases) : '';
 
   return (
-    <div style={{ maxWidth: 600, margin: '0 auto' }}>
-      {/* Progress */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 28 }}>
-        <button onClick={() => router.push('/learn')} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#555', fontSize: '1.2rem', padding: 4 }}>✕</button>
-        <div className="progress-bar" style={{ flex: 1 }}>
-          <div className={streetMode ? 'progress-fill-neon' : 'progress-fill'} style={{ width: `${progress}%` }} />
-        </div>
-        <span style={{ color: '#555', fontSize: '0.8rem', fontWeight: 700 }}>{current + 1}/{questions.length}</span>
+    <div style={{ maxWidth: 640, margin: '0 auto' }}>
+      {/* Back button */}
+      <div style={{ marginBottom: 8 }}>
+        <button
+          onClick={() => router.push('/learn')}
+          style={{
+            background: 'none', border: 'none', cursor: 'pointer',
+            color: '#444', fontSize: '0.82rem', fontWeight: 600,
+            padding: '6px 0', display: 'flex', alignItems: 'center', gap: 6,
+            fontFamily: 'Space Grotesk, sans-serif',
+          }}
+        >
+          ← Haritaya Dön
+        </button>
       </div>
 
       {/* Question card */}
       <QuizCard
         question={q}
+        questionIndex={current}
+        totalQuestions={questions.length}
         selected={selected}
         inputVal={inputVal}
         status={status}
         streetMode={streetMode}
+        color={(lesson as unknown as { color?: string }).color ?? '#c0392b'}
         onSelect={setSelected}
         onInputChange={setInputVal}
         onCheck={checkAnswer}
@@ -179,13 +188,18 @@ export default function LessonPage({ params }: { params: Promise<{ id: string }>
         <button
           id="check-btn"
           className="btn-primary"
-          style={{ width: '100%', marginTop: 20, opacity: (selected || inputVal.trim()) ? 1 : 0.4 }}
+          style={{
+            width: '100%', marginTop: 20,
+            opacity: (selected || inputVal.trim()) ? 1 : 0.4,
+            fontSize: '1rem', padding: '16px',
+          }}
           onClick={checkAnswer}
           disabled={!selected && !inputVal.trim()}
         >
-          Cevapla
+          Cevapla ✓
         </button>
       )}
     </div>
   );
 }
+

@@ -678,6 +678,161 @@ export const curriculum: LessonSet[] = [
       },
     ],
   },
+
+  // ─── HEALTH & EMERGENCIES (FREE) ─────────────────────────────────────────
+  {
+    id: 'health', title: 'Sağlık & Acil', streetTitle: 'Zovi pomoć, brate!',
+    description: 'Sağlık sorunlarında ne diyeceğini öğren.',
+    streetDescription: 'Boli me glava. Zovi doktora. Preživi!',
+    emoji: '🏥', color: '#e74c3c',
+    lessons: [
+      {
+        id: 'health-1', title: 'Vücut & Ağrı', streetTitle: 'Šta te boli?', emoji: '🤒', xpReward: 25,
+        questions: [
+          { id: 'hl1-q1', type: 'multiple-choice', prompt: '\"Başım ağrıyor\" nasıl denir?', streetPrompt: 'Brate — başın mı patladı?', answer: 'Boli me glava', options: ['Boli me stomak', 'Boli me glava', 'Boli me zub', 'Boli me leđa'] },
+          { id: 'hl1-q2', type: 'translate', prompt: '\"Yardım edin!\" cümlesini çevir', streetPrompt: 'Acil durum — hemen ne bağırırsın?', answer: 'Pomozite!', hint: 'pom-o-zi-te' },
+          { id: 'hl1-q3', type: 'multiple-choice', prompt: '\"Bolnica\" nedir?', streetPrompt: 'Doktor nerede? \"Bolnica\" nedir?', answer: 'Hastane', options: ['Eczane', 'Klinik', 'Hastane', 'Ambulans'] },
+          { id: 'hl1-q4', type: 'multiple-choice', prompt: '\"Ateşim var\" nasıl denir?', streetPrompt: 'Pazi — ateşin yüksek, ne dersin?', answer: 'Imam temperaturu', options: ['Imam bol', 'Imam temperaturu', 'Imam grip', 'Imam alergiju'] },
+          { id: 'hl1-q5', type: 'translate', prompt: '\"İlaç\" kelimesini çevir', streetPrompt: 'Eczanede ne istersin?', answer: 'Lek', hint: 'tek hece, kolay!' },
+          { id: 'hl1-q6', type: 'multiple-choice', prompt: '\"Ambulans çağırın!\" nasıl denir?', streetPrompt: 'Kapiram acil — ne bağırırsın?', answer: 'Zovite hitnu pomoć!', options: ['Zovite policiju!', 'Zovite vatrogasce!', 'Zovite hitnu pomoć!', 'Zovite taksija!'] },
+        ],
+      },
+      {
+        id: 'health-2', title: 'Eczanede', streetTitle: 'U apoteci', emoji: '💊', xpReward: 25,
+        questions: [
+          { id: 'hl2-q1', type: 'multiple-choice', prompt: '\"Eczane\" nasıl denir?', streetPrompt: 'İlaç almak için nereye gidersin?', answer: 'Apoteka', options: ['Bolnica', 'Apoteka', 'Klinika', 'Ambulanta'] },
+          { id: 'hl2-q2', type: 'translate', prompt: '\"Ağrı kesici var mı?\" cümlesini çevir', streetPrompt: 'Eczacıya ne sorarsın?', answer: 'Imate li analgetik?', hint: 'analgetik = ağrı kesici' },
+          { id: 'hl2-q3', type: 'multiple-choice', prompt: '\"Alerji\" kelimesi Sırpçada nedir?', streetPrompt: 'Brate, alerji nedir Sırpçada?', answer: 'Alergija', options: ['Bolest', 'Alergija', 'Kašalj', 'Groznica'] },
+          { id: 'hl2-q4', type: 'multiple-choice', prompt: 'Penisilini alerjini nasıl bildirirsin?', streetPrompt: 'Doktora alerjini nasıl söylersin?', answer: 'Alergičan sam na penicilin', options: ['Volim penicilin', 'Uzimam penicilin', 'Alergičan sam na penicilin', 'Trebam penicilin'] },
+          { id: 'hl2-q5', type: 'translate', prompt: '\"Reçete\" kelimesini çevir', streetPrompt: 'Doktor sana ne verdi?', answer: 'Recept', hint: 'rec-ept' },
+        ],
+      },
+    ],
+  },
+
+  // ─── BELGRADE CITY & PLACES (FREE) ──────────────────────────────────────
+  {
+    id: 'belgrade', title: 'Belgrad & Şehir', streetTitle: 'Beograd, majstore',
+    description: 'Belgradin semtlerini, meydanlarini ve yerlerini tani.',
+    streetDescription: 'Kalemegdan, Skadarlija, Zemun... Nauči gde šta je.',
+    emoji: '🏙️', color: '#2c3e50',
+    lessons: [
+      {
+        id: 'belgrade-1', title: 'Semtler & Meydanlar', streetTitle: 'Kvartovi i Trg', emoji: '🗺️', xpReward: 25,
+        questions: [
+          { id: 'bg1-q1', type: 'multiple-choice', prompt: '\"Centar\" ne anlama gelir?', streetPrompt: 'Brate — Centar nedir?', answer: 'Şehir merkezi', options: ['Park', 'Şehir merkezi', 'Köprü', 'Pazar'] },
+          { id: 'bg1-q2', type: 'translate', prompt: '\"Köprü\" kelimesini çevir', streetPrompt: 'Sava üzerindeki yapı?', answer: 'Most', hint: 'most — kısa!' },
+          { id: 'bg1-q3', type: 'multiple-choice', prompt: '\"Kalemegdan\" nedir?', streetPrompt: 'Beogradın kalbi nerede?', answer: 'Belgradın tarihi kalesi ve parkı', options: ['Bir alışveriş merkezi', 'Bir spor salonu', 'Belgradın tarihi kalesi ve parkı', 'Bir kafana'] },
+          { id: 'bg1-q4', type: 'multiple-choice', prompt: '\"Trg\" ne anlama gelir?', streetPrompt: 'Pazi — Trg šta je?', answer: 'Meydan', options: ['Çarşı', 'Cadde', 'Meydan', 'Park'] },
+          { id: 'bg1-q5', type: 'translate', prompt: '\"Nereye gidiyorsun?\" cümlesini çevir', streetPrompt: 'Biri sana soruyor — ne diyorsun?', answer: 'Kuda ideš?', hint: 'kuda = nereye, ideš = gidiyorsun' },
+        ],
+      },
+      {
+        id: 'belgrade-2', title: 'Nehirler & Plajlar', streetTitle: 'Sava i Dunav', emoji: '🏖️', xpReward: 30,
+        questions: [
+          { id: 'bg2-q1', type: 'multiple-choice', prompt: 'Belgraddan geçen iki büyük nehir hangisidir?', streetPrompt: 'Brate — Belgrad hangi nehirlerin kavsaginda?', answer: 'Sava ve Dunav (Tuna)', options: ['Morava ve Drina', 'Sava ve Dunav (Tuna)', 'Tisa ve Nišava', 'Kolubara ve Toplica'] },
+          { id: 'bg2-q2', type: 'translate', prompt: '\"Nehir\" kelimesini çevir', streetPrompt: 'Sava i Dunav su...', answer: 'Reka', hint: 're-ka' },
+          { id: 'bg2-q3', type: 'multiple-choice', prompt: '\"Splavovi\" nedir?', streetPrompt: 'Yaz gelince herkes nereye gider kanka?', answer: 'Nehir üstü yüzen mekanlar (splavlar)', options: ['Spor kulüpleri', 'Nehir üstü yüzen mekanlar (splavlar)', 'Yazlık evler', 'Balık restoranları'] },
+          { id: 'bg2-q4', type: 'translate', prompt: '\"Ada\" kelimesini çevir', streetPrompt: 'Ada Ciganlija — Ada ne demek?', answer: 'Ada', hint: 'Türkçe ile aynı: Ada' },
+          { id: 'bg2-q5', type: 'multiple-choice', prompt: '\"Plaj\" nasıl denir Sırpçada?', streetPrompt: 'Yaz sicaginda herkes nereye kosar?', answer: 'Plaža', options: ['Jezero', 'Plaža', 'More', 'Bazen'] },
+        ],
+      },
+    ],
+  },
+
+  // ─── SERBIAN NIGHTLIFE (PRO) ─────────────────────────────────────────────
+  {
+    id: 'nightlife', title: 'Sırp Gece Hayatı', streetTitle: 'Nocni Zivot',
+    description: 'Kafanalar, splavlar ve Belgrad gecelerini yasa.',
+    streetDescription: 'Beograd noću je drugi svet. Nauči kako da preživiš.',
+    emoji: '🌃', color: '#6c3483',
+    isPro: true,
+    lessons: [
+      {
+        id: 'night-1', title: 'Gece Hazırlığı', streetTitle: 'Šta večeras?', emoji: '🎉', xpReward: 40,
+        questions: [
+          { id: 'ni1-q1', type: 'multiple-choice', prompt: '\"Bu gece dışarı çıkıyoruz mu?\" nasıl denir?', streetPrompt: 'Brate — gece planı var mı?', answer: 'Idemo večeras van?', options: ['Spavamo večeras?', 'Idemo večeras van?', 'Jedemo večeras?', 'Radimo večeras?'] },
+          { id: 'ni1-q2', type: 'translate', prompt: '\"Hazır mısın?\" cümlesini çevir', streetPrompt: 'Arkadasini acele ettir!', answer: 'Jesi li spreman?', hint: 'spreman = hazır (erkek)' },
+          { id: 'ni1-q3', type: 'multiple-choice', prompt: '\"Kuda idemo?\" ne anlama gelir?', streetPrompt: 'Pazi — Kuda idemo?', answer: 'Nereye gidiyoruz?', options: ['Ne zaman gidiyoruz?', 'Nasıl gidiyoruz?', 'Nereye gidiyoruz?', 'Neden gidiyoruz?'] },
+          { id: 'ni1-q4', type: 'translate', prompt: '\"Taksi çağırıyorum\" cümlesini çevir', streetPrompt: 'Zovem...', answer: 'Zovem taksi', hint: 'zovem = çağırıyorum' },
+          { id: 'ni1-q5', type: 'multiple-choice', prompt: '\"Rezervasyon yaptın mı?\" nasıl denir?', streetPrompt: 'Kafana doluysa ne derler sana?', answer: 'Da li si rezervisao?', options: ['Da li si došao?', 'Da li si rezervisao?', 'Da li si platio?', 'Da li si pojeo?'] },
+        ],
+      },
+      {
+        id: 'night-2', title: 'Kafana & Splav', streetTitle: 'Na Splavu!', emoji: '🥂', xpReward: 45,
+        questions: [
+          { id: 'ni2-q1', type: 'multiple-choice', prompt: '\"Gürültü çok fazla\" nasıl söylersin?', streetPrompt: 'Kulağın patladı mı kanka?', answer: 'Previše je buka', options: ['Puno je muzike', 'Previše je buka', 'Nema zvuka', 'Tiho je'] },
+          { id: 'ni2-q2', type: 'translate', prompt: '\"Bir tur daha!\" cümlesini çevir', streetPrompt: 'Üçüncü tur geldi...', answer: 'Još jedna runda!', hint: 'još = daha, runda = tur' },
+          { id: 'ni2-q3', type: 'multiple-choice', prompt: '\"Masa ayrılmış\" nasıl denir?', streetPrompt: 'Garson sana ne der?', answer: 'Sto je rezervisan', options: ['Sto je slobodan', 'Sto je rezervisan', 'Sto je zauzet', 'Sto je zatvoren'] },
+          { id: 'ni2-q4', type: 'translate', prompt: '\"Dans pistine gidelim!\" cümlesini çevir', streetPrompt: 'Müzik başladı!', answer: 'Ajde na podijum!', hint: 'ajde = hadi, podijum = dans pisti' },
+          { id: 'ni2-q5', type: 'multiple-choice', prompt: '\"Eve gitmek istiyorum\" nasıl dersin?', streetPrompt: 'Artık bitti — eve dönüş!', answer: 'Hoću kući', options: ['Ostaje kući', 'Idi kući', 'Hoću kući', 'Idem napolje'] },
+        ],
+      },
+    ],
+  },
+
+  // ─── ADVANCED GRAMMAR (PRO) ───────────────────────────────────────────────
+  {
+    id: 'grammar', title: 'İleri Dilbilgisi', streetTitle: 'Srpska Gramatika',
+    description: 'Geçmiş zaman, fiil çekimleri ve cümle yapısı.',
+    streetDescription: 'Ajde brate, nauči da pričaš ko pravi Srbin.',
+    emoji: '📚', color: '#1a5276',
+    isPro: true,
+    lessons: [
+      {
+        id: 'grammar-1', title: 'Geçmiş Zaman', streetTitle: 'Šta si radio juče?', emoji: '⏪', xpReward: 40,
+        questions: [
+          { id: 'gr1-q1', type: 'multiple-choice', prompt: '\"Dün gittim\" nasıl denir?', streetPrompt: 'Pazi — geçmiş zamana dikkat!', answer: 'Išao sam juče', options: ['Idem juče', 'Išao sam juče', 'Idi juče', 'Ću ići juče'] },
+          { id: 'gr1-q2', type: 'translate', prompt: '\"Dün ne yaptın?\" cümlesini çevir', streetPrompt: 'Kapiram — dünü sor bakalım.', answer: 'Šta si radio juče?', hint: 'radio si = yaptın (geçmiş/erkek)' },
+          { id: 'gr1-q3', type: 'multiple-choice', prompt: '\"Radio sam\" ne anlama gelir?', streetPrompt: 'Brate — Radio sam nedir?', answer: 'Yaptım (erkek)', options: ['Yapıyorum', 'Yapacağım', 'Yaptım (erkek)', 'Yapardım'] },
+          { id: 'gr1-q4', type: 'multiple-choice', prompt: '\"Spavala sam\" kimin için kullanılır?', streetPrompt: 'Brate — Spavala sam kim söyler?', answer: 'Kadın konuşmacı (uyudum)', options: ['Erkek komşu', 'Kadın konuşmacı (uyudum)', 'Çoğul (uyudular)', 'Hepsi'] },
+          { id: 'gr1-q5', type: 'translate', prompt: '\"Dün akşam kafanaya gittik\" cümlesini çevir', streetPrompt: 'Geçen gece ne yaptınız?', answer: 'Išli smo juče u kafanu', hint: 'išli smo = gittik (çoğul)' },
+          { id: 'gr1-q6', type: 'multiple-choice', prompt: '\"Jesam li\" ne için kullanılır?', streetPrompt: 'Kapiram — Jesam li nasıl bir yapıdır?', answer: 'Soru sorma (Ben mi...?)', options: ['Olumsuz cümle', 'Emir kipi', 'Soru sorma (Ben mi...?)', 'Gelecek zaman'] },
+        ],
+      },
+      {
+        id: 'grammar-2', title: 'Gelecek Zaman', streetTitle: 'Šta ces da kazes?', emoji: '🗣️', xpReward: 40,
+        questions: [
+          { id: 'gr2-q1', type: 'multiple-choice', prompt: 'Gelecek zaman için hangi yardımcı fiil kullanılır?', streetPrompt: 'Brate — yarın bir şey yapacaksan nasıl söylersin?', answer: 'Cu yardimci fiili', options: ['Sam', 'Jest', 'Cu yardimci fiili', 'Bi'] },
+          { id: 'gr2-q2', type: 'translate', prompt: '\"Yarın gelirim\" cümlesini çevir', streetPrompt: 'Söz ver birine — yarın geleceğini söyle!', answer: 'Doći ću sutra', hint: 'doći = gelmek, sutra = yarın' },
+          { id: 'gr2-q3', type: 'multiple-choice', prompt: '\"Ne bih hteo\" ne anlama gelir?', streetPrompt: 'Kibar reddetme — Ne bih hteo?', answer: 'İstemezdim', options: ['Kesinlikle istiyorum', 'Belki', 'İstemezdim', 'Bilmiyorum'] },
+          { id: 'gr2-q4', type: 'translate', prompt: '\"Sence ne yapmalıyım?\" cümlesini çevir', streetPrompt: 'Kafana Dayısına ne sorarsın?', answer: 'Šta misliš da treba da uradim?', hint: 'šta misliš = ne düşünüyorsun' },
+          { id: 'gr2-q5', type: 'multiple-choice', prompt: '\"Mogu da\" ne anlama gelir?', streetPrompt: 'Pazi — bir şeyi yapabildiğini nasıl söylersin?', answer: 'Yapabilirim', options: ['Yapmak istiyorum', 'Yapabilirim', 'Yapmam lazım', 'Yapacağım'] },
+        ],
+      },
+    ],
+  },
+
+  // ─── PHONE & COMMUNICATION (PRO) ─────────────────────────────────────────
+  {
+    id: 'communication', title: 'Telefon & İletişim', streetTitle: 'Na Telefonu',
+    description: 'Telefon görüşmeleri ve mesajlaşma.',
+    streetDescription: 'Ko te zove, brate? Nauči da pričaš na telefonu.',
+    emoji: '📞', color: '#27ae60',
+    isPro: true,
+    lessons: [
+      {
+        id: 'comm-1', title: 'Telefon Görüşmesi', streetTitle: 'Alo, ko je?', emoji: '📞', xpReward: 30,
+        questions: [
+          { id: 'cm1-q1', type: 'multiple-choice', prompt: 'Telefona cevap verirken ne dersin?', streetPrompt: 'Ring ring — telefon çalıyor!', answer: 'Alo!', options: ['Zdravo!', 'Alo!', 'Hej!', 'Dobro!'] },
+          { id: 'cm1-q2', type: 'translate', prompt: '\"Şu an konuşamam\" cümlesini çevir', streetPrompt: 'Meşgulsün — ne dersin?', answer: 'Ne mogu sada da pričam', hint: 'ne mogu = yapamam, sada = şimdi' },
+          { id: 'cm1-q3', type: 'multiple-choice', prompt: '\"Duyamıyorum seni\" nasıl denir?', streetPrompt: 'Hat kötü — ne dersin?', answer: 'Ne čujem te', options: ['Ne vidim te', 'Ne čujem te', 'Ne razumem te', 'Ne slušam te'] },
+          { id: 'cm1-q4', type: 'translate', prompt: '\"Mesaj atacağım\" cümlesini çevir', streetPrompt: 'Kapiram — yazarım sana?', answer: 'Pisaću ti poruku', hint: 'pisaću = yazacağım, poruku = mesaj' },
+          { id: 'cm1-q5', type: 'multiple-choice', prompt: '\"Geri arar mısın?\" nasıl denir?', streetPrompt: 'Brate — geri aranmasını istiyorsun!', answer: 'Možeš li da me pozivaš?', options: ['Zovi me!', 'Možeš li da me pozivaš?', 'Pošalji mi poruku!', 'Dođi kod mene!'] },
+        ],
+      },
+      {
+        id: 'comm-2', title: 'Sosyal Medya & Mesaj', streetTitle: 'DM i Stories', emoji: '💬', xpReward: 30,
+        questions: [
+          { id: 'cm2-q1', type: 'multiple-choice', prompt: '\"Mesaj attım\" nasıl denir?', streetPrompt: 'DM gonderdim — nasıl söylersin?', answer: 'Poslao sam poruku', options: ['Primio sam poruku', 'Poslao sam poruku', 'Čitao sam poruku', 'Obrisao sam poruku'] },
+          { id: 'cm2-q2', type: 'translate', prompt: '\"Konumunu gönder\" cümlesini çevir', streetPrompt: 'Nerede olduğunu bilmem lazım!', answer: 'Pošalji mi lokaciju', hint: 'pošalji = gönder, lokaciju = konumu' },
+          { id: 'cm2-q3', type: 'multiple-choice', prompt: '\"Grupta yazıyorum\" nasıl denir?', streetPrompt: 'Gruba mesaj atıyorsun — ne dersin?', answer: 'Pišem u grupi', options: ['Čitam grupu', 'Pišem u grupi', 'Napustio sam grupu', 'Kreiram grupu'] },
+          { id: 'cm2-q4', type: 'translate', prompt: '\"Fotoğraf gönder\" diye nasıl söylersin?', streetPrompt: 'Kapiram — fotoğraf iste!', answer: 'Pošalji mi sliku', hint: 'slika = fotoğraf' },
+          { id: 'cm2-q5', type: 'multiple-choice', prompt: '\"Sessize aldım\" nasıl denir?', streetPrompt: 'O bildirimler çok fazla — ne yaptın?', answer: 'Isključio sam obaveštenja', options: ['Obrisao sam kontakt', 'Blokirao sam ga', 'Isključio sam obaveštenja', 'Zatvorio sam aplikaciju'] },
+        ],
+      },
+    ],
+  },
 ];
 
 export const getAllLessons = () =>
