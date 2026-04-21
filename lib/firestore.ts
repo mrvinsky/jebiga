@@ -15,6 +15,7 @@ export interface UserData {
   completedLessons: string[];
   subscription: 'free' | 'pro';
   role?: 'user' | 'admin';
+  lang?: 'tr' | 'en'; // 🌐 Kullanıcı arayüz dili — seçilmemişse undefined
 }
 
 export const createUserDoc = async (user: User, nameOverride?: string) => {
@@ -57,6 +58,11 @@ export const getUserData = async (uid: string): Promise<UserData | null> => {
 export const addXP = async (uid: string, amount: number) => {
   await updateDoc(doc(db, 'users', uid), { xp: increment(amount) });
 };
+
+export const setUserLanguage = async (uid: string, lang: 'tr' | 'en') => {
+  await updateDoc(doc(db, 'users', uid), { lang });
+};
+
 
 export const completeLesson = async (uid: string, lessonId: string, xp: number) => {
   const ref = doc(db, 'users', uid);

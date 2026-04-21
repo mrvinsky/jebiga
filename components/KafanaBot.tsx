@@ -66,7 +66,6 @@ export default function KafanaBot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            className="glass-strong"
             style={{
               position: 'absolute',
               bottom: '80px',
@@ -76,7 +75,8 @@ export default function KafanaBot() {
               borderRadius: '20px',
               display: 'flex',
               flexDirection: 'column',
-              boxShadow: '0 20px 40px rgba(0,0,0,0.5)',
+              background: '#111',
+              boxShadow: '0 20px 40px rgba(0,0,0,0.7)',
               border: '1px solid rgba(255, 23, 68, 0.3)',
               overflow: 'hidden'
             }}
@@ -129,7 +129,7 @@ export default function KafanaBot() {
             </div>
 
             {/* Input Area */}
-            <div style={{ padding: '12px', borderTop: '1px solid rgba(255,255,255,0.05)', display: 'flex', gap: '8px', background: 'rgba(0,0,0,0.3)' }}>
+            <div style={{ padding: '12px', borderTop: '1px solid rgba(255,255,255,0.05)', display: 'flex', gap: '8px', background: '#0d0d0d' }}>
               <input
                 type="text"
                 value={input}

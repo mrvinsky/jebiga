@@ -1,13 +1,17 @@
 'use client';
-import { useStreetMode } from '@/context/StreetModeContext';
-import { useAuth } from '@/context/AuthContext';
-import { curriculum } from '@/data/curriculum';
 import Link from 'next/link';
 import { useState } from 'react';
+import { useLanguage, UI_TEXT } from '@/hooks/useLanguage';
+import { useAuth } from '@/context/AuthContext';
+import { useStreetMode } from '@/context/StreetModeContext';
+import { curriculum } from '@/data/curriculum';
+
 
 export default function LearnPage() {
   const { streetMode } = useStreetMode();
   const { userData } = useAuth();
+  const lang = useLanguage();
+  const t = UI_TEXT[lang];
   const completed = userData?.completedLessons || [];
   const isPro = userData?.subscription === 'pro';
   const isAdmin = userData?.role === 'admin';
@@ -48,15 +52,15 @@ export default function LearnPage() {
           </h1>
           <p style={{ color: '#666', fontSize: '0.88rem', margin: '0 0 20px' }}>
             {streetMode
-              ? 'Pazi, brate — svaka lekcija te bliže vodi pravom srpskom.'
-              : 'Kategorileri aç, dersleri tamamla, XP kazan. Atlarsan jebiga!'}
+              ? (lang === 'en' ? 'Pazi, brate — every lesson takes you closer to real Serbian.' : 'Pazi, brate — svaka lekcija te bliže vodi pravom srpskom.')
+              : (lang === 'en' ? 'Open categories, finish lessons, earn XP. If you skip, jebiga!' : 'Kategorileri aç, dersleri tamamla, XP kazan. Atlarsan jebiga!')}
           </p>
 
           {/* Progress bar */}
           <div style={{ maxWidth: 380, margin: '0 auto' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6, fontSize: '0.75rem', color: '#555' }}>
-              <span>Genel İlerleme</span>
-              <span style={{ color: '#f5c518', fontWeight: 700 }}>{completedCount}/{totalLessons} ders · {progressPct}%</span>
+              <span>{lang === 'en' ? 'General Progress' : 'Genel İlerleme'}</span>
+              <span style={{ color: '#f5c518', fontWeight: 700 }}>{completedCount}/{totalLessons} {lang === 'en' ? 'lessons' : 'ders'} · {progressPct}%</span>
             </div>
             <div style={{ height: 8, background: '#1a1a1a', borderRadius: 4, overflow: 'hidden' }}>
               <div style={{
@@ -123,13 +127,17 @@ export default function LearnPage() {
                 {/* Title + progress */}
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6, flexWrap: 'wrap' }}>
-                    <span style={{
+                    <h2 style={{
                       fontFamily: 'Space Grotesk, sans-serif',
-                      fontWeight: 800, fontSize: '0.98rem',
-                      color: isFullyDone ? '#00e676' : (!isSetUnlocked && !isProLocked) ? '#444' : '#f5f5f5',
+                      fontSize: '1.05rem', fontWeight: 800,
+                      color: isSetUnlocked ? '#fff' : '#444',
+                      margin: '0 0 4px',
                     }}>
-                      {streetMode ? set.streetTitle : set.title}
-                    </span>
+                      {streetMode ? set.streetTitle : (lang === 'en' && set.titleEn ? set.titleEn : set.title)}
+                    </h2>
+                    <p style={{ margin: 0, fontSize: '0.78rem', color: isSetUnlocked ? '#888' : '#333', lineHeight: 1.4 }}>
+                      {streetMode ? set.streetDescription : (lang === 'en' && set.descriptionEn ? set.descriptionEn : set.description)}
+                    </p>
                     {isProLocked && (
                       <span style={{
                         background: 'linear-gradient(135deg, #f5c518, #ff8c00)',
@@ -212,14 +220,14 @@ export default function LearnPage() {
                         {/* Info */}
                         <div style={{ flex: 1 }}>
                           <div style={{
-                            fontWeight: 700, fontSize: '0.88rem',
                             fontFamily: 'Space Grotesk, sans-serif',
-                            color: isCompleted ? '#00e676' : (isLocked && !isProLocked) ? '#444' : isProLocked ? '#f5c518' : '#f5f5f5',
+                            fontSize: '0.9rem', fontWeight: 700,
+                            color: isCompleted ? '#00e676' : isLocked ? '#444' : '#eee'
                           }}>
-                            {streetMode ? lesson.streetTitle : lesson.title}
+                            {streetMode ? lesson.streetTitle : (lang === 'en' && lesson.titleEn ? lesson.titleEn : lesson.title)}
                           </div>
                           <div style={{ fontSize: '0.72rem', color: '#555', marginTop: 2 }}>
-                            {isProLocked ? 'PRO içerik — yükselt' : isCompleted ? '✓ Tamamlandı' : `+${lesson.xpReward} XP`}
+                            {isProLocked ? t.proContent : isCompleted ? t.completed : `+${lesson.xpReward} XP`}
                           </div>
                         </div>
 

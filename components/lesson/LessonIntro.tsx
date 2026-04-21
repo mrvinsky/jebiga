@@ -1,9 +1,10 @@
-'use client';
 import { useState } from 'react';
 import { LessonContent } from '@/data/contentTypes';
+import { useLanguage } from '@/hooks/useLanguage';
 
 interface Props {
   lessonTitle: string;
+  titleEn?: string;
   streetTitle: string;
   emoji: string;
   color: string;
@@ -15,18 +16,19 @@ interface Props {
 
 type Tab = 'vocab' | 'dialogue' | 'grammar' | 'culture';
 
-const TAB_CONFIG: { id: Tab; icon: string; label: string; streetLabel: string }[] = [
-  { id: 'vocab',    icon: '📚', label: 'Kelimeler',    streetLabel: 'Reči' },
-  { id: 'dialogue', icon: '💬', label: 'Diyalog',      streetLabel: 'Dijalog' },
-  { id: 'grammar',  icon: '🧠', label: 'Dilbilgisi',   streetLabel: 'Gramatika' },
-  { id: 'culture',  icon: '🇷🇸', label: 'Kültür Notu', streetLabel: 'Balkanska Mudrost' },
+const TAB_CONFIG: { id: Tab; icon: string; label: string; labelEn: string; streetLabel: string }[] = [
+  { id: 'vocab',    icon: '📚', label: 'Kelimeler',    labelEn: 'Vocabulary', streetLabel: 'Reči' },
+  { id: 'dialogue', icon: '💬', label: 'Diyalog',      labelEn: 'Dialogue',   streetLabel: 'Dijalog' },
+  { id: 'grammar',  icon: '🧠', label: 'Dilbilgisi',   labelEn: 'Grammar',    streetLabel: 'Gramatika' },
+  { id: 'culture',  icon: '🇷🇸', label: 'Kültür Notu', labelEn: 'Culture',    streetLabel: 'Balkanska Mudrost' },
 ];
 
 export default function LessonIntro({
-  lessonTitle, streetTitle, emoji, color, xpReward,
+  lessonTitle, titleEn, streetTitle, emoji, color, xpReward,
   content, streetMode, onStart,
 }: Props) {
-  const title = streetMode ? streetTitle : lessonTitle;
+  const lang = useLanguage();
+  const title = streetMode ? streetTitle : (lang === 'en' && titleEn ? titleEn : lessonTitle);
 
   // Determine available tabs
   const availableTabs = TAB_CONFIG.filter(t => {
@@ -84,7 +86,7 @@ export default function LessonIntro({
             lineHeight: 1.65, maxWidth: 480,
             margin: '0 auto 18px',
           }}>
-            {content.scenario}
+            {lang === 'en' && content.scenarioEn ? content.scenarioEn : content.scenario}
           </p>
 
           {/* XP badge */}
@@ -95,7 +97,7 @@ export default function LessonIntro({
             borderRadius: 20, padding: '6px 16px',
           }}>
             <span style={{ color: '#f5c518', fontWeight: 700, fontSize: '0.82rem' }}>
-              ⚡ Bu derste +{xpReward} XP kazanacaksın
+              ⚡ {lang === 'en' ? `You will earn +${xpReward} XP in this lesson` : `Bu derste +${xpReward} XP kazanacaksın`}
             </span>
           </div>
         </div>
@@ -109,30 +111,33 @@ export default function LessonIntro({
         borderRadius: 14, padding: 5,
         marginBottom: 16,
       }}>
-        {availableTabs.map(t => (
-          <button
-            key={t.id}
-            onClick={() => setActiveTab(t.id)}
-            style={{
-              flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center',
-              gap: 6, padding: '10px 8px',
-              borderRadius: 10, border: 'none', cursor: 'pointer',
-              fontFamily: 'Space Grotesk, sans-serif',
-              fontWeight: 700, fontSize: '0.78rem',
-              transition: 'all 0.2s ease',
-              background: activeTab === t.id
-                ? `${color}22`
-                : 'transparent',
-              color: activeTab === t.id ? color : '#555',
-              outline: activeTab === t.id ? `1.5px solid ${color}44` : '1.5px solid transparent',
-            }}
-          >
-            <span>{t.icon}</span>
-            <span style={{ display: 'block' }}>
-              {streetMode ? t.streetLabel : t.label}
-            </span>
-          </button>
-        ))}
+        {availableTabs.map(t => {
+          const label = streetMode ? t.streetLabel : (lang === 'en' ? t.labelEn : t.label);
+          return (
+            <button
+              key={t.id}
+              onClick={() => setActiveTab(t.id)}
+              style={{
+                flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                gap: 6, padding: '10px 8px',
+                borderRadius: 10, border: 'none', cursor: 'pointer',
+                fontFamily: 'Space Grotesk, sans-serif',
+                fontWeight: 700, fontSize: '0.78rem',
+                transition: 'all 0.2s ease',
+                background: activeTab === t.id
+                  ? `${color}22`
+                  : 'transparent',
+                color: activeTab === t.id ? color : '#555',
+                outline: activeTab === t.id ? `1.5px solid ${color}44` : '1.5px solid transparent',
+              }}
+            >
+              <span>{t.icon}</span>
+              <span style={{ display: 'block' }}>
+                {label}
+              </span>
+            </button>
+          );
+        })}
       </div>
 
       {/* ── Tab Content ── */}
@@ -149,7 +154,7 @@ export default function LessonIntro({
         {activeTab === 'vocab' && (
           <div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {content.vocabulary.map((item, i) => (
+              {content.vocabulary.map((v, i) => (
                 <div key={i} style={{
                   display: 'grid',
                   gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)',
@@ -160,23 +165,20 @@ export default function LessonIntro({
                   transition: 'border-color 0.15s',
                 }}>
                   <div>
-                    <div style={{
-                      fontWeight: 800, fontSize: '1rem',
-                      color: color, fontFamily: 'Space Grotesk, sans-serif',
-                    }}>
-                      {item.word}
-                    </div>
-                    <div style={{ fontSize: '0.72rem', color: '#555', fontStyle: 'italic', marginTop: 3 }}>
-                      /{item.pronunciation}/
-                    </div>
+                    <div style={{ fontWeight: 700, fontSize: '0.92rem', color: '#fff', marginBottom: 2 }}>{v.word}</div>
+                    <div style={{ color: color, fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.02em', marginBottom: 6 }}>{v.pronunciation}</div>
                   </div>
                   <div>
-                    <div style={{ fontWeight: 600, fontSize: '0.9rem', color: '#d0d0d0' }}>
-                      {item.translation}
-                    </div>
-                    {item.example && (
-                      <div style={{ fontSize: '0.74rem', color: '#4a4a4a', marginTop: 3, fontStyle: 'italic' }}>
-                        &ldquo;{item.example}&rdquo;
+                    <div style={{ color: '#ddd', fontSize: '0.88rem' }}>{lang === 'en' && v.translationEn ? v.translationEn : v.translation}</div>
+                    {v.example && (
+                      <div style={{ 
+                        marginTop: 10, paddingTop: 10, borderTop: '1px solid rgba(255,255,255,0.05)',
+                        fontSize: '0.8rem', color: '#666', fontStyle: 'italic'
+                      }}>
+                        "{v.example}"
+                        {v.exampleEn && lang === 'en' && (
+                          <div style={{ marginTop: 4, color: '#444' }}>- {v.exampleEn}</div>
+                        )}
                       </div>
                     )}
                   </div>
@@ -221,7 +223,7 @@ export default function LessonIntro({
                       {line.serbian}
                     </div>
                     <div style={{ fontSize: '0.78rem', color: '#666', fontStyle: 'italic' }}>
-                      {line.translation}
+                      {lang === 'en' && line.translationEn ? line.translationEn : line.translation}
                     </div>
                   </div>
                 </div>
@@ -231,7 +233,7 @@ export default function LessonIntro({
         )}
 
         {/* GRAMMAR */}
-        {activeTab === 'grammar' && content.grammarNote && (
+        {activeTab === 'grammar' && (content.grammarNote || content.grammarRules) && (
           <div>
             <div style={{
               display: 'flex', alignItems: 'center', gap: 10,
@@ -247,16 +249,45 @@ export default function LessonIntro({
                 fontWeight: 800, fontSize: '0.95rem',
                 color: '#5b9cff',
               }}>
-                {content.grammarNote.title}
+                {lang === 'en' ? 'Grammar Note' : 'Dilbilgisi Notu'}
               </span>
             </div>
-            <p style={{
-              fontSize: '0.92rem', color: '#aaa',
-              lineHeight: 1.75,
-              padding: '0 4px',
-            }}>
-              {content.grammarNote.body}
-            </p>
+            
+            {content.grammarRules ? (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+                {content.grammarRules.map((rule, ri) => (
+                  <div key={ri}>
+                    <h4 style={{ margin: '0 0 8px', fontSize: '1rem', color: '#fff', fontWeight: 700 }}>
+                      {lang === 'en' && rule.titleEn ? rule.titleEn : rule.title}
+                    </h4>
+                    <p style={{ margin: '0 0 12px', fontSize: '0.9rem', color: '#888', lineHeight: 1.6 }}>
+                      {lang === 'en' && rule.bodyEn ? rule.bodyEn : rule.body}
+                    </p>
+                    {rule.examples && (
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                        {rule.examples.map((ex, ei) => (
+                          <div key={ei} style={{ padding: '8px 12px', background: 'rgba(255,255,255,0.03)', borderRadius: 8, border: '1px solid rgba(255,255,255,0.05)' }}>
+                            <div style={{ fontWeight: 600, color: '#eee', fontSize: '0.85rem' }}>{ex.serbian}</div>
+                            <div style={{ fontSize: '0.75rem', color: '#666' }}>
+                              {lang === 'en' && ex.translationEn ? ex.translationEn : ex.translation}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            ) : content.grammarNote ? (
+              <div>
+                <h4 style={{ margin: '0 0 8px', fontSize: '1rem', color: '#fff', fontWeight: 700 }}>
+                  {lang === 'en' && content.grammarNote.titleEn ? content.grammarNote.titleEn : content.grammarNote.title}
+                </h4>
+                <p style={{ fontSize: '0.92rem', color: '#aaa', lineHeight: 1.75 }}>
+                  {lang === 'en' && content.grammarNote.bodyEn ? content.grammarNote.bodyEn : content.grammarNote.body}
+                </p>
+              </div>
+            ) : null}
           </div>
         )}
 
@@ -277,7 +308,7 @@ export default function LessonIntro({
                 fontWeight: 800, fontSize: '0.95rem',
                 color: streetMode ? '#39ff14' : '#f5c518',
               }}>
-                {streetMode ? 'Balkanska Mudrost' : 'Kültür Notu'}
+                {streetMode ? 'Balkanska Mudrost' : (lang === 'en' ? 'Cultural Insight' : 'Kültür Notu')}
               </span>
             </div>
             <p style={{
@@ -285,7 +316,7 @@ export default function LessonIntro({
               lineHeight: 1.75,
               padding: '0 4px',
             }}>
-              {content.culturalTip}
+              {lang === 'en' && content.culturalTipEn ? content.culturalTipEn : content.culturalTip}
             </p>
           </div>
         )}

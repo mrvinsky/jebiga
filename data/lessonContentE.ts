@@ -20,7 +20,7 @@ export const lessonContentE: Record<string, LessonContent> = {
       title: '"Boli me" Yapısı — Sırpçanın En Pratik Kalıbı',
       body: 'Türkçedeki "-im ağrıyor" ifadesini Sırpçada "Boli me + ağrıyan organ" ile yaparsın. "Boli me glava" = başım ağrıyor, "Boli me zub" = dişim ağrıyor. Hep aynı yapı, sadece organı değiştir, pratik değil mi kanka?',
     },
-    culturalTip: "Sırpistan'da 194 numarasını aradığında ambulans geliyor. Acil servis (Hitna pomoć) genellikle oldukça hızlı ve düzgündür. Ama sigortan yoksa cepten ödeme hazır ol. Promaja'dan (cereyan) önce sigortanı dü şün!",
+    culturalTip: "Sırpistan'da 194 numarasını aradığında ambulans geliyor. Acil servis (Hitna pomoć) genellikle oldukça hızlı ve düzgündür. Ama sigortan yoksa cepten ödeme hazır ol. Promaja'dan (cereyan) önce sigortanı düşün!",
     dialogue: [
       { speaker: 'A', serbian: 'Dobar dan, boli me grlo i imam temperaturu.', translation: 'İyi günler doktor, boğazım ağrıyor ve ateşim var.' },
       { speaker: 'B', serbian: 'Od kada? Koliku temperaturu imate?', translation: 'Ne zamandan beri? Ateşiniz kaç?' },

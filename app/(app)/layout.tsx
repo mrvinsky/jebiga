@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import Navbar from '@/components/Navbar';
 import KafanaBot from '@/components/KafanaBot';
+import LanguagePicker from '@/components/LanguagePicker';
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const { user, userData, loading } = useAuth();
@@ -26,6 +27,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
   const isPro = userData?.subscription === 'pro' || userData?.role === 'admin';
 
+  // userData yüklendi ama lang seçilmemiş → dil seçim modalı göster
+  const needsLangSelection = userData !== null && !userData.lang;
+
   return (
     <div style={{ minHeight: '100dvh', paddingTop: 60, paddingBottom: 80, background: '#080808' }}>
       <Navbar />
@@ -33,6 +37,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         {children}
       </main>
       {isPro && <KafanaBot />}
+
+      {/* Dil seçimi yapılmamışsa modal göster (arka plana render devam eder) */}
+      {needsLangSelection && <LanguagePicker />}
     </div>
   );
 }

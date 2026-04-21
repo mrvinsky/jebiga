@@ -5,9 +5,10 @@ import { curriculum, getAllLessons } from '@/data/curriculum';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { signOut } from '@/lib/auth';
+import { setUserLanguage } from '@/lib/firestore';
 
 export default function ProfilePage() {
-  const { user, userData } = useAuth();
+  const { user, userData, refreshUserData } = useAuth();
   const { streetMode } = useStreetMode();
   const router = useRouter();
   const allLessons = getAllLessons();
@@ -106,6 +107,48 @@ export default function ProfilePage() {
           <Link href="/pro" className="btn-primary">Pro Ol ⚡</Link>
         </div>
       )}
+
+      {/* Language selector */}
+      <div style={{ background: '#161616', border: '1px solid #222', borderRadius: 16, padding: 20, marginBottom: 20 }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
+          <div>
+            <div style={{ fontWeight: 700, fontFamily: 'Space Grotesk, sans-serif', fontSize: '0.95rem', marginBottom: 2 }}>
+              🌐 Interface Language
+            </div>
+            <div style={{ color: '#555', fontSize: '0.78rem' }}>Arayüz Dili</div>
+          </div>
+          <div style={{ display: 'flex', gap: 8 }}>
+            {(['tr', 'en'] as const).map(l => (
+              <button
+                key={l}
+                onClick={async () => {
+                  if (user && userData?.lang !== l) {
+                    await setUserLanguage(user.uid, l);
+                    await refreshUserData();
+                  }
+                }}
+                style={{
+                  padding: '8px 16px', borderRadius: 10,
+                  border: userData?.lang === l ? '1.5px solid #ff1744' : '1.5px solid #2a2a2a',
+                  background: userData?.lang === l ? 'rgba(255,23,68,0.1)' : '#111',
+                  color: userData?.lang === l ? '#fff' : '#555',
+                  fontWeight: 700, fontSize: '0.82rem',
+                  cursor: userData?.lang === l ? 'default' : 'pointer',
+                  fontFamily: 'Space Grotesk, sans-serif',
+                  transition: 'all 0.15s',
+                }}
+              >
+                {l === 'tr' ? '🇹🇷 TR' : '🇬🇧 EN'}
+              </button>
+            ))}
+          </div>
+        </div>
+        <p style={{ color: '#444', fontSize: '0.75rem', margin: 0 }}>
+          {userData?.lang === 'en'
+            ? 'Lessons and UI are shown in English'
+            : 'Dersler ve arayüz Türkçe gösterilir'}
+        </p>
+      </div>
 
       {/* Logout button */}
       <button onClick={handleSignOut} className="btn-primary" style={{ width: '100%', background: '#1c1c1c', border: '1px solid #333', color: '#ff4757', padding: '16px' }}>
