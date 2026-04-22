@@ -13,23 +13,28 @@ export interface Question {
 export interface Lesson {
   id: string;
   title: string;
+  titleEn?: string;
   streetTitle: string;
   emoji: string;
   xpReward: number;
   questions: Question[];
 }
 
+
 export interface LessonSet {
   id: string;
   title: string;
+  titleEn?: string;
   streetTitle: string;
   description: string;
+  descriptionEn?: string;
   streetDescription: string;
   emoji: string;
   color: string;
   isPro?: boolean;
   lessons: Lesson[];
 }
+
 
 export const curriculum: LessonSet[] = [
   // ─── GREETINGS ────────────────────────────────────────────────────────────
