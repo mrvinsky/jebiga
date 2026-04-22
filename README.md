@@ -1,50 +1,52 @@
-# Jebiga: Learn Serbian the Real Way 🦅🇷🇸
+# 🦅 Jebiga: Sırpçayı Sokak Ağzıyla Öğren! 🇷🇸🔥
 
-Jebiga is an edgy, gamified Serbian language learning application built for those who want to skip the textbook fluff and dive straight into how actual Serbs speak. From **Street Mode** slang to **Kafana** survival rules, Jebiga offers an authentic Balkan experience powered by **Next.js 15**, **Firebase**, and **AI**.
+> **"Dobar dan" demeyi herkes öğretir, biz size gerçek Belgrad'ı yaşatırız.**
 
-## 🚀 Key Features
-
-- **🗺️ Gamified Lesson Path**: A non-linear learning map where you unlock categories, earn XP, and maintain streaks.
-- **⚡ Street Mode**: A dedicated toggle that transforms the UI and content into "Street Mode"—neon aesthetics, raw slang, and the real soul of Belgrade.
-- **🌐 Full Bilingual Support (TR/EN)**: Switch between Turkish and English interfaces instantly. Whether you are learning in Turkish or English, the curriculum adapts to your preference.
-- **🧔🏻‍♂️ Kafana Uncle (Dayı) AI**: A personalized AI tutor that understands street jargon. Ask questions, practice dialogues, or just chat with the "Uncle" about Serbian culture.
-- **🔥 Real-time Sync**: Powered by Firestore `onSnapshot`, your XP, level, and streaks update instantly across all components without refreshing.
-- **💎 Jebiga Pro**: Unlock premium tiers for deep dives into Serbian Nightlife, Balkan Drama, Advanced Grammar, and exclusive AI features.
-
-## 🛠 Tech Stack
-
-- **Framework**: Next.js 15 (App Router, Turbopack)
-- **State Management**: React Context with Real-time Firebase Sync
-- **Database & Auth**: Firebase (Firestore, Authentication)
-- **AI Engine**: Gemini AI / OpenAI integration for dynamic corrections and Kafana Bot
-- **Styling**: Vanilla CSS with modern Glassmorphism and Neon design systems
-- **Payments**: Stripe Checkout integration for Pro subscriptions
-
-## 📦 Local Development
-
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/mrvinsky/jebiga.git
-   cd trserb
-   ```
-2. **Install dependencies**:
-   ```bash
-   npm install
-   ```
-3. **Environment Variables**: Create a `.env.local` and add your Firebase credentials and AI API keys.
-4. **Launch**:
-   ```bash
-   npm run dev
-   ```
-5. **Explore**: Open [http://localhost:3000](http://localhost:3000) and start your journey to becoming a *Pravi Lik*.
-
-## 💡 Curriculum Highlights
-
-- **The Basics**: Greetings, Numbers, and Essential Food.
-- **Street & Social**: Slang 101, Nightlife on the *Splavs*, and Belgrade City guides.
-- **Survival**: Health & Emergencies, Directions, and Phone Communication.
-- **Pro Tiers**: Balkan Emotions, Deep Grammar, and the Art of the *Kafana*.
+**Jebiga**, sıkıcı ders kitaplarını bir kenara fırlatan, Sırpçayı en ham, en gerçek ve en havalı haliyle öğreten bir dil öğrenme platformudur. Duolingo'nun tatlı baykuşu yerine, piposunu içen bir **Kafana Dayısı** ile muhatap olduğunuz, XP kazanırken aynı zamanda Balkan kültürünün derinliklerine daldığınız bir deneyim sunar.
 
 ---
+
+## 🎯 Projenin Ruhu
+
+Jebiga, sadece bir uygulama değil; bir **vibe**'dır. Belgrad'ın ara sokaklarında, nehir üstündeki splav'larda veya bir kafananın dumanlı havasında ihtiyacınız olan her şeyi size sunar.
+
+### ⚡ Street Mode (Sokak Modu)
+Uygulamanın kalbi burada atar. Tek bir tuşla arayüz neon ışıklara bürünür ve içerik "Sokak Moduna" geçer. Resmiyet biter, jargon başlar. Küfürden flörte, sokak jargonundan racona kadar her şey bu modda saklıdır.
+
+### 🌐 Tam Bilingual (TR/EN) Deneyim
+Sırpçayı ister Türkçe anlatımla, ister İngilizce üzerinden öğrenin. Tüm dersler, senaryolar ve yapay zeka botu iki dile de tam uyumludur. Dil tercihinizi tek tıkla değiştirebilirsiniz.
+
+---
+
+## 🚀 Öne Çıkan Özellikler
+
+- **🗺️ İnteraktif Ders Haritası**: Adım adım ilerleyen, her düğümde yeni bir senaryo sunan oyunlaştırılmış bir öğrenme yolu.
+- **🧔🏻‍♂️ Kafana Dayısı (AI Tutor)**: Pipo içen Sırp dayınız her an yanınızda. Ona argo sorabilir, diyalog pratiği yapabilir veya Belgrad gece hayatı hakkında tüyo alabilirsiniz.
+- **🔥 Anlık Senkronizasyon**: Kazandığın XP'ler, serilerin (streak) ve seviye atlamaların tüm cihazlarında anlık olarak güncellenir.
+- **🍺 18+ Kategoriler**: Selamlaşmanın ötesine geçin. Gece hayatı, sağlık, acil durumlar ve "sadece Pro'lara özel" derin içerikler.
+- **🎮 Oyunlaştırma**: XP toplayın, seviye atlayın ve "Pravi Lik" (Gerçek Biri) olma yolunda ilerleyin.
+
+---
+
+## 💡 Müfredatta Neler Var?
+
+- **[A] Temeller**: Tanışma, Sayılar ve Temel İhtiyaçlar.
+- **[B] Şehir Hayatı**: Belgrad Rehberi, Nehir Kenarı (Ada Ciganlija) ve Ulaşım.
+- **[C] Mutfak & Kafana**: Sipariş verme, Rakija kuralları ve Hesap isteme.
+- **[D] Sağlık & Acil**: Doktora derdini anlatma, Eczane ve Kritik durumlar.
+- **[E] İletişim & Gece**: DM atma, Konum paylaşma ve Splav geceleri.
+- **[PRO] Balkan Draması**: Küfürler, Flört taktikleri ve Sosyal raconlar.
+
+---
+
+## 📦 Kurulum ve Çalıştırma
+
+1. **Repoyu Klonla**: `git clone https://github.com/mrvinsky/jebiga.git`
+2. **Bağımlılıkları Yükle**: `npm install`
+3. **Çalıştır**: `npm run dev`
+4. **Keşfet**: `http://localhost:3000` adresine git ve Sırpça macerana başla!
+
+---
+
 *Srećno učenje, brate!* 🇷🇸🔥  
 *Design & Development by [mr.vinsky](https://www.instagram.com/mr.vinsky/)*
