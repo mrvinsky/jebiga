@@ -99,7 +99,13 @@ export default function LessonPage({ params }: { params: Promise<{ id: string }>
       const earned = Math.max(lesson.xpReward - mistakes * 5, 5);
       setXpEarned(earned);
       setFinished(true);
-      if (user) { completeLesson(user.uid, lesson.id, earned); updateStreak(user.uid); refreshUserData(); }
+      if (user) { 
+        (async () => {
+          await completeLesson(user.uid, lesson.id, earned); 
+          await updateStreak(user.uid); 
+          await refreshUserData(); 
+        })();
+      }
     } else {
       setCurrent(c => c + 1);
     }

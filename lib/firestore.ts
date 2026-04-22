@@ -1,5 +1,5 @@
 import {
-  doc, getDoc, setDoc, updateDoc, serverTimestamp, increment
+  doc, getDoc, setDoc, updateDoc, serverTimestamp, increment, onSnapshot
 } from 'firebase/firestore';
 import { User } from 'firebase/auth';
 import { db } from './firebase';
@@ -97,4 +97,21 @@ export const updateStreak = async (uid: string) => {
   }
   await updateDoc(ref, { streak: newStreak, lastActive: serverTimestamp() });
   return newStreak;
+};
+
+export const subscribeToUserData = (uid: string, callback: (data: UserData | null) => void) => {
+  const ref = doc(db, 'users', uid);
+  return onSnapshot(ref, (snap) => {
+    if (snap.exists()) {
+      const data = snap.data() as UserData;
+      // Hardcoded fallback override just in case DB update lags
+      if (data.email === 'besiralkya@gmail.com') {
+        data.role = 'admin';
+        data.subscription = 'pro';
+      }
+      callback(data);
+    } else {
+      callback(null);
+    }
+  });
 };

@@ -2,7 +2,7 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import { User } from 'firebase/auth';
 import { onAuthChange } from '@/lib/auth';
-import { getUserData, UserData } from '@/lib/firestore';
+import { getUserData, subscribeToUserData, UserData } from '@/lib/firestore';
 
 interface AuthContextType {
   user: User | null;
@@ -28,17 +28,33 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
-    const unsub = onAuthChange(async (u) => {
+    let userDataUnsub: (() => void) | null = null;
+
+    const authUnsub = onAuthChange((u) => {
       setUser(u);
+      
+      // Clean up previous user data subscription if it exists
+      if (userDataUnsub) {
+        userDataUnsub();
+        userDataUnsub = null;
+      }
+
       if (u) {
-        const data = await getUserData(u.uid);
-        setUserData(data);
+        // Start real-time subscription for the new user
+        userDataUnsub = subscribeToUserData(u.uid, (data) => {
+          setUserData(data);
+          setLoading(false);
+        });
       } else {
         setUserData(null);
+        setLoading(false);
       }
-      setLoading(false);
     });
-    return () => unsub();
+
+    return () => {
+      authUnsub();
+      if (userDataUnsub) userDataUnsub();
+    };
   }, []);
 
   return (
