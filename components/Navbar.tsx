@@ -24,7 +24,7 @@ export default function Navbar() {
     <>
       {/* Top bar */}
       <nav style={{ background: 'rgba(8,8,8,0.95)', borderBottom: '1px solid #1a1a1a', position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, backdropFilter: 'blur(20px)' }}>
-        <div style={{ maxWidth: 900, margin: '0 auto', padding: '0 20px', height: 60, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16 }}>
+        <div style={{ maxWidth: 900, margin: '0 auto', padding: '0 12px', height: 60, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
           {/* Logo */}
           <Link href="/learn" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 8 }}>
             <span style={{ fontSize: '1.4rem', fontWeight: 900, fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '-0.02em' }}>
@@ -34,27 +34,27 @@ export default function Navbar() {
           </Link>
 
           {/* Center: XP + Streak */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 16, flex: 1, justifyContent: 'center' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, flex: 1, justifyContent: 'center' }}>
             {/* Streak */}
             <StreakBadge streak={userData?.streak || 0} />
             {/* XP bar */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 120 }}>
-              <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#f5c518', whiteSpace: 'nowrap' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              <span style={{ fontSize: '0.7rem', fontWeight: 800, color: '#f5c518', whiteSpace: 'nowrap' }}>
                 Lv.{userData?.level || 1} · {userData?.xp || 0} XP
               </span>
-              <div className="progress-bar" style={{ flex: 1, minWidth: 60 }}>
+              <div className="progress-bar hide-mobile" style={{ width: 60 }}>
                 <div className={streetMode ? 'progress-fill-neon' : 'progress-fill'} style={{ width: `${xpProgress}%` }} />
               </div>
             </div>
           </div>
 
           {/* Right: Street toggle + avatar */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             {/* Street Mode toggle */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 6 }} title="Toggle Street Mode">
-              <span style={{ fontSize: '0.7rem', fontWeight: 700, color: streetMode ? '#39ff14' : '#888', letterSpacing: '0.05em', whiteSpace: 'nowrap' }}>STREET</span>
-              <button id="street-mode-toggle" onClick={toggleStreetMode} className={`street-toggle ${streetMode ? 'active' : ''}`} aria-label="Toggle Street Mode">
-                <div className="street-toggle-thumb" />
+              <span className="hide-xsmall" style={{ fontSize: '0.65rem', fontWeight: 800, color: streetMode ? '#39ff14' : '#555', letterSpacing: '0.05em', whiteSpace: 'nowrap' }}>STREET</span>
+              <button id="street-mode-toggle" onClick={toggleStreetMode} className={`street-toggle ${streetMode ? 'active' : ''}`} aria-label="Toggle Street Mode" style={{ width: 44, height: 24 }}>
+                <div className="street-toggle-thumb" style={{ width: 16, height: 16, left: streetMode ? 24 : 2 }} />
               </button>
             </div>
             {/* Language Toggle */}
@@ -74,7 +74,7 @@ export default function Navbar() {
               title={lang === 'tr' ? 'Switch to English' : 'Türkçeye Geç'}
             >
               <span style={{ fontSize: '1rem' }}>{lang === 'tr' ? '🇹🇷' : '🇬🇧'}</span>
-              <span style={{ fontSize: '0.65rem', fontWeight: 800, color: '#888' }}>{lang.toUpperCase()}</span>
+              <span className="hide-xsmall" style={{ fontSize: '0.65rem', fontWeight: 800, color: '#888' }}>{lang.toUpperCase()}</span>
             </button>
 
             {/* User avatar */}
