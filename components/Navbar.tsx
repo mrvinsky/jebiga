@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { useStreetMode } from '@/context/StreetModeContext';
+import { useLanguage, UI_TEXT } from '@/hooks/useLanguage';
 import { signOut } from '@/lib/auth';
 import StreakBadge from './StreakBadge';
 
@@ -11,6 +12,8 @@ export default function Navbar() {
   const { streetMode, toggleStreetMode } = useStreetMode();
   const pathname = usePathname();
   const router = useRouter();
+  const lang = useLanguage();
+  const t = UI_TEXT[lang];
 
 
 
@@ -72,9 +75,9 @@ export default function Navbar() {
       {/* Bottom mobile nav */}
       <nav style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 100, background: 'rgba(8,8,8,0.97)', borderTop: '1px solid #1a1a1a', backdropFilter: 'blur(20px)', display: 'flex', justifyContent: 'space-around', padding: '8px 0 16px' }}>
         {[
-          { href: '/learn', icon: '🗺️', label: 'ÖĞREN' },
-          { href: '/profile', icon: '👤', label: 'PROFİL' },
-          { href: '/pro', icon: '⚡', label: 'PRO' },
+          { href: '/learn', icon: '🗺️', label: t.learn },
+          { href: '/profile', icon: '👤', label: t.profile },
+          { href: '/pro', icon: '⚡', label: t.pro },
         ].map(({ href, icon, label }) => (
           <Link key={href} href={href} style={{
             display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, textDecoration: 'none',

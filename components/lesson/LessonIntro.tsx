@@ -1,6 +1,7 @@
+'use client';
 import { useState } from 'react';
 import { LessonContent } from '@/data/contentTypes';
-import { useLanguage } from '@/hooks/useLanguage';
+import { useLanguage, UI_TEXT } from '@/hooks/useLanguage';
 
 interface Props {
   lessonTitle: string;
@@ -28,6 +29,7 @@ export default function LessonIntro({
   content, streetMode, onStart,
 }: Props) {
   const lang = useLanguage();
+  const t = UI_TEXT[lang];
   const title = streetMode ? streetTitle : (lang === 'en' && titleEn ? titleEn : lessonTitle);
 
   // Determine available tabs
@@ -378,7 +380,7 @@ export default function LessonIntro({
             : `0 6px 24px ${color}44`;
         }}
       >
-        {streetMode ? '💀 Kreni na kviz, brate!' : '🚀 Teste Başla'}
+        {streetMode ? (lang === 'en' ? '💀 Start the quiz, mate!' : '💀 Kreni na kviz, brate!') : t.startQuiz}
         <span style={{ opacity: 0.7, fontSize: '0.9rem' }}>→</span>
       </button>
     </div>

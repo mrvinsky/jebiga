@@ -1,6 +1,7 @@
 'use client';
 import { Question } from '@/data/curriculum';
 import { useEffect, useState } from 'react';
+import { useLanguage, UI_TEXT } from '@/hooks/useLanguage';
 
 interface QuizCardProps {
   question: Question;
@@ -29,7 +30,18 @@ export default function QuizCard({
   streetMode,
   color = '#c0392b',
 }: QuizCardProps) {
-  const prompt = (streetMode && question.streetPrompt) ? question.streetPrompt : question.prompt;
+  const lang = useLanguage();
+  const t = UI_TEXT[lang];
+
+  // Logic: Priority -> StreetPrompt (if mode on) -> EnglishPrompt (if lang en) -> Prompt
+  const prompt = (streetMode && question.streetPrompt) 
+    ? question.streetPrompt 
+    : (lang === 'en' && question.promptEn)
+      ? question.promptEn
+      : question.prompt;
+
+  const hint = (lang === 'en' && question.hintEn) ? question.hintEn : question.hint;
+
   const progress = ((questionIndex) / totalQuestions) * 100;
   const [shake, setShake] = useState(false);
 
@@ -118,7 +130,7 @@ export default function QuizCard({
           borderRadius: 20, padding: '4px 12px',
           marginBottom: 20,
         }}>
-          {question.type === 'multiple-choice' ? '🧠 Cevabı Seç' : '✍️ Çevir'}
+          {question.type === 'multiple-choice' ? t.chooseAnswer : t.translate}
         </div>
 
         {/* Question text */}
@@ -220,7 +232,7 @@ export default function QuizCard({
         {/* ── Translate Input ── */}
         {question.type === 'translate' && (
           <div>
-            {question.hint && (
+            {hint && (
               <div style={{
                 display: 'flex', alignItems: 'center', gap: 6,
                 fontSize: '0.78rem', color: '#555',
@@ -230,13 +242,13 @@ export default function QuizCard({
                 borderRadius: 8,
               }}>
                 <span>💡</span>
-                <span>İpucu: <em style={{ color: '#666' }}>{question.hint}</em></span>
+                <span>{t.hint}: <em style={{ color: '#666' }}>{hint}</em></span>
               </div>
             )}
             <input
               id="translate-input"
               type="text"
-              placeholder={streetMode ? 'Piši ovde, brate...' : 'Cevabını yaz...'}
+              placeholder={t.typeHere}
               value={inputVal}
               onChange={e => status === 'idle' && onInputChange(e.target.value)}
               onKeyDown={e => e.key === 'Enter' && status === 'idle' && onCheck()}
@@ -274,8 +286,8 @@ export default function QuizCard({
           }}>
             <span style={{ fontSize: '1.1rem' }}>{status === 'correct' ? '🎉' : '💡'}</span>
             {status === 'correct'
-              ? streetMode ? 'Bravo, brate! Savršeno!' : 'Mükemmel! Doğru cevap!'
-              : <span>Doğru cevap: <strong style={{ color: '#fff' }}>{question.answer}</strong></span>
+              ? streetMode && lang === 'tr' ? 'Bravo, brate! Savrešno!' : t.correctAnswerFeedback
+              : <span>{t.correctAnswer} <strong style={{ color: '#fff' }}>{question.answer}</strong></span>
             }
           </div>
         )}

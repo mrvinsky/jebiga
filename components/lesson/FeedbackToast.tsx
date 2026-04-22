@@ -1,4 +1,5 @@
 'use client';
+import { useLanguage, UI_TEXT } from '@/hooks/useLanguage';
 
 interface FeedbackToastProps {
   status: 'correct' | 'wrong';
@@ -15,13 +16,16 @@ export default function FeedbackToast({
   isLastQuestion,
   onNext
 }: FeedbackToastProps) {
+  const lang = useLanguage();
+  const t = UI_TEXT[lang];
+
   return (
     <div className={`animate-slide-up ${status === 'correct' ? 'toast-success' : 'toast-error'}`} style={{ marginTop: 16, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
       <div>
         <div style={{ fontWeight: 800, fontFamily: 'Space Grotesk, sans-serif', marginBottom: 4 }}>{message}</div>
         {status === 'wrong' && correctAnswer && (
           <div style={{ fontSize: '0.82rem', color: '#aaa' }}>
-            Doğrusu: <strong style={{ color: '#f5f5f5' }}>{correctAnswer}</strong>
+            {t.correctAnswer} <strong style={{ color: '#f5f5f5' }}>{correctAnswer}</strong>
           </div>
         )}
       </div>
@@ -31,7 +35,7 @@ export default function FeedbackToast({
         id="next-btn"
         style={{ flexShrink: 0 }}
       >
-        {isLastQuestion ? 'Bitir 🎉' : 'İleri →'}
+        {isLastQuestion ? t.finish : t.next}
       </button>
     </div>
   );

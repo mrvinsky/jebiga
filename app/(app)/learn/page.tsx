@@ -46,21 +46,19 @@ export default function LearnPage() {
             margin: '0 0 8px',
           }}>
             {streetMode
-              ? <><span style={{ color: '#39ff14', textShadow: '0 0 20px rgba(57,255,20,0.4)' }}>Ulični Rečnik</span> 💀</>
-              : <><span style={{ background: 'linear-gradient(135deg, #e74c3c, #c0392b)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Öğrenme</span> Yolu 🇷🇸</>
+              ? <><span style={{ color: '#39ff14', textShadow: '0 0 20px rgba(57,255,20,0.4)' }}>{t.streetDictionary}</span> 💀</>
+              : <><span style={{ background: 'linear-gradient(135deg, #e74c3c, #c0392b)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>{t.learningPath.split(' ')[0]}</span> {t.learningPath.split(' ').slice(1).join(' ')} 🇷🇸</>
             }
           </h1>
           <p style={{ color: '#666', fontSize: '0.88rem', margin: '0 0 20px' }}>
-            {streetMode
-              ? (lang === 'en' ? 'Pazi, brate — every lesson takes you closer to real Serbian.' : 'Pazi, brate — svaka lekcija te bliže vodi pravom srpskom.')
-              : (lang === 'en' ? 'Open categories, finish lessons, earn XP. If you skip, jebiga!' : 'Kategorileri aç, dersleri tamamla, XP kazan. Atlarsan jebiga!')}
+            {streetMode ? t.streetDesc : t.learningDesc}
           </p>
 
           {/* Progress bar */}
           <div style={{ maxWidth: 380, margin: '0 auto' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6, fontSize: '0.75rem', color: '#555' }}>
-              <span>{lang === 'en' ? 'General Progress' : 'Genel İlerleme'}</span>
-              <span style={{ color: '#f5c518', fontWeight: 700 }}>{completedCount}/{totalLessons} {lang === 'en' ? 'lessons' : 'ders'} · {progressPct}%</span>
+              <span>{t.generalProgress}</span>
+              <span style={{ color: '#f5c518', fontWeight: 700 }}>{completedCount}/{totalLessons} {t.lessons} · {progressPct}%</span>
             </div>
             <div style={{ height: 8, background: '#1a1a1a', borderRadius: 4, overflow: 'hidden' }}>
               <div style={{
@@ -241,7 +239,7 @@ export default function LearnPage() {
                             border: isCompleted ? '1px solid rgba(0,230,118,0.2)' : 'none',
                             whiteSpace: 'nowrap',
                           }}>
-                            {isCompleted ? 'TEKRAR' : 'BAŞLA →'}
+                            {isCompleted ? t.retry : t.start}
                           </div>
                         )}
                       </div>

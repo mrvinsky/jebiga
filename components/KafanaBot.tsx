@@ -1,6 +1,7 @@
 'use client';
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage, UI_TEXT } from '@/hooks/useLanguage';
 
 interface Message {
   role: 'user' | 'model';
@@ -8,11 +9,13 @@ interface Message {
 }
 
 export default function KafanaBot() {
+  const lang = useLanguage();
+  const t = UI_TEXT[lang];
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'model',
-      parts: [{ text: "Ooo brate, hoćeš da öğrenesin pravu Sırpçayı? Kafana dayısına sor bakalım! Ne içiyoruz? 🥃" }]
+      parts: [{ text: t.botGreeting }]
     }
   ]);
   const [input, setInput] = useState('');
@@ -23,6 +26,16 @@ export default function KafanaBot() {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isOpen]);
+
+  // Update greeting when language changes
+  useEffect(() => {
+    setMessages(prev => {
+      if (prev.length === 1 && prev[0].role === 'model') {
+        return [{ role: 'model', parts: [{ text: t.botGreeting }] }];
+      }
+      return prev;
+    });
+  }, [t.botGreeting]);
 
   const sendMessage = async () => {
     if (!input.trim() || loading) return;
@@ -50,7 +63,7 @@ export default function KafanaBot() {
         setMessages([...newMessages, { role: 'model', parts: [{ text: data.reply }] }]);
       }
     } catch (err) {
-      setMessages([...newMessages, { role: 'model', parts: [{ text: 'Brate, internet gitti jebiga!' }] }]);
+      setMessages([...newMessages, { role: 'model', parts: [{ text: t.botError }] }]);
     } finally {
       setLoading(false);
     }
@@ -86,8 +99,8 @@ export default function KafanaBot() {
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <span style={{ fontSize: '1.5rem', textShadow: '0 0 10px rgba(255, 23, 68, 0.8)' }}>🧔🏻‍♂️</span>
                 <div>
-                  <h3 style={{ margin: 0, fontFamily: 'Space Grotesk, sans-serif', fontSize: '1rem', fontWeight: 800 }}>Kafana Dayısı</h3>
-                  <p style={{ margin: 0, fontSize: '0.7rem', color: '#ff1744' }}>⚡ PRO SOKAK HOCASI</p>
+                  <h3 style={{ margin: 0, fontFamily: 'Space Grotesk, sans-serif', fontSize: '1rem', fontWeight: 800 }}>{t.botTitle}</h3>
+                  <p style={{ margin: 0, fontSize: '0.7rem', color: '#ff1744' }}>{t.botSubtitle}</p>
                 </div>
               </div>
               <button 
@@ -121,7 +134,7 @@ export default function KafanaBot() {
               {loading && (
                 <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
                   <div style={{ padding: '8px 12px', borderRadius: '12px', background: 'rgba(255, 255, 255, 0.05)', fontSize: '0.8rem', color: '#888' }}>
-                    Dayı düşünüyor...
+                    {t.botThinking}
                   </div>
                 </div>
               )}
@@ -135,7 +148,7 @@ export default function KafanaBot() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
-                placeholder="Dayı'ya bir şey sor..."
+                placeholder={t.botPlaceholder}
                 style={{
                   flex: 1, padding: '10px 12px', borderRadius: '10px',
                   background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)',
@@ -152,7 +165,7 @@ export default function KafanaBot() {
                   opacity: (loading || !input.trim()) ? 0.5 : 1
                 }}
               >
-                At
+                {t.botSend}
               </button>
             </div>
           </motion.div>

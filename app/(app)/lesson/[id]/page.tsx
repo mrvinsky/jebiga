@@ -2,6 +2,7 @@
 import { use, useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
+import { useLanguage, UI_TEXT } from '@/hooks/useLanguage';
 import { useStreetMode } from '@/context/StreetModeContext';
 import { getAllLessons, Question } from '@/data/curriculum';
 import { completeLesson, updateStreak } from '@/lib/firestore';
@@ -15,6 +16,8 @@ export default function LessonPage({ params }: { params: Promise<{ id: string }>
   const router = useRouter();
   const { user, userData, refreshUserData } = useAuth();
   const { streetMode } = useStreetMode();
+  const lang = useLanguage();
+  const t = UI_TEXT[lang];
 
   const allLessons = getAllLessons();
   const lesson = allLessons.find((l) => l.id === id);
@@ -35,8 +38,8 @@ export default function LessonPage({ params }: { params: Promise<{ id: string }>
 
   if (!lesson) return (
     <div style={{ textAlign: 'center', paddingTop: 60 }}>
-      <p style={{ color: '#888' }}>Ders bulunamadı. Jebiga 💀</p>
-      <button className="btn-primary" style={{ marginTop: 20 }} onClick={() => router.push('/learn')}>Haritaya dön</button>
+      <p style={{ color: '#888' }}>{t.lessonNotFound}</p>
+      <button className="btn-primary" style={{ marginTop: 20 }} onClick={() => router.push('/learn')}>{t.backToMap}</button>
     </div>
   );
 
@@ -50,12 +53,17 @@ export default function LessonPage({ params }: { params: Promise<{ id: string }>
   const q: Question = questions[current];
   const progress = ((current) / questions.length) * 100;
 
-  const wrongPhrases = streetMode
+  const wrongPhrases = (streetMode && lang === 'tr')
     ? ['Jebiga, tekrar dene! 💀', 'Vopi, tam değil brate! 🔥', 'Pazi! Yanlış oldu 😤', 'Kapiram — az kalsın ama ı-ıh! 😅']
-    : ['Jebiga, tekrar dene! 💀', 'Tam değil — bir şans daha ver!', 'Yanlış! Ama yaparsın 💪', 'Maalesef! Tekrar dene'];
-  const correctPhrases = streetMode
+    : lang === 'en'
+      ? ['Jebiga, try again! 💀', 'Not quite, brother! 🔥', 'Watch out! That was wrong 😤', 'I get it — almost, but no! 😅']
+      : ['Jebiga, tekrar dene! 💀', 'Tam değil — bir şans daha ver!', 'Yanlış! Ama yaparsın 💪', 'Maalesef! Tekrar dene'];
+
+  const correctPhrases = (streetMode && lang === 'tr')
     ? ['Bravo, brate! 🔥', 'Kapiram, savršeno! ✨', 'To je to, majstore! 💪', 'Odlično! Full send! ⚡']
-    : ['Doğru! Bravo! 🎉', 'Çok iyi! 🔥', 'Odlično! Aynen öyle! ✅', 'Mükemmel! Aynen devam! ⚡'];
+    : lang === 'en'
+      ? ['Bravo, brother! 🔥', 'I get it, perfect! ✨', 'That is it, master! 💪', 'Excellent! Full send! ⚡']
+      : ['Doğru! Bravo! 🎉', 'Çok iyi! 🔥', 'Odlično! Aynen öyle! ✅', 'Mükemmel! Aynen devam! ⚡'];
 
   const randomFrom = (arr: string[]) => arr[Math.floor(Math.random() * arr.length)];
 
@@ -103,6 +111,7 @@ export default function LessonPage({ params }: { params: Promise<{ id: string }>
       return (
         <LessonIntro
           lessonTitle={lesson.title}
+          titleEn={lesson.titleEn}
           streetTitle={lesson.streetTitle}
           emoji={lesson.emoji}
           color={(lesson as unknown as { color?: string }).color ?? '#c0392b'}
@@ -122,18 +131,20 @@ export default function LessonPage({ params }: { params: Promise<{ id: string }>
     <div style={{ textAlign: 'center', paddingTop: 40 }}>
       <div style={{ fontSize: '4rem', marginBottom: 16, animation: 'pop-in 0.3s cubic-bezier(0.34,1.56,0.64,1)' }}>🎉</div>
       <h2 style={{ fontSize: '2rem', fontWeight: 900, fontFamily: 'Space Grotesk, sans-serif', marginBottom: 8 }}>
-        {streetMode ? 'Jebiga, to je to!' : 'Ders Bitti!'}
+        {streetMode ? 'Jebiga, to je to!' : t.lessonDone}
       </h2>
       <p style={{ color: '#888', marginBottom: 32 }}>
-        {streetMode ? `Bravo brate — ${mistakes} greška${mistakes !== 1 ? 'ke' : ''}!` : `Sadece ${mistakes} hata yaptın.`}
+        {streetMode 
+          ? `Bravo brate — ${mistakes} greška${mistakes !== 1 ? 'ke' : ''}!` 
+          : t.mistakesMade.replace('{n}', mistakes.toString())}
       </p>
       <div className={`glass ${streetMode ? 'neon-border' : ''}`} style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', gap: 8, padding: '24px 48px', marginBottom: 32 }}>
         <div style={{ fontSize: '2.5rem', fontWeight: 900, color: '#f5c518', fontFamily: 'Space Grotesk, sans-serif' }}>+{xpEarned} XP</div>
-        <div style={{ color: '#666', fontSize: '0.85rem' }}>bu derste kazanıldı</div>
+        <div style={{ color: '#666', fontSize: '0.85rem' }}>{t.xpEarned}</div>
       </div>
       <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-        <button className="btn-ghost" onClick={() => { setCurrent(0); setFinished(false); setMistakes(0); setXpEarned(0); setStatus('idle'); }}>Tekrar Dene 🔄</button>
-        <button className="btn-primary" onClick={() => router.push('/learn')}>Haritaya Dön 🗺️</button>
+        <button className="btn-ghost" onClick={() => { setCurrent(0); setFinished(false); setMistakes(0); setXpEarned(0); setStatus('idle'); }}>{t.tryAgain}</button>
+        <button className="btn-primary" onClick={() => router.push('/learn')}>{t.backToMap}</button>
       </div>
     </div>
   );
@@ -153,7 +164,7 @@ export default function LessonPage({ params }: { params: Promise<{ id: string }>
             fontFamily: 'Space Grotesk, sans-serif',
           }}
         >
-          ← Haritaya Dön
+          {t.backToMap}
         </button>
       </div>
 
@@ -196,7 +207,7 @@ export default function LessonPage({ params }: { params: Promise<{ id: string }>
           onClick={checkAnswer}
           disabled={!selected && !inputVal.trim()}
         >
-          Cevapla ✓
+          {t.checkAnswer}
         </button>
       )}
     </div>
