@@ -19,6 +19,8 @@ export const lessonContentB: Record<string, LessonContent> = {
       title: 'Yol Sormak',
       body: '"Izvinite, gde je…?" (Affedersiniz, ... nerede?) buradaki sihirli cümledir kanka. Ekstra kibar olmak istersen sonuna "molim vas" (lütfen) ekle. Yerliler genelde mesafeyi metreyle değil yürüme dakikasıyla ("pet minuta peške") anlatır.',
     },
+    culturalTip: "Belgrad'da birine yol sormaktan çekinme kanka, Sırplar yabancılara yardım etmeyi çok sever. Eğer tarif ederken 'tamo' (şurada) deyip uzağı gösteriyorsa, muhtemelen sandığından daha uzağa yürüyeceksin demektir!",
+
     dialogue: [
       { speaker: 'A', serbian: 'Izvinite, gde je Kalemegdan?', translation: 'Affedersiniz, Kalemegdan ne tarafta?' },
       { speaker: 'B', serbian: 'Idite pravo, pa skrenite levo.', translation: 'Dümdüz git, sonra sola dön.' },
@@ -139,6 +141,8 @@ export const lessonContentB: Record<string, LessonContent> = {
       title: 'Pijan kao letva',
       body: 'Harfiyen Türkçe "Tahta parçası gibi sarhoş/Kütük gibi" anlamına gelir. Kanka çok kötü çarpılmış tipler için bunu patlat gitsin.',
     },
+    culturalTip: "Belgrad splav'larında (nehir kulüpleri) eğlence sabahın ilk ışıklarına kadar sürer. Gecenin sonunda 'burek' (börek) yemek bir Belgrad klasiğidir. Mamurluk (akşamdan kalmalık) için en iyi ilaç sıcak bir börektir kanka!",
+
     dialogue: [
       { speaker: 'A', serbian: 'Kakva žurka, čoveče! Ludo je!', translation: 'Ne parti be usta! Harika bir ortam.' },
       { speaker: 'B', serbian: 'Da, ali pazi na brata. Pijan je.', translation: 'Aynen ama biraderine bak o kütük ötesi sarhoş.' },
@@ -164,6 +168,8 @@ export const lessonContentB: Record<string, LessonContent> = {
       title: '"-se" İle Biten Dönüşlü Fiiller',
       body: 'Sırpça çoğu günlük fiil "-se" ekini alır kanka: "buđim se" (uyanıyorum), "tuširam se" (duş alıyorum), "oblačim se" (giyiniyorum). Eylemi kendine yaptığın anlamına gelir. Unutma sakın — sadece "budim" dersen hiçbir anlamı olmaz.',
     },
+    culturalTip: "Sırplarda 'domaća kafa' (ev yapımı kahve) içmeden güne başlanmaz. Bu kahve bildiğin Türk kahvesidir ama sakın 'Turkish coffee' deme, onlar için bu milli bir meseledir ve 'domaća' (ev yapımı) olması en önemli kuraldır!",
+
     dialogue: [
       { speaker: 'A', serbian: 'U koliko sati se buđiš obično?', translation: 'Genelde saat kaçta uyanırsın?' },
       { speaker: 'B', serbian: 'U šest i po. Umoran sam uvek.', translation: 'Altı buçukta. Her zaman pestilim çıkmış vaziyetteyim.' },
@@ -182,6 +188,8 @@ export const lessonContentB: Record<string, LessonContent> = {
       { word: 'Vrata', pronunciation: 'VRA-ta', translation: 'Kapı', example: 'Zatvori vrata, hvala.' },
       { word: 'Gledam televiziju', pronunciation: 'GLE-dam te-le-Vİ-zi-yu', translation: 'Televizyon İzliyorum', example: 'Gledam televiziju svake večeri.' },
     ],
+    culturalTip: "Novi Beograd (Yeni Belgrad), komünist dönemden kalma devasa bloklardan oluşur. Dışarıdan gri ve sıkıcı görünebilir ama içleri çok sıcak ve modern dairelerle doludur. Sırp misafirperverliğini burada, bir aile apartmanında tatmak başkadır kanka.",
+
     dialogue: [
       { speaker: 'A', serbian: 'Ovo je dnevna soba. Sviđa ti se?', translation: 'Burası salon. Beğendin mi?' },
       { speaker: 'B', serbian: 'Da, lepo je! Veliki prozori.', translation: 'Evet lan güzelmiş! Camlar kocaman.' },
@@ -204,6 +212,8 @@ export const lessonContentB: Record<string, LessonContent> = {
       title: 'Geniş Zaman "Raditi" (Çalışmak)',
       body: 'Ja radim (Ben çalışıyorum), Ti radiš (Sen çalışıyorsun), On/Ona radi (O çalışıyor), Mi radimo (Biz çalışıyoruz), Vi radite (Siz çalışıyorsunuz), Oni rade (Onlar çalışıyor). Sırpçada fiiller kişiye göre çekimlenir, sonlardaki eklere hep dikkat et kanka.',
     },
+    culturalTip: "Sırbistan'da IT sektörü çok gelişmiştir ve Belgrad bir 'digital nomad' merkezidir. Ortak çalışma alanlarında (co-working) her milletten insanı görebilirsin. Buralarda 'kolege' (meslektaşlar) arasında iletişim her zaman rahattır ve 'ti' (sen) diyerek konuşulur.",
+
     dialogue: [
       { speaker: 'A', serbian: 'Čime se baviš?', translation: 'Ne iş yapıyorsun aga?' },
       { speaker: 'B', serbian: 'Radim u IT kompaniji. A ti?', translation: 'Bilişim şirketinde çalışıyorum, ya sen?' },
@@ -229,6 +239,8 @@ export const lessonContentB: Record<string, LessonContent> = {
       title: 'Kelimelerdeki Cinsiyet Uyumu',
       body: 'Sırpçada sıfatlar kişinin cinsiyetine göre biçilir aga. "Srećan sam" erkeksen "Mutluyum", "Srećna sam" kadınsan "Mutluyum" demek. Öğrenirken genelde iki sonuca da dikkat et, "-a" eki dişildir.',
     },
+    culturalTip: "Sırplar duygularını dışa vururken çok tutkuludur dostum. Seviyorlarsa 'volim te' demekten, kızıyorlarsa da 'bre' diyerek isyan etmekten asla çekinmezler. Duygularını açık yaşa, yerliler bu samimiyete bayılır!",
+
     dialogue: [
       { speaker: 'A', serbian: 'Kako se osećaš?', translation: 'Nasıl hissediyorsun kendini?' },
       { speaker: 'B', serbian: 'Srećan sam ali malo usamljen.', translation: 'Mutluyum ama biraz yalnızım ya.' },
@@ -247,6 +259,8 @@ export const lessonContentB: Record<string, LessonContent> = {
       { word: 'Možda', pronunciation: 'MOJ-da', translation: 'Belki / Olabilir', example: 'Možda imaš pravo.' },
       { word: 'Ne znam', pronunciation: 'ne znam', translation: 'Bilmiyorum', example: 'Ne znam, to je teško pitanje.' },
     ],
+    culturalTip: "Belgrad'da bir mekanda otururken yan masadaki birinin muhabbete dahil olması çok normaldir kanka. Sırplar politikadan spora her konuda tartışmayı ve fikir belirtmeyi severler. 'Slažem se' (katılıyorum) diyerek sohbete dal, hemen bir kanka edin!",
+
     dialogue: [
       { speaker: 'A', serbian: 'Mislim da je Beograd najbolji grad na svetu!', translation: 'Bence Belgrad dünyadaki en efsane şehir!' },
       { speaker: 'B', serbian: 'Ne slažem se baš. Ali je odličan.', translation: 'Zerre katılmıyorum. Ama çok iyi şehir o ayrı.' },
@@ -332,6 +346,8 @@ export const lessonContentB: Record<string, LessonContent> = {
       title: '"Braća" — Kafa Karıştıran Çoğul',
       body: '"Brat" (bir kardeş), ama çok erkek kardeş varsa "braća". Dişil gibi görünüyor değil mi aga? Ama aslında topluluk ismidir. Cebi delmesin diye ezberlemek lazım o kuralları.',
     },
+    culturalTip: "Sırp ailelerinde kuzenler de 'brat' veya 'sestra' (erkek/kız kardeş) olarak adlandırılır kanka. Aile öyle geniştir ki, bir pazar yemeğinde masada oturan yirmi kişinin hepsinin birbirine 'brat' dediğini duyarsan şaşırma!",
+
     dialogue: [
       { speaker: 'A', serbian: 'Imaš li braću i sestre?', translation: 'Aga hayatta mıdır kardeşlerin abin ablan falan?' },
       { speaker: 'B', serbian: 'Da, imam dva brata i jednu sestru.', translation: 'Aynen aslan parçası. İki abim bir kız kardeşim var.' },
