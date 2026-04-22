@@ -43,7 +43,7 @@ export interface LessonContent {
   // Genişletilmiş dilbilgisi kuralları listesi (yeni — çoklu kural desteği)
   grammarRules?: GrammarRule[];
 
-  culturalTip: string;
+  culturalTip?: string;
   culturalTipEn?: string; // 🇬🇧 English cultural tip
   dialogue?: DialogueLine[];
 

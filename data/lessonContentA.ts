@@ -41,6 +41,8 @@ export const lessonContent: Record<string, LessonContent> = {
       title: '"Zovem se" vs "Ja sam"',
       body: 'İkisi de "Benim adım / Ben" demek. "Zovem se" (Kendimi X olarak çağırıyorum) en doğal halidir. "Ja sam Marko" da gayet iyi ve sık kullanılır.',
     },
+    culturalTip: "Sırp isimleri genellikle -ić ile biter (Jokić, Đoković). Tanışırken 'Drago mi je' demek çok önemlidir, Sırplar nezaketi sever ama samimiyetten de asla ödün vermezler!",
+
     dialogue: [
       { speaker: 'A', serbian: 'Zdravo! Zovem se Emma. A ti?', translation: 'Selam! Benim adım Emma. Senin?' },
       { speaker: 'B', serbian: 'Ja sam Nikola. Drago mi je!', translation: 'Ben Nikola. Tanıştığıma memnun oldum!' },
@@ -85,6 +87,8 @@ export const lessonContent: Record<string, LessonContent> = {
       title: 'Sayıların Cinsiyeti',
       body: '"Jedan" (1) ve "Dva" (2) kelimesinin sonuna geldiği cisme göre cinsiyeti değişiyor kanka. Örneğin "Jedan čaj" ama "Jedna kafa". "Dva stola" ama "Dve stolice". Diğer sayılarda bir değişim olmaz.',
     },
+    culturalTip: "Sırp pazarlarında (pijaca) elinle 3 parmağını (baş, işaret ve orta parmak) göstererek sayı saymak 'Sırp usulü' selamlaşmayı da içerir. Dikkat et, orta parmağın araya kaçmasın!",
+
   },
 
   'numbers-2': {
@@ -101,6 +105,8 @@ export const lessonContent: Record<string, LessonContent> = {
       title: 'Büyük Sayıları Kurmak',
       body: 'Sırpça sayıları mantıklı şekilde birleşiyor brate. 21 = "dvadeset jedan", 35 = "trideset pet". Sadece Onluk dilimleri söyle ve birliği ekle, araya "ve" falan sokmana gerek yok.',
     },
+    culturalTip: "Sırbistan'da hala dinar kullanılıyor. Küçük dükkanlarda büyük banknot (örn: 5000 dinar) uzatmak dert olabilir. Her zaman 'kusur' (para üstü) için küçük paraların olsun kanka.",
+
     dialogue: [
       { speaker: 'A', serbian: 'Koliko košta?', translation: 'Kaç para?' },
       { speaker: 'B', serbian: 'Sto pedeset dinara.', translation: '150 dinar.' },
@@ -123,6 +129,8 @@ export const lessonContent: Record<string, LessonContent> = {
       title: 'Sırplar Zamanı Nasıl Söyler',
       body: '"Pola tri" kelimesi harfiyen "üçün yarısı" yani 2:30 demek (üçe çeyrek falan değil). Bu başlarda kafa yakar! "U tri" = saat 3:00. "U četvrt do tri" = üçe çeyrek kala.',
     },
+    culturalTip: "Balkanlarda 'Sutra' (yarın) kelimesi biraz esnektir. Eğer biriyle 'pola osam'da buluşacaksan, Sırp vaktine göre 8 civarı orada olman yeterli olabilir. Dakiklik her zaman şart değil!",
+
     dialogue: [
       { speaker: 'A', serbian: 'U koliko sati se vidimo?', translation: 'Saat kaçta görüşüyoruz?' },
       { speaker: 'B', serbian: 'U pola osam, ispred Kalemegdana.', translation: 'Yedi buçukta, Kalemegdan önünde.' },
@@ -186,6 +194,8 @@ export const lessonContent: Record<string, LessonContent> = {
       title: 'Pazar Kavgaları İçin Pratik Kelimeler',
       body: '"Dajte mi…" (Bana verin…), pazarlarda en çok kullanılan ifadedir dostum. Sorarken "Ima li…?" (Var mı…?) çok işine yarayacak. Bir iki kelime Sırpça, çaldığın teyze amcalar için fazlasıyla kıymetlidir.',
     },
+    culturalTip: "Belgrad'ın en ünlü pazarlarından biri Zeleni Venac'tır. Buradan aldığın meyvelerle 'domaci sok' (ev yapımı su) yapabilirsin. Satıcıya 'gazda' diye hitap etmek samimiyeti artırır!",
+
     dialogue: [
       { speaker: 'A', serbian: 'Koliko košta kilogram paradajza?', translation: 'Domatesin kilosu ne kadar aga?' },
       { speaker: 'B', serbian: 'Sto dvadeset dinara, gazda.', translation: '120 dinar, patron.' },
