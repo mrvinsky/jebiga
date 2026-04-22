@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { AuthProvider } from '@/context/AuthContext';
+import { LanguageProvider } from '@/context/LanguageContext';
 import { StreetModeProvider } from '@/context/StreetModeContext';
 
 export const metadata: Metadata = {
@@ -19,9 +20,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <AuthProvider>
-          <StreetModeProvider>
-            {children}
-          </StreetModeProvider>
+          <LanguageProvider>
+            <StreetModeProvider>
+              {children}
+            </StreetModeProvider>
+          </LanguageProvider>
         </AuthProvider>
       </body>
     </html>

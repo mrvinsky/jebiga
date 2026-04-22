@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import WhatsAppButton from '@/components/WhatsAppButton';
+import { useLanguage, UI_TEXT } from '@/hooks/useLanguage';
+import { useLanguageContext } from '@/context/LanguageContext';
 
 const TYPING_WORDS = ['Zdravo!', 'Šta ima?', 'Brate!', 'Ajde!', 'Jebiga.'];
 
@@ -10,49 +12,76 @@ const FEATURES = [
   {
     emoji: '🔥',
     title: 'Sokak Sırpçası',
+    titleEn: 'Street Serbian',
     desc: 'Ders kitabı değil, gerçek kafana argolarıyla öğren. "Šta ima brate?" diyebilmek için.',
+    descEn: 'Not a textbook, learn with real kafana slang. So you can say "Šta ima brate?".',
   },
   {
     emoji: '🎮',
     title: 'Oyun Mantığıyla',
+    titleEn: 'Gamified Learning',
     desc: 'XP kazan, seri tut, ders düğümleri arasında ilerle. Sıkılmak yok.',
+    descEn: 'Earn XP, keep your streak, advance through lesson nodes. No boredom.',
   },
   {
     emoji: '🧔🏻‍♂️',
     title: 'Kafana Dayısı AI',
+    titleEn: 'Kafana Uncle AI',
     desc: 'Pipo içen Sırp dayın her an hazır. Sorularını sorabilir, argo öğrenebilirsin.',
+    descEn: 'Your pipe-smoking Serbian uncle is always ready. Ask questions, learn slang.',
   },
   {
     emoji: '🍺',
     title: '18+ Kategori',
+    titleEn: '18+ Category',
     desc: 'Selamlaşma, sokak argonu, gece hayatı, Belgrad, sağlık — her konu Türkçe anlatımla.',
+    descEn: 'Greetings, street slang, nightlife, Belgrade, health — every topic explained simply.',
   },
   {
     emoji: '⚡',
     title: 'Pro Street Mode',
+    titleEn: 'Pro Street Mode',
     desc: 'Küfürler, flört, Balkan draması ve kafana kültürü sadece Pro\'ya özel.',
+    descEn: 'Swearing, flirting, Balkan drama, and kafana culture exclusive to Pro.',
   },
   {
     emoji: '🎯',
     title: 'Konu Anlatımlı Dersler',
+    titleEn: 'Topic-Based Lessons',
     desc: 'Her derste senaryo, kelime listesi, diyalog ve kültürel ipuçları var.',
+    descEn: 'Every lesson has a scenario, vocabulary list, dialogue, and cultural tips.',
   },
 ];
 
 const STATS = [
-  { value: '18+', label: 'Kategori' },
-  { value: '56+', label: 'Ders' },
-  { value: '500+', label: 'Kelime' },
-  { value: '100%', label: 'Türkçe Anlatım' },
+  { value: '18+', label: 'Kategori', labelEn: 'Categories' },
+  { value: '56+', label: 'Ders', labelEn: 'Lessons' },
+  { value: '500+', label: 'Kelime', labelEn: 'Words' },
+  { value: '100%', label: 'Türkçe Anlatım', labelEn: 'Bilingual Support' },
 ];
 
 const TESTIMONIALS = [
-  { text: '"Kafanaya girdim, garson Sırpçama bayıldı. Jebiga dedim ve kahraman oldum."', author: 'Mert, 24' },
-  { text: '"Kafana Dayısı benim rakija içmeden konuşmayacağımı söyledi. Haklı."', author: 'Zeynep, 28' },
-  { text: '"Bir haftada ćevap siparişi verebiliyorum. Bu uygulama beni kurtardı."', author: 'Burak, 31' },
+  { 
+    text: '"Kafanaya girdim, garson Sırpçama bayıldı. Jebiga dedim ve kahraman oldum."', 
+    textEn: '"I walked into a kafana, the waiter loved my Serbian. I said jebiga and became a hero."',
+    author: 'Mert, 24' 
+  },
+  { 
+    text: '"Kafana Dayısı benim rakija içmeden konuşmayacağımı söyledi. Haklı."', 
+    textEn: '"Kafana Uncle said I wouldn\'t talk without drinking rakija. He was right."',
+    author: 'Zeynep, 28' 
+  },
+  { 
+    text: '"Bir haftada ćevap siparişi verebiliyorum. Bu uygulama beni kurtardı."', 
+    textEn: '"I can order ćevapi in a week. This app saved me."',
+    author: 'Burak, 31' 
+  },
 ];
 
 export default function LandingPage() {
+  const lang = useLanguage();
+  const { toggleLang } = useLanguageContext();
+  const t = UI_TEXT[lang];
   const [typingIndex, setTypingIndex] = useState(0);
   const [displayed, setDisplayed] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
@@ -98,15 +127,33 @@ export default function LandingPage() {
           <span style={{ fontSize: '1.5rem' }}>🇷🇸</span>
           <span style={{ fontWeight: 800, fontSize: '1.2rem', letterSpacing: '-0.02em' }}>
             <span style={{ color: '#e74c3c' }}>Jebiga</span>
-            <span style={{ color: '#888', fontWeight: 400, fontSize: '0.85rem', marginLeft: 6 }}>Sırpça Öğren</span>
+            <span style={{ color: '#888', fontWeight: 400, fontSize: '0.85rem', marginLeft: 6 }}>{t.learnSerbian}</span>
           </span>
         </div>
         <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+          {/* Language Toggle */}
+          <button 
+            onClick={toggleLang}
+            style={{
+              background: 'rgba(255,255,255,0.05)',
+              border: '1px solid rgba(255,255,255,0.1)',
+              borderRadius: '8px',
+              padding: '6px 10px',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 6,
+              transition: 'all 0.2s'
+            }}
+          >
+            <span style={{ fontSize: '1.1rem' }}>{lang === 'tr' ? '🇹🇷' : '🇬🇧'}</span>
+            <span style={{ fontSize: '0.7rem', fontWeight: 800, color: '#888' }}>{lang.toUpperCase()}</span>
+          </button>
           <Link href="/login" style={{
             color: '#888', fontWeight: 600, fontSize: '0.9rem',
             textDecoration: 'none', padding: '8px 16px',
             transition: 'color 0.2s',
-          }}>Giriş Yap</Link>
+          }}>{t.login}</Link>
           <Link href="/login" style={{
             display: 'inline-flex', alignItems: 'center', gap: 6,
             background: 'linear-gradient(135deg, #c0392b, #e74c3c)',
@@ -115,7 +162,7 @@ export default function LandingPage() {
             borderRadius: '10px',
             boxShadow: '0 4px 16px rgba(192,57,43,0.35)',
             transition: 'all 0.2s',
-          }}>Başla →</Link>
+          }}>{t.getStarted}</Link>
         </div>
       </nav>
 
@@ -147,7 +194,7 @@ export default function LandingPage() {
           color: '#39ff14', marginBottom: 32,
           animation: 'pulse 3s ease-in-out infinite',
         }}>
-          <span>⚡</span> Türkiye&apos;nin İlk Sırpça Sokak Modu Uygulaması
+          <span>⚡</span> {t.firstAppBadge}
         </div>
 
         {/* Main headline */}
@@ -159,16 +206,16 @@ export default function LandingPage() {
           marginBottom: 16,
           maxWidth: 800,
         }}>
-          Sırpçayı{' '}
+          {lang === 'en' ? 'Learn Serbian ' : 'Sırpçayı '}
           <span style={{
             background: 'linear-gradient(135deg, #e74c3c, #c0392b)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
           }}>
-            Sokak Ağzıyla
+            {lang === 'en' ? 'The Street Way.' : 'Sokak Ağzıyla'}
           </span>{' '}
-          Öğren. <br />
+          {lang === 'en' ? '' : 'Öğren.'} <br />
           <span style={{
             background: 'linear-gradient(135deg, #39ff14, #ffe600)',
             WebkitBackgroundClip: 'text',
@@ -185,8 +232,7 @@ export default function LandingPage() {
           color: '#999', lineHeight: 1.7,
           maxWidth: 560, marginBottom: 48,
         }}>
-          Ders kitabı değil, kafana argolarıyla öğren. Duolingo&apos;dan farklı —{' '}
-          <strong style={{ color: '#f5f5f5' }}>çok daha havalı, çok daha gerçek.</strong>
+          {t.heroSubtitle1} {t.heroSubtitle2}
         </p>
 
         {/* CTA Buttons */}
@@ -200,7 +246,7 @@ export default function LandingPage() {
             boxShadow: '0 8px 32px rgba(192,57,43,0.45), 0 2px 8px rgba(0,0,0,0.3)',
             letterSpacing: '-0.01em',
           }}>
-            🚀 Ücretsiz Başla
+            {t.freeStart}
           </Link>
           <Link href="#features" style={{
             display: 'inline-flex', alignItems: 'center', gap: 10,
@@ -210,7 +256,7 @@ export default function LandingPage() {
             borderRadius: '14px',
             border: '2px solid rgba(57,255,20,0.35)',
           }}>
-            Nasıl Çalışır? ↓
+            {t.howItWorks}
           </Link>
         </div>
 
@@ -231,7 +277,7 @@ export default function LandingPage() {
                 {stat.value}
               </div>
               <div style={{ fontSize: '0.78rem', color: '#666', fontWeight: 500, marginTop: 2 }}>
-                {stat.label}
+                {lang === 'en' ? stat.labelEn : stat.label}
               </div>
             </div>
           ))}
@@ -249,10 +295,10 @@ export default function LandingPage() {
       <section id="features" style={{ padding: '100px 24px', maxWidth: 1100, margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: 64 }}>
           <p style={{ color: '#c0392b', fontWeight: 700, fontSize: '0.85rem', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 12 }}>
-            Neden Jebiga?
+            {t.whyJebiga}
           </p>
           <h2 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', fontWeight: 900, letterSpacing: '-0.02em', lineHeight: 1.2 }}>
-            Duolingo&apos;nun yapmadığını biz yapıyoruz
+            {lang === 'en' ? "We do what Duolingo doesn't" : "Duolingo'nun yapmadığını biz yapıyoruz"}
           </h2>
         </div>
 
@@ -288,8 +334,8 @@ export default function LandingPage() {
                 opacity: 0.5,
               }} />
               <div style={{ fontSize: '2rem', marginBottom: 14 }}>{f.emoji}</div>
-              <h3 style={{ fontWeight: 800, fontSize: '1.05rem', marginBottom: 8, letterSpacing: '-0.01em' }}>{f.title}</h3>
-              <p style={{ color: '#777', fontSize: '0.9rem', lineHeight: 1.65 }}>{f.desc}</p>
+              <h3 style={{ fontWeight: 800, fontSize: '1.05rem', marginBottom: 8, letterSpacing: '-0.01em' }}>{lang === 'en' ? f.titleEn : f.title}</h3>
+              <p style={{ color: '#777', fontSize: '0.9rem', lineHeight: 1.65 }}>{lang === 'en' ? f.descEn : f.desc}</p>
             </div>
           ))}
         </div>
@@ -304,17 +350,17 @@ export default function LandingPage() {
       }}>
         <div style={{ maxWidth: 900, margin: '0 auto', textAlign: 'center' }}>
           <p style={{ color: '#c0392b', fontWeight: 700, fontSize: '0.85rem', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 12 }}>
-            Nasıl Çalışır?
+            {t.howItWorks}
           </p>
           <h2 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.6rem)', fontWeight: 900, letterSpacing: '-0.02em', marginBottom: 60 }}>
-            Üç adımda Sırpça
+            {t.threeStepsTitle}
           </h2>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 32 }}>
             {[
-              { step: '01', emoji: '📖', title: 'Konu Anlatımı', desc: 'Her ders senaryoyla başlar. Kelime, diyalog, kültür ipuçları — hiçbir şey eksik değil.' },
-              { step: '02', emoji: '🎯', title: 'Sorularla Pekiştir', desc: 'Çoktan seçmeli, çeviri, boşluk doldurma. Öğrendiklerini hemen test edersin.' },
-              { step: '03', emoji: '🏆', title: 'XP Kazan, İlerle', desc: 'Her derste XP kazanırsın. Seri tutarsın. Sonraki kategoriler açılır. Dur yok.' },
+              { step: '01', emoji: '📖', title: t.step1Title, desc: t.step1Desc },
+              { step: '02', emoji: '🎯', title: t.step2Title, desc: t.step2Desc },
+              { step: '03', emoji: '🏆', title: t.step3Title, desc: t.step3Desc },
             ].map((item, i) => (
               <div key={i} style={{ textAlign: 'center' }}>
                 <div style={{
@@ -327,7 +373,7 @@ export default function LandingPage() {
                   {item.emoji}
                 </div>
                 <div style={{ fontSize: '0.7rem', fontWeight: 800, color: '#c0392b', letterSpacing: '0.1em', marginBottom: 8 }}>
-                  ADIM {item.step}
+                  {lang === 'en' ? `STEP ${item.step}` : `ADIM ${item.step}`}
                 </div>
                 <h3 style={{ fontWeight: 800, fontSize: '1.05rem', marginBottom: 10 }}>{item.title}</h3>
                 <p style={{ color: '#777', fontSize: '0.88rem', lineHeight: 1.65 }}>{item.desc}</p>
@@ -341,11 +387,11 @@ export default function LandingPage() {
       <section style={{ padding: '100px 24px', maxWidth: 1000, margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: 56 }}>
           <h2 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.4rem)', fontWeight: 900, letterSpacing: '-0.02em' }}>
-            Onlar ne dedi?
+            {t.testimonialsTitle}
           </h2>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 20 }}>
-          {TESTIMONIALS.map((t, i) => (
+          {TESTIMONIALS.map((test, i) => (
             <div key={i} style={{
               background: 'rgba(255,255,255,0.03)',
               border: '1px solid rgba(255,255,255,0.07)',
@@ -353,9 +399,9 @@ export default function LandingPage() {
             }}>
               <div style={{ color: '#e74c3c', fontSize: '1.5rem', marginBottom: 12 }}>❝</div>
               <p style={{ color: '#ccc', fontSize: '0.92rem', lineHeight: 1.7, marginBottom: 16, fontStyle: 'italic' }}>
-                {t.text}
+                {lang === 'en' ? test.textEn : test.text}
               </p>
-              <p style={{ color: '#555', fontSize: '0.82rem', fontWeight: 700 }}>— {t.author}</p>
+              <p style={{ color: '#555', fontSize: '0.82rem', fontWeight: 700 }}>— {test.author}</p>
             </div>
           ))}
         </div>
@@ -378,7 +424,7 @@ export default function LandingPage() {
             fontWeight: 900, letterSpacing: '-0.03em',
             lineHeight: 1.1, marginBottom: 16,
           }}>
-            Hazır mısın,{' '}
+            {lang === 'en' ? 'Are you ready, ' : 'Hazır mısın, '}
             <span style={{
               background: 'linear-gradient(135deg, #e74c3c, #c0392b)',
               WebkitBackgroundClip: 'text',
@@ -387,8 +433,7 @@ export default function LandingPage() {
             }}>brate?</span>
           </h2>
           <p style={{ color: '#888', fontSize: '1.05rem', marginBottom: 40, lineHeight: 1.6 }}>
-            Kaydol, birinci dersi aç, Kafana Dayısı ile muhabbet et.{' '}
-            <strong style={{ color: '#f5f5f5' }}>Ücretsiz başla, istersen Pro&apos;ya geç.</strong>
+            {t.registerNow} {t.noCardRequired}
           </p>
           <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', justifyContent: 'center' }}>
             <Link href="/login" style={{
@@ -400,11 +445,11 @@ export default function LandingPage() {
               boxShadow: '0 8px 40px rgba(192,57,43,0.5)',
               letterSpacing: '-0.01em',
             }}>
-              Hemen Kaydol — Ücretsiz 🚀
+              {t.registerNow}
             </Link>
           </div>
           <p style={{ color: '#444', fontSize: '0.8rem', marginTop: 16 }}>
-            Kredi kartı gerekmez. 5 saniyede kaydol.
+            {t.noCardRequired}
           </p>
         </div>
       </section>
@@ -423,11 +468,11 @@ export default function LandingPage() {
           maxWidth: 200, margin: '0 auto 24px',
         }} />
         <p style={{ color: '#555', fontSize: '0.85rem' }}>
-          🇷🇸 <strong style={{ color: '#888' }}>Jebiga</strong> — Sırpçayı sokak ağzıyla öğren.
+          🇷🇸 <strong style={{ color: '#888' }}>Jebiga</strong> — {t.footerDesc}
           <span style={{ margin: '0 8px' }}>·</span>
-          <Link href="/login" style={{ color: '#666', textDecoration: 'none' }}>Giriş</Link>
+          <Link href="/login" style={{ color: '#666', textDecoration: 'none' }}>{t.login}</Link>
           <span style={{ margin: '0 8px' }}>·</span>
-          <Link href="/login" style={{ color: '#666', textDecoration: 'none' }}>Kayıt Ol</Link>
+          <Link href="/login" style={{ color: '#666', textDecoration: 'none' }}>{t.signup}</Link>
         </p>
         <p style={{ color: '#383838', fontSize: '0.75rem', marginTop: 12 }}>
           Design by{' '}

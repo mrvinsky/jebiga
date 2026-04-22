@@ -1,20 +1,20 @@
 'use client';
-import { useAuth } from '@/context/AuthContext';
+import { useLanguageContext } from '@/context/LanguageContext';
 
 export type Lang = 'tr' | 'en';
 
 /**
  * Kullanıcının seçtiği arayüz dilini döner.
- * Belirtilmemişse varsayılan olarak 'tr' kullanılır.
  */
 export function useLanguage(): Lang {
-  const { userData } = useAuth();
-  return userData?.lang ?? 'tr';
+  const { lang } = useLanguageContext();
+  return lang;
 }
 
 // ─── UI metin sabitleri ───────────────────────────────────────────────────────
 export const UI_TEXT = {
   tr: {
+    // Shared
     startLesson: 'Derse Başla 🔥',
     checkAnswer: 'Cevapla ✓',
     backToMap: '← Haritaya Dön',
@@ -54,7 +54,7 @@ export const UI_TEXT = {
     completedLabel: 'Bitti',
     sectionProgress: 'Bölümlere göre ilerlemen',
     upgradeToPro: "Jebiga Pro'ya Geç",
-    upgradeDesc: 'Yapay Zeka botu, daha fazla küfür, sokak jargonu ve fazlası.',
+    upgradeDesc: 'Yapay Zeka botu, daha fazla küfür, sokak jargonu ve fazlasıyla.',
     becomePro: 'Pro Ol ⚡',
     interfaceLanguage: '🌐 Arayüz Dili',
     interfaceDescTr: 'Dersler ve arayüz Türkçe gösterilir',
@@ -70,8 +70,34 @@ export const UI_TEXT = {
     botSend: 'At',
     botError: 'Brate, internet gitti jebiga!',
     startQuiz: '🚀 Teste Başla',
+    
+    // Landing Page
+    heroTitle: 'Sırpçayı Sokak Ağzıyla Öğren.',
+    heroSubtitle1: 'Ders kitabı değil, kafana argolarıyla öğren.',
+    heroSubtitle2: 'Duolingo’dan farklı — çok daha havalı, çok daha gerçek.',
+    login: 'Giriş Yap',
+    signup: 'Kayıt Ol',
+    getStarted: 'Başla →',
+    learnSerbian: 'Sırpça Öğren',
+    firstAppBadge: "⚡ Türkiye'nin İlk Sırpça Sokak Modu Uygulaması",
+    freeStart: '🚀 Ücretsiz Başla',
+    howItWorks: 'Nasıl Çalışır? ↓',
+    whyJebiga: 'Neden Jebiga?',
+    threeStepsTitle: 'Üç adımda Sırpça',
+    step1Title: 'Konu Anlatımı',
+    step1Desc: 'Her ders senaryoyla başlar. Kelime, diyalog, kültür ipuçları — hiçbir şey eksik değil.',
+    step2Title: 'Sorularla Pekiştir',
+    step2Desc: 'Çoktan seçmeli, çeviri, boşluk doldurma. Öğrendiklerini hemen test edersin.',
+    step3Title: 'XP Kazan, İlerle',
+    step3Desc: 'Her derste XP kazanırsın. Seri tutarsın. Sonraki kategoriler açılır. Dur yok.',
+    testimonialsTitle: 'Onlar ne dedi?',
+    readyBrate: 'Hazır mısın, brate?',
+    registerNow: 'Hemen Kaydol — Ücretsiz 🚀',
+    noCardRequired: 'Kredi kartı gerekmez. 5 saniyede kaydol.',
+    footerDesc: 'Sırpçayı sokak ağzıyla öğren.',
   },
   en: {
+    // Shared
     startLesson: 'Start Lesson 🔥',
     checkAnswer: 'Check ✓',
     backToMap: '← Back to Map',
@@ -127,5 +153,30 @@ export const UI_TEXT = {
     botSend: 'Send',
     botError: 'Brate, the internet is gone jebiga!',
     startQuiz: '🚀 Start Quiz',
+
+    // Landing Page
+    heroTitle: 'Learn Serbian the Street Way.',
+    heroSubtitle1: 'Not a textbook, learn with real kafana slang.',
+    heroSubtitle2: "Different from Duolingo — much cooler, much more real.",
+    login: 'Login',
+    signup: 'Sign Up',
+    getStarted: 'Get Started →',
+    learnSerbian: 'Learn Serbian',
+    firstAppBadge: "⚡ Turkey's First Serbian Street Mode App",
+    freeStart: '🚀 Start for Free',
+    howItWorks: 'How it Works? ↓',
+    whyJebiga: 'Why Jebiga?',
+    threeStepsTitle: 'Serbian in Three Steps',
+    step1Title: 'Lesson Content',
+    step1Desc: 'Every lesson starts with a scenario. Vocabulary, dialogue, cultural tips — nothing is missing.',
+    step2Title: 'Reinforce with Quiz',
+    step2Desc: 'Multiple choice, translation, fill in the blanks. Test what you learn instantly.',
+    step3Title: 'Earn XP, Advance',
+    step3Desc: 'Earn XP in every lesson. Keep your streak. Unlock the next categories. No stopping.',
+    testimonialsTitle: 'What they said?',
+    readyBrate: 'Are you ready, brate?',
+    registerNow: 'Register Now — Free 🚀',
+    noCardRequired: 'No credit card required. Register in 5 seconds.',
+    footerDesc: 'Learn Serbian the street way.',
   },
 } as const;

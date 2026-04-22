@@ -4,6 +4,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { useStreetMode } from '@/context/StreetModeContext';
 import { useLanguage, UI_TEXT } from '@/hooks/useLanguage';
+import { useLanguageContext } from '@/context/LanguageContext';
 import { signOut } from '@/lib/auth';
 import StreakBadge from './StreakBadge';
 
@@ -12,10 +13,9 @@ export default function Navbar() {
   const { streetMode, toggleStreetMode } = useStreetMode();
   const pathname = usePathname();
   const router = useRouter();
+  const { toggleLang } = useLanguageContext();
   const lang = useLanguage();
   const t = UI_TEXT[lang];
-
-
 
   const xpToNextLevel = (userData?.level || 1) * 200;
   const xpProgress = ((userData?.xp || 0) % xpToNextLevel) / xpToNextLevel * 100;
@@ -57,6 +57,26 @@ export default function Navbar() {
                 <div className="street-toggle-thumb" />
               </button>
             </div>
+            {/* Language Toggle */}
+            <button 
+              onClick={toggleLang}
+              style={{
+                background: 'rgba(255,255,255,0.05)',
+                border: '1px solid rgba(255,255,255,0.1)',
+                borderRadius: '8px',
+                padding: '4px 8px',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 4,
+                transition: 'all 0.2s'
+              }}
+              title={lang === 'tr' ? 'Switch to English' : 'Türkçeye Geç'}
+            >
+              <span style={{ fontSize: '1rem' }}>{lang === 'tr' ? '🇹🇷' : '🇬🇧'}</span>
+              <span style={{ fontSize: '0.65rem', fontWeight: 800, color: '#888' }}>{lang.toUpperCase()}</span>
+            </button>
+
             {/* User avatar */}
             {user && (
               <Link href="/profile" title="Profile" style={{ textDecoration: 'none' }}>
