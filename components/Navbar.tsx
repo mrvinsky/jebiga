@@ -26,7 +26,7 @@ export default function Navbar() {
       <nav style={{ background: 'rgba(8,8,8,0.95)', borderBottom: '1px solid #1a1a1a', position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, backdropFilter: 'blur(20px)' }}>
         <div style={{ maxWidth: 900, margin: '0 auto', padding: '0 12px', height: 60, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
           {/* Logo */}
-          <Link href="/learn" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 8 }}>
+          <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 8 }}>
             <span style={{ fontSize: '1.4rem', fontWeight: 900, fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '-0.02em' }}>
               <span style={{ color: '#c0392b' }}>Jebiga</span>
               {streetMode && <span style={{ color: '#39ff14', fontSize: '0.6rem', marginLeft: 6, padding: '2px 6px', border: '1px solid #39ff14', borderRadius: 4, verticalAlign: 'middle', animation: 'neon-pulse 2s ease-in-out infinite' }}>STREET</span>}

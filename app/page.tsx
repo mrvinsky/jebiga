@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import WhatsAppButton from '@/components/WhatsAppButton';
+import { useAuth } from '@/context/AuthContext';
 import { useLanguage, UI_TEXT } from '@/hooks/useLanguage';
 import { useLanguageContext } from '@/context/LanguageContext';
 
@@ -79,6 +80,7 @@ const TESTIMONIALS = [
 ];
 
 export default function LandingPage() {
+  const { user } = useAuth();
   const lang = useLanguage();
   const { toggleLang } = useLanguageContext();
   const t = UI_TEXT[lang];
@@ -149,20 +151,37 @@ export default function LandingPage() {
             <span style={{ fontSize: '1.1rem' }}>{lang === 'tr' ? '🇹🇷' : '🇬🇧'}</span>
             <span style={{ fontSize: '0.7rem', fontWeight: 800, color: '#888' }}>{lang.toUpperCase()}</span>
           </button>
-          <Link href="/login" style={{
-            color: '#888', fontWeight: 600, fontSize: '0.9rem',
-            textDecoration: 'none', padding: '8px 16px',
-            transition: 'color 0.2s',
-          }}>{t.login}</Link>
-          <Link href="/login" style={{
-            display: 'inline-flex', alignItems: 'center', gap: 6,
-            background: 'linear-gradient(135deg, #c0392b, #e74c3c)',
-            color: '#fff', fontWeight: 700, fontSize: '0.9rem',
-            textDecoration: 'none', padding: '10px 20px',
-            borderRadius: '10px',
-            boxShadow: '0 4px 16px rgba(192,57,43,0.35)',
-            transition: 'all 0.2s',
-          }}>{t.getStarted}</Link>
+
+          {user ? (
+            <Link href="/learn" style={{
+              display: 'inline-flex', alignItems: 'center', gap: 6,
+              background: 'linear-gradient(135deg, #c0392b, #e74c3c)',
+              color: '#fff', fontWeight: 700, fontSize: '0.9rem',
+              textDecoration: 'none', padding: '10px 20px',
+              borderRadius: '10px',
+              boxShadow: '0 4px 16px rgba(192,57,43,0.35)',
+              transition: 'all 0.2s',
+            }}>
+              {lang === 'tr' ? 'Öğrenmeye Dön →' : 'Back to Dashboard →'}
+            </Link>
+          ) : (
+            <>
+              <Link href="/login" style={{
+                color: '#888', fontWeight: 600, fontSize: '0.9rem',
+                textDecoration: 'none', padding: '8px 16px',
+                transition: 'color 0.2s',
+              }}>{t.login}</Link>
+              <Link href="/login" style={{
+                display: 'inline-flex', alignItems: 'center', gap: 6,
+                background: 'linear-gradient(135deg, #c0392b, #e74c3c)',
+                color: '#fff', fontWeight: 700, fontSize: '0.9rem',
+                textDecoration: 'none', padding: '10px 20px',
+                borderRadius: '10px',
+                boxShadow: '0 4px 16px rgba(192,57,43,0.35)',
+                transition: 'all 0.2s',
+              }}>{t.getStarted}</Link>
+            </>
+          )}
         </div>
       </nav>
 
