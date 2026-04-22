@@ -3,6 +3,7 @@ import './globals.css';
 import { AuthProvider } from '@/context/AuthContext';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { StreetModeProvider } from '@/context/StreetModeContext';
+import OneSignalInitializer from '@/components/OneSignalInitializer';
 
 export const metadata: Metadata = {
   title: 'Jebiga — Learn Real Serbian',
@@ -22,6 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <AuthProvider>
           <LanguageProvider>
             <StreetModeProvider>
+              <OneSignalInitializer />
               {children}
             </StreetModeProvider>
           </LanguageProvider>
