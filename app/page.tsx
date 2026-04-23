@@ -119,20 +119,19 @@ export default function LandingPage() {
       {/* ── NAV ── */}
       <nav style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
-        padding: '16px 32px',
+        padding: '10px 12px',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        background: 'rgba(8,8,8,0.8)',
+        background: 'rgba(8,8,8,0.85)',
         backdropFilter: 'blur(20px)',
         borderBottom: '1px solid rgba(255,255,255,0.06)',
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <span style={{ fontSize: '1.5rem' }}>🇷🇸</span>
-          <span style={{ fontWeight: 800, fontSize: '1.2rem', letterSpacing: '-0.02em' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          <span style={{ fontSize: '1.2rem' }}>🇷🇸</span>
+          <span style={{ fontWeight: 800, fontSize: '1.05rem', letterSpacing: '-0.02em' }}>
             <span style={{ color: '#e74c3c' }}>Jebiga</span>
-            <span style={{ color: '#888', fontWeight: 400, fontSize: '0.85rem', marginLeft: 6 }}>{t.learnSerbian}</span>
           </span>
         </div>
-        <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
           {/* Language Toggle */}
           <button 
             onClick={toggleLang}
@@ -140,47 +139,27 @@ export default function LandingPage() {
               background: 'rgba(255,255,255,0.05)',
               border: '1px solid rgba(255,255,255,0.1)',
               borderRadius: '8px',
-              padding: '6px 10px',
+              padding: '6px 8px',
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              gap: 6,
-              transition: 'all 0.2s'
+              gap: 4,
             }}
           >
-            <span style={{ fontSize: '1.1rem' }}>{lang === 'tr' ? '🇹🇷' : '🇬🇧'}</span>
-            <span style={{ fontSize: '0.7rem', fontWeight: 800, color: '#888' }}>{lang.toUpperCase()}</span>
+            <span style={{ fontSize: '0.9rem' }}>{lang === 'tr' ? '🇹🇷' : '🇬🇧'}</span>
+            <span style={{ fontSize: '0.6rem', fontWeight: 800, color: '#888' }}>{lang.toUpperCase()}</span>
           </button>
 
           {user ? (
-            <Link href="/learn" style={{
-              display: 'inline-flex', alignItems: 'center', gap: 6,
-              background: 'linear-gradient(135deg, #c0392b, #e74c3c)',
-              color: '#fff', fontWeight: 700, fontSize: '0.9rem',
-              textDecoration: 'none', padding: '10px 20px',
-              borderRadius: '10px',
-              boxShadow: '0 4px 16px rgba(192,57,43,0.35)',
-              transition: 'all 0.2s',
+            <Link href="/learn" className="btn-primary" style={{
+              padding: '8px 12px', fontSize: '0.8rem', minHeight: '36px'
             }}>
-              {lang === 'tr' ? 'Öğrenmeye Dön →' : 'Back to Dashboard →'}
+              {lang === 'tr' ? 'Öğren' : 'Learn'}
             </Link>
           ) : (
-            <>
-              <Link href="/login" style={{
-                color: '#888', fontWeight: 600, fontSize: '0.9rem',
-                textDecoration: 'none', padding: '8px 16px',
-                transition: 'color 0.2s',
-              }}>{t.login}</Link>
-              <Link href="/login" style={{
-                display: 'inline-flex', alignItems: 'center', gap: 6,
-                background: 'linear-gradient(135deg, #c0392b, #e74c3c)',
-                color: '#fff', fontWeight: 700, fontSize: '0.9rem',
-                textDecoration: 'none', padding: '10px 20px',
-                borderRadius: '10px',
-                boxShadow: '0 4px 16px rgba(192,57,43,0.35)',
-                transition: 'all 0.2s',
-              }}>{t.getStarted}</Link>
-            </>
+            <Link href="/login" className="btn-primary" style={{
+              padding: '8px 12px', fontSize: '0.8rem', minHeight: '36px'
+            }}>{t.getStarted}</Link>
           )}
         </div>
       </nav>
@@ -189,7 +168,7 @@ export default function LandingPage() {
       <section style={{
         minHeight: '100dvh',
         display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-        textAlign: 'center', padding: '120px 24px 80px',
+        textAlign: 'center', padding: '100px 16px 40px',
         position: 'relative',
         background: `
           radial-gradient(ellipse at 20% 40%, rgba(192,57,43,0.18) 0%, transparent 55%),
@@ -205,12 +184,12 @@ export default function LandingPage() {
 
         {/* Floating badge */}
         <div style={{
-          display: 'inline-flex', alignItems: 'center', gap: 8,
+          display: 'inline-flex', alignItems: 'center', gap: 6,
           background: 'rgba(57,255,20,0.08)',
           border: '1px solid rgba(57,255,20,0.25)',
-          borderRadius: 40, padding: '8px 18px',
-          fontSize: '0.82rem', fontWeight: 600, letterSpacing: '0.04em',
-          color: '#39ff14', marginBottom: 32,
+          borderRadius: 40, padding: '6px 12px',
+          fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.04em',
+          color: '#39ff14', marginBottom: 20,
           animation: 'pulse 3s ease-in-out infinite',
         }}>
           <span>⚡</span> {t.firstAppBadge}
@@ -218,12 +197,12 @@ export default function LandingPage() {
 
         {/* Main headline */}
         <h1 style={{
-          fontSize: 'clamp(2.8rem, 8vw, 5.5rem)',
+          fontSize: 'clamp(2.2rem, 10vw, 4.5rem)',
           fontWeight: 900,
-          lineHeight: 1.05,
+          lineHeight: 1.1,
           letterSpacing: '-0.03em',
           marginBottom: 16,
-          maxWidth: 800,
+          maxWidth: 900,
         }}>
           {lang === 'en' ? 'Learn Serbian ' : 'Sırpçayı '}
           <span style={{
@@ -247,33 +226,22 @@ export default function LandingPage() {
         </h1>
 
         <p style={{
-          fontSize: 'clamp(1rem, 2.5vw, 1.25rem)',
-          color: '#999', lineHeight: 1.7,
-          maxWidth: 560, marginBottom: 48,
+          fontSize: 'clamp(0.95rem, 3vw, 1.15rem)',
+          color: '#999', lineHeight: 1.5,
+          maxWidth: 450, marginBottom: 32,
         }}>
           {t.heroSubtitle1} {t.heroSubtitle2}
         </p>
 
         {/* CTA Buttons */}
-        <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', justifyContent: 'center', marginBottom: 64 }}>
-          <Link href="/login" style={{
-            display: 'inline-flex', alignItems: 'center', gap: 10,
-            background: 'linear-gradient(135deg, #c0392b, #e74c3c)',
-            color: '#fff', fontWeight: 800, fontSize: '1.05rem',
-            textDecoration: 'none', padding: '16px 36px',
-            borderRadius: '14px',
-            boxShadow: '0 8px 32px rgba(192,57,43,0.45), 0 2px 8px rgba(0,0,0,0.3)',
-            letterSpacing: '-0.01em',
+        <div style={{ display: 'flex', gap: 10, flexDirection: 'column', alignItems: 'center', marginBottom: 40, width: '100%', maxWidth: 320 }}>
+          <Link href="/login" className="btn-primary" style={{
+            padding: '16px 32px', fontSize: '1.05rem', width: '100%'
           }}>
             {t.freeStart}
           </Link>
-          <Link href="#features" style={{
-            display: 'inline-flex', alignItems: 'center', gap: 10,
-            background: 'transparent',
-            color: '#39ff14', fontWeight: 700, fontSize: '1rem',
-            textDecoration: 'none', padding: '15px 32px',
-            borderRadius: '14px',
-            border: '2px solid rgba(57,255,20,0.35)',
+          <Link href="#features" className="btn-neon" style={{
+            padding: '14px 28px', fontSize: '0.9rem', width: '100%'
           }}>
             {t.howItWorks}
           </Link>
@@ -281,21 +249,22 @@ export default function LandingPage() {
 
         {/* Stats row */}
         <div style={{
-          display: 'flex', gap: 0, flexWrap: 'wrap', justifyContent: 'center',
+          display: 'flex', flexDirection: 'column', gap: 0,
           background: 'rgba(255,255,255,0.03)',
           border: '1px solid rgba(255,255,255,0.07)',
-          borderRadius: 16, padding: '4px',
+          borderRadius: 20, padding: '10px',
           backdropFilter: 'blur(10px)',
+          width: '100%', maxWidth: 320
         }}>
           {STATS.map((stat, i) => (
             <div key={i} style={{
-              padding: '20px 32px', textAlign: 'center',
-              borderRight: i < STATS.length - 1 ? '1px solid rgba(255,255,255,0.07)' : 'none',
+              padding: '12px 16px', textAlign: 'center',
+              borderBottom: i < STATS.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none',
             }}>
-              <div style={{ fontSize: '1.6rem', fontWeight: 900, color: '#f5f5f5', letterSpacing: '-0.02em' }}>
+              <div style={{ fontSize: '1.25rem', fontWeight: 900, color: '#f5f5f5', letterSpacing: '-0.02em' }}>
                 {stat.value}
               </div>
-              <div style={{ fontSize: '0.78rem', color: '#666', fontWeight: 500, marginTop: 2 }}>
+              <div style={{ fontSize: '0.65rem', color: '#666', fontWeight: 600, marginTop: 1, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                 {lang === 'en' ? stat.labelEn : stat.label}
               </div>
             </div>
@@ -323,8 +292,8 @@ export default function LandingPage() {
 
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: 20,
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: 16,
         }}>
           {FEATURES.map((f, i) => (
             <div key={i} style={{
@@ -409,7 +378,7 @@ export default function LandingPage() {
             {t.testimonialsTitle}
           </h2>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 20 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 16 }}>
           {TESTIMONIALS.map((test, i) => (
             <div key={i} style={{
               background: 'rgba(255,255,255,0.03)',

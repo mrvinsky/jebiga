@@ -21,11 +21,21 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const { user, userData } = useAuth();
   const [guestLang, setGuestLang] = useState<Lang>('tr');
 
-  // Load guest lang from localStorage
+  // Load guest lang from localStorage or browser detection
   useEffect(() => {
     const saved = localStorage.getItem('jebiga_lang') as Lang;
     if (saved && (saved === 'tr' || saved === 'en')) {
       setGuestLang(saved);
+    } else {
+      // Detect browser language
+      if (typeof window !== 'undefined' && window.navigator) {
+        const browserLang = window.navigator.language.toLowerCase();
+        if (browserLang.startsWith('tr')) {
+          setGuestLang('tr');
+        } else {
+          setGuestLang('en'); // Default to English for international users
+        }
+      }
     }
   }, []);
 
