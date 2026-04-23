@@ -60,16 +60,18 @@ export default function OneSignalInitializer() {
 
   useEffect(() => {
     if (userData && window.OneSignal) {
+      const isProUser = userData.subscription === 'pro' || userData.role === 'admin';
+      
       // window.OneSignal.push kullanımı OneSignal komutlarını güvenli bir şekilde sıraya koyar
       window.OneSignal.push(() => {
         if (typeof window.OneSignal.sendTags === 'function') {
           window.OneSignal.sendTags({
-            isPro: userData.isPro || false,
+            isPro: isProUser,
             level: userData.level || 1,
-            language: userData.language || 'tr',
+            language: userData.lang || 'tr',
             xp: userData.xp || 0
           }).then(() => {
-            console.log("OneSignal Tags Updated via window:", { isPro: userData.isPro });
+            console.log("OneSignal Tags Updated via window:", { isPro: isProUser });
           }).catch((err: any) => {
             console.warn("OneSignal sendTags error:", err);
           });
