@@ -144,9 +144,10 @@ export default function QuizCard({
         </p>
 
         {/* ── Multiple Choice ── */}
-        {question.type === 'multiple-choice' && question.options && (
+        {question.type === 'multiple-choice' && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-            {question.options.map((opt, idx) => {
+            {((lang === 'en' && question.optionsEn) ? question.optionsEn : (question.options || [])).map((opt, idx) => {
+              const baseAnswer = (lang === 'en' && question.answerEn) ? question.answerEn : question.answer;
               let bg = 'rgba(255,255,255,0.025)';
               let borderCol = 'rgba(255,255,255,0.08)';
               let textColor = '#ccc';
@@ -154,7 +155,7 @@ export default function QuizCard({
               let iconColor = '#555';
 
               if (status !== 'idle') {
-                if (opt === question.answer) {
+                if (opt === baseAnswer) {
                   bg = 'rgba(0,230,118,0.08)';
                   borderCol = '#00e67644';
                   textColor = '#f0f0f0';
@@ -175,7 +176,7 @@ export default function QuizCard({
                 iconColor = color;
               }
 
-              const isCorrectAnswer = status !== 'idle' && opt === question.answer;
+              const isCorrectAnswer = status !== 'idle' && opt === baseAnswer;
               const isWrongAnswer = status === 'wrong' && opt === selected;
 
               return (
@@ -287,7 +288,7 @@ export default function QuizCard({
             <span style={{ fontSize: '1.1rem' }}>{status === 'correct' ? '🎉' : '💡'}</span>
             {status === 'correct'
               ? streetMode && lang === 'tr' ? 'Bravo, brate! Savrešno!' : t.correctAnswerFeedback
-              : <span>{t.correctAnswer} <strong style={{ color: '#fff' }}>{question.answer}</strong></span>
+              : <span>{t.correctAnswer} <strong style={{ color: '#fff' }}>{(lang === 'en' && question.answerEn) ? question.answerEn : question.answer}</strong></span>
             }
           </div>
         )}

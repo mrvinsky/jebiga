@@ -88,7 +88,8 @@ export default function LessonPage({ params }: { params: Promise<{ id: string }>
   const checkAnswer = () => {
     const userAnswer = q.type === 'multiple-choice' ? selected : inputVal;
     if (!userAnswer) return;
-    const correct = normalise(userAnswer) === normalise(q.answer);
+    const correctAnswer = (lang === 'en' && q.answerEn) ? q.answerEn : q.answer;
+    const correct = normalise(userAnswer) === normalise(correctAnswer);
     setStatus(correct ? 'correct' : 'wrong');
     if (!correct) setMistakes(m => m + 1);
   };
@@ -194,7 +195,7 @@ export default function LessonPage({ params }: { params: Promise<{ id: string }>
         <FeedbackToast
           status={status as 'correct' | 'wrong'}
           message={feedbackMsg}
-          correctAnswer={q.answer}
+          correctAnswer={(lang === 'en' && q.answerEn) ? q.answerEn : q.answer}
           isLastQuestion={current + 1 >= questions.length}
           onNext={next}
         />

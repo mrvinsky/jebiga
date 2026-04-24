@@ -138,7 +138,7 @@ export const lessonContentE: Record<string, LessonContent> = {
       bodyEn: '"Idemo" on its own means "we are going". You add a place after it: "Idemo u kafanu" (we are going to the kafana), "Idemo na splav" (we are going to the splav), "Idemo kući" (we are going home). Simple but very functional, mate!'
     },
     culturalTip: "Belgrad'ın gece hayatı saat 23:00'dan sonra başlar ve şafağa kadar sürer — hafta içi bile. 'Turbo folk' müziği kafanalarda çınlar, Sırp gençler sabaha geç kadar dans eder. Yorgun görünmek ayıptır — 'Ajde, još malo!' (Hadi biraz daha!)",
-    culturalTipEn: "Belgrade's nightlife starts after 11:00 PM and lasts until dawn — even on weekdays. 'Turbo folk' music rings out in kafanas, and Serbian youth dance until late in the morning. Looking tired is a faux pas — 'Ajde, hjoš malo!' (Come on, a little more!)",
+    culturalTipEn: "Belgrade's nightlife starts after 11:00 PM and lasts until dawn — even on weekdays. 'Turbo folk' music rings out in kafanas, and Serbian youth dance until late in the morning. Looking tired is a faux pas — 'Ajde, još malo!' (Come on, a little more!)",
     dialogue: [
       { speaker: 'A', serbian: 'Hej ekipa! Idemo večeras na splav?', translation: 'Hey kankalar! Bu gece splay\'a gidiyoruz mu?', translationEn: 'Hey crew! Are we going to a splav tonight?' },
       { speaker: 'B', serbian: 'Jeste, ali treba rezervacija. Da li si rezervisao?', translation: 'Evet ama rezervasyon lazım. Rezervasyon yaptın mı?', translationEn: 'Yes, but a reservation is needed. Did you reserve?' },
