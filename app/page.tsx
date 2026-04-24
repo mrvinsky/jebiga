@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import WhatsAppButton from '@/components/WhatsAppButton';
+
 import { useAuth } from '@/context/AuthContext';
 import { useLanguage, UI_TEXT } from '@/hooks/useLanguage';
 import { useLanguageContext } from '@/context/LanguageContext';
@@ -482,7 +482,7 @@ export default function LandingPage() {
         </p>
       </footer>
 
-      <WhatsAppButton />
+
 
       <style>{`
         @keyframes pulse {

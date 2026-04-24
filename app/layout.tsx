@@ -3,7 +3,7 @@ import './globals.css';
 import { AuthProvider } from '@/context/AuthContext';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { StreetModeProvider } from '@/context/StreetModeContext';
-import OneSignalInitializer from '@/components/OneSignalInitializer';
+
 import Script from 'next/script';
 
 export const metadata: Metadata = {
@@ -19,16 +19,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-        <Script 
-          src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" 
-          defer 
-        />
+
       </head>
       <body>
         <AuthProvider>
           <LanguageProvider>
             <StreetModeProvider>
-              <OneSignalInitializer />
+
               {children}
             </StreetModeProvider>
           </LanguageProvider>
