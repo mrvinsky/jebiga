@@ -8,6 +8,8 @@ import { useLanguageContext } from '@/context/LanguageContext';
 import { signOut } from '@/lib/auth';
 import StreakBadge from './StreakBadge';
 
+import { calculateLevel, getXPForLevel } from '@/lib/firestore';
+
 export default function Navbar() {
   const { user, userData } = useAuth();
   const { streetMode, toggleStreetMode } = useStreetMode();
@@ -17,8 +19,11 @@ export default function Navbar() {
   const lang = useLanguage();
   const t = UI_TEXT[lang];
 
-  const xpToNextLevel = (userData?.level || 1) * 200;
-  const xpProgress = ((userData?.xp || 0) % xpToNextLevel) / xpToNextLevel * 100;
+  const xp = userData?.xp || 0;
+  const currentLevel = calculateLevel(xp);
+  const xpStart = getXPForLevel(currentLevel);
+  const xpEnd = getXPForLevel(currentLevel + 1);
+  const xpProgress = ((xp - xpStart) / (xpEnd - xpStart)) * 100;
 
   return (
     <>
@@ -42,13 +47,13 @@ export default function Navbar() {
           </Link>
 
           {/* Center: XP + Streak */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, flex: 1, justifyContent: 'center' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, justifyContent: 'center' }}>
             {/* Streak */}
             <StreakBadge streak={userData?.streak || 0} />
             {/* XP bar */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
               <span style={{ fontSize: '0.7rem', fontWeight: 800, color: '#f5c518', whiteSpace: 'nowrap' }}>
-                Lv.{userData?.level || 1} · {userData?.xp || 0} XP
+                Lv.{currentLevel} · {xp} XP
               </span>
               <div className="progress-bar hide-mobile" style={{ width: 60 }}>
                 <div className={streetMode ? 'progress-fill-neon' : 'progress-fill'} style={{ width: `${xpProgress}%` }} />
@@ -58,6 +63,34 @@ export default function Navbar() {
 
           {/* Right: Street toggle + avatar */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            {/* Street Mode Toggle */}
+            <button
+              onClick={toggleStreetMode}
+              style={{
+                background: streetMode ? 'rgba(57,255,20,0.1)' : 'rgba(255,255,255,0.05)',
+                border: `1.5px solid ${streetMode ? '#39ff14' : 'rgba(255,255,255,0.1)'}`,
+                borderRadius: '8px',
+                padding: '4px 8px',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 6,
+                transition: 'all 0.2s',
+                boxShadow: streetMode ? '0 0 10px rgba(57,255,20,0.3)' : 'none',
+              }}
+              title={streetMode ? 'Standard Mod' : 'Street Mode 🔥'}
+            >
+              <span style={{ fontSize: '1rem', filter: streetMode ? 'none' : 'grayscale(1)' }}>🔥</span>
+              <span className="hide-xsmall" style={{ 
+                fontSize: '0.65rem', 
+                fontWeight: 800, 
+                color: streetMode ? '#39ff14' : '#888',
+                letterSpacing: '0.05em'
+              }}>
+                STREET
+              </span>
+            </button>
+
             {/* Language Toggle */}
             <button 
               onClick={toggleLang}

@@ -1,7 +1,7 @@
 'use client';
 import { Question } from '@/data/curriculum';
 import { useEffect, useState } from 'react';
-import { useLanguage, UI_TEXT } from '@/hooks/useLanguage';
+import { useLanguage, UI_TEXT, STREET_TEXT } from '@/hooks/useLanguage';
 
 interface QuizCardProps {
   question: Question;
@@ -31,7 +31,7 @@ export default function QuizCard({
   color = '#c0392b',
 }: QuizCardProps) {
   const lang = useLanguage();
-  const t = UI_TEXT[lang];
+  const t = streetMode ? { ...UI_TEXT[lang], ...STREET_TEXT } : UI_TEXT[lang];
 
   // Logic: Priority -> StreetPrompt (if mode on) -> EnglishPrompt (if lang en) -> Prompt
   const prompt = (streetMode && question.streetPrompt) 

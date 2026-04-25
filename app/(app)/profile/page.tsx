@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { signOut } from '@/lib/auth';
 import { setUserLanguage } from '@/lib/firestore';
+import { calculateLevel, getXPForLevel } from '@/lib/firestore';
 import { useLanguage, UI_TEXT } from '@/hooks/useLanguage';
 
 export default function ProfilePage() {
@@ -17,9 +18,11 @@ export default function ProfilePage() {
   const allLessons = getAllLessons();
   const completed = userData?.completedLessons || [];
   const xp = userData?.xp || 0;
-  const level = userData?.level || 1;
-  const xpToNext = level * 200;
-  const xpProgress = (xp % xpToNext) / xpToNext * 100;
+  const currentLevel = calculateLevel(xp);
+  const xpStart = getXPForLevel(currentLevel);
+  const xpEnd = getXPForLevel(currentLevel + 1);
+  const xpProgress = ((xp - xpStart) / (xpEnd - xpStart)) * 100;
+  const level = currentLevel; 
   const isPro = userData?.subscription === 'pro';
 
   const handleSignOut = async () => {
@@ -68,8 +71,8 @@ export default function ProfilePage() {
       {/* XP to next level */}
       <div className="card" style={{ marginBottom: 20 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 10 }}>
-          <span style={{ fontWeight: 700, fontSize: '0.85rem' }}>{t.levelLabel} {level} → {level + 1}</span>
-          <span style={{ fontSize: '0.8rem', color: '#666' }}>{xp % xpToNext} / {xpToNext} XP</span>
+          <span style={{ fontWeight: 700, fontSize: '0.85rem' }}>{t.levelLabel} {currentLevel} → {currentLevel + 1}</span>
+          <span style={{ fontSize: '0.8rem', color: '#666' }}>{xp - getXPForLevel(currentLevel)} / {getXPForLevel(currentLevel + 1) - getXPForLevel(currentLevel)} XP</span>
         </div>
         <div className="progress-bar">
           <div className={streetMode ? 'progress-fill-neon' : 'progress-fill'} style={{ width: `${xpProgress}%` }} />

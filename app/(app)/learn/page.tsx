@@ -7,6 +7,8 @@ import { useStreetMode } from '@/context/StreetModeContext';
 import { curriculum } from '@/data/curriculum';
 
 
+import { calculateLevel } from '@/lib/firestore';
+
 export default function LearnPage() {
   const { streetMode } = useStreetMode();
   const { userData } = useAuth();
@@ -17,6 +19,9 @@ export default function LearnPage() {
   const isAdmin = userData?.role === 'admin';
   const [expandedSet, setExpandedSet] = useState<string | null>(null);
 
+  const xp = userData?.xp || 0;
+  const currentLevel = calculateLevel(xp);
+  
   const totalLessons = curriculum.flatMap(s => s.lessons).length;
   const completedCount = completed.length;
   const progressPct = Math.round((completedCount / totalLessons) * 100);
@@ -39,6 +44,37 @@ export default function LearnPage() {
           background: 'radial-gradient(ellipse at 50% 0%, rgba(192,57,43,0.12) 0%, transparent 65%)',
         }} />
         <div style={{ position: 'relative' }}>
+          {/* User Stats Card */}
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            gap: 16,
+            marginBottom: 24,
+            flexWrap: 'wrap'
+          }}>
+            <div className="glass" style={{ padding: '10px 20px', display: 'flex', alignItems: 'center', gap: 10, border: '1px solid rgba(245,197,24,0.3)' }}>
+              <span style={{ fontSize: '1.2rem' }}>🏆</span>
+              <div>
+                <div style={{ fontSize: '0.65rem', fontWeight: 800, color: '#888', textTransform: 'uppercase' }}>{t.levelLabel}</div>
+                <div style={{ fontSize: '1.1rem', fontWeight: 900, color: '#f5c518' }}>Lv.{currentLevel}</div>
+              </div>
+            </div>
+            <div className="glass" style={{ padding: '10px 20px', display: 'flex', alignItems: 'center', gap: 10, border: '1px solid rgba(192,57,43,0.3)' }}>
+              <span style={{ fontSize: '1.2rem' }}>✨</span>
+              <div>
+                <div style={{ fontSize: '0.65rem', fontWeight: 800, color: '#888', textTransform: 'uppercase' }}>{lang === 'en' ? 'TOTAL XP' : 'TOPLAM XP'}</div>
+                <div style={{ fontSize: '1.1rem', fontWeight: 900, color: '#c0392b' }}>{userData?.xp || 0}</div>
+              </div>
+            </div>
+            <div className="glass" style={{ padding: '10px 20px', display: 'flex', alignItems: 'center', gap: 10, border: '1px solid rgba(255,107,0,0.3)' }}>
+              <span style={{ fontSize: '1.2rem' }}>🔥</span>
+              <div>
+                <div style={{ fontSize: '0.65rem', fontWeight: 800, color: '#888', textTransform: 'uppercase' }}>{t.streakLabel}</div>
+                <div style={{ fontSize: '1.1rem', fontWeight: 900, color: '#ff6b00' }}>{userData?.streak || 0}</div>
+              </div>
+            </div>
+          </div>
+
           <h1 style={{
             fontFamily: 'Space Grotesk, sans-serif',
             fontSize: 'clamp(1.6rem, 4vw, 2.2rem)',

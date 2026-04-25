@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { LessonContent } from '@/data/contentTypes';
-import { useLanguage, UI_TEXT } from '@/hooks/useLanguage';
+import { useLanguage, UI_TEXT, STREET_TEXT } from '@/hooks/useLanguage';
 
 interface Props {
   lessonTitle: string;
@@ -29,7 +29,7 @@ export default function LessonIntro({
   content, streetMode, onStart,
 }: Props) {
   const lang = useLanguage();
-  const t = UI_TEXT[lang];
+  const t = streetMode ? { ...UI_TEXT[lang], ...STREET_TEXT } : UI_TEXT[lang];
   const title = streetMode ? streetTitle : (lang === 'en' && titleEn ? titleEn : lessonTitle);
 
   // Determine available tabs
@@ -88,7 +88,9 @@ export default function LessonIntro({
             lineHeight: 1.65, maxWidth: 480,
             margin: '0 auto 18px',
           }}>
-            {lang === 'en' && content.scenarioEn ? content.scenarioEn : content.scenario}
+            {streetMode && content.streetScenario 
+              ? content.streetScenario 
+              : (lang === 'en' && content.scenarioEn ? content.scenarioEn : content.scenario)}
           </p>
 
           {/* XP badge */}
@@ -171,14 +173,18 @@ export default function LessonIntro({
                     <div style={{ color: color, fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.02em', marginBottom: 6 }}>{v.pronunciation}</div>
                   </div>
                   <div>
-                    <div style={{ color: '#ddd', fontSize: '0.88rem' }}>{lang === 'en' && v.translationEn ? v.translationEn : v.translation}</div>
-                    {v.example && (
+                    <div style={{ color: '#ddd', fontSize: '0.88rem' }}>
+                      {streetMode && v.streetTranslation 
+                        ? v.streetTranslation 
+                        : (lang === 'en' && v.translationEn ? v.translationEn : v.translation)}
+                    </div>
+                    {(v.example || v.streetExample) && (
                       <div style={{ 
                         marginTop: 10, paddingTop: 10, borderTop: '1px solid rgba(255,255,255,0.05)',
                         fontSize: '0.8rem', color: '#666', fontStyle: 'italic'
                       }}>
-                        "{v.example}"
-                        {v.exampleEn && lang === 'en' && (
+                        "{streetMode && v.streetExample ? v.streetExample : v.example}"
+                        {v.exampleEn && lang === 'en' && !streetMode && (
                           <div style={{ marginTop: 4, color: '#444' }}>- {v.exampleEn}</div>
                         )}
                       </div>
@@ -225,7 +231,9 @@ export default function LessonIntro({
                       {line.serbian}
                     </div>
                     <div style={{ fontSize: '0.78rem', color: '#666', fontStyle: 'italic' }}>
-                      {lang === 'en' && line.translationEn ? line.translationEn : line.translation}
+                      {streetMode && line.streetTranslation 
+                        ? line.streetTranslation 
+                        : (lang === 'en' && line.translationEn ? line.translationEn : line.translation)}
                     </div>
                   </div>
                 </div>
@@ -260,10 +268,14 @@ export default function LessonIntro({
                 {content.grammarRules.map((rule, ri) => (
                   <div key={ri}>
                     <h4 style={{ margin: '0 0 8px', fontSize: '1rem', color: '#fff', fontWeight: 700 }}>
-                      {lang === 'en' && rule.titleEn ? rule.titleEn : rule.title}
+                      {streetMode && rule.streetTitle 
+                        ? rule.streetTitle 
+                        : (lang === 'en' && rule.titleEn ? rule.titleEn : rule.title)}
                     </h4>
                     <p style={{ margin: '0 0 12px', fontSize: '0.9rem', color: '#888', lineHeight: 1.6 }}>
-                      {lang === 'en' && rule.bodyEn ? rule.bodyEn : rule.body}
+                      {streetMode && rule.streetBody 
+                        ? rule.streetBody 
+                        : (lang === 'en' && rule.bodyEn ? rule.bodyEn : rule.body)}
                     </p>
                     {rule.examples && (
                       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -271,7 +283,9 @@ export default function LessonIntro({
                           <div key={ei} style={{ padding: '8px 12px', background: 'rgba(255,255,255,0.03)', borderRadius: 8, border: '1px solid rgba(255,255,255,0.05)' }}>
                             <div style={{ fontWeight: 600, color: '#eee', fontSize: '0.85rem' }}>{ex.serbian}</div>
                             <div style={{ fontSize: '0.75rem', color: '#666' }}>
-                              {lang === 'en' && ex.translationEn ? ex.translationEn : ex.translation}
+                              {streetMode && ex.streetTranslation 
+                                ? ex.streetTranslation 
+                                : (lang === 'en' && ex.translationEn ? ex.translationEn : ex.translation)}
                             </div>
                           </div>
                         ))}
@@ -283,10 +297,14 @@ export default function LessonIntro({
             ) : content.grammarNote ? (
               <div>
                 <h4 style={{ margin: '0 0 8px', fontSize: '1rem', color: '#fff', fontWeight: 700 }}>
-                  {lang === 'en' && content.grammarNote.titleEn ? content.grammarNote.titleEn : content.grammarNote.title}
+                  {streetMode && content.grammarNote.streetTitle 
+                    ? content.grammarNote.streetTitle 
+                    : (lang === 'en' && content.grammarNote.titleEn ? content.grammarNote.titleEn : content.grammarNote.title)}
                 </h4>
                 <p style={{ fontSize: '0.92rem', color: '#aaa', lineHeight: 1.75 }}>
-                  {lang === 'en' && content.grammarNote.bodyEn ? content.grammarNote.bodyEn : content.grammarNote.body}
+                  {streetMode && content.grammarNote.streetBody 
+                    ? content.grammarNote.streetBody 
+                    : (lang === 'en' && content.grammarNote.bodyEn ? content.grammarNote.bodyEn : content.grammarNote.body)}
                 </p>
               </div>
             ) : null}
@@ -318,7 +336,9 @@ export default function LessonIntro({
               lineHeight: 1.75,
               padding: '0 4px',
             }}>
-              {lang === 'en' && content.culturalTipEn ? content.culturalTipEn : content.culturalTip}
+              {streetMode && content.streetCulturalTip 
+                ? content.streetCulturalTip 
+                : (lang === 'en' && content.culturalTipEn ? content.culturalTipEn : content.culturalTip)}
             </p>
           </div>
         )}

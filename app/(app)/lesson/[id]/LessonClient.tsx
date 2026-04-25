@@ -2,10 +2,10 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
-import { useLanguage, UI_TEXT } from '@/hooks/useLanguage';
+import { useLanguage, UI_TEXT, STREET_TEXT } from '@/hooks/useLanguage';
 import { useStreetMode } from '@/context/StreetModeContext';
 import { getAllLessons, Question } from '@/data/curriculum';
-import { completeLesson, updateStreak } from '@/lib/firestore';
+import { completeLesson, updateStreak, calculateLevel } from '@/lib/firestore';
 import QuizCard from '@/components/lesson/QuizCard';
 import FeedbackToast from '@/components/lesson/FeedbackToast';
 import LessonIntro from '@/components/lesson/LessonIntro';
@@ -16,7 +16,7 @@ export default function LessonClient({ id }: { id: string }) {
   const { user, userData, refreshUserData } = useAuth();
   const { streetMode } = useStreetMode();
   const lang = useLanguage();
-  const t = UI_TEXT[lang];
+  const t = streetMode ? { ...UI_TEXT[lang], ...STREET_TEXT } : UI_TEXT[lang];
 
   const allLessons = getAllLessons();
   const lesson = allLessons.find((l) => l.id === id);
@@ -29,6 +29,7 @@ export default function LessonClient({ id }: { id: string }) {
   const [finished, setFinished] = useState(false);
   const [xpEarned, setXpEarned] = useState(0);
   const [mistakes, setMistakes] = useState(0);
+  const [leveledUp, setLeveledUp] = useState(false);
 
   useEffect(() => { setCurrent(0); setFinished(false); setMistakes(0); setXpEarned(0); setPhase('intro'); }, [id]);
 
@@ -88,10 +89,21 @@ export default function LessonClient({ id }: { id: string }) {
     setSelected(null); setInputVal(''); setStatus('idle');
     if (current + 1 >= questions.length) {
       const earned = Math.max(lesson.xpReward - mistakes * 5, 5);
-      setXpEarned(earned);
       setFinished(true);
       if (user) { 
         (async () => {
+          const streak = userData?.streak || 0;
+          const bonusMultiplier = 1 + Math.min(streak * 0.05, 0.5);
+          const finalEarned = Math.round(earned * bonusMultiplier);
+          setXpEarned(finalEarned);
+
+          const oldLevel = calculateLevel(userData?.xp || 0);
+          const newLevel = calculateLevel((userData?.xp || 0) + finalEarned);
+          
+          if (newLevel > oldLevel) {
+            setLeveledUp(true);
+          }
+          
           await completeLesson(user.uid, lesson.id, earned); 
           await updateStreak(user.uid); 
           await refreshUserData(); 
@@ -133,8 +145,29 @@ export default function LessonClient({ id }: { id: string }) {
           ? `Bravo brate — ${mistakes} greška${mistakes !== 1 ? 'ke' : ''}!` 
           : t.mistakesMade.replace('{n}', mistakes.toString())}
       </p>
-      <div className={`glass ${streetMode ? 'neon-border' : ''}`} style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', gap: 8, padding: '24px 48px', marginBottom: 32 }}>
-        <div style={{ fontSize: '2.5rem', fontWeight: 900, color: '#f5c518', fontFamily: 'Space Grotesk, sans-serif' }}>+{xpEarned} XP</div>
+      <div className={`glass ${streetMode ? 'neon-border' : ''}`} style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', gap: 8, padding: '24px 48px', marginBottom: 32, position: 'relative' }}>
+        {leveledUp && (
+          <div style={{
+            position: 'absolute', top: -12, right: -12,
+            background: '#39ff14', color: '#000',
+            padding: '4px 10px', borderRadius: 8,
+            fontSize: '0.7rem', fontWeight: 900,
+            transform: 'rotate(12deg)',
+            animation: 'pop-in 0.3s ease forwards',
+            boxShadow: '0 0 15px rgba(57,255,20,0.5)',
+          }}>
+            LEVEL UP! 🚀
+          </div>
+        )}
+        <div style={{ fontSize: '2.5rem', fontWeight: 900, color: '#f5c518', fontFamily: 'Space Grotesk, sans-serif' }}>
+          +{xpEarned} XP
+        </div>
+        {userData?.streak && userData.streak > 0 && (
+          <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#ff6b00', marginTop: -4 }}>
+            {lang === 'en' ? 'STREAK BONUS: ' : 'SERİ BONUSU: '} 
+            +{Math.min(userData.streak * 5, 50)}% 🔥
+          </div>
+        )}
         <div style={{ color: '#666', fontSize: '0.85rem' }}>{t.xpEarned}</div>
       </div>
       <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>

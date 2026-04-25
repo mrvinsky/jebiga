@@ -12,6 +12,7 @@ export interface UserData {
   level: number;
   streak: number;
   lastActive: unknown;
+  lastStreakUpdate?: unknown; // 📅 Son streak artış tarihi
   completedLessons: string[];
   subscription: 'free' | 'pro';
   role?: 'user' | 'admin';
@@ -28,6 +29,7 @@ export const createUserDoc = async (user: User, nameOverride?: string) => {
       photoURL: user.photoURL || '',
       xp: 0, level: 1, streak: 0,
       lastActive: serverTimestamp(),
+      lastStreakUpdate: serverTimestamp(),
       completedLessons: [],
       subscription: user.email === 'besiralkya@gmail.com' ? 'pro' : 'free',
       role: user.email === 'besiralkya@gmail.com' ? 'admin' : 'user',
@@ -55,8 +57,42 @@ export const getUserData = async (uid: string): Promise<UserData | null> => {
   return data;
 };
 
+/**
+ * Quadratic Level Formula:
+ * Total XP for Level L = 125 * L * (L-1)
+ * Level 1: 0 XP
+ * Level 2: 250 XP
+ * Level 3: 750 XP
+ * Level 4: 1500 XP
+ * Level 5: 2500 XP
+ */
+export const calculateLevel = (xp: number) => {
+  // Solving 125 * L^2 - 125 * L - xp = 0 for L
+  // L = (125 + sqrt(125^2 + 4 * 125 * xp)) / (2 * 125)
+  if (xp <= 0) return 1;
+  const L = (125 + Math.sqrt(15625 + 500 * xp)) / 250;
+  return Math.floor(L);
+};
+
+/**
+ * Returns the total XP required to reach a specific level
+ */
+export const getXPForLevel = (level: number) => {
+  return 125 * level * (level - 1);
+};
+
 export const addXP = async (uid: string, amount: number) => {
-  await updateDoc(doc(db, 'users', uid), { xp: increment(amount) });
+  const ref = doc(db, 'users', uid);
+  const snap = await getDoc(ref);
+  if (!snap.exists()) return;
+  const data = snap.data() as UserData;
+  const newXP = (data.xp || 0) + amount;
+  const newLevel = calculateLevel(newXP);
+  
+  await updateDoc(ref, { 
+    xp: newXP,
+    level: newLevel 
+  });
 };
 
 export const setUserLanguage = async (uid: string, lang: 'tr' | 'en') => {
@@ -64,16 +100,26 @@ export const setUserLanguage = async (uid: string, lang: 'tr' | 'en') => {
 };
 
 
-export const completeLesson = async (uid: string, lessonId: string, xp: number) => {
+export const completeLesson = async (uid: string, lessonId: string, baseXP: number) => {
   const ref = doc(db, 'users', uid);
   const snap = await getDoc(ref);
   if (!snap.exists()) return;
   const data = snap.data() as UserData;
   const completed = data.completedLessons || [];
+  
+  // Streak Bonus: 5% per day, capped at 50%
+  const streak = data.streak || 0;
+  const bonusMultiplier = 1 + Math.min(streak * 0.05, 0.5);
+  const earnedXP = Math.round(baseXP * bonusMultiplier);
+
   if (!completed.includes(lessonId)) {
+    const newXP = (data.xp || 0) + earnedXP;
+    const newLevel = calculateLevel(newXP);
+    
     await updateDoc(ref, {
       completedLessons: [...completed, lessonId],
-      xp: increment(xp),
+      xp: newXP,
+      level: newLevel,
       lastActive: serverTimestamp(),
     });
   }
@@ -84,18 +130,52 @@ export const updateStreak = async (uid: string) => {
   const snap = await getDoc(ref);
   if (!snap.exists()) return;
   const data = snap.data() as UserData;
-  const last = data.lastActive as { toDate?: () => Date } | null;
+  
+  const last = data.lastStreakUpdate as { toDate?: () => Date } | null;
   const lastDate = last?.toDate ? last.toDate() : null;
   const now = new Date();
-  let newStreak = data.streak || 0;
-  if (lastDate) {
-    const diff = Math.floor((now.getTime() - lastDate.getTime()) / 86400000);
-    if (diff === 1) newStreak += 1;
-    else if (diff > 1) newStreak = 1;
-  } else {
-    newStreak = 1;
+  
+  if (!lastDate) {
+    await updateDoc(ref, { streak: 1, lastStreakUpdate: serverTimestamp(), lastActive: serverTimestamp() });
+    return 1;
   }
-  await updateDoc(ref, { streak: newStreak, lastActive: serverTimestamp() });
+
+  const isSameDay = (d1: Date, d2: Date) => 
+    d1.getUTCDate() === d2.getUTCDate() &&
+    d1.getUTCMonth() === d2.getUTCMonth() &&
+    d1.getUTCFullYear() === d2.getUTCFullYear();
+
+  const isYesterday = (d1: Date, d2: Date) => {
+    const yesterday = new Date(d1);
+    yesterday.setUTCDate(yesterday.getUTCDate() - 1);
+    return isSameDay(yesterday, d2);
+  };
+
+  let newStreak = data.streak || 0;
+  let shouldUpdateDate = false;
+
+  if (isSameDay(now, lastDate)) {
+    // Bugün zaten güncellenmiş. Bir şey yapma.
+    if (newStreak === 0) {
+      newStreak = 1;
+      shouldUpdateDate = true;
+    }
+  } else if (isYesterday(now, lastDate)) {
+    // En son dün güncellenmiş. Bugün ilk ders. Artır.
+    newStreak += 1;
+    shouldUpdateDate = true;
+  } else {
+    // Arada gün kaçmış (2 gün veya daha fazla). 1'den başlat.
+    newStreak = 1;
+    shouldUpdateDate = true;
+  }
+
+  const updateObj: any = { streak: newStreak, lastActive: serverTimestamp() };
+  if (shouldUpdateDate) {
+    updateObj.lastStreakUpdate = serverTimestamp();
+  }
+
+  await updateDoc(ref, updateObj);
   return newStreak;
 };
 
