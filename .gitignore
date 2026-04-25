@@ -44,3 +44,7 @@ next-env.d.ts
 .firebase/
 firebase-debug.log
 .firebaserc
+
+# capacitor
+/ios/App/App/public/
+/android/app/src/main/assets/public/
