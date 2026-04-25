@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { AuthProvider } from '@/context/AuthContext';
 import { LanguageProvider } from '@/context/LanguageContext';
@@ -10,6 +10,12 @@ export const metadata: Metadata = {
   title: 'Jebiga — Learn Real Serbian',
   description: 'The edgy, authentic way to learn Serbian. Street slang, real culture, real language. Jebiga!',
   keywords: ['Serbian', 'language learning', 'Belgrade', 'slang', 'Learn Serbian'],
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

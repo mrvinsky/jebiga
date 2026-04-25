@@ -23,10 +23,18 @@ export default function Navbar() {
   return (
     <>
       {/* Top bar */}
-      <nav style={{ background: 'rgba(8,8,8,0.95)', borderBottom: '1px solid #1a1a1a', position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, backdropFilter: 'blur(20px)' }}>
+      <nav style={{ 
+        background: 'rgba(8,8,8,0.95)', 
+        borderBottom: '1px solid #1a1a1a', 
+        position: 'fixed', 
+        top: 0, left: 0, right: 0, 
+        zIndex: 100, 
+        backdropFilter: 'blur(20px)',
+        paddingTop: 'var(--sat)' // Notches for iOS
+      }}>
         <div style={{ maxWidth: 900, margin: '0 auto', padding: '0 12px', height: 60, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
           {/* Logo */}
-          <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 8 }}>
+          <Link href={user ? "/learn" : "/"} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 8 }}>
             <span style={{ fontSize: '1.4rem', fontWeight: 900, fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '-0.02em' }}>
               <span style={{ color: '#c0392b' }}>Jebiga</span>
               {streetMode && <span style={{ color: '#39ff14', fontSize: '0.6rem', marginLeft: 6, padding: '2px 6px', border: '1px solid #39ff14', borderRadius: 4, verticalAlign: 'middle', animation: 'neon-pulse 2s ease-in-out infinite' }}>STREET</span>}
@@ -50,13 +58,6 @@ export default function Navbar() {
 
           {/* Right: Street toggle + avatar */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            {/* Street Mode toggle */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }} title="Toggle Street Mode">
-              <span className="hide-xsmall" style={{ fontSize: '0.65rem', fontWeight: 800, color: streetMode ? '#39ff14' : '#555', letterSpacing: '0.05em', whiteSpace: 'nowrap' }}>STREET</span>
-              <button id="street-mode-toggle" onClick={toggleStreetMode} className={`street-toggle ${streetMode ? 'active' : ''}`} aria-label="Toggle Street Mode" style={{ width: 44, height: 24 }}>
-                <div className="street-toggle-thumb" style={{ width: 16, height: 16, left: streetMode ? 24 : 2 }} />
-              </button>
-            </div>
             {/* Language Toggle */}
             <button 
               onClick={toggleLang}
@@ -93,7 +94,18 @@ export default function Navbar() {
       </nav>
 
       {/* Bottom mobile nav */}
-      <nav style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 100, background: 'rgba(8,8,8,0.97)', borderTop: '1px solid #1a1a1a', backdropFilter: 'blur(20px)', display: 'flex', justifyContent: 'space-around', padding: '8px 0 16px' }}>
+      <nav className="mobile-nav-only" style={{ 
+        position: 'fixed', 
+        bottom: 0, left: 0, right: 0, 
+        zIndex: 100, 
+        background: 'rgba(8,8,8,0.97)', 
+        borderTop: '1px solid #1a1a1a', 
+        backdropFilter: 'blur(20px)', 
+        display: 'flex', 
+        justifyContent: 'space-around', 
+        padding: '8px 0',
+        paddingBottom: 'calc(8px + var(--sab))' // Bottom safe area (home indicator)
+      }}>
         {[
           { href: '/learn', icon: '🗺️', label: t.learn },
           { href: '/profile', icon: '👤', label: t.profile },

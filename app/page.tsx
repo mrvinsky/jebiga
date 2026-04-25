@@ -235,10 +235,10 @@ export default function LandingPage() {
 
         {/* CTA Buttons */}
         <div style={{ display: 'flex', gap: 10, flexDirection: 'column', alignItems: 'center', marginBottom: 40, width: '100%', maxWidth: 320 }}>
-          <Link href="/login" className="btn-primary" style={{
+          <Link href={user ? "/learn" : "/login"} className="btn-primary" style={{
             padding: '16px 32px', fontSize: '1.05rem', width: '100%'
           }}>
-            {t.freeStart}
+            {user ? (lang === 'tr' ? 'Öğrenmeye Devam Et' : 'Continue Learning') : t.freeStart}
           </Link>
           <Link href="#features" className="btn-neon" style={{
             padding: '14px 28px', fontSize: '0.9rem', width: '100%'
@@ -424,7 +424,7 @@ export default function LandingPage() {
             {t.registerNow} {t.noCardRequired}
           </p>
           <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', justifyContent: 'center' }}>
-            <Link href="/login" style={{
+            <Link href={user ? "/learn" : "/login"} style={{
               display: 'inline-flex', alignItems: 'center', gap: 10,
               background: 'linear-gradient(135deg, #c0392b, #e74c3c)',
               color: '#fff', fontWeight: 800, fontSize: '1.1rem',
@@ -433,7 +433,7 @@ export default function LandingPage() {
               boxShadow: '0 8px 40px rgba(192,57,43,0.5)',
               letterSpacing: '-0.01em',
             }}>
-              {t.registerNow}
+              {user ? (lang === 'tr' ? 'Eğitime Başla' : 'Start Learning') : t.registerNow}
             </Link>
           </div>
           <p style={{ color: '#444', fontSize: '0.8rem', marginTop: 16 }}>
