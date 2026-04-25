@@ -16,8 +16,8 @@ Rules:
 6. Have a grumpy but lovable persona.
 `;
 
-// Models to try in order of preference
-const MODELS = ['gemini-2.0-flash', 'gemini-1.5-flash'];
+// Models to try in order of preference (gemini-2.5-flash confirmed working with this API key)
+const MODELS = ['gemini-2.5-flash', 'gemini-2.5-flash-lite'];
 
 export async function POST(req: NextRequest) {
   try {
