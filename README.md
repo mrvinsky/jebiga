@@ -68,3 +68,5 @@ With one click, the interface turns neon green, and the content switches to auth
 
 *Srećno učenje, brate! / Good luck learning, mate!* 🇷🇸🔥  
 *Design & Development by [mr.vinsky](https://www.instagram.com/mr.vinsky/)*
+
+<!-- Build Trigger -->
