@@ -170,7 +170,7 @@ export const lessonContentE: Record<string, LessonContent> = {
       { speaker: 'A', serbian: 'Konobar! Možemo još jednu rundu?', translation: 'Garson! Bir tur daha alabilir miyiz?', translationEn: 'Waiter! Can we have another round?' },
       { speaker: 'B', serbian: 'Naravno! Isti kao pre?', translation: 'Tabii ki! Aynısından mı?', translationEn: 'Of course! Same as before?' },
       { speaker: 'A', serbian: 'Da, i još jednu vodu, molim.', translation: 'Evet, bir de su lütfen.', translationEn: 'Yes, and one water, please.' },
-      { speaker: 'B', serbian: 'Ova pesma je mrak! Ajde na podijum!', translation: 'Bu şarkı efsane kanka! Dans pistine!', translationEn: 'This song is awesome, mate! To the dance floor!' },
+      { speaker: 'B', serbian: 'Ova pesma je vrh! Ajde na podijum!', translation: 'Bu şarkı efsane kanka! Dans pistine!', translationEn: 'This song is awesome, mate! To the dance floor!' },
     ],
   },
 
