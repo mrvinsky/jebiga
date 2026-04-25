@@ -1,52 +1,70 @@
-# 🦅 Jebiga: Sırpçayı Sokak Ağzıyla Öğren! 🇷🇸🔥
+# 🦅 Jebiga: Nauči Srpski sa Ulice! / Learn Serbian The Street Way! 🇷🇸🔥
 
-> **"Dobar dan" demeyi herkes öğretir, biz size gerçek Belgrad'ı yaşatırız.**
+[![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![Firebase](https://img.shields.io/badge/Firebase-Latest-orange?style=for-the-badge&logo=firebase)](https://firebase.google.com/)
+[![Capacitor](https://img.shields.io/badge/Capacitor-Mobile-blue?style=for-the-badge&logo=capacitor)](https://capacitorjs.com/)
 
-**Jebiga**, sıkıcı ders kitaplarını bir kenara fırlatan, Sırpçayı en ham, en gerçek ve en havalı haliyle öğreten bir dil öğrenme platformudur. Duolingo'nun tatlı baykuşu yerine, piposunu içen bir **Kafana Dayısı** ile muhatap olduğunuz, XP kazanırken aynı zamanda Balkan kültürünün derinliklerine daldığınız bir deneyim sunar.
+> **"Dobar dan" te svako može naučiti, ali mi te učimo kako da preživiš u Beogradu.**  
+> **Anyone can teach you "Dobar dan", but we teach you how to survive in Belgrade.**
 
 ---
 
-## 🎯 Projenin Ruhu
-
-Jebiga, sadece bir uygulama değil; bir **vibe**'dır. Belgrad'ın ara sokaklarında, nehir üstündeki splav'larda veya bir kafananın dumanlı havasında ihtiyacınız olan her şeyi size sunar.
+## 🇷🇸 O projektu (Serbian)
+**Jebiga** nije tvoja obična aplikacija za učenje jezika. Zaboravi na dosadne udžbenike i "ptice koje pevaju". Ovo je platforma za one koji žele da nauče srpski onako kako se stvarno govori – u kafani, na splavu, i na ulici. Sa našim **Kafana Dayom (AI)**, naučićeš žargon, fore i pravi balkanski vibe dok skupljaš XP i penješ se na više nivoe.
 
 ### ⚡ Street Mode (Sokak Modu)
-Uygulamanın kalbi burada atar. Tek bir tuşla arayüz neon ışıklara bürünür ve içerik "Sokak Moduna" geçer. Resmiyet biter, jargon başlar. Küfürden flörte, sokak jargonundan racona kadar her şey bu modda saklıdır.
-
-### 🌐 Tam Bilingual (TR/EN) Deneyim
-Sırpçayı ister Türkçe anlatımla, ister İngilizce üzerinden öğrenin. Tüm dersler, senaryolar ve yapay zeka botu iki dile de tam uyumludur. Dil tercihinizi tek tıkla değiştirebilirsiniz.
+Jednim klikom interfejs postaje neon-zelen, a sadržaj se menja u autentični ulični žargon. Od psovki do muvanja, sve što ti treba za pravi život je ovde.
 
 ---
 
-## 🚀 Öne Çıkan Özellikler
+## 🇬🇧 About the Project (English)
+**Jebiga** is not your average language learning app. Forget boring textbooks and "singing birds". This is a platform for those who want to learn Serbian the way it's actually spoken – in the kafana, on the splav, and on the street. With our **Kafana Uncle (AI)**, you'll learn slang, local jokes, and the real Balkan vibe while earning XP and leveling up.
 
-- **🗺️ İnteraktif Ders Haritası**: Adım adım ilerleyen, her düğümde yeni bir senaryo sunan oyunlaştırılmış bir öğrenme yolu.
-- **🧔🏻‍♂️ Kafana Dayısı (AI Tutor)**: Pipo içen Sırp dayınız her an yanınızda. Ona argo sorabilir, diyalog pratiği yapabilir veya Belgrad gece hayatı hakkında tüyo alabilirsiniz.
-- **🔥 Anlık Senkronizasyon**: Kazandığın XP'ler, serilerin (streak) ve seviye atlamaların tüm cihazlarında anlık olarak güncellenir.
-- **🍺 18+ Kategoriler**: Selamlaşmanın ötesine geçin. Gece hayatı, sağlık, acil durumlar ve "sadece Pro'lara özel" derin içerikler.
-- **🎮 Oyunlaştırma**: XP toplayın, seviye atlayın ve "Pravi Lik" (Gerçek Biri) olma yolunda ilerleyin.
+### ⚡ Street Mode
+With one click, the interface turns neon green, and the content switches to authentic street slang. From swearing to flirting, everything you need for real life is here.
 
 ---
 
-## 💡 Müfredatta Neler Var?
+## 🚀 Glavne Karakteristike / Key Features
 
-- **[A] Temeller**: Tanışma, Sayılar ve Temel İhtiyaçlar.
-- **[B] Şehir Hayatı**: Belgrad Rehberi, Nehir Kenarı (Ada Ciganlija) ve Ulaşım.
-- **[C] Mutfak & Kafana**: Sipariş verme, Rakija kuralları ve Hesap isteme.
-- **[D] Sağlık & Acil**: Doktora derdini anlatma, Eczane ve Kritik durumlar.
-- **[E] İletişim & Gece**: DM atma, Konum paylaşma ve Splav geceleri.
-- **[PRO] Balkan Draması**: Küfürler, Flört taktikleri ve Sosyal raconlar.
-
----
-
-## 📦 Kurulum ve Çalıştırma
-
-1. **Repoyu Klonla**: `git clone https://github.com/mrvinsky/jebiga.git`
-2. **Bağımlılıkları Yükle**: `npm install`
-3. **Çalıştır**: `npm run dev`
-4. **Keşfet**: `http://localhost:3000` adresine git ve Sırpça macerana başla!
+- **🗺️ Learning Path (Mapa Učenja)**: Gamified journey through 57+ lessons.
+- **🧔🏻‍♂️ Kafana Uncle (AI Dayo)**: Your personal AI tutor who smokes a pipe and knows all the slang.
+- **🔥 XP & Levels**: Quadratic leveling system that gets harder as you become a "Pravi Lik".
+- **📈 Streak Bonus**: Earn up to 50% extra XP by keeping your daily streak alive.
+- **📱 Mobile Ready**: Powered by Capacitor for a smooth iOS/Android experience.
+- **🍺 18+ Content**: Exclusive Pro categories covering Balkan drama, flirting, and more.
 
 ---
 
-*Srećno učenje, brate!* 🇷🇸🔥  
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 15 (App Router)
+- **Database & Auth**: Firebase / Firestore
+- **Styling**: Vanilla CSS with Modern Glassmorphism
+- **Mobile**: Capacitor.js (Cross-platform)
+- **AI Engine**: Google Gemini API (Kafana Bot)
+
+---
+
+## 💡 Kurikulum / Curriculum
+
+- **[A] Basics / Osnove**: Greetings, Numbers, and Survival.
+- **[B] City Life / Gradski Život**: Belgrade Guide, Transport, and Directions.
+- **[C] Food & Drink / Hrana i Piće**: Ordering like a local, Rakija rules.
+- **[D] Health / Zdravlje**: Bureaucracy (FT1P), Health myths, and Emergency.
+- **[E] Nightlife / Noćni Život**: Splavs, Clubs, and Social Media slang.
+- **[PRO] Balkan Drama**: Flirting, Swearing, and Social hierarchy.
+
+---
+
+## 📦 Pokretanje / How to Run
+
+1. **Clone**: `git clone https://github.com/mrvinsky/jebiga.git`
+2. **Install**: `npm install`
+3. **Run**: `npm run dev`
+4. **Enjoy**: Open `http://localhost:3000`
+
+---
+
+*Srećno učenje, brate! / Good luck learning, mate!* 🇷🇸🔥  
 *Design & Development by [mr.vinsky](https://www.instagram.com/mr.vinsky/)*
