@@ -17,7 +17,7 @@ Rules:
 `;
 
 // Models to try in order of preference
-const MODELS = ['gemini-1.5-flash', 'gemini-1.5-flash-8b'];
+const MODELS = ['gemini-3.1-flash-lite-preview', 'gemini-3-flash-preview'];
 
 export async function POST(req: NextRequest) {
   try {
