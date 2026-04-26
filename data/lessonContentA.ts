@@ -8,9 +8,10 @@ export const lessonContent: Record<string, LessonContent> = {
   'greetings-1': {
     scenario: "Belgrad'a yeni indin. Yüzündeki 'ben turistim' ifadesini gören sıcakkanlı bir yerli gülümsüyor. Hadi bakalım, ilk Sırpça kelimelerini kullanma zamanı!",
     scenarioEn: "You just landed in Belgrade. A friendly local smiles at you, noticing your 'I'm a tourist' look. Time to use your first Serbian words!",
+    streetScenario: "Kanka Belgrad'a ayak bastın. Yüzünden turist olduğun fena belli. Hadi yerlilerle kaynaşıp ilk Sırpça laflarını patlatma zamanı!",
     vocabulary: [
-      { word: 'Zdravo', pronunciation: 'ZDRAH-voh', translation: 'Merhaba', translationEn: 'Hello', example: 'Zdravo! Ja sam Marko.' },
-      { word: 'Ćao', pronunciation: 'çav', translation: 'Selam / Görüşürüz (günlük)', translationEn: 'Hi / Bye (casual)', example: 'Ćao, kako si?' },
+      { word: 'Zdravo', pronunciation: 'ZDRAH-voh', translation: 'Merhaba', translationEn: 'Hello', streetTranslation: 'Naber / Selam', example: 'Zdravo! Ja sam Marko.' },
+      { word: 'Ćao', pronunciation: 'çav', translation: 'Selam / Görüşürüz (günlük)', translationEn: 'Hi / Bye (casual)', streetTranslation: 'Eyvallah / Çav', example: 'Ćao, kako si?' },
       { word: 'Doviđenja', pronunciation: 'do-vi-CEN-ya', translation: 'Hoşçakal', translationEn: 'Goodbye', example: 'Doviđenja i hvala!' },
       { word: 'Dobro jutro', pronunciation: 'DOB-ro YUT-ro', translation: 'Günaydın', translationEn: 'Good morning', example: 'Dobro jutro, kako si?' },
       { word: 'Dobro veče', pronunciation: 'DOB-ro VE-çe', translation: 'İyi akşamlar', translationEn: 'Good evening', example: 'Dobro veče, svima!' },
@@ -35,6 +36,7 @@ export const lessonContent: Record<string, LessonContent> = {
   'greetings-2': {
     scenario: "Şehirde bir hostelde partidesin kanka. Herkes tanışıyor. Sırpça olarak adını, nereli olduğunu söylemen ve onlara da sorman lazım!",
     scenarioEn: "You are at a hostel party in the city. Everyone is introducing themselves. You need to say your name, where you are from, and ask them too!",
+    streetScenario: "Kanka hostelde ortamlara akıyorsun. Herkes birbirini kesiyor, senin de mevzuya girip adını sanını söylemen lazım!",
     vocabulary: [
       { word: 'Zovem se', pronunciation: 'ZO-vem se', translation: 'Benim adım…', translationEn: 'My name is...', example: 'Zovem se Ana.' },
       { word: 'Drago mi je', pronunciation: 'DRA-go mi ye', translation: 'Tanıştığıma memnun oldum', translationEn: 'Nice to meet you', example: 'Drago mi je, ja sam Petar.' },
@@ -61,6 +63,7 @@ export const lessonContent: Record<string, LessonContent> = {
   'greetings-3': {
     scenario: "Knez Mihailova sokağında bilmeden birine çarpıp kahvesini döktün. Hemen özür dileyip, nazik anlayışları için teşekkür etmen lazım.",
     scenarioEn: "On Knez Mihailova Street, you accidentally bumped into someone and spilled their coffee. You need to apologize immediately and thank them for their kind understanding.",
+    streetScenario: "Knez Mihailova'da yürürken bilmeden izbandut gibi birinin kahvesini döktün. Kanka dayak yemeden acil özür dilemen lazım!",
     vocabulary: [
       { word: 'Molim', pronunciation: 'MO-lim', translation: 'Lütfen / Bir şey değil', translationEn: 'Please / You are welcome', example: 'Jedno pivo, molim.' },
       { word: 'Hvala', pronunciation: 'HVA-la', translation: 'Teşekkürler / Sağ ol', translationEn: 'Thanks / Thank you', example: 'Hvala lepo!' },
@@ -85,6 +88,7 @@ export const lessonContent: Record<string, LessonContent> = {
   'numbers-1': {
     scenario: "Belgrad'da bir açık pazardasın ('pijaca'). Satıcı amcalar üstüne Sırpça fiyat bağırıyor. Eğer 1'den 10'a kadar sayıları bilmezsen kesin kazıklanırsın brate!",
     scenarioEn: "You're at an open-air market ('pijaca') in Belgrade. Vendors are shouting prices at you in Serbian. If you don't know the numbers from 1 to 10, you'll definitely get ripped off, mate!",
+    streetScenario: "Belgrad'da açık pazardasın (pijaca). Dayılar üzerine Sırpça fiyat fırlatıyor. 1'den 10'a kadar sayamazsan donuna kadar alırlar brate!",
     vocabulary: [
       { word: 'Jedan / Jedna', pronunciation: 'YE-dan / YE-dna', translation: 'Bir (eril/dişil)', translationEn: 'One (masc/fem)', example: 'Jedan kilogram.' },
       { word: 'Dva / Dve', pronunciation: 'dva / dve', translation: 'İki (eril/dişil)', translationEn: 'Two (masc/fem)', example: 'Dva čaja, molim.' },
@@ -101,11 +105,18 @@ export const lessonContent: Record<string, LessonContent> = {
     },
     culturalTip: "Sırp pazarlarında (pijaca) elinle 3 parmağını (baş, işaret ve orta parmak) göstererek sayı saymak 'Sırp usulü' selamlaşmayı da içerir. Dikkat et, orta parmağın araya kaçmasın!",
     culturalTipEn: "At Serbian markets (pijaca), counting with three fingers (thumb, index, and middle) also doubles as a 'Serbian-style' greeting. Be careful not to use the middle finger exclusively!",
+    dialogue: [
+      { speaker: 'A', serbian: 'Dobar dan! Jedan kilogram jabuka, molim.', translation: 'İyi günler! Bir kilo elma lütfen.', translationEn: 'Good day! One kilo of apples, please.' },
+      { speaker: 'B', serbian: 'Izvolite. Još nešto?', translation: 'Buyurun. Başka bir şey?', translationEn: 'Here you go. Anything else?' },
+      { speaker: 'A', serbian: 'Samo to. Koliko košta?', translation: 'Sadece bu. Ne kadar?', translationEn: 'Just that. How much?' },
+      { speaker: 'B', serbian: 'Pet dinara.', translation: 'Beş dinar.', translationEn: 'Five dinars.' },
+    ],
   },
 
   'numbers-2': {
     scenario: "Döviz bürosundasın ve biraz euro bozduracaksın. Her şeyi Sırpça anlatıyorlar, şimdi büyük sayılar oyun alanında!",
     scenarioEn: "You are at a currency exchange office and you are going to exchange some euros. They tell you everything in Serbian, now big numbers are in the playground!",
+    streetScenario: "Döviz bürosunda tefeci dayıyla göz gözesin. Euro bozduracaksın, büyük sayıları bilmezsen kurdan sağlam tokat yersin!",
     vocabulary: [
       { word: 'Jedanaest – Dvadeset', pronunciation: 'ye-DA-na-est … DVA-de-set', translation: '11–20', translationEn: '11–20', example: 'Dvadeset evra.' },
       { word: 'Trideset', pronunciation: 'TRİ-de-set', translation: 'Otuz (30)', translationEn: 'Thirty (30)', example: 'Trideset minuta.' },
@@ -133,6 +144,7 @@ export const lessonContent: Record<string, LessonContent> = {
   'numbers-3': {
     scenario: "Sırp kankalarınla Kalemegdan kalesinde buluşacaktın. Biri '7:30' diyor, diğeri Sırpça 'yedi buçuk'. Saati artık öğrenmelisin!",
     scenarioEn: "You were supposed to meet your Serbian friends at the Kalemegdan fortress. One says '7:30', the other says 'half past seven' in Serbian. It's time to learn the time!",
+    streetScenario: "Kankalarla Kalemegdan'da buluşacan. Biri '7:30' diyor diğeri 'yedi buçuk' diyor. Saati çözemezsen ağaç olursun orada!",
     vocabulary: [
       { word: 'Koliko je sati?', pronunciation: 'KO-li-ko ye SA-ti', translation: 'Saat kaç?', translationEn: 'What time is it?', example: 'Izvinite, koliko je sati?' },
       { word: 'Sat', pronunciation: 'sat', translation: 'Saat', translationEn: 'Hour / O\'clock', example: 'Jedan sat.' },
@@ -163,6 +175,7 @@ export const lessonContent: Record<string, LessonContent> = {
   'food-1': {
     scenario: "Skadarlija sokağında o meşhur 'kafana'ya girdin. Garson geldi ve bir şeyler içip hesap istemen lazım — üstelik hepsi Sırpça olacak koçum.",
     scenarioEn: "You entered that famous 'kafana' in Skadarlija street. The waiter arrived and you need to order something to drink and ask for the bill — and it will all be in Serbian, mate.",
+    streetScenario: "Skadarlija'da efsanevi kafanaya çöktün. Garson dikildi tepene, bi şeyler ateşleyip hesabı Sırpça istemen lazım koçum.",
     vocabulary: [
       { word: 'Voda', pronunciation: 'VO-da', translation: 'Su', translationEn: 'Water', example: 'Jedna voda, molim.' },
       { word: 'Pivo', pronunciation: 'Pİ-vo', translation: 'Bira', translationEn: 'Beer', example: 'Jedno pivo, hvala.' },
@@ -184,6 +197,7 @@ export const lessonContent: Record<string, LessonContent> = {
   'food-2': {
     scenario: "Sırp kankan seni pazar 'ručak'ı için evine yemeğe çağırdı. Masada bir sürü şey var, nasıl iltifat edeceğini falan bilmen lazım!",
     scenarioEn: "Your Serbian friend invited you to their home for Sunday 'ručak' (lunch). There are many things on the table, you need to know how to compliment them and all!",
+    streetScenario: "Sırp kankan pazar mangalına çağırdı. Masada kaymaklar cevabiler havada uçuşuyor. Övmezsen ayıp olur, yapıştır iltifatı!",
     vocabulary: [
       { word: 'Ćevapi', pronunciation: 'çe-VA-pi', translation: 'Köfte rulosu (Cevabi)', translationEn: 'Grilled minced meat rolls (Cevapi)', example: 'Deset ćevapa sa lukom.' },
       { word: 'Kajmak', pronunciation: 'KAY-mak', translation: 'Klasik Balkan kaymağı', translationEn: 'Classic Balkan clotted cream', example: 'Ćevapi sa kajmakom su savršeni.' },
@@ -205,6 +219,7 @@ export const lessonContent: Record<string, LessonContent> = {
   'food-3': {
     scenario: "Güneşli bir sabah ve sen Zeleni Venac pazarındasın. Satıcılar fiyatları uçuruyor, taze sebze ve meyveleri Sırpça çatır çatır pazarlıkla alman lazım!",
     scenarioEn: "It is a sunny morning and you are at the Zeleni Venac market. Vendors are raising prices, you need to buy fresh vegetables and fruits with some Sırpça bargaining!",
+    streetScenario: "Zeleni Venac pazarında kurtlar sofrasındasın. Domatesin kilosunu sorup dayılarla Sırpça sağlam bi pazarlığa girmen lazım!",
     vocabulary: [
       { word: 'Koliko košta?', pronunciation: 'KO-li-ko KOŞ-ta', translation: 'Kaç para, fiyatı ne?', translationEn: 'How much does it cost?', example: 'Koliko košta kilogram jabuka?' },
       { word: 'Jabuka', pronunciation: 'YA-bu-ka', translation: 'Elma', translationEn: 'Apple', example: 'Daj mi dva kilograma jabuka.' },

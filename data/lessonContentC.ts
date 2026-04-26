@@ -5,6 +5,7 @@ export const lessonContentC: Record<string, LessonContent> = {
   'travel-1': {
     scenario: "Otele giriş yapıyorsun (Check-in).",
     scenarioEn: "You are checking into a hotel.",
+    streetScenario: "Belgrad'da uyduruk bi hostele giriyorsun. Resepsiyondaki dayıya rezervasyonu gösterip anahtarı koparman lazım aga.",
     vocabulary: [
       { word: 'Hotel', pronunciation: 'Ho-tel', translation: 'Otel', translationEn: 'Hotel' },
       { word: 'Soba', pronunciation: 'So-ba', translation: 'Oda', translationEn: 'Room' },
@@ -30,6 +31,7 @@ export const lessonContentC: Record<string, LessonContent> = {
   'travel-2': {
     scenario: "Havalimanındasın.",
     scenarioEn: "You are at the airport.",
+    streetScenario: "Nikola Tesla havalimanındasın. Uçuşa az kalmış, valiz ortada yok. Sırpça sorup bavulu bulman lazım!",
     vocabulary: [
       { word: 'Aerodrom', pronunciation: 'A-e-ro-drom', translation: 'Havalimanı', translationEn: 'Airport' },
       { word: 'Let', pronunciation: 'Let', translation: 'Uçuş', translationEn: 'Flight' },
@@ -56,6 +58,7 @@ export const lessonContentC: Record<string, LessonContent> = {
   'shopping-1': {
     scenario: "Bir mağazada kıyafet bakıyorsun.",
     scenarioEn: "You are looking at clothes in a store.",
+    streetScenario: "Knez Mihailova'da mağazaları turluyorsun. Beğendiğin tişörtün fiyatını sorup kazıklanmadan bedeni sorman şart kanka.",
     vocabulary: [
       { word: 'Majica', pronunciation: 'Ma-yi-tsa', translation: 'T-shirt', translationEn: 'T-shirt' },
       { word: 'Cipele', pronunciation: 'Tsi-pe-le', translation: 'Ayakkabı', translationEn: 'Shoes' },
@@ -80,6 +83,7 @@ export const lessonContentC: Record<string, LessonContent> = {
   'shopping-2': {
     scenario: "Elbise ve topuklu ayakkabı arıyorsun.",
     scenarioEn: "You are looking for a dress and high heels.",
+    streetScenario: "Gece kulübüne çıkacaksınız. Fıstık gibi elbiseyi ve topukluları Sırpça hallet ki ortamlarda şov yap aga!",
     vocabulary: [
       { word: 'Haljina', pronunciation: 'Ha-lyi-na', translation: 'Elbise', translationEn: 'Dress' },
       { word: 'Suknja', pronunciation: 'Suk-nya', translation: 'Etek', translationEn: 'Skirt' },
@@ -104,6 +108,7 @@ export const lessonContentC: Record<string, LessonContent> = {
   'shopping-3': {
     scenario: "Erkek kıyafetleri alıyorsun.",
     scenarioEn: "You are buying men's clothes.",
+    streetScenario: "Ortamlara akmadan önce bi takım elbise falan çekmen lazım üstüne. Sırpça bedeni sor da şıkır şıkır ol kanka.",
     vocabulary: [
       { word: 'Odelo', pronunciation: 'O-de-lo', translation: 'Takım Elbise', translationEn: 'Suit' },
       { word: 'Šorts', pronunciation: 'Şorts', translation: 'Şort', translationEn: 'Shorts' },

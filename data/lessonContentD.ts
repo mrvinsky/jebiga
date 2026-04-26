@@ -5,6 +5,7 @@ export const lessonContentD: Record<string, LessonContent> = {
   'culture-1': {
     scenario: "Sırp bir ailenin en büyük bayramı olan 'Slava' (koruyucu aziz günü) yemeğine davetlisin. Bu efsanevi bir saygı göstergesi ve akıl almaz bir ziyafettir aga. Ne diyeceğini ve nasıl davranacağını kesinlikle bilmen lazım.",
     scenarioEn: "You are invited to a 'Slava' (Patron Saint's Day) dinner, the most significant holiday for a Serbian family. This is a legendary show of respect and an incredible feast, mate. You absolutely need to know what to say and how to behave.",
+    streetScenario: "Sırp ailenin en efsanevi 'Slava' yemeğindesin. Bu işin şakası yok aga, saygıda kusur etmemen ve teyzenin yemeklerini göğe çıkarman lazım!",
     vocabulary: [
       { word: 'Slava', pronunciation: 'SLA-va', translation: 'Koruyucu Aziz Günü', translationEn: 'Patron Saint\'s Day', example: 'Srećna slava!' },
       { word: 'Gost', pronunciation: 'gost', translation: 'Misafir', translationEn: 'Guest', example: 'Imamo goste.' },
@@ -31,6 +32,7 @@ export const lessonContentD: Record<string, LessonContent> = {
   'culture-2': {
     scenario: "Ve o malum an geldi, efsanevi Rakija tokuşturma ritüeli! Önüne o ufak ama çarpan kadehler kondu. Sırpların kuralına göre 'Rakija Rules' u uygulaman lazım.",
     scenarioEn: "And that specific moment has arrived, the legendary Rakija toasting ritual! Those small but potent glasses are placed before you. You must follow the 'Rakija Rules' according to Serbian custom.",
+    streetScenario: "Ve o malum an geldi, efsanevi Rakija tokuşturma ritüeli! Önüne bardaklar kondu. Sırpların kurallarına uyup raconu kesmen lazım aga.",
     vocabulary: [
       { word: 'Rakija', pronunciation: 'RA-ki-ya', translation: 'Meyve Rakısı', translationEn: 'Fruit Brandy', example: 'Domaća rakija je najbolja.' },
       { word: 'Šljivovica', pronunciation: 'ŞLYİ-vo-vi-tsa', translation: 'Erik Rakısı (Boğma)', translationEn: 'Plum Brandy', example: 'Šljivovica je nacionalno piće.' },
@@ -56,6 +58,7 @@ export const lessonContentD: Record<string, LessonContent> = {
   'culture-3': {
     scenario: "Kafana kültürünün tam ortasına düştün koçum. Burası sadece bir bar veya meyhane değildir; Sırbistan'da sosyalleşmenin, kutlamaların ya da dertlenmelerin tek ve asıl merkezidir.",
     scenarioEn: "You've landed right in the middle of 'Kafana' culture, son. This isn't just a bar or a tavern; it's the sole and primary hub for socializing, celebrations, or venting your sorrows in Serbia.",
+    streetScenario: "Kafana kültürünün tam göbeğine düştün koçum. Sırbistan'da sosyalleşmenin, kutlamaların veya efkarlanıp dağıtmanın tek adresindesin!",
     vocabulary: [
       { word: 'Kafana', pronunciation: 'ka-FA-na', translation: 'Geleneksel Meyhane / Canlı Müzikli Mekan', translationEn: 'Traditional Tavern / Live Music Venue', example: 'Idemo u kafanu večeras.' },
       { word: 'Muzika', pronunciation: 'MU-zi-ka', translation: 'Müzik', translationEn: 'Music', example: 'Živa muzika je obavezna.' },

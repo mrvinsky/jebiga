@@ -8,6 +8,7 @@ export const lessonContentE: Record<string, LessonContent> = {
   'health-1': {
     scenario: "Belgrad'da rakija maratonunun ardından sabah uyandın ve her yerin ağrıyor. Ya da gerçek bir acil var. Her iki durumda da Sırp doktoruna ne diyeceğini bilmen şart. Hayat kurtarır, kanka!",
     scenarioEn: "You woke up in Belgrade after a rakija marathon and everything hurts. Or there's a real emergency. In either case, you need to know what to say to a Serbian doctor. It's a lifesaver, mate!",
+    streetScenario: "Belgrad'da rakija maratonunun ertesi sabahı. Her yerin dökülüyor, Sırp doktoruna derdini Sırpça anlatman hayat kurtarır kanka!",
     vocabulary: [
       { word: 'Boli me glava', pronunciation: 'BO-li me GLA-va', translation: 'Başım ağrıyor', translationEn: 'I have a headache', example: 'Boli me glava od rakije.' },
       { word: 'Boli me stomak', pronunciation: 'BO-li me STO-mak', translation: 'Karnım ağrıyor', translationEn: 'I have a stomachache', example: 'Boli me stomak, ne mogu da jedem.' },
@@ -36,6 +37,7 @@ export const lessonContentE: Record<string, LessonContent> = {
   'health-2': {
     scenario: "Başın bomba gibi çatlıyor ve en yakın eczaneye girdikten sonra ne diyeceğini bilmiyorsun. Sırp eczacılar çok yardımseverdir ama Sırpça konuşman büyük puan yazdırır!",
     scenarioEn: "Your head is splitting like a bomb, and you don't know what to say after entering the nearest pharmacy. Serbian pharmacists are very helpful, but speaking Serbian will score you big points!",
+    streetScenario: "Kafan çatlıyor ve eczaneye düştün. Sırp eczacıya 'kanka ağrı kesici var mı' demeyi öğren ki acın dinsin.",
     vocabulary: [
       { word: 'Apoteka', pronunciation: 'a-PO-te-ka', translation: 'Eczane', translationEn: 'Pharmacy', example: 'Gde je najbliža apoteka?' },
       { word: 'Imate li analgetik?', pronunciation: 'İ-ma-te li a-nal-GE-tik', translation: 'Ağrı kesici var mı?', translationEn: 'Do you have painkillers?', example: 'Imate li analgetik za jaku glavobolju?' },
@@ -66,6 +68,7 @@ export const lessonContentE: Record<string, LessonContent> = {
   'belgrade-1': {
     scenario: "Belgrad'a yeni geldin ve tarihi yarımadayı keşfetmek istiyorsun. Kalemegdan kalesi, Knez Mihailova caddesi, Trg Republike meydanı... Rehber kitap fırlatıyorsun, sadece yerel sormak yeterli!",
     scenarioEn: "You've just arrived in Belgrade and want to explore the historical peninsula. Kalemegdan fortress, Knez Mihailova street, Republic Square (Trg Republike)... Throw away the guidebook; just asking the locals is enough!",
+    streetScenario: "Belgrad tarihi yarımadadasın kanka. Rehber kitap falan boşver, Sırpça dayılara yolu sorup Kalemegdan'ı bulma vakti!",
     vocabulary: [
       { word: 'Centar', pronunciation: 'TSEN-tar', translation: 'Merkez, şehir merkezi', translationEn: 'Center / City center', example: 'Idemo u centar večeras.' },
       { word: 'Most', pronunciation: 'most', translation: 'Köprü', translationEn: 'Bridge', example: 'Brankov most je lep.' },
@@ -93,6 +96,7 @@ export const lessonContentE: Record<string, LessonContent> = {
   'belgrade-2': {
     scenario: "Sıcak yaz günü, nehir kenarında olmak istiyorsun. Tüm Belgratlılar Ada Ciganlija'da ya da splav'larda — bunların ne olduğunu bilmezsen o havada deliye dönersin!",
     scenarioEn: "A hot summer day, you want to be by the river. All Belgraders are at Ada Ciganlija or the 'splavs' — if you don't know what these are, you'll go crazy in that weather!",
+    streetScenario: "Hava alev atıyor kanka. Bütün Belgrad Ada'da ya da splav'da kumsalda... Sırpça sahil jargonunu sök de ak ortamlara!",
     vocabulary: [
       { word: 'Reka', pronunciation: 'RE-ka', translation: 'Nehir', translationEn: 'River', example: 'Sava i Dunav su reke Beograda.' },
       { word: 'Sava / Dunav', pronunciation: 'SA-va / DU-nav', translation: 'Sava / Tuna nehirleri', translationEn: 'Sava / Danube rivers', example: 'Belgrad je na ušću Save i Dunava.' },
@@ -123,6 +127,7 @@ export const lessonContentE: Record<string, LessonContent> = {
   'night-1': {
     scenario: "Cuma akşamı. Kankalar toplanıyor, plan yapılıyor. Belgrad'ın gece hayatı sadece efsane değil — gerçek. Ama önce hazırlık, buluşma noktası, kim taksi çağırıyor — bunları Sırpçada çözmen lazım!",
     scenarioEn: "Friday evening. Friends are gathering, plans are being made. Belgrade's nightlife isn't just legendary — it's real. But first, the preparation, the meeting point, who's calling a taxi — you need to sort these out in Serbian!",
+    streetScenario: "Cuma gecesi ateş ediyo kanka! Ortamlara akmadan önce mekanı falan Sırpça ayarlayıp taksiyi kapman lazım!",
     vocabulary: [
       { word: 'Idemo van?', pronunciation: 'İ-de-mo van', translation: 'Dışarı çıkıyoruz mu?', translationEn: 'Are we going out?', example: 'Idemo van večeras, ekipa?' },
       { word: 'Jesi li spreman/na?', pronunciation: 'YE-si li SPRE-man/na', translation: 'Hazır mısın? (erkek/kadın)', translationEn: 'Are you ready? (masc/fem)', example: 'Jesi li spreman? Čekamo te!' },
@@ -150,6 +155,7 @@ export const lessonContentE: Record<string, LessonContent> = {
   'night-2': {
     scenario: "İçerdesin artık. Müzik ₓ ses +1000. Tıklım tıklım dolu splav. Garson geldi, bir tur daha lazım, masanı tutman gerekiyor — ve hepsi Sırpça!",
     scenarioEn: "You're inside now. Music volume +1000. A packed splav. The waiter arrives, another round is needed, you need to keep your table — and it's all in Serbian!",
+    streetScenario: "Splavda müzik ful, mekan yıkılıyor kanka! Garsona şekil yapıp masayı tutman, bi tur daha Sırpça sipariş etmen şart!",
     vocabulary: [
       { word: 'Previše je buka', pronunciation: 'PRE-vi-şe ye BU-ka', translation: 'Çok gürültülü', translationEn: 'It\'s too noisy', example: 'Previše je buka, ne çujem te!' },
       { word: 'Još jedna runda!', pronunciation: 'YOŞ YED-na RUN-da', translation: 'Bir tur daha!', translationEn: 'One more round!', example: 'Konobar! Još jedna runda!' },
@@ -180,6 +186,7 @@ export const lessonContentE: Record<string, LessonContent> = {
   'grammar-1': {
     scenario: "Kankan sana dün ne yaptığını soruyor ama sen sadece şimdiki zaman konuşabiliyorsun. Geçmiş zamansız konuşmak yarım kalmış bir hikaye gibidir — bunu düzeltelim!",
     scenarioEn: "Your friend is asking what you did yesterday, but you can only speak in the present tense. Speaking without the past tense is like a half-finished story — let's fix that!",
+    streetScenario: "Kankan dün geceki mevzuyu soruyor ama sadece şimdiki zaman konuşuyorsun kanka. Sırpça geçmişi patlat da anlasınlar ne mal olduğunu!",
     vocabulary: [
       { word: 'Išao/Išla sam', pronunciation: 'İ-şao / İ-şla sam', translation: 'Gittim (erkek/kadın)', translationEn: 'I went (masc/fem)', example: 'Išao sam u kafanu juče.' },
       { word: 'Radio/Radila sam', pronunciation: 'RA-di-o / RA-di-la sam', translation: 'Yaptım / Çalıştım (erkek/kadın)', translationEn: 'I did / I worked (masc/fem)', example: 'Radila sam ceo dan.' },
@@ -207,6 +214,7 @@ export const lessonContentE: Record<string, LessonContent> = {
   'grammar-2': {
     scenario: "Yarın bir planın var ve bunu Sırpça anlatmak istiyorsun. Gelecek zaman biraz farklı çalışıyor. Ama merak etme — birkaç kuralla her şey yerine oturuyor!",
     scenarioEn: "You have a plan for tomorrow and want to explain it in Serbian. The future tense works a bit differently. But don't worry — with a few rules, everything falls into place!",
+    streetScenario: "Yarınki planını Sırpça satman lazım. Gelecek zaman ekiyle racon kesmeyi öğren, Balkan saatini unutma kanka!",
     vocabulary: [
       { word: 'Doći ću', pronunciation: 'DO-çi çu', translation: 'Gelirim / Geleceğim', translationEn: 'I will come', example: 'Doći ću sutra u deset.' },
       { word: 'Ću / ćeš / će', pronunciation: 'çu / çeş / çe', translation: 'Gelecek zaman eki (ben/sen/o)', translationEn: 'Future tense markers (I/you/he-she)', example: 'Ću, ćeš, će, ćemo, ćete, će.' },
@@ -237,6 +245,7 @@ export const lessonContentE: Record<string, LessonContent> = {
   'comm-1': {
     scenario: "Sırp kankan seni arıyor ama metrodesin, sinyal kötü. Ya da randevuya geç kalacaksın ve haber vermen lazım. Telefon Sırpçası, yüz yüze konuşmadan farklıdır — öğren!",
     scenarioEn: "Your Serbian friend is calling you, but you're in the metro and the signal is bad. Or you're going to be late for an appointment and need to let them know. Phone Serbian is different from face-to-face talk — learn it!",
+    streetScenario: "Kankan arıyor ama metrodasın telefon çekmiyor aga. Sırpça 'duyamıyorum, çekmiyor' de ki trip yeme!",
     vocabulary: [
       { word: 'Alo!', pronunciation: 'a-LO', translation: 'Alo! (telefona çıkışta)', translationEn: 'Hello! (answering the phone)', example: 'Alo, ko je?' },
       { word: 'Ne mogu sada da pričam', pronunciation: 'ne MO-gu SA-da da PRİ-çam', translation: 'Şu an konuşamam', translationEn: 'I can\'t talk right now', example: 'Hej, ne mogu sada da pričam, zovi me za sat.' },
@@ -264,6 +273,7 @@ export const lessonContentE: Record<string, LessonContent> = {
   'comm-2': {
     scenario: "Belgrad'dayken yeni tanıştığın biriyle Instagram'dan takipleşiyorsunuz. Sırpça DM atmak, konum paylaşmak, gruba eklemek — sosyal medya Sırpçası da artık şart!",
     scenarioEn: "While in Belgrade, you're following someone you've just met on Instagram. Sending DMs in Serbian, sharing locations, adding to groups — social media Serbian is now a must!",
+    streetScenario: "Mekanda hatunu buldun, Instasını aldın kanka! Sırpça DM atıp konumu ateşlemeyi öğren ki işi bağla.",
     vocabulary: [
       { word: 'Poslao/Poslala sam poruku', pronunciation: 'POS-lao/POS-la-la sam PO-ru-ku', translation: 'Mesaj attım (erkek/kadın)', translationEn: 'I sent a message (masc/fem)', example: 'Poslao sam ti poruku na Instagram.' },
       { word: 'Pošalji mi lokaciju', pronunciation: 'PO-şal-yi mi lo-KA-tsi-yu', translation: 'Konumunu gönder', translationEn: 'Send me your location', example: 'Gde si? Poşalji mi lokaciju.' },
