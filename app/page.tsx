@@ -136,8 +136,8 @@ export default function LandingPage() {
           <button 
             onClick={toggleLang}
             style={{
-              background: 'rgba(255,255,255,0.05)',
-              border: '1px solid rgba(255,255,255,0.1)',
+              background: 'var(--color-surface-2)',
+              border: '1px solid var(--color-border)',
               borderRadius: '8px',
               padding: '6px 8px',
               cursor: 'pointer',
@@ -147,7 +147,7 @@ export default function LandingPage() {
             }}
           >
             <span style={{ fontSize: '0.9rem' }}>{lang === 'tr' ? '🇹🇷' : '🇬🇧'}</span>
-            <span style={{ fontSize: '0.6rem', fontWeight: 800, color: '#888' }}>{lang.toUpperCase()}</span>
+            <span style={{ fontSize: '0.6rem', fontWeight: 800, color: 'var(--color-muted)' }}>{lang.toUpperCase()}</span>
           </button>
 
           {user ? (
@@ -185,11 +185,11 @@ export default function LandingPage() {
         {/* Floating badge */}
         <div style={{
           display: 'inline-flex', alignItems: 'center', gap: 6,
-          background: 'rgba(57,255,20,0.08)',
-          border: '1px solid rgba(57,255,20,0.25)',
+          background: 'var(--color-neon-glow)',
+          border: '1px solid var(--color-neon)',
           borderRadius: 40, padding: '6px 12px',
           fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.04em',
-          color: '#39ff14', marginBottom: 20,
+          color: 'var(--color-neon)', marginBottom: 20,
           animation: 'pulse 3s ease-in-out infinite',
         }}>
           <span>⚡</span> {t.firstAppBadge}
@@ -211,11 +211,11 @@ export default function LandingPage() {
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
           }}>
-            {lang === 'en' ? 'The Street Way.' : 'Sokak Ağzıyla'}
+          {lang === 'en' ? 'The Street Way.' : 'Sokak Ağzıyla'}
           </span>{' '}
           {lang === 'en' ? '' : 'Öğren.'} <br />
           <span style={{
-            background: 'linear-gradient(135deg, #39ff14, #ffe600)',
+            background: 'linear-gradient(135deg, var(--color-neon), var(--color-neon-orange))',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
@@ -282,7 +282,7 @@ export default function LandingPage() {
       {/* ── FEATURES ── */}
       <section id="features" style={{ padding: '100px 24px', maxWidth: 1100, margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: 64 }}>
-          <p style={{ color: '#c0392b', fontWeight: 700, fontSize: '0.85rem', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 12 }}>
+          <p style={{ color: 'var(--color-red)', fontWeight: 700, fontSize: '0.85rem', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 12 }}>
             {t.whyJebiga}
           </p>
           <h2 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', fontWeight: 900, letterSpacing: '-0.02em', lineHeight: 1.2 }}>
@@ -323,8 +323,8 @@ export default function LandingPage() {
                 opacity: 0.5,
               }} />
               <div style={{ fontSize: '2rem', marginBottom: 14 }}>{f.emoji}</div>
-              <h3 style={{ fontWeight: 800, fontSize: '1.05rem', marginBottom: 8, letterSpacing: '-0.01em' }}>{lang === 'en' ? f.titleEn : f.title}</h3>
-              <p style={{ color: '#777', fontSize: '0.9rem', lineHeight: 1.65 }}>{lang === 'en' ? f.descEn : f.desc}</p>
+              <h3 style={{ fontWeight: 800, fontSize: '1.05rem', marginBottom: 8, letterSpacing: '-0.01em', color: 'var(--color-foreground)' }}>{lang === 'en' ? f.titleEn : f.title}</h3>
+              <p style={{ color: 'var(--color-muted)', fontSize: '0.9rem', lineHeight: 1.65 }}>{lang === 'en' ? f.descEn : f.desc}</p>
             </div>
           ))}
         </div>
@@ -333,12 +333,12 @@ export default function LandingPage() {
       {/* ── HOW IT WORKS ── */}
       <section style={{
         padding: '80px 24px',
-        background: 'rgba(255,255,255,0.02)',
-        borderTop: '1px solid rgba(255,255,255,0.05)',
-        borderBottom: '1px solid rgba(255,255,255,0.05)',
+        background: 'var(--color-surface-2)',
+        borderTop: '1px solid var(--color-border)',
+        borderBottom: '1px solid var(--color-border)',
       }}>
         <div style={{ maxWidth: 900, margin: '0 auto', textAlign: 'center' }}>
-          <p style={{ color: '#c0392b', fontWeight: 700, fontSize: '0.85rem', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 12 }}>
+          <p style={{ color: 'var(--color-red)', fontWeight: 700, fontSize: '0.85rem', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 12 }}>
             {t.howItWorks}
           </p>
           <h2 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.6rem)', fontWeight: 900, letterSpacing: '-0.02em', marginBottom: 60 }}>
@@ -355,17 +355,18 @@ export default function LandingPage() {
                 <div style={{
                   display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
                   width: 64, height: 64, borderRadius: '50%',
-                  background: 'linear-gradient(135deg, rgba(192,57,43,0.2), rgba(0,61,165,0.2))',
-                  border: '2px solid rgba(192,57,43,0.3)',
+                  background: 'var(--color-surface)',
+                  border: '2px solid var(--color-border)',
                   fontSize: '1.6rem', marginBottom: 20,
+                  boxShadow: '0 8px 16px rgba(0,0,0,0.04)',
                 }}>
                   {item.emoji}
                 </div>
-                <div style={{ fontSize: '0.7rem', fontWeight: 800, color: '#c0392b', letterSpacing: '0.1em', marginBottom: 8 }}>
+                <div style={{ fontSize: '0.7rem', fontWeight: 800, color: 'var(--color-red)', letterSpacing: '0.1em', marginBottom: 8 }}>
                   {lang === 'en' ? `STEP ${item.step}` : `ADIM ${item.step}`}
                 </div>
-                <h3 style={{ fontWeight: 800, fontSize: '1.05rem', marginBottom: 10 }}>{item.title}</h3>
-                <p style={{ color: '#777', fontSize: '0.88rem', lineHeight: 1.65 }}>{item.desc}</p>
+                <h3 style={{ fontWeight: 800, fontSize: '1.05rem', marginBottom: 10, color: 'var(--color-foreground)' }}>{item.title}</h3>
+                <p style={{ color: 'var(--color-muted)', fontSize: '0.88rem', lineHeight: 1.65 }}>{item.desc}</p>
               </div>
             ))}
           </div>
@@ -402,10 +403,10 @@ export default function LandingPage() {
         padding: '80px 24px',
         textAlign: 'center',
         background: `
-          radial-gradient(ellipse at 50% 50%, rgba(192,57,43,0.2) 0%, transparent 65%),
-          rgba(8,8,8,0.5)
+          radial-gradient(ellipse at 50% 50%, rgba(192,57,43,0.08) 0%, transparent 65%),
+          var(--color-background)
         `,
-        borderTop: '1px solid rgba(255,255,255,0.05)',
+        borderTop: '1px solid var(--color-border)',
       }}>
         <div style={{ maxWidth: 600, margin: '0 auto' }}>
           <div style={{ fontSize: '3rem', marginBottom: 20 }}>🇷🇸</div>
@@ -415,24 +416,19 @@ export default function LandingPage() {
             lineHeight: 1.1, marginBottom: 16,
           }}>
             {lang === 'en' ? 'Are you ready, ' : 'Hazır mısın, '}
-            <span style={{
-              background: 'linear-gradient(135deg, #e74c3c, #c0392b)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-            }}>brate?</span>
+            <span className="gradient-text-red">brate?</span>
           </h2>
-          <p style={{ color: '#888', fontSize: '1.05rem', marginBottom: 40, lineHeight: 1.6 }}>
+          <p style={{ color: 'var(--color-muted)', fontSize: '1.05rem', marginBottom: 40, lineHeight: 1.6 }}>
             {t.registerNow} {t.noCardRequired}
           </p>
           <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', justifyContent: 'center' }}>
             <Link href={user ? "/learn" : "/login"} style={{
               display: 'inline-flex', alignItems: 'center', gap: 10,
-              background: 'linear-gradient(135deg, #c0392b, #e74c3c)',
+              background: 'linear-gradient(135deg, var(--color-red), var(--color-red-bright))',
               color: '#fff', fontWeight: 800, fontSize: '1.1rem',
               textDecoration: 'none', padding: '18px 44px',
               borderRadius: '14px',
-              boxShadow: '0 8px 40px rgba(192,57,43,0.5)',
+              boxShadow: '0 8px 32px rgba(192,57,43,0.3)',
               letterSpacing: '-0.01em',
             }}>
               {user ? (lang === 'tr' ? 'Eğitime Başla' : 'Start Learning') : t.registerNow}
@@ -446,23 +442,24 @@ export default function LandingPage() {
 
       {/* ── FOOTER ── */}
       <footer style={{
-        padding: '32px 24px',
-        borderTop: '1px solid rgba(255,255,255,0.05)',
+        padding: '64px 24px 32px',
+        borderTop: '1px solid var(--color-border)',
         textAlign: 'center',
+        background: 'var(--color-background)',
       }}>
         {/* Flag stripe */}
         <div style={{
           height: 3, marginBottom: 24,
-          background: 'linear-gradient(90deg, #c0392b 33.3%, #f5f5f5 33.3% 66.6%, #003da5 66.6%)',
+          background: 'linear-gradient(90deg, var(--color-red) 33.3%, var(--color-white) 33.3% 66.6%, var(--color-blue) 66.6%)',
           borderRadius: 2,
           maxWidth: 200, margin: '0 auto 24px',
         }} />
-        <p style={{ color: '#555', fontSize: '0.85rem' }}>
-          🇷🇸 <strong style={{ color: '#888' }}>Jebiga</strong> — {t.footerDesc}
+        <p style={{ color: 'var(--color-muted)', fontSize: '0.85rem' }}>
+          🇷🇸 <strong style={{ color: 'var(--color-foreground)' }}>Jebiga</strong> — {t.footerDesc}
           <span style={{ margin: '0 8px' }}>·</span>
-          <Link href="/login" style={{ color: '#666', textDecoration: 'none' }}>{t.login}</Link>
+          <Link href="/login" style={{ color: 'var(--color-muted)', textDecoration: 'none' }}>{t.login}</Link>
           <span style={{ margin: '0 8px' }}>·</span>
-          <Link href="/login" style={{ color: '#666', textDecoration: 'none' }}>{t.signup}</Link>
+          <Link href="/login" style={{ color: 'var(--color-muted)', textDecoration: 'none' }}>{t.signup}</Link>
         </p>
         <p style={{ color: '#383838', fontSize: '0.75rem', marginTop: 12 }}>
           Design by{' '}

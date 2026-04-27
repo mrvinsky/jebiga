@@ -63,8 +63,8 @@ export default function LearnPage() {
             <div className="glass" style={{ padding: '10px 20px', display: 'flex', alignItems: 'center', gap: 10, border: '1px solid rgba(192,57,43,0.3)' }}>
               <span style={{ fontSize: '1.2rem' }}>✨</span>
               <div>
-                <div style={{ fontSize: '0.65rem', fontWeight: 800, color: '#888', textTransform: 'uppercase' }}>{lang === 'en' ? 'TOTAL XP' : 'TOPLAM XP'}</div>
-                <div style={{ fontSize: '1.1rem', fontWeight: 900, color: '#c0392b' }}>{userData?.xp || 0}</div>
+                <div style={{ fontSize: '0.65rem', fontWeight: 800, color: 'var(--color-muted)', textTransform: 'uppercase' }}>{lang === 'en' ? 'TOTAL XP' : 'TOPLAM XP'}</div>
+                <div style={{ fontSize: '1.1rem', fontWeight: 900, color: 'var(--color-red)' }}>{userData?.xp || 0}</div>
               </div>
             </div>
             <div className="glass" style={{ padding: '10px 20px', display: 'flex', alignItems: 'center', gap: 10, border: '1px solid rgba(230,126,34,0.3)' }}>
@@ -77,10 +77,11 @@ export default function LearnPage() {
           </div>
 
           <h1 style={{
-            fontFamily: 'Space Grotesk, sans-serif',
+            fontFamily: 'var(--font-display)',
             fontSize: 'clamp(1.6rem, 4vw, 2.2rem)',
             fontWeight: 900, letterSpacing: '-0.03em',
             margin: '0 0 8px',
+            color: 'var(--color-foreground)',
           }}>
             {streetMode
               ? <><span style={{ color: '#39ff14', textShadow: '0 0 20px rgba(57,255,20,0.4)' }}>{t.streetDictionary}</span> 💀</>
@@ -93,9 +94,9 @@ export default function LearnPage() {
 
           {/* Progress bar */}
           <div style={{ maxWidth: 380, margin: '0 auto' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6, fontSize: '0.75rem', color: '#555' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6, fontSize: '0.75rem', color: 'var(--color-muted)' }}>
               <span>{t.generalProgress}</span>
-              <span style={{ color: '#f5c518', fontWeight: 700 }}>{completedCount}/{totalLessons} {t.lessons} · {progressPct}%</span>
+              <span style={{ color: 'var(--color-xp)', fontWeight: 700 }}>{completedCount}/{totalLessons} {t.lessons} · {progressPct}%</span>
             </div>
             <div style={{ height: 8, background: 'var(--color-surface-2)', borderRadius: 4, overflow: 'hidden' }}>
               <div style={{
@@ -186,7 +187,7 @@ export default function LearnPage() {
                   </div>
                   {/* Mini progress bar */}
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <div style={{ flex: 1, height: 4, background: '#1a1a1a', borderRadius: 2, overflow: 'hidden' }}>
+                    <div style={{ flex: 1, height: 4, background: 'var(--color-surface-3)', borderRadius: 2, overflow: 'hidden' }}>
                       <div style={{
                         height: '100%', borderRadius: 2,
                         width: `${setProgress}%`,
@@ -194,7 +195,7 @@ export default function LearnPage() {
                         transition: 'width 0.4s ease',
                       }} />
                     </div>
-                    <span style={{ fontSize: '0.7rem', color: '#555', flexShrink: 0 }}>
+                    <span style={{ fontSize: '0.7rem', color: 'var(--color-muted)', flexShrink: 0 }}>
                       {setCompleted}/{setTotal}
                     </span>
                   </div>
@@ -205,7 +206,7 @@ export default function LearnPage() {
                   fontSize: '0.8rem',
                   transition: 'transform 0.2s, color 0.2s',
                   transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
-                  color: isExpanded ? set.color : '#444',
+                  color: isExpanded ? set.color : 'var(--color-muted)',
                 }}>
                   ▼
                 </div>
@@ -227,9 +228,9 @@ export default function LearnPage() {
 
                     let bg = 'rgba(255,255,255,0.02)';
                     let borderCol = 'rgba(255,255,255,0.05)';
-                    if (isCompleted) { bg = 'rgba(0,230,118,0.05)'; borderCol = 'rgba(0,230,118,0.15)'; }
+                    if (isCompleted) { bg = 'rgba(46,204,113,0.05)'; borderCol = 'rgba(46,204,113,0.15)'; }
                     if (isActive) { bg = `${set.color}0d`; borderCol = `${set.color}40`; }
-                    if (isProLocked) { bg = 'rgba(245,197,24,0.04)'; borderCol = 'rgba(245,197,24,0.2)'; }
+                    if (isProLocked) { bg = 'rgba(241,196,15,0.04)'; borderCol = 'rgba(241,196,15,0.2)'; }
 
                     const lessonContent = (
                       <div style={{
@@ -255,13 +256,13 @@ export default function LearnPage() {
                         {/* Info */}
                         <div style={{ flex: 1 }}>
                           <div style={{
-                            fontFamily: 'Space Grotesk, sans-serif',
+                            fontFamily: 'var(--font-display)',
                             fontSize: '0.9rem', fontWeight: 700,
                             color: isCompleted ? 'var(--color-success)' : isLocked ? 'var(--color-muted)' : 'var(--color-foreground)'
                           }}>
                             {streetMode ? lesson.streetTitle : (lang === 'en' && lesson.titleEn ? lesson.titleEn : lesson.title)}
                           </div>
-                          <div style={{ fontSize: '0.72rem', color: '#555', marginTop: 2 }}>
+                          <div style={{ fontSize: '0.72rem', color: 'var(--color-muted)', marginTop: 2 }}>
                             {isProLocked ? t.proContent : isCompleted ? t.completed : `+${lesson.xpReward} XP`}
                           </div>
                         </div>

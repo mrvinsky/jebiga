@@ -149,7 +149,7 @@ export default function ProfilePage() {
             ))}
           </div>
         </div>
-        <p style={{ color: '#444', fontSize: '0.75rem', margin: 0 }}>
+        <p style={{ color: 'var(--color-muted)', fontSize: '0.75rem', margin: 0 }}>
           {userData?.lang === 'en'
             ? t.interfaceDescEn
             : t.interfaceDescTr}
