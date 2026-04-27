@@ -29,8 +29,8 @@ export default function Navbar() {
     <>
       {/* Top bar */}
       <nav style={{ 
-        background: 'rgba(8,8,8,0.95)', 
-        borderBottom: '1px solid #1a1a1a', 
+        background: 'rgba(253,252,248,0.85)', 
+        borderBottom: '1px solid var(--color-border)', 
         position: 'fixed', 
         top: 0, left: 0, right: 0, 
         zIndex: 100, 
@@ -52,10 +52,10 @@ export default function Navbar() {
             <StreakBadge streak={userData?.streak || 0} />
             {/* XP bar */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-              <span style={{ fontSize: '0.7rem', fontWeight: 800, color: '#f5c518', whiteSpace: 'nowrap' }}>
+              <span style={{ fontSize: '0.7rem', fontWeight: 800, color: 'var(--color-xp)', whiteSpace: 'nowrap' }}>
                 Lv.{currentLevel} · {xp} XP
               </span>
-              <div className="progress-bar hide-mobile" style={{ width: 60 }}>
+              <div className="progress-bar hide-mobile" style={{ width: 60, background: 'var(--color-surface-3)' }}>
                 <div className={streetMode ? 'progress-fill-neon' : 'progress-fill'} style={{ width: `${xpProgress}%` }} />
               </div>
             </div>
@@ -67,8 +67,8 @@ export default function Navbar() {
             <button
               onClick={toggleStreetMode}
               style={{
-                background: streetMode ? 'rgba(57,255,20,0.1)' : 'rgba(255,255,255,0.05)',
-                border: `1.5px solid ${streetMode ? '#39ff14' : 'rgba(255,255,255,0.1)'}`,
+                background: streetMode ? 'rgba(39,174,96,0.1)' : 'var(--color-surface-2)',
+                border: `1.5px solid ${streetMode ? 'var(--color-neon)' : 'var(--color-border)'}`,
                 borderRadius: '8px',
                 padding: '4px 8px',
                 cursor: 'pointer',
@@ -95,8 +95,8 @@ export default function Navbar() {
             <button 
               onClick={toggleLang}
               style={{
-                background: 'rgba(255,255,255,0.05)',
-                border: '1px solid rgba(255,255,255,0.1)',
+                background: 'var(--color-surface-2)',
+                border: '1px solid var(--color-border)',
                 borderRadius: '8px',
                 padding: '4px 8px',
                 cursor: 'pointer',
@@ -131,8 +131,8 @@ export default function Navbar() {
         position: 'fixed', 
         bottom: 0, left: 0, right: 0, 
         zIndex: 100, 
-        background: 'rgba(8,8,8,0.97)', 
-        borderTop: '1px solid #1a1a1a', 
+        background: 'rgba(253,252,248,0.97)', 
+        borderTop: '1px solid var(--color-border)', 
         backdropFilter: 'blur(20px)', 
         display: 'flex', 
         justifyContent: 'space-around', 

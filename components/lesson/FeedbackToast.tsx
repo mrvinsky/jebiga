@@ -22,10 +22,10 @@ export default function FeedbackToast({
   return (
     <div className={`animate-slide-up ${status === 'correct' ? 'toast-success' : 'toast-error'}`} style={{ marginTop: 16, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
       <div>
-        <div style={{ fontWeight: 800, fontFamily: 'Space Grotesk, sans-serif', marginBottom: 4 }}>{message}</div>
+        <div style={{ fontWeight: 800, fontFamily: 'var(--font-display)', marginBottom: 4 }}>{message}</div>
         {status === 'wrong' && correctAnswer && (
-          <div style={{ fontSize: '0.82rem', color: '#aaa' }}>
-            {t.correctAnswer} <strong style={{ color: '#f5f5f5' }}>{correctAnswer}</strong>
+          <div style={{ fontSize: '0.82rem', color: 'var(--color-foreground)', opacity: 0.7 }}>
+            {t.correctAnswer} <strong style={{ color: 'var(--color-foreground)' }}>{correctAnswer}</strong>
           </div>
         )}
       </div>

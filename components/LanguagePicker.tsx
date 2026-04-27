@@ -19,23 +19,23 @@ export default function LanguagePicker() {
   return (
     <div style={{
       position: 'fixed', inset: 0, zIndex: 99999,
-      background: 'rgba(0,0,0,0.85)',
+      background: 'rgba(253, 252, 248, 0.9)',
       display: 'flex', alignItems: 'center', justifyContent: 'center',
       padding: 24,
-      backdropFilter: 'blur(6px)',
+      backdropFilter: 'blur(8px)',
     }}>
       <div style={{
-        background: '#111', borderRadius: 24,
-        border: '1px solid #222',
+        background: 'var(--color-surface)', borderRadius: 24,
+        border: '1px solid var(--color-border)',
         maxWidth: 480, width: '100%',
         padding: '48px 32px',
         textAlign: 'center',
-        boxShadow: '0 40px 80px rgba(0,0,0,0.8)',
+        boxShadow: '0 20px 60px rgba(0,0,0,0.08)',
         animation: 'slide-up 0.35s cubic-bezier(0.34,1.56,0.64,1)',
       }}>
 
         {/* Logo / Icon */}
-        <div style={{ fontSize: '3.5rem', marginBottom: 8, lineHeight: 1 }}>💀</div>
+        <div style={{ fontSize: '3.5rem', marginBottom: 8, lineHeight: 1 }}>🇷🇸</div>
 
         {/* Title */}
         <h1 style={{
@@ -51,7 +51,7 @@ export default function LanguagePicker() {
         </h1>
 
         <p style={{
-          color: '#555', fontSize: '0.85rem',
+          color: 'var(--color-muted)', fontSize: '0.85rem',
           marginBottom: 36, lineHeight: 1.5,
         }}>
           Pick the language you want to learn Serbian in.<br />
@@ -69,8 +69,8 @@ export default function LanguagePicker() {
             onMouseLeave={() => setHovered(null)}
             style={{
               flex: 1, padding: '24px 16px',
-              background: hovered === 'tr' ? 'rgba(229,57,53,0.12)' : '#161616',
-              border: hovered === 'tr' ? '2px solid rgba(229,57,53,0.6)' : '2px solid #222',
+              background: hovered === 'tr' ? 'rgba(192,57,43,0.05)' : 'var(--color-surface-2)',
+              border: hovered === 'tr' ? '2px solid var(--color-red)' : '2px solid var(--color-border)',
               borderRadius: 16, cursor: saving ? 'not-allowed' : 'pointer',
               transition: 'all 0.2s ease',
               transform: hovered === 'tr' ? 'translateY(-3px)' : 'translateY(0)',
@@ -78,11 +78,11 @@ export default function LanguagePicker() {
           >
             <div style={{ fontSize: '2.5rem', marginBottom: 10 }}>🇹🇷</div>
             <div style={{
-              fontFamily: 'Space Grotesk, sans-serif',
-              fontSize: '1.1rem', fontWeight: 800, color: '#f0f0f0',
+              fontFamily: 'var(--font-display)',
+              fontSize: '1.1rem', fontWeight: 800, color: 'var(--color-foreground)',
               marginBottom: 4,
             }}>Türkçe</div>
-            <div style={{ fontSize: '0.75rem', color: '#555' }}>
+            <div style={{ fontSize: '0.75rem', color: 'var(--color-muted)' }}>
               Türkçe → Sırpça
             </div>
           </button>
@@ -95,8 +95,8 @@ export default function LanguagePicker() {
             onMouseLeave={() => setHovered(null)}
             style={{
               flex: 1, padding: '24px 16px',
-              background: hovered === 'en' ? 'rgba(25,118,210,0.12)' : '#161616',
-              border: hovered === 'en' ? '2px solid rgba(25,118,210,0.6)' : '2px solid #222',
+              background: hovered === 'en' ? 'rgba(41,128,185,0.05)' : 'var(--color-surface-2)',
+              border: hovered === 'en' ? '2px solid var(--color-blue)' : '2px solid var(--color-border)',
               borderRadius: 16, cursor: saving ? 'not-allowed' : 'pointer',
               transition: 'all 0.2s ease',
               transform: hovered === 'en' ? 'translateY(-3px)' : 'translateY(0)',
@@ -104,11 +104,11 @@ export default function LanguagePicker() {
           >
             <div style={{ fontSize: '2.5rem', marginBottom: 10 }}>🇬🇧</div>
             <div style={{
-              fontFamily: 'Space Grotesk, sans-serif',
-              fontSize: '1.1rem', fontWeight: 800, color: '#f0f0f0',
+              fontFamily: 'var(--font-display)',
+              fontSize: '1.1rem', fontWeight: 800, color: 'var(--color-foreground)',
               marginBottom: 4,
             }}>English</div>
-            <div style={{ fontSize: '0.75rem', color: '#555' }}>
+            <div style={{ fontSize: '0.75rem', color: 'var(--color-muted)' }}>
               English → Serbian
             </div>
           </button>
@@ -121,7 +121,7 @@ export default function LanguagePicker() {
           </p>
         )}
 
-        <p style={{ color: '#333', fontSize: '0.75rem', marginTop: 16 }}>
+        <p style={{ color: 'var(--color-muted)', fontSize: '0.75rem', marginTop: 16, opacity: 0.6 }}>
           You can change this later in your profile settings.
           <br />
           Bunu daha sonra profil ayarlarından değiştirebilirsin.

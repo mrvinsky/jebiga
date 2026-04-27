@@ -88,24 +88,24 @@ export default function KafanaBot() {
               borderRadius: '20px',
               display: 'flex',
               flexDirection: 'column',
-              background: '#111',
-              boxShadow: '0 20px 40px rgba(0,0,0,0.7)',
-              border: '1px solid rgba(255, 23, 68, 0.3)',
+              background: 'var(--color-surface)',
+              boxShadow: '0 20px 50px rgba(0,0,0,0.12)',
+              border: '1px solid var(--color-border)',
               overflow: 'hidden'
             }}
           >
             {/* Header */}
-            <div style={{ background: 'rgba(255, 23, 68, 0.1)', padding: '16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+            <div style={{ background: 'rgba(192, 57, 43, 0.05)', padding: '16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid var(--color-border)' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <span style={{ fontSize: '1.5rem', textShadow: '0 0 10px rgba(255, 23, 68, 0.8)' }}>🧔🏻‍♂️</span>
+                <span style={{ fontSize: '1.5rem' }}>🧔🏻‍♂️</span>
                 <div>
-                  <h3 style={{ margin: 0, fontFamily: 'Space Grotesk, sans-serif', fontSize: '1rem', fontWeight: 800 }}>{t.botTitle}</h3>
-                  <p style={{ margin: 0, fontSize: '0.7rem', color: '#ff1744' }}>{t.botSubtitle}</p>
+                  <h3 style={{ margin: 0, fontFamily: 'var(--font-display)', fontSize: '1rem', fontWeight: 800, color: 'var(--color-foreground)' }}>{t.botTitle}</h3>
+                  <p style={{ margin: 0, fontSize: '0.7rem', color: 'var(--color-red)' }}>{t.botSubtitle}</p>
                 </div>
               </div>
               <button 
                 onClick={() => setIsOpen(false)}
-                style={{ background: 'transparent', border: 'none', color: '#999', cursor: 'pointer', fontSize: '1.2rem' }}
+                style={{ background: 'transparent', border: 'none', color: 'var(--color-muted)', cursor: 'pointer', fontSize: '1.2rem' }}
               >
                 ✕
               </button>
@@ -121,11 +121,12 @@ export default function KafanaBot() {
                     borderRadius: '14px',
                     fontSize: '0.85rem',
                     lineHeight: '1.4',
-                    background: m.role === 'user' ? '#111' : 'rgba(255, 23, 68, 0.15)',
-                    border: m.role === 'user' ? '1px solid #333' : '1px solid rgba(255, 23, 68, 0.3)',
-                    color: m.role === 'user' ? '#eee' : '#fff',
+                    background: m.role === 'user' ? 'var(--color-surface-2)' : 'rgba(192, 57, 43, 0.08)',
+                    border: m.role === 'user' ? '1px solid var(--color-border)' : '1px solid rgba(192, 57, 43, 0.2)',
+                    color: 'var(--color-foreground)',
                     borderBottomRightRadius: m.role === 'user' ? '4px' : '14px',
                     borderBottomLeftRadius: m.role === 'model' ? '4px' : '14px',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.02)',
                   }}>
                     {m.parts[0].text}
                   </div>
@@ -142,7 +143,7 @@ export default function KafanaBot() {
             </div>
 
             {/* Input Area */}
-            <div style={{ padding: '12px', borderTop: '1px solid rgba(255,255,255,0.05)', display: 'flex', gap: '8px', background: '#0d0d0d' }}>
+            <div style={{ padding: '12px', borderTop: '1px solid var(--color-border)', display: 'flex', gap: '8px', background: 'var(--color-surface)' }}>
               <input
                 type="text"
                 value={input}
@@ -151,8 +152,8 @@ export default function KafanaBot() {
                 placeholder={t.botPlaceholder}
                 style={{
                   flex: 1, padding: '10px 12px', borderRadius: '10px',
-                  background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)',
-                  color: '#fff', fontSize: '0.85rem', outline: 'none'
+                  background: 'var(--color-surface-2)', border: '1px solid var(--color-border)',
+                  color: 'var(--color-foreground)', fontSize: '0.85rem', outline: 'none'
                 }}
               />
               <button
@@ -178,8 +179,8 @@ export default function KafanaBot() {
         onClick={() => setIsOpen(!isOpen)}
         style={{
           width: '64px', height: '64px', borderRadius: '50%',
-          background: '#0a0a0a', border: '2px solid #ff1744',
-          boxShadow: '0 0 20px rgba(255, 23, 68, 0.4)',
+          background: 'var(--color-surface)', border: '2px solid var(--color-red)',
+          boxShadow: '0 8px 24px rgba(192, 57, 43, 0.15)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           cursor: 'pointer', fontSize: '2rem', padding: 0
         }}

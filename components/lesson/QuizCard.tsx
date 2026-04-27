@@ -62,7 +62,7 @@ export default function QuizCard({
       <div style={{ marginBottom: 24 }}>
         {/* Bar */}
         <div style={{
-          height: 6, background: '#1a1a1a',
+          height: 6, background: 'var(--color-surface-2)',
           borderRadius: 3, overflow: 'hidden',
           marginBottom: 10,
         }}>
@@ -82,19 +82,19 @@ export default function QuizCard({
               width: i === questionIndex ? 20 : 8,
               height: 8, borderRadius: 4,
               background: i < questionIndex
-                ? '#00e676'
+                ? 'var(--color-success)'
                 : i === questionIndex
                   ? color
-                  : '#1e1e1e',
+                  : 'var(--color-surface-3)',
               transition: 'all 0.3s ease',
-              boxShadow: i === questionIndex ? `0 0 8px ${color}88` : i < questionIndex ? '0 0 6px rgba(0,230,118,0.3)' : 'none',
+              boxShadow: i === questionIndex ? `0 0 8px ${color}88` : i < questionIndex ? '0 0 6px rgba(46,204,113,0.3)' : 'none',
             }} />
           ))}
         </div>
 
         <div style={{
           textAlign: 'center', marginTop: 8,
-          fontSize: '0.72rem', color: '#444',
+          fontSize: '0.72rem', color: 'var(--color-muted)',
           fontWeight: 600, letterSpacing: '0.04em',
         }}>
           {questionIndex + 1} / {totalQuestions}
@@ -106,15 +106,15 @@ export default function QuizCard({
         className="card-lesson"
         style={{
           borderColor: status === 'correct'
-            ? '#00e67655'
+            ? 'var(--color-success)'
             : status === 'wrong'
-              ? '#ff174455'
-              : '#2a2a2a',
+              ? 'var(--color-error)'
+              : 'var(--color-border)',
           background: status === 'correct'
-            ? 'rgba(0,230,118,0.04)'
+            ? 'rgba(46,204,113,0.06)'
             : status === 'wrong'
-              ? 'rgba(255,23,68,0.04)'
-              : undefined,
+              ? 'rgba(231,76,60,0.06)'
+              : 'var(--color-surface)',
           animation: shake ? 'shake 0.45s ease-in-out' : 'slide-up 0.3s ease',
           transition: 'border-color 0.2s, background 0.2s',
         }}
@@ -123,10 +123,10 @@ export default function QuizCard({
         <div style={{
           display: 'inline-flex', alignItems: 'center', gap: 6,
           fontSize: '0.68rem', fontWeight: 800,
-          color: '#555', letterSpacing: '0.1em',
+          color: 'var(--color-muted)', letterSpacing: '0.1em',
           textTransform: 'uppercase',
-          background: 'rgba(255,255,255,0.04)',
-          border: '1px solid rgba(255,255,255,0.07)',
+          background: 'var(--color-surface-2)',
+          border: '1px solid var(--color-border)',
           borderRadius: 20, padding: '4px 12px',
           marginBottom: 20,
         }}>
@@ -136,8 +136,8 @@ export default function QuizCard({
         {/* Question text */}
         <p style={{
           fontSize: '1.15rem', fontWeight: 700,
-          fontFamily: 'Space Grotesk, sans-serif',
-          color: '#f5f5f5', lineHeight: 1.45,
+          fontFamily: 'var(--font-display)',
+          color: 'var(--color-foreground)', lineHeight: 1.45,
           marginBottom: 28,
         }}>
           {prompt}
@@ -148,32 +148,32 @@ export default function QuizCard({
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             {((lang === 'en' && question.optionsEn) ? question.optionsEn : (question.options || [])).map((opt, idx) => {
               const baseAnswer = (lang === 'en' && question.answerEn) ? question.answerEn : question.answer;
-              let bg = 'rgba(255,255,255,0.025)';
-              let borderCol = 'rgba(255,255,255,0.08)';
-              let textColor = '#ccc';
-              let iconBg = '#1a1a1a';
-              let iconColor = '#555';
+              let bg = 'var(--color-surface)';
+              let borderCol = 'var(--color-border)';
+              let textColor = 'var(--color-foreground)';
+              let iconBg = 'var(--color-surface-2)';
+              let iconColor = 'var(--color-muted)';
 
               if (status !== 'idle') {
                 if (opt === baseAnswer) {
-                  bg = 'rgba(0,230,118,0.08)';
-                  borderCol = '#00e67644';
-                  textColor = '#f0f0f0';
-                  iconBg = 'rgba(0,230,118,0.2)';
-                  iconColor = '#00e676';
+                  bg = 'rgba(46,204,113,0.1)';
+                  borderCol = 'var(--color-success)';
+                  textColor = 'var(--color-foreground)';
+                  iconBg = 'var(--color-success)';
+                  iconColor = '#fff';
                 } else if (opt === selected && status === 'wrong') {
-                  bg = 'rgba(255,23,68,0.08)';
-                  borderCol = '#ff174444';
-                  textColor = '#ff8a8a';
-                  iconBg = 'rgba(255,23,68,0.2)';
-                  iconColor = '#ff1744';
+                  bg = 'rgba(231,76,60,0.1)';
+                  borderCol = 'var(--color-error)';
+                  textColor = 'var(--color-error)';
+                  iconBg = 'var(--color-error)';
+                  iconColor = '#fff';
                 }
               } else if (opt === selected) {
-                bg = `${color}12`;
-                borderCol = `${color}55`;
-                textColor = '#f5f5f5';
-                iconBg = `${color}22`;
-                iconColor = color;
+                bg = `${color}08`;
+                borderCol = color;
+                textColor = 'var(--color-foreground)';
+                iconBg = color;
+                iconColor = '#fff';
               }
 
               const isCorrectAnswer = status !== 'idle' && opt === baseAnswer;
@@ -208,8 +208,8 @@ export default function QuizCard({
                   }}
                   onMouseLeave={e => {
                     if (status === 'idle' && opt !== selected) {
-                      (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(255,255,255,0.08)';
-                      (e.currentTarget as HTMLButtonElement).style.background = 'rgba(255,255,255,0.025)';
+                      (e.currentTarget as HTMLButtonElement).style.borderColor = 'var(--color-border)';
+                      (e.currentTarget as HTMLButtonElement).style.background = 'var(--color-surface)';
                     }
                   }}
                 >
@@ -236,10 +236,10 @@ export default function QuizCard({
             {hint && (
               <div style={{
                 display: 'flex', alignItems: 'center', gap: 6,
-                fontSize: '0.78rem', color: '#555',
+                fontSize: '0.78rem', color: 'var(--color-muted)',
                 marginBottom: 12,
                 padding: '8px 12px',
-                background: 'rgba(255,255,255,0.03)',
+                background: 'var(--color-surface-2)',
                 borderRadius: 8,
               }}>
                 <span>💡</span>
@@ -256,12 +256,12 @@ export default function QuizCard({
               disabled={status !== 'idle'}
               style={{
                 borderColor: status === 'correct'
-                  ? '#00e676'
+                  ? 'var(--color-success)'
                   : status === 'wrong'
-                    ? '#ff1744'
+                    ? 'var(--color-error)'
                     : selected
-                      ? `${color}66`
-                      : '#2a2a2a',
+                      ? color
+                      : 'var(--color-border)',
                 boxShadow: status === 'correct'
                   ? '0 0 0 3px rgba(0,230,118,0.12)'
                   : status === 'wrong'

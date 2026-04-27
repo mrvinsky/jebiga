@@ -33,10 +33,11 @@ export default function LearnPage() {
       <div style={{
         textAlign: 'center', marginBottom: 36,
         padding: '32px 24px 28px',
-        background: 'rgba(255,255,255,0.02)',
-        border: '1px solid rgba(255,255,255,0.05)',
+        background: 'var(--color-surface)',
+        border: '1px solid var(--color-border)',
         borderRadius: 20,
         position: 'relative', overflow: 'hidden',
+        boxShadow: '0 4px 20px rgba(0,0,0,0.03)',
       }}>
         {/* Subtle radial glow */}
         <div style={{
@@ -52,11 +53,11 @@ export default function LearnPage() {
             marginBottom: 24,
             flexWrap: 'wrap'
           }}>
-            <div className="glass" style={{ padding: '10px 20px', display: 'flex', alignItems: 'center', gap: 10, border: '1px solid rgba(245,197,24,0.3)' }}>
+            <div className="glass" style={{ padding: '10px 20px', display: 'flex', alignItems: 'center', gap: 10, border: '1px solid rgba(241,196,15,0.3)' }}>
               <span style={{ fontSize: '1.2rem' }}>🏆</span>
               <div>
-                <div style={{ fontSize: '0.65rem', fontWeight: 800, color: '#888', textTransform: 'uppercase' }}>{t.levelLabel}</div>
-                <div style={{ fontSize: '1.1rem', fontWeight: 900, color: '#f5c518' }}>Lv.{currentLevel}</div>
+                <div style={{ fontSize: '0.65rem', fontWeight: 800, color: 'var(--color-muted)', textTransform: 'uppercase' }}>{t.levelLabel}</div>
+                <div style={{ fontSize: '1.1rem', fontWeight: 900, color: 'var(--color-xp)' }}>Lv.{currentLevel}</div>
               </div>
             </div>
             <div className="glass" style={{ padding: '10px 20px', display: 'flex', alignItems: 'center', gap: 10, border: '1px solid rgba(192,57,43,0.3)' }}>
@@ -66,11 +67,11 @@ export default function LearnPage() {
                 <div style={{ fontSize: '1.1rem', fontWeight: 900, color: '#c0392b' }}>{userData?.xp || 0}</div>
               </div>
             </div>
-            <div className="glass" style={{ padding: '10px 20px', display: 'flex', alignItems: 'center', gap: 10, border: '1px solid rgba(255,107,0,0.3)' }}>
+            <div className="glass" style={{ padding: '10px 20px', display: 'flex', alignItems: 'center', gap: 10, border: '1px solid rgba(230,126,34,0.3)' }}>
               <span style={{ fontSize: '1.2rem' }}>🔥</span>
               <div>
-                <div style={{ fontSize: '0.65rem', fontWeight: 800, color: '#888', textTransform: 'uppercase' }}>{t.streakLabel}</div>
-                <div style={{ fontSize: '1.1rem', fontWeight: 900, color: '#ff6b00' }}>{userData?.streak || 0}</div>
+                <div style={{ fontSize: '0.65rem', fontWeight: 800, color: 'var(--color-muted)', textTransform: 'uppercase' }}>{t.streakLabel}</div>
+                <div style={{ fontSize: '1.1rem', fontWeight: 900, color: '#e67e22' }}>{userData?.streak || 0}</div>
               </div>
             </div>
           </div>
@@ -86,7 +87,7 @@ export default function LearnPage() {
               : <><span style={{ background: 'linear-gradient(135deg, #e74c3c, #c0392b)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>{t.learningPath.split(' ')[0]}</span> {t.learningPath.split(' ').slice(1).join(' ')} 🇷🇸</>
             }
           </h1>
-          <p style={{ color: '#666', fontSize: '0.88rem', margin: '0 0 20px' }}>
+          <p style={{ color: 'var(--color-muted)', fontSize: '0.88rem', margin: '0 0 20px' }}>
             {streetMode ? t.streetDesc : t.learningDesc}
           </p>
 
@@ -96,7 +97,7 @@ export default function LearnPage() {
               <span>{t.generalProgress}</span>
               <span style={{ color: '#f5c518', fontWeight: 700 }}>{completedCount}/{totalLessons} {t.lessons} · {progressPct}%</span>
             </div>
-            <div style={{ height: 8, background: '#1a1a1a', borderRadius: 4, overflow: 'hidden' }}>
+            <div style={{ height: 8, background: 'var(--color-surface-2)', borderRadius: 4, overflow: 'hidden' }}>
               <div style={{
                 height: '100%', borderRadius: 4,
                 width: `${progressPct}%`,
@@ -122,7 +123,7 @@ export default function LearnPage() {
           const isFullyDone = setCompleted === setTotal;
 
           return (
-            <div key={set.id} style={{ borderRadius: 18, overflow: 'hidden', border: '1px solid rgba(255,255,255,0.06)' }}>
+            <div key={set.id} style={{ borderRadius: 18, overflow: 'hidden', border: '1px solid var(--color-border)', background: 'var(--color-surface)', boxShadow: '0 4px 12px rgba(0,0,0,0.02)' }}>
 
               {/* Category Header — clickable */}
               <button
@@ -135,12 +136,12 @@ export default function LearnPage() {
                   display: 'flex', alignItems: 'center', gap: 16,
                   padding: '20px 24px',
                   background: isFullyDone
-                    ? 'rgba(0,230,118,0.04)'
+                    ? 'rgba(46,204,113,0.08)'
                     : isExpanded
-                      ? `linear-gradient(135deg, ${set.color}14, rgba(8,8,8,0.9))`
-                      : 'rgba(255,255,255,0.025)',
+                      ? `linear-gradient(135deg, ${set.color}08, var(--color-surface))`
+                      : 'var(--color-surface)',
                   border: 'none',
-                  borderBottom: isExpanded ? '1px solid rgba(255,255,255,0.06)' : 'none',
+                  borderBottom: isExpanded ? '1px solid var(--color-border)' : 'none',
                   transition: 'background 0.25s ease',
                   opacity: (!isSetUnlocked && !isProLocked) ? 0.45 : 1,
                 }}
@@ -164,12 +165,12 @@ export default function LearnPage() {
                     <h2 style={{
                       fontFamily: 'Space Grotesk, sans-serif',
                       fontSize: '1.05rem', fontWeight: 800,
-                      color: isSetUnlocked ? '#fff' : '#444',
+                      color: isSetUnlocked ? 'var(--color-foreground)' : 'var(--color-muted)',
                       margin: '0 0 4px',
                     }}>
                       {streetMode ? set.streetTitle : (lang === 'en' && set.titleEn ? set.titleEn : set.title)}
                     </h2>
-                    <p style={{ margin: 0, fontSize: '0.78rem', color: isSetUnlocked ? '#888' : '#333', lineHeight: 1.4 }}>
+                    <p style={{ margin: 0, fontSize: '0.78rem', color: isSetUnlocked ? 'var(--color-muted)' : '#ccc', lineHeight: 1.4 }}>
                       {streetMode ? set.streetDescription : (lang === 'en' && set.descriptionEn ? set.descriptionEn : set.description)}
                     </p>
                     {isProLocked && (
@@ -214,7 +215,7 @@ export default function LearnPage() {
               {isExpanded && (
                 <div style={{
                   padding: '12px 16px 16px',
-                  background: 'rgba(0,0,0,0.3)',
+                  background: 'var(--color-surface-2)',
                   display: 'flex', flexDirection: 'column', gap: 8,
                   animation: 'slide-up 0.2s ease',
                 }}>
@@ -245,8 +246,8 @@ export default function LearnPage() {
                           width: 42, height: 42, borderRadius: 10, flexShrink: 0,
                           display: 'flex', alignItems: 'center', justifyContent: 'center',
                           fontSize: '1.15rem',
-                          background: isCompleted ? 'rgba(0,230,118,0.1)' : isActive ? `${set.color}1a` : '#111',
-                          border: `1.5px solid ${isCompleted ? '#00e67633' : isActive ? `${set.color}44` : '#222'}`,
+                          background: isCompleted ? 'rgba(46,204,113,0.1)' : isActive ? `${set.color}1a` : 'var(--color-surface)',
+                          border: `1.5px solid ${isCompleted ? '#2ecc7133' : isActive ? `${set.color}44` : 'var(--color-border)'}`,
                         }}>
                           {isProLocked ? '⭐' : isCompleted ? '✓' : isLocked ? '🔒' : lesson.emoji}
                         </div>
@@ -256,7 +257,7 @@ export default function LearnPage() {
                           <div style={{
                             fontFamily: 'Space Grotesk, sans-serif',
                             fontSize: '0.9rem', fontWeight: 700,
-                            color: isCompleted ? '#00e676' : isLocked ? '#444' : '#eee'
+                            color: isCompleted ? 'var(--color-success)' : isLocked ? 'var(--color-muted)' : 'var(--color-foreground)'
                           }}>
                             {streetMode ? lesson.streetTitle : (lang === 'en' && lesson.titleEn ? lesson.titleEn : lesson.title)}
                           </div>

@@ -38,7 +38,7 @@ export default function LessonClient({ id }: { id: string }) {
 
   if (!lesson) return (
     <div style={{ textAlign: 'center', paddingTop: 60 }}>
-      <p style={{ color: '#888' }}>{t.lessonNotFound}</p>
+      <p style={{ color: 'var(--color-muted)' }}>{t.lessonNotFound}</p>
       <button className="btn-primary" style={{ marginTop: 20 }} onClick={() => router.push('/learn')}>{t.backToMap}</button>
     </div>
   );
@@ -137,38 +137,38 @@ export default function LessonClient({ id }: { id: string }) {
   if (finished) return (
     <div style={{ textAlign: 'center', paddingTop: 40 }}>
       <div style={{ fontSize: '4rem', marginBottom: 16, animation: 'pop-in 0.3s cubic-bezier(0.34,1.56,0.64,1)' }}>🎉</div>
-      <h2 style={{ fontSize: '2rem', fontWeight: 900, fontFamily: 'Space Grotesk, sans-serif', marginBottom: 8 }}>
+      <h2 style={{ fontSize: '2rem', fontWeight: 900, fontFamily: 'var(--font-display)', color: 'var(--color-foreground)', marginBottom: 8 }}>
         {streetMode ? 'Jebiga, to je to!' : t.lessonDone}
       </h2>
-      <p style={{ color: '#888', marginBottom: 32 }}>
+      <p style={{ color: 'var(--color-muted)', marginBottom: 32 }}>
         {streetMode 
           ? `Bravo brate — ${mistakes} greška${mistakes !== 1 ? 'ke' : ''}!` 
           : t.mistakesMade.replace('{n}', mistakes.toString())}
       </p>
-      <div className={`glass ${streetMode ? 'neon-border' : ''}`} style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', gap: 8, padding: '24px 48px', marginBottom: 32, position: 'relative' }}>
+      <div className={`glass ${streetMode ? 'neon-border' : ''}`} style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', gap: 8, padding: '24px 48px', marginBottom: 32, position: 'relative', background: 'var(--color-surface)', boxShadow: '0 10px 30px rgba(0,0,0,0.05)' }}>
         {leveledUp && (
           <div style={{
             position: 'absolute', top: -12, right: -12,
-            background: '#39ff14', color: '#000',
+            background: 'var(--color-neon)', color: '#fff',
             padding: '4px 10px', borderRadius: 8,
             fontSize: '0.7rem', fontWeight: 900,
             transform: 'rotate(12deg)',
             animation: 'pop-in 0.3s ease forwards',
-            boxShadow: '0 0 15px rgba(57,255,20,0.5)',
+            boxShadow: '0 0 15px rgba(39,174,96,0.3)',
           }}>
             LEVEL UP! 🚀
           </div>
         )}
-        <div style={{ fontSize: '2.5rem', fontWeight: 900, color: '#f5c518', fontFamily: 'Space Grotesk, sans-serif' }}>
+        <div style={{ fontSize: '2.5rem', fontWeight: 900, color: 'var(--color-xp)', fontFamily: 'var(--font-display)' }}>
           +{xpEarned} XP
         </div>
         {userData?.streak && userData.streak > 0 && (
-          <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#ff6b00', marginTop: -4 }}>
+          <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#e67e22', marginTop: -4 }}>
             {lang === 'en' ? 'STREAK BONUS: ' : 'SERİ BONUSU: '} 
             +{Math.min(userData.streak * 5, 50)}% 🔥
           </div>
         )}
-        <div style={{ color: '#666', fontSize: '0.85rem' }}>{t.xpEarned}</div>
+        <div style={{ color: 'var(--color-muted)', fontSize: '0.85rem' }}>{t.xpEarned}</div>
       </div>
       <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
         <button className="btn-ghost" onClick={() => { setCurrent(0); setFinished(false); setMistakes(0); setXpEarned(0); setStatus('idle'); }}>{t.tryAgain}</button>
@@ -186,9 +186,9 @@ export default function LessonClient({ id }: { id: string }) {
           onClick={() => router.push('/learn')}
           style={{
             background: 'none', border: 'none', cursor: 'pointer',
-            color: '#444', fontSize: '0.82rem', fontWeight: 600,
+            color: 'var(--color-muted)', fontSize: '0.82rem', fontWeight: 600,
             padding: '6px 0', display: 'flex', alignItems: 'center', gap: 6,
-            fontFamily: 'Space Grotesk, sans-serif',
+            fontFamily: 'var(--font-display)',
           }}
         >
           {t.backToMap}

@@ -32,7 +32,7 @@ export default function ProfilePage() {
 
   return (
     <div style={{ maxWidth: 600, margin: '0 auto' }}>
-      <h1 style={{ fontSize: '1.8rem', fontWeight: 900, fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '-0.02em', marginBottom: 28 }}>
+      <h1 style={{ fontSize: '1.8rem', fontWeight: 900, fontFamily: 'var(--font-display)', color: 'var(--color-foreground)', letterSpacing: '-0.02em', marginBottom: 28 }}>
         {streetMode ? (lang === 'en' ? 'Your Profile, mate 👤' : 'Tvoj Profil, brate 👤') : t.profileTitle}
       </h1>
 
@@ -43,26 +43,26 @@ export default function ProfilePage() {
         </div>
         <div style={{ flex: 1 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 4 }}>
-            <span style={{ fontWeight: 800, fontSize: '1.1rem', fontFamily: 'Space Grotesk, sans-serif' }}>{userData?.displayName || user?.email || 'Stranger'}</span>
+            <span style={{ fontWeight: 800, fontSize: '1.1rem', fontFamily: 'var(--font-display)', color: 'var(--color-foreground)' }}>{userData?.displayName || user?.email || 'Stranger'}</span>
             {isPro && <span className="pro-badge">⚡ PRO</span>}
           </div>
-          <div style={{ color: '#666', fontSize: '0.82rem', marginBottom: 12 }}>{user?.email}</div>
+          <div style={{ color: 'var(--color-muted)', fontSize: '0.82rem', marginBottom: 12 }}>{user?.email}</div>
           <div style={{ display: 'flex', gap: 16 }}>
             <div style={{ textAlign: 'center' }}>
-              <div style={{ fontWeight: 800, color: '#f5c518', fontSize: '1.1rem' }}>{xp}</div>
-              <div style={{ fontSize: '0.7rem', color: '#555' }}>XP</div>
+              <div style={{ fontWeight: 800, color: 'var(--color-xp)', fontSize: '1.1rem' }}>{xp}</div>
+              <div style={{ fontSize: '0.7rem', color: 'var(--color-muted)' }}>XP</div>
             </div>
             <div style={{ textAlign: 'center' }}>
-              <div style={{ fontWeight: 800, color: '#c0392b', fontSize: '1.1rem' }}>Lv.{level}</div>
-              <div style={{ fontSize: '0.7rem', color: '#555' }}>{t.levelLabel}</div>
+              <div style={{ fontWeight: 800, color: 'var(--color-red)', fontSize: '1.1rem' }}>Lv.{level}</div>
+              <div style={{ fontSize: '0.7rem', color: 'var(--color-muted)' }}>{t.levelLabel}</div>
             </div>
             <div style={{ textAlign: 'center' }}>
-              <div style={{ fontWeight: 800, color: '#ff6b00', fontSize: '1.1rem' }}>{userData?.streak || 0}🔥</div>
-              <div style={{ fontSize: '0.7rem', color: '#555' }}>{t.streakLabel}</div>
+              <div style={{ fontWeight: 800, color: '#e67e22', fontSize: '1.1rem' }}>{userData?.streak || 0}🔥</div>
+              <div style={{ fontSize: '0.7rem', color: 'var(--color-muted)' }}>{t.streakLabel}</div>
             </div>
             <div style={{ textAlign: 'center' }}>
-              <div style={{ fontWeight: 800, color: '#00e676', fontSize: '1.1rem' }}>{completed.length}</div>
-              <div style={{ fontSize: '0.7rem', color: '#555' }}>{t.completedLabel}</div>
+              <div style={{ fontWeight: 800, color: 'var(--color-success)', fontSize: '1.1rem' }}>{completed.length}</div>
+              <div style={{ fontSize: '0.7rem', color: 'var(--color-muted)' }}>{t.completedLabel}</div>
             </div>
           </div>
         </div>
@@ -71,8 +71,8 @@ export default function ProfilePage() {
       {/* XP to next level */}
       <div className="card" style={{ marginBottom: 20 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 10 }}>
-          <span style={{ fontWeight: 700, fontSize: '0.85rem' }}>{t.levelLabel} {currentLevel} → {currentLevel + 1}</span>
-          <span style={{ fontSize: '0.8rem', color: '#666' }}>{xp - getXPForLevel(currentLevel)} / {getXPForLevel(currentLevel + 1) - getXPForLevel(currentLevel)} XP</span>
+          <span style={{ fontWeight: 700, fontSize: '0.85rem', color: 'var(--color-foreground)' }}>{t.levelLabel} {currentLevel} → {currentLevel + 1}</span>
+          <span style={{ fontSize: '0.8rem', color: 'var(--color-muted)' }}>{xp - getXPForLevel(currentLevel)} / {getXPForLevel(currentLevel + 1) - getXPForLevel(currentLevel)} XP</span>
         </div>
         <div className="progress-bar">
           <div className={streetMode ? 'progress-fill-neon' : 'progress-fill'} style={{ width: `${xpProgress}%` }} />
@@ -81,7 +81,7 @@ export default function ProfilePage() {
 
       {/* Progress by section */}
       <div className="card" style={{ marginBottom: 20 }}>
-        <h3 style={{ fontWeight: 800, fontFamily: 'Space Grotesk, sans-serif', marginBottom: 16, fontSize: '0.95rem' }}>
+        <h3 style={{ fontWeight: 800, fontFamily: 'var(--font-display)', marginBottom: 16, fontSize: '0.95rem', color: 'var(--color-foreground)' }}>
           {streetMode ? (lang === 'en' ? 'Your progress, mate' : 'Tvoj napredak, brate') : t.sectionProgress}
         </h3>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -92,8 +92,8 @@ export default function ProfilePage() {
             return (
               <div key={set.id}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-                  <span style={{ fontSize: '0.85rem', fontWeight: 600 }}>{set.emoji} {streetMode ? set.streetTitle : (lang === 'en' && set.titleEn ? set.titleEn : set.title)}</span>
-                  <span style={{ fontSize: '0.78rem', color: '#666' }}>{done}/{total}</span>
+                  <span style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-foreground)' }}>{set.emoji} {streetMode ? set.streetTitle : (lang === 'en' && set.titleEn ? set.titleEn : set.title)}</span>
+                  <span style={{ fontSize: '0.78rem', color: 'var(--color-muted)' }}>{done}/{total}</span>
                 </div>
                 <div className="progress-bar">
                   <div style={{ height: '100%', borderRadius: 4, background: set.color, width: `${pct}%`, transition: 'width 0.4s ease', boxShadow: pct > 0 ? `0 0 8px ${set.color}66` : 'none' }} />
@@ -106,22 +106,22 @@ export default function ProfilePage() {
 
       {/* Upgrade CTA if free */}
       {!isPro && (
-        <div style={{ background: 'linear-gradient(135deg, rgba(245,197,24,0.1), rgba(255,140,0,0.05))', border: '1px solid rgba(245,197,24,0.25)', borderRadius: 16, padding: 24, textAlign: 'center', marginBottom: 20 }}>
+        <div style={{ background: 'rgba(241,196,15,0.08)', border: '1px solid rgba(241,196,15,0.3)', borderRadius: 16, padding: 24, textAlign: 'center', marginBottom: 20 }}>
           <div style={{ fontSize: '1.5rem', marginBottom: 8 }}>⚡</div>
-          <h3 style={{ fontWeight: 800, fontFamily: 'Space Grotesk, sans-serif', marginBottom: 8 }}>{t.upgradeToPro}</h3>
-          <p style={{ color: '#888', fontSize: '0.85rem', marginBottom: 16 }}>{t.upgradeDesc}</p>
+          <h3 style={{ fontWeight: 800, fontFamily: 'var(--font-display)', marginBottom: 8, color: 'var(--color-foreground)' }}>{t.upgradeToPro}</h3>
+          <p style={{ color: 'var(--color-muted)', fontSize: '0.85rem', marginBottom: 16 }}>{t.upgradeDesc}</p>
           <Link href="/pro" className="btn-primary">{t.becomePro}</Link>
         </div>
       )}
 
       {/* Language selector */}
-      <div style={{ background: '#161616', border: '1px solid #222', borderRadius: 16, padding: 20, marginBottom: 20 }}>
+      <div style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: 16, padding: 20, marginBottom: 20 }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
           <div>
-            <div style={{ fontWeight: 700, fontFamily: 'Space Grotesk, sans-serif', fontSize: '0.95rem', marginBottom: 2 }}>
+            <div style={{ fontWeight: 700, fontFamily: 'var(--font-display)', fontSize: '0.95rem', marginBottom: 2, color: 'var(--color-foreground)' }}>
               {t.interfaceLanguage}
             </div>
-            <div style={{ color: '#555', fontSize: '0.78rem' }}>{lang === 'en' ? 'UI Language' : 'Arayüz Dili'}</div>
+            <div style={{ color: 'var(--color-muted)', fontSize: '0.78rem' }}>{lang === 'en' ? 'UI Language' : 'Arayüz Dili'}</div>
           </div>
           <div style={{ display: 'flex', gap: 8 }}>
             {(['tr', 'en'] as const).map(l => (
@@ -135,12 +135,12 @@ export default function ProfilePage() {
                 }}
                 style={{
                   padding: '8px 16px', borderRadius: 10,
-                  border: userData?.lang === l ? '1.5px solid #ff1744' : '1.5px solid #2a2a2a',
-                  background: userData?.lang === l ? 'rgba(255,23,68,0.1)' : '#111',
-                  color: userData?.lang === l ? '#fff' : '#555',
+                  border: userData?.lang === l ? '1.5px solid var(--color-red)' : '1.5px solid var(--color-border)',
+                  background: userData?.lang === l ? 'rgba(192,57,43,0.1)' : 'var(--color-surface-2)',
+                  color: userData?.lang === l ? 'var(--color-red)' : 'var(--color-muted)',
                   fontWeight: 700, fontSize: '0.82rem',
                   cursor: userData?.lang === l ? 'default' : 'pointer',
-                  fontFamily: 'Space Grotesk, sans-serif',
+                  fontFamily: 'var(--font-display)',
                   transition: 'all 0.15s',
                 }}
               >
@@ -157,7 +157,7 @@ export default function ProfilePage() {
       </div>
 
       {/* Logout button */}
-      <button onClick={handleSignOut} className="btn-primary" style={{ width: '100%', background: '#1c1c1c', border: '1px solid #333', color: '#ff4757', padding: '16px' }}>
+      <button onClick={handleSignOut} className="btn-ghost" style={{ width: '100%', color: 'var(--color-red)', padding: '16px', border: '1px solid var(--color-border)' }}>
         {t.logout}
       </button>
     </div>

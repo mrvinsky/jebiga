@@ -114,16 +114,16 @@ export default function LandingPage() {
   }, [charIndex, isDeleting, typingIndex]);
 
   return (
-    <div style={{ minHeight: '100dvh', background: '#080808', color: '#f5f5f5', fontFamily: '"Space Grotesk", sans-serif', overflowX: 'hidden' }}>
+    <div style={{ minHeight: '100dvh', background: 'var(--color-background)', color: 'var(--color-foreground)', fontFamily: 'var(--font-sans)', overflowX: 'hidden' }}>
 
       {/* ── NAV ── */}
       <nav style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
         padding: '10px 12px',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        background: 'rgba(8,8,8,0.85)',
+        background: 'rgba(253,252,248,0.85)',
         backdropFilter: 'blur(20px)',
-        borderBottom: '1px solid rgba(255,255,255,0.06)',
+        borderBottom: '1px solid var(--color-border)',
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
           <span style={{ fontSize: '1.2rem' }}>🇷🇸</span>
@@ -227,7 +227,7 @@ export default function LandingPage() {
 
         <p style={{
           fontSize: 'clamp(0.95rem, 3vw, 1.15rem)',
-          color: '#999', lineHeight: 1.5,
+          color: 'var(--color-muted)', lineHeight: 1.5,
           maxWidth: 450, marginBottom: 32,
         }}>
           {t.heroSubtitle1} {t.heroSubtitle2}
@@ -250,21 +250,21 @@ export default function LandingPage() {
         {/* Stats row */}
         <div style={{
           display: 'flex', flexDirection: 'column', gap: 0,
-          background: 'rgba(255,255,255,0.03)',
-          border: '1px solid rgba(255,255,255,0.07)',
+          background: 'var(--color-surface)',
+          border: '1px solid var(--color-border)',
           borderRadius: 20, padding: '10px',
-          backdropFilter: 'blur(10px)',
+          boxShadow: '0 10px 30px rgba(0,0,0,0.05)',
           width: '100%', maxWidth: 320
         }}>
           {STATS.map((stat, i) => (
             <div key={i} style={{
               padding: '12px 16px', textAlign: 'center',
-              borderBottom: i < STATS.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none',
+              borderBottom: i < STATS.length - 1 ? '1px solid var(--color-border)' : 'none',
             }}>
-              <div style={{ fontSize: '1.25rem', fontWeight: 900, color: '#f5f5f5', letterSpacing: '-0.02em' }}>
+              <div style={{ fontSize: '1.25rem', fontWeight: 900, color: 'var(--color-foreground)', letterSpacing: '-0.02em' }}>
                 {stat.value}
               </div>
-              <div style={{ fontSize: '0.65rem', color: '#666', fontWeight: 600, marginTop: 1, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              <div style={{ fontSize: '0.65rem', color: 'var(--color-muted)', fontWeight: 600, marginTop: 1, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                 {lang === 'en' ? stat.labelEn : stat.label}
               </div>
             </div>
@@ -297,23 +297,24 @@ export default function LandingPage() {
         }}>
           {FEATURES.map((f, i) => (
             <div key={i} style={{
-              background: 'rgba(255,255,255,0.03)',
-              border: '1px solid rgba(255,255,255,0.07)',
+              background: 'var(--color-surface)',
+              border: '1px solid var(--color-border)',
               borderRadius: 18,
               padding: '28px 24px',
               position: 'relative',
               overflow: 'hidden',
               transition: 'all 0.3s ease',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.03)',
             }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLDivElement).style.background = 'rgba(255,255,255,0.06)';
-                (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(192,57,43,0.3)';
+                (e.currentTarget as HTMLDivElement).style.borderColor = 'var(--color-red)';
                 (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-4px)';
+                (e.currentTarget as HTMLDivElement).style.boxShadow = '0 10px 30px rgba(0,0,0,0.08)';
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLDivElement).style.background = 'rgba(255,255,255,0.03)';
-                (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(255,255,255,0.07)';
+                (e.currentTarget as HTMLDivElement).style.borderColor = 'var(--color-border)';
                 (e.currentTarget as HTMLDivElement).style.transform = 'translateY(0)';
+                (e.currentTarget as HTMLDivElement).style.boxShadow = '0 4px 12px rgba(0,0,0,0.03)';
               }}
             >
               <div style={{
@@ -381,15 +382,16 @@ export default function LandingPage() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 16 }}>
           {TESTIMONIALS.map((test, i) => (
             <div key={i} style={{
-              background: 'rgba(255,255,255,0.03)',
-              border: '1px solid rgba(255,255,255,0.07)',
+              background: 'var(--color-surface)',
+              border: '1px solid var(--color-border)',
               borderRadius: 18, padding: '28px 24px',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.02)',
             }}>
-              <div style={{ color: '#e74c3c', fontSize: '1.5rem', marginBottom: 12 }}>❝</div>
-              <p style={{ color: '#ccc', fontSize: '0.92rem', lineHeight: 1.7, marginBottom: 16, fontStyle: 'italic' }}>
+              <div style={{ color: 'var(--color-red)', fontSize: '1.5rem', marginBottom: 12 }}>❝</div>
+              <p style={{ color: 'var(--color-foreground)', opacity: 0.8, fontSize: '0.92rem', lineHeight: 1.7, marginBottom: 16, fontStyle: 'italic' }}>
                 {lang === 'en' ? test.textEn : test.text}
               </p>
-              <p style={{ color: '#555', fontSize: '0.82rem', fontWeight: 700 }}>— {test.author}</p>
+              <p style={{ color: 'var(--color-muted)', fontSize: '0.82rem', fontWeight: 700 }}>— {test.author}</p>
             </div>
           ))}
         </div>

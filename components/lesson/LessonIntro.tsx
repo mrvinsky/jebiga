@@ -48,12 +48,13 @@ export default function LessonIntro({
       {/* ── Hero Header ── */}
       <div style={{
         position: 'relative', overflow: 'hidden',
-        background: `linear-gradient(135deg, ${color}1a 0%, rgba(8,8,8,0.8) 100%)`,
-        border: `1.5px solid ${color}35`,
+        background: `linear-gradient(135deg, ${color}0d 0%, var(--color-surface) 100%)`,
+        border: `1.5px solid ${color}20`,
         borderRadius: 22,
         padding: '36px 28px 28px',
         marginBottom: 20,
         textAlign: 'center',
+        boxShadow: '0 8px 30px rgba(0,0,0,0.04)',
       }}>
         {/* Top color bar */}
         <div style={{
@@ -79,12 +80,12 @@ export default function LessonIntro({
             fontFamily: 'Space Grotesk, sans-serif',
             fontSize: '1.7rem', fontWeight: 900,
             letterSpacing: '-0.02em',
-            color: '#f5f5f5', margin: '0 0 10px',
+            color: 'var(--color-foreground)', margin: '0 0 10px',
           }}>
             {title}
           </h1>
           <p style={{
-            color: '#888', fontSize: '0.93rem',
+            color: 'var(--color-muted)', fontSize: '0.93rem',
             lineHeight: 1.65, maxWidth: 480,
             margin: '0 auto 18px',
           }}>
@@ -110,8 +111,8 @@ export default function LessonIntro({
       {/* ── Tabs ── */}
       <div style={{
         display: 'flex', gap: 4,
-        background: 'rgba(255,255,255,0.03)',
-        border: '1px solid rgba(255,255,255,0.07)',
+        background: 'var(--color-surface-2)',
+        border: '1px solid var(--color-border)',
         borderRadius: 14, padding: 5,
         marginBottom: 16,
       }}>
@@ -131,7 +132,7 @@ export default function LessonIntro({
                 background: activeTab === t.id
                   ? `${color}22`
                   : 'transparent',
-                color: activeTab === t.id ? color : '#555',
+                color: activeTab === t.id ? color : 'var(--color-muted)',
                 outline: activeTab === t.id ? `1.5px solid ${color}44` : '1.5px solid transparent',
               }}
             >
@@ -146,12 +147,13 @@ export default function LessonIntro({
 
       {/* ── Tab Content ── */}
       <div style={{
-        background: 'rgba(255,255,255,0.025)',
-        border: '1px solid rgba(255,255,255,0.07)',
+        background: 'var(--color-surface)',
+        border: '1px solid var(--color-border)',
         borderRadius: 18, padding: '24px',
         minHeight: 240,
         animation: 'slide-up 0.2s ease',
         marginBottom: 20,
+        boxShadow: '0 4px 15px rgba(0,0,0,0.02)',
       }} key={activeTab}>
 
         {/* VOCAB */}
@@ -163,17 +165,17 @@ export default function LessonIntro({
                   display: 'grid',
                   gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)',
                   gap: 8, padding: '14px 18px',
-                  background: 'rgba(255,255,255,0.03)',
-                  border: '1px solid rgba(255,255,255,0.06)',
+                  background: 'var(--color-surface-2)',
+                  border: '1px solid var(--color-border)',
                   borderRadius: 12,
                   transition: 'border-color 0.15s',
                 }}>
                   <div>
-                    <div style={{ fontWeight: 700, fontSize: '0.92rem', color: '#fff', marginBottom: 2 }}>{v.word}</div>
+                    <div style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--color-foreground)', marginBottom: 2 }}>{v.word}</div>
                     <div style={{ color: color, fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.02em', marginBottom: 6 }}>{v.pronunciation}</div>
                   </div>
                   <div>
-                    <div style={{ color: '#ddd', fontSize: '0.88rem' }}>
+                    <div style={{ color: 'var(--color-foreground)', opacity: 0.9, fontSize: '0.88rem' }}>
                       {streetMode && v.streetTranslation 
                         ? v.streetTranslation 
                         : (lang === 'en' && v.translationEn ? v.translationEn : v.translation)}
@@ -225,7 +227,7 @@ export default function LessonIntro({
                     </div>
                     <div style={{
                       fontWeight: 700, fontSize: '0.97rem',
-                      color: '#f0f0f0', marginBottom: 4,
+                      color: 'var(--color-foreground)', marginBottom: 4,
                       lineHeight: 1.4,
                     }}>
                       {line.serbian}
@@ -267,7 +269,7 @@ export default function LessonIntro({
               <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
                 {content.grammarRules.map((rule, ri) => (
                   <div key={ri}>
-                    <h4 style={{ margin: '0 0 8px', fontSize: '1rem', color: '#fff', fontWeight: 700 }}>
+                    <h4 style={{ margin: '0 0 8px', fontSize: '1rem', color: 'var(--color-foreground)', fontWeight: 700 }}>
                       {streetMode && rule.streetTitle 
                         ? rule.streetTitle 
                         : (lang === 'en' && rule.titleEn ? rule.titleEn : rule.title)}
@@ -280,8 +282,8 @@ export default function LessonIntro({
                     {rule.examples && (
                       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                         {rule.examples.map((ex, ei) => (
-                          <div key={ei} style={{ padding: '8px 12px', background: 'rgba(255,255,255,0.03)', borderRadius: 8, border: '1px solid rgba(255,255,255,0.05)' }}>
-                            <div style={{ fontWeight: 600, color: '#eee', fontSize: '0.85rem' }}>{ex.serbian}</div>
+                          <div key={ei} style={{ padding: '8px 12px', background: 'var(--color-surface-2)', borderRadius: 8, border: '1px solid var(--color-border)' }}>
+                            <div style={{ fontWeight: 600, color: 'var(--color-foreground)', fontSize: '0.85rem' }}>{ex.serbian}</div>
                             <div style={{ fontSize: '0.75rem', color: '#666' }}>
                               {streetMode && ex.streetTranslation 
                                 ? ex.streetTranslation 
@@ -296,7 +298,7 @@ export default function LessonIntro({
               </div>
             ) : content.grammarNote ? (
               <div>
-                <h4 style={{ margin: '0 0 8px', fontSize: '1rem', color: '#fff', fontWeight: 700 }}>
+                <h4 style={{ margin: '0 0 8px', fontSize: '1rem', color: 'var(--color-foreground)', fontWeight: 700 }}>
                   {streetMode && content.grammarNote.streetTitle 
                     ? content.grammarNote.streetTitle 
                     : (lang === 'en' && content.grammarNote.titleEn ? content.grammarNote.titleEn : content.grammarNote.title)}
@@ -332,7 +334,7 @@ export default function LessonIntro({
               </span>
             </div>
             <p style={{
-              fontSize: '0.92rem', color: '#aaa',
+              fontSize: '0.92rem', color: 'var(--color-foreground)', opacity: 0.8,
               lineHeight: 1.75,
               padding: '0 4px',
             }}>
@@ -357,7 +359,7 @@ export default function LessonIntro({
               width: activeTab === t.id ? 24 : 8,
               height: 8, borderRadius: 4,
               border: 'none', cursor: 'pointer',
-              background: activeTab === t.id ? color : '#2a2a2a',
+              background: activeTab === t.id ? color : 'var(--color-surface-3)',
               transition: 'all 0.25s ease',
               padding: 0,
             }}

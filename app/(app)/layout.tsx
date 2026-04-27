@@ -15,10 +15,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   }, [user, loading, router]);
 
   if (loading) return (
-    <div style={{ minHeight: '100dvh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#080808' }}>
+    <div style={{ minHeight: '100dvh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--color-background)' }}>
       <div style={{ textAlign: 'center' }}>
         <div style={{ fontSize: '3rem', marginBottom: 16, animation: 'fire 0.8s ease-in-out infinite' }}>💀</div>
-        <p style={{ color: '#555', fontFamily: 'Space Grotesk, sans-serif' }}>Loading...</p>
+        <p style={{ color: 'var(--color-muted)', fontFamily: 'var(--font-sans)' }}>Loading...</p>
       </div>
     </div>
   );
@@ -31,7 +31,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   const needsLangSelection = userData !== null && !userData.lang;
 
   return (
-    <div style={{ minHeight: '100dvh', paddingTop: 60, paddingBottom: 80, background: '#080808' }}>
+    <div style={{ minHeight: '100dvh', paddingTop: 60, paddingBottom: 80, background: 'var(--color-background)' }}>
       <Navbar />
       <main style={{ maxWidth: 900, margin: '0 auto', padding: '24px 16px' }}>
         {children}
