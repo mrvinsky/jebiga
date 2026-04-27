@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
 import { useAuth } from '@/context/AuthContext';
+import { useStreetMode } from '@/context/StreetModeContext';
 import { useLanguage, UI_TEXT } from '@/hooks/useLanguage';
 import { useLanguageContext } from '@/context/LanguageContext';
 
@@ -81,6 +82,7 @@ const TESTIMONIALS = [
 
 export default function LandingPage() {
   const { user } = useAuth();
+  const { streetMode, toggleStreetMode } = useStreetMode();
   const lang = useLanguage();
   const { toggleLang } = useLanguageContext();
   const t = UI_TEXT[lang];
@@ -117,13 +119,12 @@ export default function LandingPage() {
     <div style={{ minHeight: '100dvh', background: 'var(--color-background)', color: 'var(--color-foreground)', fontFamily: 'var(--font-sans)', overflowX: 'hidden' }}>
 
       {/* ── NAV ── */}
-      <nav style={{
+      <nav className="glass" style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
         padding: '10px 12px',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        background: 'rgba(253,252,248,0.85)',
-        backdropFilter: 'blur(20px)',
         borderBottom: '1px solid var(--color-border)',
+        borderRadius: 0, borderLeft: 'none', borderRight: 'none', borderTop: 'none',
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
           <span style={{ fontSize: '1.2rem' }}>🇷🇸</span>
@@ -132,6 +133,34 @@ export default function LandingPage() {
           </span>
         </div>
         <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+          {/* Street Mode Toggle */}
+          <button
+            onClick={toggleStreetMode}
+            style={{
+              background: streetMode ? 'rgba(39,174,96,0.1)' : 'var(--color-surface-2)',
+              border: `1.5px solid ${streetMode ? 'var(--color-neon)' : 'var(--color-border)'}`,
+              borderRadius: '8px',
+              padding: '6px 8px',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 4,
+              transition: 'all 0.2s',
+              boxShadow: streetMode ? '0 0 10px rgba(57,255,20,0.3)' : 'none',
+            }}
+            title={streetMode ? 'Standard Mod' : 'Street Mode 🔥'}
+          >
+            <span style={{ fontSize: '0.9rem', filter: streetMode ? 'none' : 'grayscale(1)' }}>🔥</span>
+            <span className="hide-xsmall" style={{ 
+              fontSize: '0.6rem', 
+              fontWeight: 800, 
+              color: streetMode ? 'var(--color-neon)' : 'var(--color-muted)',
+              letterSpacing: '0.05em'
+            }}>
+              STREET
+            </span>
+          </button>
+
           {/* Language Toggle */}
           <button 
             onClick={toggleLang}
@@ -170,10 +199,10 @@ export default function LandingPage() {
         display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
         textAlign: 'center', padding: '100px 16px 40px',
         position: 'relative',
-        background: `
-          radial-gradient(ellipse at 20% 40%, rgba(192,57,43,0.18) 0%, transparent 55%),
-          radial-gradient(ellipse at 80% 20%, rgba(0,61,165,0.15) 0%, transparent 55%),
-          radial-gradient(ellipse at 60% 80%, rgba(57,255,20,0.06) 0%, transparent 50%)
+        background: streetMode ? 'var(--color-background)' : `
+          radial-gradient(ellipse at 20% 40%, rgba(192,57,43,0.1) 0%, transparent 55%),
+          radial-gradient(ellipse at 80% 20%, rgba(41,128,185,0.08) 0%, transparent 55%),
+          var(--color-background)
         `,
       }}>
         {/* Flag stripe */}
@@ -404,7 +433,7 @@ export default function LandingPage() {
         textAlign: 'center',
         background: `
           radial-gradient(ellipse at 50% 50%, rgba(192,57,43,0.08) 0%, transparent 65%),
-          var(--color-background)
+          var(--color-surface)
         `,
         borderTop: '1px solid var(--color-border)',
       }}>

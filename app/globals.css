@@ -18,7 +18,7 @@
   --color-white: #ffffff;
 
   /* Neon / Street Mode (Optimized for Light) */
-  --color-neon: #27ae60; /* More natural green for light mode */
+  --color-neon: #27ae60; 
   --color-neon-dim: #219150;
   --color-neon-glow: rgba(39, 174, 96, 0.2);
   --color-neon-yellow: #f39c12;
@@ -38,6 +38,62 @@
   --radius-md: 12px;
   --radius-lg: 16px;
   --radius-xl: 24px;
+}
+
+:root {
+  --color-background: #fdfcf8;
+  --color-surface: #ffffff;
+  --color-surface-2: #f4f7f9;
+  --color-surface-3: #eef2f5;
+  --color-foreground: #2c3e50;
+  --color-muted: #7f8c8d;
+  --color-border: #e2e8f0;
+  --color-red: #c0392b;
+  --color-red-bright: #e74c3c;
+  --color-blue: #2980b9;
+  --color-blue-bright: #3498db;
+  --color-neon: #27ae60;
+  --color-success: #2ecc71;
+  --color-error: #e74c3c;
+  --color-xp: #f1c40f;
+}
+
+/* ==================== HYBRID THEME (STREET MODE OVERRIDES) ==================== */
+.street-mode {
+  --color-background: #080808 !important;
+  --color-surface: #111111 !important;
+  --color-surface-2: #161616 !important;
+  --color-surface-3: #1a1a1a !important;
+  --color-foreground: #f5f5f5 !important;
+  --color-muted: #888888 !important;
+  --color-border: #222222 !important;
+
+  /* Classic Neon for Street Mode */
+  --color-neon: #39ff14 !important;
+  --color-neon-dim: #2dcc10 !important;
+  --color-neon-glow: rgba(57, 255, 20, 0.15) !important;
+}
+
+.street-mode .glass {
+  background: rgba(15, 15, 15, 0.8);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.street-mode .glass-strong {
+  background: rgba(10, 10, 10, 0.95);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+}
+
+.street-mode input, .street-mode textarea {
+  background: #0a0a0a;
+  border-color: #222;
+}
+
+.street-mode input:focus, .street-mode textarea:focus {
+  border-color: var(--color-neon);
+  box-shadow: 0 0 0 3px var(--color-neon-glow);
 }
 
 /* ==================== BASE ==================== */
@@ -115,7 +171,7 @@ button, a.btn-primary, a.btn-neon, a.btn-ghost {
 
 /* ==================== GLASSMORPHISM ==================== */
 .glass {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(253, 252, 248, 0.85); /* Matches --color-background */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(0, 0, 0, 0.05);
@@ -134,7 +190,7 @@ button, a.btn-primary, a.btn-neon, a.btn-ghost {
 }
 
 .glass-strong {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(253, 252, 248, 0.95); /* Matches --color-background */
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(0, 0, 0, 0.08);
@@ -634,8 +690,8 @@ input, textarea {
 }
 
 input:focus, textarea:focus {
-  border-color: rgba(255,255,255,0.3);
-  box-shadow: 0 0 0 3px rgba(255,255,255,0.05);
+  border-color: var(--color-red);
+  box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.1);
 }
 
 input::placeholder, textarea::placeholder {

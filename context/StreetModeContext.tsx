@@ -1,5 +1,5 @@
 'use client';
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 
 interface StreetModeContextType {
   streetMode: boolean;
@@ -14,6 +14,18 @@ const StreetModeContext = createContext<StreetModeContextType>({
 export const StreetModeProvider = ({ children }: { children: ReactNode }) => {
   const [streetMode, setStreetMode] = useState(false);
   const toggleStreetMode = () => setStreetMode((prev) => !prev);
+
+  // Sync streetMode with document body class for global theme switching
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      if (streetMode) {
+        document.body.classList.add('street-mode');
+      } else {
+        document.body.classList.remove('street-mode');
+      }
+    }
+  }, [streetMode]);
+
   return (
     <StreetModeContext.Provider value={{ streetMode, toggleStreetMode }}>
       {children}

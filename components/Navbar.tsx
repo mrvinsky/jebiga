@@ -28,21 +28,23 @@ export default function Navbar() {
   return (
     <>
       {/* Top bar */}
-      <nav style={{ 
-        background: 'rgba(253,252,248,0.85)', 
+      <nav className="glass" style={{ 
         borderBottom: '1px solid var(--color-border)', 
         position: 'fixed', 
         top: 0, left: 0, right: 0, 
         zIndex: 100, 
-        backdropFilter: 'blur(20px)',
-        paddingTop: 'var(--sat)' // Notches for iOS
+        paddingTop: 'var(--sat)', // Notches for iOS
+        borderRadius: 0, // Top nav shouldn't have rounded corners at the screen edges
+        borderLeft: 'none',
+        borderRight: 'none',
+        borderTop: 'none',
       }}>
         <div style={{ maxWidth: 900, margin: '0 auto', padding: '0 12px', height: 60, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
           {/* Logo */}
           <Link href={user ? "/learn" : "/"} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 8 }}>
-            <span style={{ fontSize: '1.4rem', fontWeight: 900, fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '-0.02em' }}>
-              <span style={{ color: '#c0392b' }}>Jebiga</span>
-              {streetMode && <span style={{ color: '#39ff14', fontSize: '0.6rem', marginLeft: 6, padding: '2px 6px', border: '1px solid #39ff14', borderRadius: 4, verticalAlign: 'middle', animation: 'neon-pulse 2s ease-in-out infinite' }}>STREET</span>}
+            <span style={{ fontSize: '1.4rem', fontWeight: 900, fontFamily: 'var(--font-display)', letterSpacing: '-0.02em' }}>
+              <span style={{ color: 'var(--color-red)' }}>Jebiga</span>
+              {streetMode && <span style={{ color: 'var(--color-neon)', fontSize: '0.6rem', marginLeft: 6, padding: '2px 6px', border: '1px solid var(--color-neon)', borderRadius: 4, verticalAlign: 'middle', animation: 'neon-pulse 2s ease-in-out infinite' }}>STREET</span>}
             </span>
           </Link>
 
@@ -84,7 +86,7 @@ export default function Navbar() {
               <span className="hide-xsmall" style={{ 
                 fontSize: '0.65rem', 
                 fontWeight: 800, 
-                color: streetMode ? '#39ff14' : '#888',
+                color: streetMode ? 'var(--color-neon)' : 'var(--color-muted)',
                 letterSpacing: '0.05em'
               }}>
                 STREET
@@ -108,7 +110,7 @@ export default function Navbar() {
               title={lang === 'tr' ? 'Switch to English' : 'Türkçeye Geç'}
             >
               <span style={{ fontSize: '1rem' }}>{lang === 'tr' ? '🇹🇷' : '🇬🇧'}</span>
-              <span className="hide-xsmall" style={{ fontSize: '0.65rem', fontWeight: 800, color: '#888' }}>{lang.toUpperCase()}</span>
+              <span className="hide-xsmall" style={{ fontSize: '0.65rem', fontWeight: 800, color: 'var(--color-muted)' }}>{lang.toUpperCase()}</span>
             </button>
 
             {/* User avatar */}
@@ -127,17 +129,19 @@ export default function Navbar() {
       </nav>
 
       {/* Bottom mobile nav */}
-      <nav className="mobile-nav-only" style={{ 
+      <nav className="mobile-nav-only glass-strong" style={{ 
         position: 'fixed', 
         bottom: 0, left: 0, right: 0, 
         zIndex: 100, 
-        background: 'rgba(253,252,248,0.97)', 
         borderTop: '1px solid var(--color-border)', 
-        backdropFilter: 'blur(20px)', 
         display: 'flex', 
         justifyContent: 'space-around', 
         padding: '8px 0',
-        paddingBottom: 'calc(8px + var(--sab))' // Bottom safe area (home indicator)
+        paddingBottom: 'calc(8px + var(--sab))', // Bottom safe area (home indicator)
+        borderRadius: 0,
+        borderLeft: 'none',
+        borderRight: 'none',
+        borderBottom: 'none',
       }}>
         {[
           { href: '/learn', icon: '🗺️', label: t.learn },
