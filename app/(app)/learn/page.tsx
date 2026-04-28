@@ -134,8 +134,8 @@ export default function LearnPage() {
                 }}
                 style={{
                   width: '100%', textAlign: 'left', cursor: (isSetUnlocked || isProLocked) ? 'pointer' : 'not-allowed',
-                  display: 'flex', alignItems: 'center', gap: 16,
-                  padding: '20px 24px',
+                  display: 'flex', alignItems: 'center', gap: 12,
+                  padding: 'clamp(12px, 3vw, 20px) clamp(14px, 3vw, 24px)',
                   background: isFullyDone
                     ? 'rgba(46,204,113,0.08)'
                     : isExpanded
@@ -149,9 +149,10 @@ export default function LearnPage() {
               >
                 {/* Emoji icon */}
                 <div style={{
-                  width: 52, height: 52, borderRadius: 14, flexShrink: 0,
+                  width: 'clamp(38px, 8vw, 52px)', height: 'clamp(38px, 8vw, 52px)',
+                  borderRadius: 12, flexShrink: 0,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontSize: '1.5rem',
+                  fontSize: 'clamp(1.1rem, 4vw, 1.5rem)',
                   background: `${set.color}18`,
                   border: `2px solid ${isFullyDone ? '#00e676' : set.color}44`,
                   boxShadow: isExpanded ? `0 0 20px ${set.color}22` : 'none',
@@ -164,14 +165,14 @@ export default function LearnPage() {
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6, flexWrap: 'wrap' }}>
                     <h2 style={{
-                      fontFamily: 'Space Grotesk, sans-serif',
-                      fontSize: '1.05rem', fontWeight: 800,
+                      fontFamily: 'var(--font-display)',
+                      fontSize: 'clamp(0.88rem, 3vw, 1.05rem)', fontWeight: 800,
                       color: isSetUnlocked ? 'var(--color-foreground)' : 'var(--color-muted)',
                       margin: '0 0 4px',
                     }}>
                       {streetMode ? set.streetTitle : (lang === 'en' && set.titleEn ? set.titleEn : set.title)}
                     </h2>
-                    <p style={{ margin: 0, fontSize: '0.78rem', color: isSetUnlocked ? 'var(--color-muted)' : '#ccc', lineHeight: 1.4 }}>
+                    <p style={{ margin: 0, fontSize: 'clamp(0.68rem, 2.5vw, 0.78rem)', color: isSetUnlocked ? 'var(--color-muted)' : '#ccc', lineHeight: 1.4 }}>
                       {streetMode ? set.streetDescription : (lang === 'en' && set.descriptionEn ? set.descriptionEn : set.description)}
                     </p>
                     {isProLocked && (

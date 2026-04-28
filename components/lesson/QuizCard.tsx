@@ -135,10 +135,11 @@ export default function QuizCard({
 
         {/* Question text */}
         <p style={{
-          fontSize: '1.15rem', fontWeight: 700,
+          fontSize: 'clamp(1rem, 3.5vw, 1.15rem)', fontWeight: 700,
           fontFamily: 'var(--font-display)',
           color: 'var(--color-foreground)', lineHeight: 1.45,
           marginBottom: 28,
+          wordBreak: 'break-word',
         }}>
           {prompt}
         </p>
@@ -148,6 +149,14 @@ export default function QuizCard({
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             {((lang === 'en' && question.optionsEn) ? question.optionsEn : (question.options || [])).map((opt, idx) => {
               const baseAnswer = (lang === 'en' && question.answerEn) ? question.answerEn : question.answer;
+              const normOpt = (s: string) => s.toLowerCase()
+                .replace(/[đĐ]/g, 'd').replace(/[ćĆ]/g, 'c').replace(/[čČ]/g, 'c')
+                .replace(/[šŠ]/g, 's').replace(/[žŽ]/g, 'z')
+                .replace(/[üÜ]/g, 'u').replace(/[öÖ]/g, 'o').replace(/[ğĞ]/g, 'g')
+                .replace(/[çÇ]/g, 'c').replace(/[ıİ]/g, 'i')
+                .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                .replace(/[.,!?;:'"()\-]/g, '').trim().replace(/\s+/g, ' ');
+              const isThisCorrect = normOpt(opt) === normOpt(baseAnswer);
               let bg = 'var(--color-surface)';
               let borderCol = 'var(--color-border)';
               let textColor = 'var(--color-foreground)';
@@ -155,13 +164,13 @@ export default function QuizCard({
               let iconColor = 'var(--color-muted)';
 
               if (status !== 'idle') {
-                if (opt === baseAnswer) {
+                if (isThisCorrect) {
                   bg = 'rgba(46,204,113,0.1)';
                   borderCol = 'var(--color-success)';
                   textColor = 'var(--color-foreground)';
                   iconBg = 'var(--color-success)';
                   iconColor = '#fff';
-                } else if (opt === selected && status === 'wrong') {
+                } else if (normOpt(opt) === normOpt(selected ?? '') && status === 'wrong') {
                   bg = 'rgba(231,76,60,0.1)';
                   borderCol = 'var(--color-error)';
                   textColor = 'var(--color-error)';
@@ -176,8 +185,8 @@ export default function QuizCard({
                 iconColor = '#fff';
               }
 
-              const isCorrectAnswer = status !== 'idle' && opt === baseAnswer;
-              const isWrongAnswer = status === 'wrong' && opt === selected;
+              const isCorrectAnswer = status !== 'idle' && isThisCorrect;
+              const isWrongAnswer = status === 'wrong' && normOpt(opt) === normOpt(selected ?? '');
 
               return (
                 <button
@@ -186,19 +195,20 @@ export default function QuizCard({
                   onClick={() => status === 'idle' && onSelect(opt)}
                   disabled={status !== 'idle'}
                   style={{
-                    display: 'flex', alignItems: 'center', gap: 14,
-                    padding: '14px 18px',
+                    display: 'flex', alignItems: 'center', gap: 12,
+                    padding: 'clamp(10px, 2.5vw, 14px) clamp(12px, 3vw, 18px)',
                     borderRadius: 12,
                     border: `1.5px solid ${borderCol}`,
                     background: bg,
                     cursor: status !== 'idle' ? 'default' : 'pointer',
                     color: textColor,
-                    fontFamily: 'Space Grotesk, sans-serif',
+                    fontFamily: 'var(--font-display)',
                     fontWeight: 600,
-                    fontSize: '0.95rem',
+                    fontSize: 'clamp(0.85rem, 2.5vw, 0.95rem)',
                     textAlign: 'left',
                     transition: 'all 0.15s ease',
                     transform: isCorrectAnswer ? 'scale(1.01)' : 'scale(1)',
+                    wordBreak: 'break-word',
                   }}
                   onMouseEnter={e => {
                     if (status === 'idle' && opt !== selected) {

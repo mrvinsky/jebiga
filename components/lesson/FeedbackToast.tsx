@@ -20,11 +20,29 @@ export default function FeedbackToast({
   const t = UI_TEXT[lang];
 
   return (
-    <div className={`animate-slide-up ${status === 'correct' ? 'toast-success' : 'toast-error'}`} style={{ marginTop: 16, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-      <div>
-        <div style={{ fontWeight: 800, fontFamily: 'var(--font-display)', marginBottom: 4 }}>{message}</div>
+    <div
+      className={`animate-slide-up ${status === 'correct' ? 'toast-success' : 'toast-error'}`}
+      style={{
+        marginTop: 16,
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        gap: 12,
+      }}
+    >
+      <div style={{ flex: '1 1 180px', minWidth: 0 }}>
+        <div style={{
+          fontWeight: 800,
+          fontFamily: 'var(--font-display)',
+          marginBottom: 4,
+          fontSize: 'clamp(0.82rem, 3vw, 0.95rem)',
+          wordBreak: 'break-word',
+        }}>
+          {message}
+        </div>
         {status === 'wrong' && correctAnswer && (
-          <div style={{ fontSize: '0.82rem', color: 'var(--color-foreground)', opacity: 0.7 }}>
+          <div style={{ fontSize: '0.8rem', color: 'var(--color-foreground)', opacity: 0.75, wordBreak: 'break-word' }}>
             {t.correctAnswer} <strong style={{ color: 'var(--color-foreground)' }}>{correctAnswer}</strong>
           </div>
         )}
@@ -33,7 +51,12 @@ export default function FeedbackToast({
         className={status === 'correct' ? 'btn-primary' : 'btn-ghost'}
         onClick={onNext}
         id="next-btn"
-        style={{ flexShrink: 0 }}
+        style={{
+          flexShrink: 0,
+          minWidth: 'min(100%, 120px)',
+          padding: '12px 20px',
+          fontSize: '0.9rem',
+        }}
       >
         {isLastQuestion ? t.finish : t.next}
       </button>

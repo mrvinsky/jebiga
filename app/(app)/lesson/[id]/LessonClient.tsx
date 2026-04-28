@@ -69,9 +69,22 @@ export default function LessonClient({ id }: { id: string }) {
   const normalise = (s: string) =>
     s
       .toLowerCase()
-      .replace(/[đÐ]/gi, 'd')
+      // Serbian specific replacements (before NFD normalize)
+      .replace(/[đĐ]/g, 'd')
+      .replace(/[ćĆ]/g, 'c')
+      .replace(/[čČ]/g, 'c')
+      .replace(/[šŠ]/g, 's')
+      .replace(/[žŽ]/g, 'z')
+      // Turkish specific replacements
+      .replace(/[üÜ]/g, 'u')
+      .replace(/[öÖ]/g, 'o')
+      .replace(/[ğĞ]/g, 'g')
+      .replace(/[çÇ]/g, 'c')
+      .replace(/[ıİ]/g, 'i')
+      // NFD normalize remaining accented chars
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '')
+      // Strip punctuation and normalize whitespace
       .replace(/[.,!?;:'"()\-]/g, '')
       .trim()
       .replace(/\s+/g, ' ');
@@ -80,6 +93,7 @@ export default function LessonClient({ id }: { id: string }) {
     const userAnswer = q.type === 'multiple-choice' ? selected : inputVal;
     if (!userAnswer) return;
     const correctAnswer = (lang === 'en' && q.answerEn) ? q.answerEn : q.answer;
+    // Use normalise for both types — prevents mismatches from whitespace, case, diacritics
     const correct = normalise(userAnswer) === normalise(correctAnswer);
     setStatus(correct ? 'correct' : 'wrong');
     if (!correct) setMistakes(m => m + 1);

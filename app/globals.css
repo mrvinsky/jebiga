@@ -149,6 +149,24 @@ img, video, canvas, svg {
   }
 }
 
+@media (max-width: 420px) {
+  /* On very small screens, hide tab text labels — show emoji only */
+  .tab-label {
+    display: none !important;
+  }
+
+  /* Compact lesson card on small phones */
+  .card-lesson {
+    padding: 18px 16px !important;
+  }
+
+  /* Answer options: smaller padding and wrap text */
+  .answer-option {
+    padding: 12px 14px !important;
+    font-size: 0.88rem !important;
+  }
+}
+
 @media (max-width: 480px) {
   .hide-xsmall { display: none !important; }
   

@@ -18,10 +18,10 @@ interface Props {
 type Tab = 'vocab' | 'dialogue' | 'grammar' | 'culture';
 
 const TAB_CONFIG: { id: Tab; icon: string; label: string; labelEn: string; streetLabel: string }[] = [
-  { id: 'vocab',    icon: '📚', label: 'Kelimeler',    labelEn: 'Vocabulary', streetLabel: 'Reči' },
-  { id: 'dialogue', icon: '💬', label: 'Diyalog',      labelEn: 'Dialogue',   streetLabel: 'Dijalog' },
-  { id: 'grammar',  icon: '🧠', label: 'Dilbilgisi',   labelEn: 'Grammar',    streetLabel: 'Gramatika' },
-  { id: 'culture',  icon: '🇷🇸', label: 'Kültür Notu', labelEn: 'Culture',    streetLabel: 'Balkanska Mudrost' },
+  { id: 'vocab',    icon: '📚', label: 'Kelimeler', labelEn: 'Words',    streetLabel: 'Reči' },
+  { id: 'dialogue', icon: '💬', label: 'Diyalog',   labelEn: 'Chat',     streetLabel: 'Razgovor' },
+  { id: 'grammar',  icon: '🧠', label: 'Gramer',    labelEn: 'Grammar',  streetLabel: 'Gramatika' },
+  { id: 'culture',  icon: '🇷🇸', label: 'Kültür',    labelEn: 'Culture',  streetLabel: 'Balkan' },
 ];
 
 export default function LessonIntro({
@@ -115,6 +115,7 @@ export default function LessonIntro({
         border: '1px solid var(--color-border)',
         borderRadius: 14, padding: 5,
         marginBottom: 16,
+        overflowX: 'auto',
       }}>
         {availableTabs.map(t => {
           const label = streetMode ? t.streetLabel : (lang === 'en' ? t.labelEn : t.label);
@@ -123,8 +124,9 @@ export default function LessonIntro({
               key={t.id}
               onClick={() => setActiveTab(t.id)}
               style={{
-                flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center',
-                gap: 6, padding: '10px 8px',
+                flex: '1 0 auto',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                gap: 5, padding: '10px 6px',
                 borderRadius: 10, border: 'none', cursor: 'pointer',
                 transition: 'all 0.2s ease',
                 background: activeTab === t.id
@@ -132,10 +134,15 @@ export default function LessonIntro({
                   : 'transparent',
                 color: activeTab === t.id ? color : 'var(--color-muted)',
                 outline: activeTab === t.id ? `1.5px solid ${color}44` : '1.5px solid transparent',
+                minWidth: 44,
               }}
             >
-              <span>{t.icon}</span>
-              <span style={{ display: 'block' }}>
+              <span style={{ fontSize: '1.1rem' }}>{t.icon}</span>
+              <span style={{
+                fontSize: '0.72rem',
+                fontWeight: 700,
+                whiteSpace: 'nowrap',
+              }} className="tab-label">
                 {label}
               </span>
             </button>
