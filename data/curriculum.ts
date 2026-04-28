@@ -870,6 +870,53 @@ export const curriculum: LessonSet[] = [
       },
     ],
   },
+
+
+  // ─── KÜFÜRLER & ARGO (PRO) ────────────────────────────────────────────────
+  {
+    id: 'swearing', title: 'Küfürler & Argo', titleEn: 'Swearing & Slang',
+    streetTitle: 'Pravi Beogradski Rečnik 💀',
+    description: 'Gerçek Sırpça küfürler ve sokak argosu. Yalnızca yetişkinlere.',
+    descriptionEn: 'Real Serbian swear words and street slang. Adults only.',
+    streetDescription: 'Bez cenzure — pravi jezik ulice.',
+    emoji: '🤬', color: '#8e44ad',
+    isPro: true,
+    lessons: [
+      {
+        id: 'swear-1', title: 'Hafif Argo', titleEn: 'Mild Slang', streetTitle: 'Lagan početak', emoji: '😤', xpReward: 35,
+        questions: [
+          { id: 'sw1-q1', type: 'multiple-choice', prompt: '"Jebiga" ne anlama gelir?', promptEn: 'What does "Jebiga" mean?', streetPrompt: 'Brate — "Jebiga" ne demek?', answer: 'Ne yaparsın, oldu işte / Lanet olsun', answerEn: 'What can you do / Damn it', options: ['Merhaba!', 'Ne yaparsın, oldu işte / Lanet olsun', 'Görüşürüz', 'Tamam anlaştık'], optionsEn: ['Hello!', 'What can you do / Damn it', 'See you', 'Deal'] },
+          { id: 'sw1-q2', type: 'multiple-choice', prompt: '"Majmune!" kime denir?', promptEn: 'Who do you call "Majmune!"?', streetPrompt: 'Biri aptalca bir şey yaptı — ne dersin?', answer: 'Aptal / Maymun (hakaret)', answerEn: 'Idiot / Monkey (insult)', options: ['Arkadaşa övgü', 'Aptal / Maymun (hakaret)', 'Sevgiliye', 'Patrona'], optionsEn: ['Praise to a friend', 'Idiot / Monkey (insult)', 'To a lover', 'To the boss'] },
+          { id: 'sw1-q3', type: 'translate', prompt: '"Çık git!" anlamına gelen argo sözcük nedir?', promptEn: 'What is the slang word meaning "Get lost!"?', streetPrompt: 'Birini kovmak istiyorsun — ne dersin?', answer: 'Odjebi', hint: 'od + jebi', hintEn: 'od + jebi' },
+          { id: 'sw1-q4', type: 'multiple-choice', prompt: '"Glupost" ne anlama gelir?', promptEn: 'What does "Glupost" mean?', streetPrompt: 'Pazi — "Glupost" nedir?', answer: 'Aptallık / Saçmalık', answerEn: 'Stupidity / Nonsense', options: ['Zeka', 'Aptallık / Saçmalık', 'Macera', 'Haber'], optionsEn: ['Intelligence', 'Stupidity / Nonsense', 'Adventure', 'News'] },
+          { id: 'sw1-q5', type: 'translate', prompt: '"Sikter!" Türkçede ne demek, Sırpçada nasıl denir?', promptEn: 'How do you say "Get lost!" (strong) in Serbian?', streetPrompt: 'En güçlü "defol" nasıl?', answer: 'Jebem ti mater', hint: 'En ağır karşılık', hintEn: 'The strongest equivalent' },
+          { id: 'sw1-q6', type: 'multiple-choice', prompt: '"Bre!" hangi durumda kullanılır?', promptEn: 'When is "Bre!" used?', streetPrompt: 'Kapiram — "Bre!" ne zaman dersin?', answer: 'Dikkat çekmek veya vurgu için', answerEn: 'To get attention or for emphasis', options: ['Teşekkür için', 'Dikkat çekmek veya vurgu için', 'Özür dilemek için', 'Yön sormak için'], optionsEn: ['To thank', 'To get attention or for emphasis', 'To apologize', 'To ask directions'] },
+        ],
+      },
+      {
+        id: 'swear-2', title: 'Orta Ağırlık', titleEn: 'Medium Weight', streetTitle: 'Srednji nivo, brate', emoji: '🤬', xpReward: 40,
+        questions: [
+          { id: 'sw2-q1', type: 'multiple-choice', prompt: '"Kurac!" hangi anlamda kullanılır?', promptEn: 'What does "Kurac!" express?', streetPrompt: 'Hayal kırıklığı veya red için ne dersin?', answer: 'Hayır! / Sıfır! / Hiç! (güçlü ret)', answerEn: 'No way! / Nothing! (strong refusal)', options: ['Evet tabii', 'Hayır! / Sıfır! / Hiç! (güçlü ret)', 'Belki', 'Hemen geliyorum'], optionsEn: ['Of course yes', 'No way! / Nothing! (strong refusal)', 'Maybe', 'Coming right away'] },
+          { id: 'sw2-q2', type: 'translate', prompt: '"Glupo govno" kelimesini Türkçeye çevir', promptEn: 'Translate "Glupo govno"', streetPrompt: 'Biri seni çok sinirletti — ne dersin?', answer: 'Aptal pislik / Salak herif', answerEn: 'Stupid piece of crap', hint: 'glupo = aptal, govno = pislik', hintEn: 'glupo = stupid, govno = crap' },
+          { id: 'sw2-q3', type: 'multiple-choice', prompt: '"Pička materina!" en yakın Türkçe karşılığı hangisi?', promptEn: 'What is the closest meaning of "Pička materina!"?', streetPrompt: 'En ağır Sırpça küfür — ne demek?', answer: 'Çok ağır bir hakaret (anaya dair)', answerEn: 'Very heavy insult (mother-related)', options: ['Bravo!', 'Çok ağır bir hakaret (anaya dair)', 'Günaydın', 'Şerefe!'], optionsEn: ['Bravo!', 'Very heavy insult (mother-related)', 'Good morning', 'Cheers!'] },
+          { id: 'sw2-q4', type: 'translate', prompt: '"İşe yaramaz biri" demek için ne kullanırsın?', promptEn: 'What word means "useless person" in street Serbian?', streetPrompt: 'Bekar adam hiçbir şey yapamıyor — ne dersin?', answer: 'Besposličar', hint: 'bes + posao = işsiz', hintEn: 'bes + posao = without work' },
+          { id: 'sw2-q5', type: 'multiple-choice', prompt: '"Šupak" ne anlama gelir?', promptEn: 'What does "Šupak" mean?', streetPrompt: 'Biri seni ihanete uğrattı — ne dersin?', answer: 'Kaltak / İbne (hakaret)', answerEn: 'Asshole (insult)', options: ['Kahraman', 'Kaltak / İbne (hakaret)', 'Çok akıllı', 'Güzel adam'], optionsEn: ['Hero', 'Asshole (insult)', 'Very smart', 'Handsome man'] },
+          { id: 'sw2-q6', type: 'multiple-choice', prompt: '"Nabijem te na kurac" ne anlama gelir (kontekst)?', promptEn: 'What does "Nabijem te na kurac" express?', streetPrompt: 'Kafanaya girdik — en ağır tehdit?', answer: 'Çok ağır tehdit / hakaret', answerEn: 'Very heavy threat / insult', options: ['Seni seviyorum', 'Çok ağır tehdit / hakaret', 'İyi geceler', 'Teşekkürler'], optionsEn: ['I love you', 'Very heavy threat / insult', 'Good night', 'Thank you'] },
+        ],
+      },
+      {
+        id: 'swear-3', title: 'Sokak Dili', titleEn: 'Street Talk', streetTitle: 'Čist ulični jezik', emoji: '🗣️', xpReward: 45,
+        questions: [
+          { id: 'sw3-q1', type: 'multiple-choice', prompt: '"Lud si!" ne anlama gelir?', promptEn: 'What does "Lud si!" mean?', streetPrompt: 'Biri çıldırmış gibi davranıyor — ne dersin?', answer: 'Deli misin! / Çıldırdın!', answerEn: 'Are you crazy! / You are nuts!', options: ['Ne kadar akıllısın!', 'Deli misin! / Çıldırdın!', 'Çok güzel!', 'Yavaşla!'], optionsEn: ['How smart you are!', 'Are you crazy! / You are nuts!', 'So beautiful!', 'Slow down!'] },
+          { id: 'sw3-q2', type: 'translate', prompt: '"Marš!" ne anlama gelir ve ne zaman kullanılır?', promptEn: 'What does "Marš!" mean and when is it used?', streetPrompt: 'Birisini çok sert bir şekilde kovmak?', answer: 'Defol! / Çekil karşımdan!', answerEn: 'Get lost! / Get out of my sight!', hint: 'Alman askeri komutundan gelir', hintEn: 'From German military command' },
+          { id: 'sw3-q3', type: 'multiple-choice', prompt: '"Fukara" kelimesi Sırpçada ne anlama gelir?', promptEn: 'What does "Fukara" mean in Serbian?', streetPrompt: 'Düşkün biri için ne dersin?', answer: 'Fakir / Sefil / Zavallı', answerEn: 'Poor / Wretched / Pitiful', options: ['Zengin', 'Fakir / Sefil / Zavallı', 'Güçlü', 'Mutlu'], optionsEn: ['Rich', 'Poor / Wretched / Pitiful', 'Strong', 'Happy'] },
+          { id: 'sw3-q4', type: 'multiple-choice', prompt: '"Seljak!" kime denir?', promptEn: 'Who do you call "Seljak!"?', streetPrompt: 'Kaba davranan biri geldi — ne dersin?', answer: 'Görgüsüz / Kıro (hakaret)', answerEn: 'Redneck / Peasant (insult)', options: ['Şehirli sofistike biri', 'Görgüsüz / Kıro (hakaret)', 'Çok zeki biri', 'Başarılı işadamı'], optionsEn: ['Sophisticated city person', 'Redneck / Peasant (insult)', 'Very smart person', 'Successful businessman'] },
+          { id: 'sw3-q5', type: 'translate', prompt: 'Birini "tam bir salak" olarak tanımlamak için ne dersin?', promptEn: 'How do you call someone "a complete idiot" in Serbian slang?', streetPrompt: 'En ağır "aptal" hakareti?', answer: 'Kreten', hint: 'Fransızcadan geçmiş', hintEn: 'Borrowed from French' },
+          { id: 'sw3-q6', type: 'multiple-choice', prompt: '"Pare ili život!" ne anlama gelir?', promptEn: 'What does "Pare ili život!" mean?', streetPrompt: 'Film sahnesi — haydut ne diyor?', answer: 'Para ya da can! (tehdit)', answerEn: 'Money or your life! (threat)', options: ['Para ver hayat kazan (yarışma)', 'Para ya da can! (tehdit)', 'Para önemli değil', 'Hayat güzel'], optionsEn: ['Give money win life (game show)', 'Money or your life! (threat)', 'Money does not matter', 'Life is beautiful'] },
+        ],
+      },
+    ],
+  },
 ];
 
 export const getAllLessons = () =>

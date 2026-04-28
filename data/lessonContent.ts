@@ -5,6 +5,7 @@ import { lessonContentC } from './lessonContentC';
 import { lessonContentD } from './lessonContentD';
 import { lessonContentE } from './lessonContentE';
 import { lessonContentF } from './lessonContentF';
+import { lessonContentG } from './lessonContentG';
 
 export type { LessonContent, VocabItem, DialogueLine } from './contentTypes';
 
@@ -15,6 +16,7 @@ export const lessonContent: Record<string, LessonContent> = {
   ...lessonContentD,
   ...lessonContentE,
   ...lessonContentF,
+  ...lessonContentG,
 };
 
 export const getLessonContent = (lessonId: string): LessonContent | null =>
