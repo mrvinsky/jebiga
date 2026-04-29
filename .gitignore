@@ -48,3 +48,6 @@ firebase-debug.log
 # capacitor
 /ios/App/App/public/
 /android/app/src/main/assets/public/
+
+# email tools
+/mail-tools/

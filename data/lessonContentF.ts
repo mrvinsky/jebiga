@@ -41,6 +41,7 @@ export const lessonContentF: Record<string, LessonContent> = {
       bodyEn: 'After "Igrati", you use the name of the sport or game: "Igram fudbal", "Igram igrice".'
     },
     culturalTip: "Sırplar tam bir 'sportska nacija' (spor milleti). Özellikle basketbolda dünyayı sallarlar. Bir Sırp'a Novak Đoković dersen akan sular durur.",
+    culturalTipEn: "Serbians are a true 'sportska nacija' (sports nation). They rock the world, especially in basketball. If you mention Novak Đoković to a Serb, everything else stops.",
   },
   'tech-1': {
     scenario: "Telefonun şarjı bitti ya da mesaj bekliyorsun. Modern hayatın dertleri Sırpça da aynı kanka.",
@@ -73,6 +74,7 @@ export const lessonContentF: Record<string, LessonContent> = {
       { speaker: 'B', serbian: 'Šifra je "beograd2024".', translation: 'Şifre "beograd2024".', translationEn: 'The password is "beograd2024".' },
     ],
     culturalTip: "Sırbistan'da internet hızı fena değildir kanka ama bazı kafelerde 'şifre yok, birbirinizle konuşun' tabelası görürsen şaşırma.",
+    culturalTipEn: "Internet speed in Serbia is not bad, mate, but don't be surprised if you see a 'no Wi-Fi, talk to each other' sign in some cafes.",
   },
   'work-1': {
     scenario: "Yeni tanıştığın birine ne iş yaptığını anlatıyorsun. Belki de bir iş bağlantısı kurarsın, kim bilir?",
@@ -105,6 +107,7 @@ export const lessonContentF: Record<string, LessonContent> = {
       { speaker: 'B', serbian: 'Ne mogu sada, imam sastanak.', translation: 'Şimdi çıkamam, toplantım var.', translationEn: 'I can\'t right now, I have a meeting.' },
     ],
     culturalTip: "Sırp ofislerinde 'pauza za kafu' (kahve molası) kutsaldır kanka. O mola sırasında iş konuşulmaz, sadece muhabbet edilir.",
+    culturalTipEn: "In Serbian offices, the 'pauza za kafu' (coffee break) is sacred. During that break, no business is discussed, only small talk.",
   },
   'colors-1': {
     scenario: "Dünyayı renklendirme vakti. Kırmızı, siyah, beyaz — favori rengin hangisi?",
@@ -122,6 +125,7 @@ export const lessonContentF: Record<string, LessonContent> = {
       { speaker: 'B', serbian: 'Crna, naravno.', translation: 'Siyah, tabii ki.', translationEn: 'Black, of course.' },
     ],
     culturalTip: "Beograd kelimesi 'Beo' (Beyaz) ve 'Grad' (Şehir) kelimelerinden gelir. Yani Belgrad harfiyen 'Beyaz Şehir' demektir kanka.",
+    culturalTipEn: "The word Beograd comes from 'Beo' (White) and 'Grad' (City). So Belgrade literally means 'White City', mate.",
   },
   'surv-1': {
     scenario: "Sırp bürokrasisiyle tanışmaya hazır mısın? Efsanevi FT1P (Fali Ti Jedan Papir) kuralına yakalanmadan işini halletmelisin.",
@@ -138,6 +142,7 @@ export const lessonContentF: Record<string, LessonContent> = {
       { speaker: 'B', serbian: 'Fali ti pečat. Idi na drugi šalter.', translation: 'Mührün eksik. Diğer gişeye git.', translationEn: 'You are missing a stamp. Go to the other counter.' },
     ],
     culturalTip: "FT1P (Fali Ti Jedan Papir) bir Sırp atasözü gibidir kanka: 'Bir evrakın eksik'. Ne kadar hazırlıklı gidersen git, o eksik evrak mutlaka çıkar.",
+    culturalTipEn: "FT1P (Fali Ti Jedan Papir) is like a Serbian proverb: 'You're missing one document'. No matter how prepared you are, that missing paper will always pop up.",
   },
   'surv-2': {
     scenario: "Balkanların en büyük korkusuyla yüzleşme vakti: PROMAJA. Camları kapat kanka, yoksa halin harap.",
@@ -154,6 +159,7 @@ export const lessonContentF: Record<string, LessonContent> = {
       { speaker: 'B', serbian: 'Odmah! Ne želim da budem bolestan.', translation: 'Hemen! Hasta olmak istemiyorum.', translationEn: 'Right away! I don\'t want to be sick.' },
     ],
     culturalTip: "Sırbistan'da promaja (cereyan) öldürücü kabul edilir kanka. Karşılıklı iki cam açıksa bir Sırp asla o odada oturmaz. Hemen kapatır!",
+    culturalTipEn: "In Serbia, promaja (draught) is considered lethal, mate. If two opposing windows are open, a Serb will never sit in that room. They'll close them immediately!",
   },
   'sport-1': {
     scenario: "Belgrad'da derbi günü! Kızılyıldız mı yoksa Partizan mı? Tarafını seç ama dikkatli ol, ortam gergin.",
@@ -170,6 +176,7 @@ export const lessonContentF: Record<string, LessonContent> = {
       { speaker: 'B', serbian: 'Samo Zvezda, brate!', translation: 'Sadece Kızılyıldız, kardeşim!', translationEn: 'Only Red Star, brother!' },
     ],
     culturalTip: "Večiti Derbi (Ebedi Derbi) dünyanın en ateşli derbilerinden biridir. Kızılyıldız (Crvena Zvezda) ve Partizan taraftarları arasındaki rekabet efsanedir.",
+    culturalTipEn: "The Večiti Derbi (Eternal Derby) is one of the most passionate derbies in the world. The rivalry between Red Star and Partizan fans is legendary.",
   },
   'sport-2': {
     scenario: "Mahalle sahasında basketbola çağrıldın. Sırp basketbol ekolüyle tanışma vakti, sakın potayı kırma kanka.",
@@ -186,6 +193,7 @@ export const lessonContentF: Record<string, LessonContent> = {
       { speaker: 'B', serbian: 'Bravo za koš!', translation: 'Basket için tebrikler!', translationEn: 'Bravo for the basket!' },
     ],
     culturalTip: "Sırbistan'da basketbol bir dindir kanka. Her mahallede bir pota vardır ve herkes çok iyi oynar. Dikkat et, seni fena geçebilirler.",
+    culturalTipEn: "Basketball is a religion in Serbia, mate. There's a hoop in every neighborhood and everyone plays extremely well. Watch out, they can beat you easily.",
   },
   'rom-1': {
     scenario: "Birine tatlı sözler söylemek istiyorsun. Sırpça romantizm biraz damardır kanka, hazır mısın?",
@@ -217,5 +225,6 @@ export const lessonContentF: Record<string, LessonContent> = {
       { speaker: 'B', serbian: 'Smiri se, nije bilo ništa loše.', translation: 'Sakin ol, kötü bir şey olmadı.', translationEn: 'Calm down, nothing bad happened.' },
     ],
     culturalTip: "Sırp dramaları meşhurdur kanka. Özellikle 'inat' kelimesi bu tür durumlarda çok karşımıza çıkar. Bir şeye inat ettiler mi geri dönüşü zordur.",
+    culturalTipEn: "Serbian dramas are famous, mate. Especially the word 'inat' (spite/stubbornness) comes up a lot in these situations. Once they get stubborn about something, there's no going back.",
   },
 };
