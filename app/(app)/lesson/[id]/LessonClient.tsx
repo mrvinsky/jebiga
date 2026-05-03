@@ -9,6 +9,8 @@ import { completeLesson, updateStreak, calculateLevel } from '@/lib/firestore';
 import QuizCard from '@/components/lesson/QuizCard';
 import FeedbackToast from '@/components/lesson/FeedbackToast';
 import LessonIntro from '@/components/lesson/LessonIntro';
+import LessonSplash from '@/components/lesson/LessonSplash';
+import LessonRecap from '@/components/lesson/LessonRecap';
 import { getLessonContent } from '@/data/lessonContent';
 
 export default function LessonClient({ id }: { id: string }) {
@@ -21,7 +23,8 @@ export default function LessonClient({ id }: { id: string }) {
   const allLessons = getAllLessons();
   const lesson = allLessons.find((l) => l.id === id);
 
-  const [phase, setPhase] = useState<'intro' | 'quiz'>('intro');
+  const [phase, setPhase] = useState<'recap' | 'splash' | 'intro' | 'quiz'>('splash');
+  const [recapWords, setRecapWords] = useState<any[]>([]);
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState<string | null>(null);
   const [inputVal, setInputVal] = useState('');
@@ -31,7 +34,28 @@ export default function LessonClient({ id }: { id: string }) {
   const [mistakes, setMistakes] = useState(0);
   const [leveledUp, setLeveledUp] = useState(false);
 
-  useEffect(() => { setCurrent(0); setFinished(false); setMistakes(0); setXpEarned(0); setPhase('intro'); }, [id]);
+  useEffect(() => { 
+    setCurrent(0); 
+    setFinished(false); 
+    setMistakes(0); 
+    setXpEarned(0); 
+    
+    // Recap Logic
+    const completed = userData?.completedLessons || [];
+    if (!completed.includes(id) && completed.length > 0) {
+      const randomLessonId = completed[Math.floor(Math.random() * completed.length)];
+      const oldContent = getLessonContent(randomLessonId);
+      
+      if (oldContent?.vocabulary && oldContent.vocabulary.length > 0) {
+        const shuffled = [...oldContent.vocabulary].sort(() => 0.5 - Math.random());
+        setRecapWords(shuffled.slice(0, 3));
+        setPhase('recap');
+        return;
+      }
+    }
+    
+    setPhase('splash'); 
+  }, [id, userData?.completedLessons]);
 
   const content = getLessonContent(lesson?.id ?? '');
   const isPro = userData?.subscription === 'pro';
@@ -127,6 +151,29 @@ export default function LessonClient({ id }: { id: string }) {
       setCurrent(c => c + 1);
     }
   };
+
+  if (phase === 'recap') {
+    return (
+      <LessonRecap
+        words={recapWords}
+        streetMode={streetMode}
+        onContinue={() => setPhase('splash')}
+      />
+    );
+  }
+
+  if (phase === 'splash' && lesson) {
+    return (
+      <LessonSplash
+        title={streetMode ? lesson.streetTitle : (lang === 'en' && lesson.titleEn ? lesson.titleEn : lesson.title)}
+        emoji={lesson.emoji}
+        color={(lesson as unknown as { color?: string }).color ?? '#c0392b'}
+        streetMode={streetMode}
+        lang={lang}
+        onComplete={() => setPhase(content ? 'intro' : 'quiz')}
+      />
+    );
+  }
 
   if (phase === 'intro' && lesson) {
     if (content) {
