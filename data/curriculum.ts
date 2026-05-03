@@ -50,7 +50,7 @@ export const curriculum: LessonSet[] = [
     emoji: '👋', color: '#c0392b',
     lessons: [
       {
-        id: 'greetings-1', title: 'Temel Selamlar', titleEn: 'Basic Greetings', streetTitle: 'Zdravo i šta ima', emoji: '👋', xpReward: 20,
+        id: 'greetings-1', title: 'Temel Selamlar', titleEn: 'Basic Greetings', streetTitle: 'Zdravo i šta ima', emoji: '👋', xpReward: 100,
         questions: [
           { id: 'g1-q1', type: 'multiple-choice', prompt: 'Sırpçada "Merhaba" nasıl denir?', promptEn: 'How do you say "Hello" in Serbian?', streetPrompt: 'Brate, "Merhaba" nasıl denir?', answer: 'Zdravo', answerEn: 'Zdravo', options: ['Zdravo','Doviđenja','Hvala','Molim'], optionsEn: ['Zdravo','Doviđenja','Hvala','Molim'] },
           { id: 'g1-q2', type: 'translate', prompt: '"Günaydın" kelimesini çevir', promptEn: 'Translate the word "Good morning"', streetPrompt: 'Ej, "Günaydın" de bakalım!', answer: 'Dobro jutro', hint: 'dobro = iyi, jutro = sabah', hintEn: 'dobro = good, jutro = morning' },
@@ -58,10 +58,12 @@ export const curriculum: LessonSet[] = [
           { id: 'g1-q4', type: 'multiple-choice', prompt: '"Görüşürüz" nasıl denir?', promptEn: 'How do you say "See you later"?', streetPrompt: 'Kaçıyorsun brate — "Görüşürüz" nasıl denir?', answer: 'Doviđenja', answerEn: 'Doviđenja', options: ['Zdravo','Doviđenja','Hvala','Izvinite'], optionsEn: ['Zdravo','Doviđenja','Hvala','Izvinite'] },
           { id: 'g1-q5', type: 'translate', prompt: '"İyi akşamlar" kelimesini çevir', promptEn: 'Translate the word "Good evening"', streetPrompt: 'Kapiram — Gece milleti nasıl selamlarsın?', answer: 'Dobro veče', hint: 'veče = akşam', hintEn: 'veče = evening' },
           { id: 'g1-q6', type: 'multiple-choice', prompt: '"Laku noć" ne anlama gelir?', promptEn: 'What does "Laku noć" mean?', streetPrompt: 'Pazi, "Laku noć" ne demek?', answer: 'İyi geceler', answerEn: 'Good night', options: ['Günaydın','İyi akşamlar','İyi geceler','İyi uykular'], optionsEn: ['Good morning','Good evening','Good night','Sleep well'] },
+          { id: 'g1-q7', type: 'translate', prompt: '"Nasilsiniz?" (Resmi)', promptEn: 'Translate "How are you?" (Formal)', streetPrompt: 'Patrona nasilsin diye nasil sorarsin?', answer: 'Kako ste?', hint: 'kako = nasil, ste = siniz (cogul/resmi)', hintEn: 'kako = how, ste = are you (formal)' },
+          { id: 'g1-q8', type: 'multiple-choice', prompt: '"İyi" nasil denir?', promptEn: 'How to say "Good"?', streetPrompt: 'Nasılsın sorusuna "İyi" nasil cevap verirsin?', answer: 'Dobro', answerEn: 'Dobro', options: ['Lose', 'Dobro', 'Zlo', 'Hladno'], optionsEn: ['Lose', 'Dobro', 'Zlo', 'Hladno'] },
         ],
       },
       {
-        id: 'greetings-2', title: 'Kendini Tanıtma', titleEn: 'Introducing Yourself', streetTitle: 'Ko si ti, majstore?', emoji: '🤝', xpReward: 25,
+        id: 'greetings-2', title: 'Kendini Tanıtma', titleEn: 'Introducing Yourself', streetTitle: 'Ko si ti, majstore?', emoji: '🤝', xpReward: 100,
         questions: [
           { id: 'g2-q1', type: 'multiple-choice', prompt: '"Benim adım…" nasıl denir?', promptEn: 'How do you say "My name is..."?', streetPrompt: 'Bre, birine adını nasıl söylersin?', answer: 'Zovem se…', answerEn: 'Zovem se…', options: ['Imam se…','Zovem se…','Ja sam…','Moje je…'], optionsEn: ['Imam se…','Zovem se…','Ja sam…','Moje je…'] },
           { id: 'g2-q2', type: 'translate', prompt: '"Tanıştığıma memnun oldum" kelimesini çevir', promptEn: 'Translate the phrase "Nice to meet you"', streetPrompt: 'Kapiram — "Memnun oldum" çevir', answer: 'Drago mi je', hint: 'drago = memnun/hoş', hintEn: 'drago = nice/dear' },
@@ -71,7 +73,7 @@ export const curriculum: LessonSet[] = [
         ],
       },
       {
-        id: 'greetings-3', title: 'Kibar İfadeler', titleEn: 'Polite Expressions', streetTitle: 'Kad treba biti fin', emoji: '🎩', xpReward: 25,
+        id: 'greetings-3', title: 'Kibar İfadeler', titleEn: 'Polite Expressions', streetTitle: 'Kad treba biti fin', emoji: '🎩', xpReward: 100,
         questions: [
           { id: 'g3-q1', type: 'multiple-choice', prompt: '"Lütfen" nasıl denir?', promptEn: 'How do you say "Please"?', streetPrompt: 'Brate, nasıl kibarca "lütfen" istersin?', answer: 'Molim', answerEn: 'Molim', options: ['Hvala','Molim','Izvinite','Nema na čemu'], optionsEn: ['Hvala','Molim','Izvinite','Nema na čemu'] },
           { id: 'g3-q2', type: 'multiple-choice', prompt: '"Hvala" ne anlama gelir?', promptEn: 'What does "Hvala" mean?', streetPrompt: 'Pazi — "Hvala" ne demek?', answer: 'Teşekkürler', answerEn: 'Thanks', options: ['Özür dilerim','Lütfen','Teşekkürler','Merhaba'], optionsEn: ['I am sorry','Please','Thanks','Hello'] },
@@ -93,7 +95,7 @@ export const curriculum: LessonSet[] = [
     emoji: '🔢', color: '#003da5',
     lessons: [
       {
-        id: 'numbers-1', title: 'Sayılar 1–10', titleEn: 'Numbers 1–10', streetTitle: '1 do 10, brate', emoji: '🔢', xpReward: 20,
+        id: 'numbers-1', title: 'Sayılar 1–10', titleEn: 'Numbers 1–10', streetTitle: '1 do 10, brate', emoji: '🔢', xpReward: 100,
         questions: [
           { id: 'n1-q1', type: 'multiple-choice', prompt: 'Sırpçada "5" nasıl denir?', promptEn: 'How do you say "5" in Serbian?', streetPrompt: 'Brate, "5" nasıl diyorsun?', answer: 'Pet', answerEn: 'Pet', options: ['Četiri','Pet','Šest','Sedam'], optionsEn: ['Četiri','Pet','Šest','Sedam'] },
           { id: 'n1-q2', type: 'multiple-choice', prompt: '"Tri" hangi sayıdır?', promptEn: 'Which number is "Tri"?', streetPrompt: 'Kapiram, "Tri" hangi sayı?', answer: '3', answerEn: '3', options: ['2','3','13','30'], optionsEn: ['2','3','13','30'] },
@@ -105,7 +107,7 @@ export const curriculum: LessonSet[] = [
         ],
       },
       {
-        id: 'numbers-2', title: 'Sayılar 11–100', titleEn: 'Numbers 11–100', streetTitle: 'Veći brojevi, veće pare', emoji: '💰', xpReward: 30,
+        id: 'numbers-2', title: 'Sayılar 11–100', titleEn: 'Numbers 11–100', streetTitle: 'Veći brojevi, veće pare', emoji: '💰', xpReward: 100,
         questions: [
           { id: 'n2-q1', type: 'multiple-choice', prompt: 'Sırpçada "20" nasıl denir?', promptEn: 'How do you say "20" in Serbian?', streetPrompt: 'Brate, "20" nasıl diyorsun?', answer: 'Dvadeset', answerEn: 'Dvadeset', options: ['Deset','Dvadeset','Trideset','Dvesta'], optionsEn: ['Deset','Dvadeset','Trideset','Dvesta'] },
           { id: 'n2-q2', type: 'translate', prompt: '"100" sayısını Sırpçaya çevir', promptEn: 'Translate the number "100" to Serbian', streetPrompt: 'Yüz — u srpskom?', answer: 'Sto', hint: 'çok kısa!', hintEn: 'it is very short!' },
@@ -116,7 +118,7 @@ export const curriculum: LessonSet[] = [
         ],
       },
       {
-        id: 'numbers-3', title: 'Saatler ve Zaman', titleEn: 'Time and Hours', streetTitle: 'Koliko je sati, bre?', emoji: '⏰', xpReward: 30,
+        id: 'numbers-3', title: 'Saatler ve Zaman', titleEn: 'Time and Hours', streetTitle: 'Koliko je sati, bre?', emoji: '⏰', xpReward: 100,
         questions: [
           { id: 'n3-q1', type: 'multiple-choice', prompt: '"Saat kaç?" nasıl sorulur?', promptEn: 'How do you ask "What time is it?"', streetPrompt: 'Pazi — saati nasıl soruyorsun?', answer: 'Koliko je sati?', answerEn: 'Koliko je sati?', options: ['Kako si?','Koliko je sati?','Gde je sat?','Imam sat'], optionsEn: ['How are you?','What time is it?','Where is the clock?','I have a clock'] },
           { id: 'n3-q2', type: 'translate', prompt: '"Saat 3" cümlesini çevir', promptEn: 'Translate the phrase "It is 3 o\'clock"', streetPrompt: 'Tri sata — çevir bunu brate!', answer: 'Tri sata', hint: 'Tri sata = Saat üç', hintEn: 'Tri sata = Three o\'clock' },
@@ -137,7 +139,7 @@ export const curriculum: LessonSet[] = [
     emoji: '🍺', color: '#e67e22',
     lessons: [
       {
-        id: 'food-1', title: 'Sipariş Vermek', titleEn: 'Ordering Food', streetTitle: 'Daj mi ćevape!', emoji: '🥙', xpReward: 25,
+        id: 'food-1', title: 'Sipariş Vermek', titleEn: 'Ordering Food', streetTitle: 'Daj mi ćevape!', emoji: '🥙', xpReward: 100,
         questions: [
           { id: 'f1-q1', type: 'multiple-choice', prompt: '"Su" nasıl denir?', promptEn: 'How do you say "Water"?', streetPrompt: 'Pazi, "su" nasıl istersin?', answer: 'Voda', answerEn: 'Voda', options: ['Pivo','Voda','Sok','Kafa'], optionsEn: ['Pivo','Voda','Sok','Kafa'] },
           { id: 'f1-q2', type: 'multiple-choice', prompt: '"Kafa" nedir?', promptEn: 'What is "Kafa"?', streetPrompt: 'Brate, "Kafa" nedir?', answer: 'Kahve', answerEn: 'Coffee', options: ['Bira','Çay','Kahve','Meyve Suyu'], optionsEn: ['Beer','Tea','Coffee','Juice'] },
@@ -148,7 +150,7 @@ export const curriculum: LessonSet[] = [
         ],
       },
       {
-        id: 'food-2', title: 'Sırp Mutfağı', titleEn: 'Serbian Cuisine', streetTitle: 'Srpska Kuhinja, majstore', emoji: '🍖', xpReward: 30,
+        id: 'food-2', title: 'Sırp Mutfağı', titleEn: 'Serbian Cuisine', streetTitle: 'Srpska Kuhinja, majstore', emoji: '🍖', xpReward: 100,
         questions: [
           { id: 'f2-q1', type: 'multiple-choice', prompt: '"Ćevapi" nedir?', promptEn: 'What are "Ćevapi"?', streetPrompt: 'Brate — šta su ćevapi?', answer: 'Izgara rulo köfteler', answerEn: 'Grilled minced meat rolls', options: ['Bir tür çorba','Izgara rulo köfteler','Kızarmış hamurişi','Dolma'], optionsEn: ['A type of soup','Grilled minced meat rolls','Fried pastry','Stuffed peppers'] },
           { id: 'f2-q2', type: 'multiple-choice', prompt: '"Kajmak" nedir?', promptEn: 'What is "Kajmak"?', streetPrompt: 'Kapiram — "Kajmak" je šta?', answer: 'Kremamsı süt ürünü', answerEn: 'Creamy dairy product', options: ['Acı sos','Kremamsı süt ürünü','Ekşi krema çorbası','Bir tür ekmek'], optionsEn: ['Spicy sauce','Creamy dairy product','Sour cream soup','A type of bread'] },
@@ -159,7 +161,7 @@ export const curriculum: LessonSet[] = [
         ],
       },
       {
-        id: 'food-3', title: 'Pazarda', titleEn: 'At the Market', streetTitle: 'Na pijaci, brate', emoji: '🥦', xpReward: 25,
+        id: 'food-3', title: 'Pazarda', titleEn: 'At the Market', streetTitle: 'Na pijaci, brate', emoji: '🥦', xpReward: 100,
         questions: [
           { id: 'f3-q1', type: 'multiple-choice', prompt: '"Bunun fiyatı nedir?" nasıl denir?', promptEn: 'How do you ask "How much does this cost?"', streetPrompt: 'Pijaca — fiyatı nasıl sorarsın?', answer: 'Koliko košta ovo?', answerEn: 'Koliko košta ovo?', options: ['Gde je to?','Koliko košta ovo?','Šta je ovo?','Da li imate ovo?'], optionsEn: ['Where is it?','How much does this cost?','What is this?','Do you have this?'] },
           { id: 'f3-q2', type: 'translate', prompt: '"Elma" kelimesini çevir', promptEn: 'Translate the word "Apple"', streetPrompt: 'Jabuka ili …? "Elma" çevir!', answer: 'Jabuka', hint: 'ja-bu-ka', hintEn: 'ja-bu-ka' },
@@ -180,7 +182,7 @@ export const curriculum: LessonSet[] = [
     emoji: '🗺️', color: '#8e44ad',
     lessons: [
       {
-        id: 'directions-1', title: 'Sol, Sağ, İleri', titleEn: 'Left, Right, Straight', streetTitle: 'Levo, desno, pravo', emoji: '🧭', xpReward: 20,
+        id: 'directions-1', title: 'Sol, Sağ, İleri', titleEn: 'Left, Right, Straight', streetTitle: 'Levo, desno, pravo', emoji: '🧭', xpReward: 100,
         questions: [
           { id: 'd1-q1', type: 'multiple-choice', prompt: '"Sol" nasıl denir?', promptEn: 'How do you say "Left"?', streetPrompt: 'Pazi levo — "sol" nasıl denir?', answer: 'Levo', answerEn: 'Levo', options: ['Desno','Pravo','Levo','Gore'], optionsEn: ['Desno','Pravo','Levo','Gore'] },
           { id: 'd1-q2', type: 'multiple-choice', prompt: 'Yol tarifinde "Pravo" ne anlama gelir?', promptEn: 'What does "Pravo" mean in directions?', streetPrompt: 'Brate, kaybolduğunda "Pravo" nedir?', answer: 'Dümdüz ileri', answerEn: 'Straight ahead', options: ['Sağa dön','Geri dön','Dümdüz ileri','Sola dön'], optionsEn: ['Turn right','Turn back','Straight ahead','Turn left'] },
@@ -190,7 +192,7 @@ export const curriculum: LessonSet[] = [
         ],
       },
       {
-        id: 'directions-2', title: 'Ulaşım', titleEn: 'Transportation', streetTitle: 'Autobus ili taksi?', emoji: '🚌', xpReward: 30,
+        id: 'directions-2', title: 'Ulaşım', titleEn: 'Transportation', streetTitle: 'Autobus ili taksi?', emoji: '🚌', xpReward: 100,
         questions: [
           { id: 'd2-q1', type: 'multiple-choice', prompt: '"Taksi" nasıl denir?', promptEn: 'How do you say "Taxi"?', streetPrompt: 'Kapiram —ynı kelime, farklı aksan?', answer: 'Taksi', answerEn: 'Taksi', options: ['Taksi','Tramvaj','Autobus','Metro'], optionsEn: ['Taksi','Tramvaj','Autobus','Metro'] },
           { id: 'd2-q2', type: 'translate', prompt: '"Havalimanı" kelimesini çevir', promptEn: 'Translate the word "Airport"', streetPrompt: 'Aerodrom or …? "Havalimanı" çevir!', answer: 'Aerodrom', hint: 'İngilizceye/Türkçeye benziyor!', hintEn: 'it is similar to English!' },
@@ -212,7 +214,7 @@ export const curriculum: LessonSet[] = [
     isPro: true,
     lessons: [
       {
-        id: 'slang-1', title: 'Temel Sokak Ağzı', titleEn: 'Basic Street Slang', streetTitle: 'Mora da znaš ovo', emoji: '🔥', xpReward: 50,
+        id: 'slang-1', title: 'Temel Sokak Ağzı', titleEn: 'Basic Street Slang', streetTitle: 'Mora da znaš ovo', emoji: '🔥', xpReward: 100,
         questions: [
           { id: 's1-q1', type: 'multiple-choice', prompt: '"Jebiga" ne ifade eder?', promptEn: 'What does "Jebiga" express?', streetPrompt: 'Brate, šta znači "Jebiga"?', answer: 'Ne yaparsın / Aman boşver', answerEn: 'What can you do / Never mind', options: ['Seni seviyorum','Ne yaparsın / Aman boşver',"Hadi gidelim",'Sorun değil'], optionsEn: ['I love you','What can you do / Never mind',"Let's go",'No problem'] },
           { id: 's1-q2', type: 'multiple-choice', prompt: '"Brate" arkadaşlar arasında ne demektir?', promptEn: 'What does "Brate" mean among friends?', streetPrompt: 'Pazi, šta znači "Brate"?', answer: 'Kardeşim / Kanka', answerEn: 'Brother / Mate', options: ['Erkek Kardeş (resmi)','Kardeşim / Kanka','Düşman','Yabancı'], optionsEn: ['Brother (formal)','Brother / Mate','Enemy','Stranger'] },
@@ -222,7 +224,7 @@ export const curriculum: LessonSet[] = [
         ],
       },
       {
-        id: 'slang-2', title: 'Balkan Ruh Hali', titleEn: 'Balkan Vibe', streetTitle: 'Balkanski stil', emoji: '😤', xpReward: 50,
+        id: 'slang-2', title: 'Balkan Ruh Hali', titleEn: 'Balkan Vibe', streetTitle: 'Balkanski stil', emoji: '😤', xpReward: 100,
         questions: [
           { id: 's2-q1', type: 'multiple-choice', prompt: '"Šta ima?" ne anlama gelir?', promptEn: 'What does "Šta ima?" mean?', streetPrompt: 'Pazi — "Šta ima?" ne tür bir selamdır?', answer: "Naber? / Ne var ne yok?", answerEn: "What's up?", options: ['Sende ne var?',"Naber? / Ne var ne yok?",'Ne oldu?','Ne istiyorsun?'], optionsEn: ["What's with you?","What's up?","What happened?","What do you want?"] },
           { id: 's2-q2', type: 'multiple-choice', prompt: 'Cümle sonundaki "Bre" ne anlama gelir?', promptEn: 'What does "Bre" mean at the end of a sentence?', streetPrompt: 'Kapiram — "Bre" šta je to?', answer: 'Bir vurgu kelimesi (Bizdeki "be" veya "yaa" gibi)', answerEn: 'An emphasis word', options: ['Görüşürüz','Bir vurgu kelimesi (Bizdeki "be" veya "yaa" gibi)','Evet','Lütfen'], optionsEn: ['See you','An emphasis word','Yes','Please'] },
@@ -235,7 +237,7 @@ export const curriculum: LessonSet[] = [
         ],
       },
       {
-        id: 'slang-3', title: 'Küfürler ve Tepkiler', titleEn: 'Cursing and Reactions', streetTitle: 'Psovke i izrazi', emoji: '💥', xpReward: 60,
+        id: 'slang-3', title: 'Küfürler ve Tepkiler', titleEn: 'Cursing and Reactions', streetTitle: 'Psovke i izrazi', emoji: '💥', xpReward: 100,
         questions: [
           { id: 's3-q1', type: 'multiple-choice', prompt: '"Majku mu" ne ifade eder?', promptEn: 'What does "Majku mu" express?', streetPrompt: 'Pazi brate — "Majku mu" ne tür bir ifade?', answer: 'Bir sinirlenme/hayal kırıklığı sözü', answerEn: 'A word of annoyance/frustration', options: ['Bir iltifat','Bir sinirlenme/hayal kırıklığı sözü','Bir selamlama','Bir veda'], optionsEn: ['A compliment','A word of annoyance/frustration','A greeting','A farewell'] },
           { id: 's3-q2', type: 'multiple-choice', prompt: '"Beži bre" ne anlama gelir?', promptEn: 'What does "Beži bre" mean?', streetPrompt: 'Biri sana "Beži bre!" diye bağırıyor, ne istiyor?', answer: 'Yürü git / Kaybol / Beat it!', answerEn: 'Go away / Get lost / Beat it!', options: ['Buraya gel!','Yürü git / Kaybol / Beat it!','Otur ulan!','Dur!'], optionsEn: ['Come here!','Go away / Get lost / Beat it!','Sit down!','Stop!'] },
@@ -246,7 +248,7 @@ export const curriculum: LessonSet[] = [
         ],
       },
       {
-        id: 'slang-4', title: 'Flört & İlişkiler', titleEn: 'Flirting & Relationships', streetTitle: 'Muvanje i kafana', emoji: '💕', xpReward: 60,
+        id: 'slang-4', title: 'Flört & İlişkiler', titleEn: 'Flirting & Relationships', streetTitle: 'Muvanje i kafana', emoji: '💕', xpReward: 100,
         questions: [
           { id: 's4-q1', type: 'multiple-choice', prompt: '"Smuvati" ne anlama gelir?', promptEn: 'What does "Smuvati" mean?', streetPrompt: 'Pazi brate — šta znači "smuvati"?', answer: 'Ayarlamak / Hook up / Biriyle çıkmaya başlamak', answerEn: 'To hook up / To start dating someone', options: ['Kavga etmek','Kaçmak','Ayarlamak / Hook up / Biriyle çıkmaya başlamak','Sarhoş olmak'], optionsEn: ['To fight','To run away','To hook up / To start dating someone','To get drunk'] },
           { id: 's4-q5', type: 'multiple-choice', prompt: '"Muvati" ne anlama gelir?', promptEn: 'What does "Muvati" mean?', streetPrompt: 'Šta radiš tamo? "Muvati"?', answer: 'Flört etmek / Tavlamaya çalışmak', answerEn: 'To flirt / To hit on someone', options: ['Uyumak','Yemek yemek','Flört etmek / Tavlamaya çalışmak','Şarkı söylemek'], optionsEn: ['To sleep','To eat','To flirt / To hit on someone','To sing'] },
@@ -256,7 +258,7 @@ export const curriculum: LessonSet[] = [
         ],
       },
       {
-        id: 'slang-5', title: 'Partilemek', titleEn: 'Partying', streetTitle: 'Luda žurka', emoji: '🍻', xpReward: 60,
+        id: 'slang-5', title: 'Partilemek', titleEn: 'Partying', streetTitle: 'Luda žurka', emoji: '🍻', xpReward: 100,
         questions: [
           { id: 's5-q1', type: 'multiple-choice', prompt: '"Ludo" ne anlama gelir?', promptEn: 'What does "Ludo" mean?', streetPrompt: 'Kakva noć! "Ludo" je!', answer: 'Çılgın / Delice', answerEn: 'Crazy / Mad', options: ['Sıkıcı','Gürültülü','Çılgın / Delice','Soğuk'], optionsEn: ['Boring','Noisy','Crazy / Mad','Cold'] },
           { id: 's5-q2', type: 'translate', prompt: '"Parti" kelimesini çevir', promptEn: 'Translate the word "Party"', streetPrompt: 'Žurka or …? "parti" kelimesini çevir!', answer: 'Žurka', hint: 'zhur-ka', hintEn: 'zhur-ka' },
@@ -277,7 +279,7 @@ export const curriculum: LessonSet[] = [
     isPro: true,
     lessons: [
       {
-        id: 'daily-1', title: 'Sabah Rutini', titleEn: 'Morning Routine', streetTitle: 'Jutro je, ustaj!', emoji: '🌅', xpReward: 25,
+        id: 'daily-1', title: 'Sabah Rutini', titleEn: 'Morning Routine', streetTitle: 'Jutro je, ustaj!', emoji: '🌅', xpReward: 100,
         questions: [
           { id: 'dl1-q1', type: 'multiple-choice', prompt: '"Uyanıyorum" nasıl denir?', promptEn: 'How to say "I am waking up"?', streetPrompt: 'Pazi — uyandığını nasıl söylersin?', answer: 'Budim se', answerEn: 'Budim se', options: ['Spavam','Budim se','Jedem','Idem'], optionsEn: ['Spavam','Budim se','Jedem','Idem'] },
           { id: 'dl1-q2', type: 'translate', prompt: '"Her sabah kahve içerim" cümlesini çevir', promptEn: 'Translate "I drink coffee every morning"', streetPrompt: 'Kapiram — sabah kahveni söyle bakalım!', answer: 'Pijem kafu svako jutro', hint: 'pijem = içerim, svako = her', hintEn: 'pijem = I drink, svako = every/each' },
@@ -287,7 +289,7 @@ export const curriculum: LessonSet[] = [
         ],
       },
       {
-        id: 'daily-2', title: 'Evde', titleEn: 'At Home', streetTitle: 'Kod kuće, opušten', emoji: '🏠', xpReward: 25,
+        id: 'daily-2', title: 'Evde', titleEn: 'At Home', streetTitle: 'Kod kuće, opušten', emoji: '🏠', xpReward: 100,
         questions: [
           { id: 'dl2-q1', type: 'multiple-choice', prompt: '"Kuća" ne anlama gelir?', promptEn: 'What does "Kuća" mean?', streetPrompt: '"Kuća" — šta je to?', answer: 'Ev', answerEn: 'House', options: ['Apartman','Ev','Oda','Bina'], optionsEn: ['Apartment','House','Room','Building'] },
           { id: 'dl2-q2', type: 'translate', prompt: '"Oturma odası" kelimesini çevir', promptEn: 'Translate the phrase "Living room"', streetPrompt: 'Dnevna soba or …? "Oturma odası" çevir!', answer: 'Dnevna soba', hint: 'dnevna = günlük, soba = oda', hintEn: 'dnevna = daily/living, soba = room' },
@@ -297,7 +299,7 @@ export const curriculum: LessonSet[] = [
         ],
       },
       {
-        id: 'daily-3', title: 'İş ve Okul', titleEn: 'Work and School', streetTitle: 'Posao i škola', emoji: '💼', xpReward: 30,
+        id: 'daily-3', title: 'İş ve Okul', titleEn: 'Work and School', streetTitle: 'Posao i škola', emoji: '💼', xpReward: 100,
         questions: [
           { id: 'dl3-q1', type: 'multiple-choice', prompt: '"Bir ofiste çalışıyorum" nasıl denir?', promptEn: 'How to say "I work in an office"?', streetPrompt: 'Pazi — plaza çalışanı, nasıl söylersin?', answer: 'Radim u kancelariji', answerEn: 'Radim u kancelariji', options: ['Radim u fabrici','Radim u kancelariji','Radim kod kuće','Ne radim'], optionsEn: ['Radim u fabrici','Radim u kancelariji','Radim kod kuće','Ne radim'] },
           { id: 'dl3-q2', type: 'translate', prompt: '"Toplantı" kelimesini çevir', promptEn: 'Translate the word "Meeting"', streetPrompt: 'Sastanak or …? "Toplantı" nasıl denir?', answer: 'Sastanak', hint: 'sa-sta-nak', hintEn: 'sa-sta-nak' },
@@ -319,7 +321,7 @@ export const curriculum: LessonSet[] = [
     isPro: true,
     lessons: [
       {
-        id: 'emotions-1', title: 'Temel Duygular', titleEn: 'Basic Emotions', streetTitle: 'Sreća, tuga, bes', emoji: '😊', xpReward: 25,
+        id: 'emotions-1', title: 'Temel Duygular', titleEn: 'Basic Emotions', streetTitle: 'Sreća, tuga, bes', emoji: '😊', xpReward: 100,
         questions: [
           { id: 'em1-q1', type: 'multiple-choice', prompt: '"Mutluyum" nasıl denir?', promptEn: 'How to say "I am happy"?', streetPrompt: 'Brate — mutlu olduğunu nasıl söylersin?', answer: 'Srećan sam', answerEn: 'Srećan sam', options: ['Tužan sam','Srećan sam','Ljut sam','Uplašen sam'], optionsEn: ['Tužan sam','Srećan sam','Ljut sam','Uplašen sam'] },
           { id: 'em1-q2', type: 'translate', prompt: '"Üzgünüm" cümlesini çevir', promptEn: 'Translate "I am sorry/sad"', streetPrompt: 'Kapiram — üzüntünü nasıl ifade edersin?', answer: 'Tužan sam', hint: 'tužan = üzgün (erkek); tužna = üzgün (kadın)', hintEn: 'tužan = sad (male); tužna = sad (female)' },
@@ -330,7 +332,7 @@ export const curriculum: LessonSet[] = [
         ],
       },
       {
-        id: 'emotions-2', title: 'Fikirler', titleEn: 'Ideas & Opinions', streetTitle: 'Šta misliš?', emoji: '🤔', xpReward: 30,
+        id: 'emotions-2', title: 'Fikirler', titleEn: 'Ideas & Opinions', streetTitle: 'Šta misliš?', emoji: '🤔', xpReward: 100,
         questions: [
           { id: 'em2-q1', type: 'multiple-choice', prompt: '"Bence…" nasıl denir?', promptEn: 'How to say "I think..."?', streetPrompt: 'Pazi — fikrini nasıl paylaşırsın?', answer: 'Mislim da…', answerEn: 'Mislim da…', options: ['Znam da…','Mislim da…','Vidim da…','Hoću da…'], optionsEn: ['Znam da…','Mislim da…','Vidim da…','Hoću da…'] },
           { id: 'em2-q2', type: 'translate', prompt: '"Bana göre / Benim fikrimce" cümlesini çevir', promptEn: 'Translate "In my opinion"', streetPrompt: 'Kapiram — bir fikre nasıl başlarsın?', answer: 'Po mom mišljenju', hint: 'mišljenje = fikir/görüş', hintEn: 'mišljenje = opinion/view' },
@@ -352,7 +354,7 @@ export const curriculum: LessonSet[] = [
     isPro: true,
     lessons: [
       {
-        id: 'weather-1', title: 'Temel Hava', titleEn: 'Basic Weather', streetTitle: 'Kiša ili sunce?', emoji: '🌤️', xpReward: 20,
+        id: 'weather-1', title: 'Temel Hava', titleEn: 'Basic Weather', streetTitle: 'Kiša ili sunce?', emoji: '🌤️', xpReward: 100,
         questions: [
           { id: 'w1-q1', type: 'multiple-choice', prompt: '"Hava nasıl?" diye nasıl sorulur?', promptEn: 'How to ask "What is the weather like?"', streetPrompt: 'Pazi — havanın nasıl olduğunu nasıl sorarsın?', answer: 'Kakvo je vreme?', answerEn: 'Kakvo je vreme?', options: ['Koliko je toplo?','Kakvo je vreme?','Da li pada kiša?','Je li sunčano?'], optionsEn: ['Koliko je toplo?','Kakvo je vreme?','Da li pada kiša?','Je li sunčano?'] },
           { id: 'w1-q2', type: 'translate', prompt: '"Yağmur yağıyor" cümlesini çevir', promptEn: 'Translate "It is raining"', streetPrompt: 'Kiša pada — yağmur yağdığını nasıl söylersin?', answer: 'Pada kiša', hint: 'pada = düşüyor, kiša = yağmur', hintEn: 'pada = falls, kiša = rain' },
@@ -363,7 +365,7 @@ export const curriculum: LessonSet[] = [
         ],
       },
       {
-        id: 'weather-2', title: 'Mevsimler', titleEn: 'Seasons', streetTitle: 'Godišnja doba', emoji: '🍂', xpReward: 25,
+        id: 'weather-2', title: 'Mevsimler', titleEn: 'Seasons', streetTitle: 'Godišnja doba', emoji: '🍂', xpReward: 100,
         questions: [
           { id: 'w2-q1', type: 'multiple-choice', prompt: '"Yaz" nasıl denir?', promptEn: 'How to say "Summer"?', streetPrompt: 'Kapiram — Sırpçada "Yaz"?', answer: 'Leto', answerEn: 'Leto', options: ['Zima','Proleće','Leto','Jesen'], optionsEn: ['Zima','Proleće','Leto','Jesen'] },
           { id: 'w2-q2', type: 'translate', prompt: '"Kış" kelimesini çevir', promptEn: 'Translate the word "Winter"', streetPrompt: 'Brrr — Sırpçada "Kış"?', answer: 'Zima', hint: 'zi-ma', hintEn: 'zi-ma' },
@@ -385,7 +387,7 @@ export const curriculum: LessonSet[] = [
     isPro: true,
     lessons: [
       {
-        id: 'family-1', title: 'Aile Üyeleri', titleEn: 'Family Members', streetTitle: 'Ko je ko u familiji', emoji: '👪', xpReward: 25,
+        id: 'family-1', title: 'Aile Üyeleri', titleEn: 'Family Members', streetTitle: 'Ko je ko u familiji', emoji: '👪', xpReward: 100,
         questions: [
           { id: 'fam1-q1', type: 'multiple-choice', prompt: '"Anne" nasıl denir?', promptEn: 'How to say "Mother"?', streetPrompt: 'Pazi — Sırpçada "Anne"?', answer: 'Majka', answerEn: 'Majka', options: ['Otac','Majka','Brat','Sestra'], optionsEn: ['Otac','Majka','Brat','Sestra'] },
           { id: 'fam1-q2', type: 'translate', prompt: '"Baba" kelimesini çevir', promptEn: 'Translate the word "Father"', streetPrompt: 'Brate — Sırpçada "Baba"?', answer: 'Otac', hint: 'o-tac', hintEn: 'o-tac' },
@@ -396,7 +398,7 @@ export const curriculum: LessonSet[] = [
         ],
       },
       {
-        id: 'family-2', title: 'Aileyi Anlatmak', titleEn: 'Describing Family', streetTitle: 'Kakva je tvoja familija?', emoji: '🧬', xpReward: 30,
+        id: 'family-2', title: 'Aileyi Anlatmak', titleEn: 'Describing Family', streetTitle: 'Kakva je tvoja familija?', emoji: '🧬', xpReward: 100,
         questions: [
           { id: 'fam2-q1', type: 'multiple-choice', prompt: '"Ailem büyük" nasıl denir?', promptEn: 'How to say "My family is large"?', streetPrompt: 'Kapiram — büyük aileni anlat bakalım!', answer: 'Moja porodica je velika', answerEn: 'Moja porodica je velika', options: ['Moja porodica je mala','Moja porodica je velika','Imam porodicu','Volim porodicu'], optionsEn: ['Moja porodica je mala','Moja porodica je velika','Imam porodicu','Volim porodicu'] },
           { id: 'fam2-q2', type: 'translate', prompt: '"Kız kardeşim genç/küçük" cümlesini çevir', promptEn: 'Translate "My sister is young"', streetPrompt: 'Pazi — kız kardeşinin genç olduğunu nasıl söylersin?', answer: 'Moja sestra je mlada', hint: 'mlada = genç (kadın/dişil)', hintEn: 'mlada = young (female)' },
@@ -418,7 +420,7 @@ export const curriculum: LessonSet[] = [
     isPro: true,
     lessons: [
       {
-        id: 'travel-1', title: 'Otel Girişi', titleEn: 'Hotel Check-in', streetTitle: 'Soba i ključ', emoji: '🏨', xpReward: 25,
+        id: 'travel-1', title: 'Otel Girişi', titleEn: 'Hotel Check-in', streetTitle: 'Soba i ključ', emoji: '🏨', xpReward: 100,
         questions: [
           { id: 'tr1-q1', type: 'multiple-choice', prompt: '"Otel" nasıl denir?', promptEn: 'How to say "Hotel"?', streetPrompt: 'Otele ne diyorsunuz brate?', answer: 'Hotel', answerEn: 'Hotel', options: ['Soba', 'Restoran', 'Kuća', 'Hotel'], optionsEn: ['Soba', 'Restoran', 'Kuća', 'Hotel'] },
           { id: 'tr1-q2', type: 'translate', prompt: '"Rezervasyonum var" cümlesini çevir', promptEn: 'Translate "I have a reservation"', streetPrompt: 'Kapiram — odanı ayarladın, resepsiyonda ne dersin?', answer: 'Imam rezervaciju', hint: 'imam = sahibim, rezervacija = rezervasyon', hintEn: 'imam = I have, rezervacija = reservation' },
@@ -427,7 +429,7 @@ export const curriculum: LessonSet[] = [
         ],
       },
       {
-        id: 'travel-2', title: 'Havalimanı & Uçuşlar', titleEn: 'Airport & Flights', streetTitle: 'Letimo na aerodrom', emoji: '🛫', xpReward: 30,
+        id: 'travel-2', title: 'Havalimanı & Uçuşlar', titleEn: 'Airport & Flights', streetTitle: 'Letimo na aerodrom', emoji: '🛫', xpReward: 100,
         questions: [
           { id: 'tr2-q1', type: 'multiple-choice', prompt: '"Uçuş" nasıl denir?', promptEn: 'How to say "Flight"?', streetPrompt: 'Pazi — havaya yükseliyorsun?', answer: 'Let', answerEn: 'Let', options: ['Karta', 'Let', 'Avion', 'Put'], optionsEn: ['Karta', 'Let', 'Avion', 'Put'] },
           { id: 'tr2-q2', type: 'multiple-choice', prompt: '"Kofer" ne anlama gelir?', promptEn: 'What does "Kofer" mean?', streetPrompt: 'Brate — "kofer"?', answer: 'Bavul', answerEn: 'Suitcase', options: ['Sırt çantası', 'Bilet', 'Bavul', 'Cüzdan'], optionsEn: ['Backpack', 'Ticket', 'Suitcase', 'Wallet'] },
@@ -447,7 +449,7 @@ export const curriculum: LessonSet[] = [
     isPro: true,
     lessons: [
       {
-        id: 'shopping-1', title: 'Kıyafetler', titleEn: 'Clothes', streetTitle: 'Odeća i patike', emoji: '👕', xpReward: 30,
+        id: 'shopping-1', title: 'Kıyafetler', titleEn: 'Clothes', streetTitle: 'Odeća i patike', emoji: '👕', xpReward: 100,
         questions: [
           { id: 'sh1-q1', type: 'multiple-choice', prompt: '"Ti-şört" kelimesi nedir?', promptEn: 'What is the word for "T-shirt"?', streetPrompt: 'Kapiram — kısa kollu tişört nedir?', answer: 'Majica', answerEn: 'Majica', options: ['Jakna', 'Cipele', 'Košulja', 'Majica'], optionsEn: ['Jakna', 'Cipele', 'Košulja', 'Majica'] },
           { id: 'sh1-q2', type: 'translate', prompt: '"Ayakkabı" kelimesini çevir', promptEn: 'Translate the word "Shoes"', streetPrompt: 'Ayağa ne giyilir?', answer: 'Cipele', hint: 'ci-pe-le', hintEn: 'ci-pe-le' },
@@ -456,7 +458,7 @@ export const curriculum: LessonSet[] = [
         ],
       },
       {
-        id: 'shopping-2', title: 'Kadın Modası', titleEn: 'Women\'s Fashion', streetTitle: 'Ženska Moda', emoji: '👗', xpReward: 35,
+        id: 'shopping-2', title: 'Kadın Modası', titleEn: 'Women\'s Fashion', streetTitle: 'Ženska Moda', emoji: '👗', xpReward: 100,
         questions: [
           { id: 'sh2-q1', type: 'multiple-choice', prompt: '"Elbise" nasıl denir?', promptEn: 'How to say "Dress"?', streetPrompt: 'Brate, elbiseye ne denir?', answer: 'Haljina', answerEn: 'Haljina', options: ['Pantalone', 'Haljina', 'Jakna', 'Košulja'], optionsEn: ['Pantalone', 'Haljina', 'Jakna', 'Košulja'] },
           { id: 'sh2-q2', type: 'translate', prompt: '"Etek" kelimesini çevir', promptEn: 'Translate the word "Skirt"', streetPrompt: 'Sırpçada etek nedir?', answer: 'Suknja', hint: 'suk-nya', hintEn: 'suk-nya' },
@@ -465,7 +467,7 @@ export const curriculum: LessonSet[] = [
         ],
       },
       {
-        id: 'shopping-3', title: 'Erkek Modası', titleEn: 'Men\'s Fashion', streetTitle: 'Muška Moda', emoji: '👔', xpReward: 35,
+        id: 'shopping-3', title: 'Erkek Modası', titleEn: 'Men\'s Fashion', streetTitle: 'Muška Moda', emoji: '👔', xpReward: 100,
         questions: [
           { id: 'sh3-q1', type: 'multiple-choice', prompt: '"Şort" nasıl denir?', promptEn: 'How to say "Shorts"?', streetPrompt: 'Yaz geldi kanka — şort nedir?', answer: 'Šorts', answerEn: 'Šorts', options: ['Šorts', 'Odelo', 'Kapa', 'Kaiš'], optionsEn: ['Šorts', 'Odelo', 'Kapa', 'Kaiš'] },
           { id: 'sh3-q2', type: 'multiple-choice', prompt: '"Odelo" nedir?', promptEn: 'What is "Odelo"?', streetPrompt: 'Şık giyinmek — "Odelo" nedir?', answer: 'Takım elbise', answerEn: 'Suit', options: ['Tişört', 'Kravat', 'Takım elbise', 'Pantolon'], optionsEn: ['T-shirt', 'Tie', 'Suit', 'Pants'] },
@@ -486,7 +488,7 @@ export const curriculum: LessonSet[] = [
     isPro: true,
     lessons: [
       {
-        id: 'culture-1', title: 'Slava', titleEn: 'Slava', streetTitle: 'Slava i Gosti', emoji: '🕯️', xpReward: 35,
+        id: 'culture-1', title: 'Slava', titleEn: 'Slava', streetTitle: 'Slava i Gosti', emoji: '🕯️', xpReward: 100,
         questions: [
           { id: 'c1-q1', type: 'multiple-choice', prompt: '"Slava" nedir?', promptEn: 'What is "Slava"?', streetPrompt: 'Sırp aileleri için en önemli gün nedir?', answer: 'Aziz günü', answerEn: 'Saint Day (Patron Saint Day)', options: ['Aziz günü','Düğün','Doğum günü','Yeni Yıl'], optionsEn: ['Saint Day','Wedding','Birthday','New Year'] },
           { id: 'c1-q2', type: 'multiple-choice', prompt: 'Bir Sırp evine misafir olarak girerken ne yapmalısın?', promptEn: 'What should you do when entering a Serbian home as a guest?', streetPrompt: 'Eve girerken — en önemli kural nedir?', answer: 'Ayakkabılarını çıkar', answerEn: 'Take off your shoes', options: ['Ev sahibini 4 kez öp','Yüksek sesle kapıyı çal','Ayakkabılarını çıkar','Para öde'], optionsEn: ['Kiss the host 4 times','Knock loudly','Take off your shoes','Pay money'] },
@@ -496,7 +498,7 @@ export const curriculum: LessonSet[] = [
         ],
       },
       {
-        id: 'culture-2', title: 'Rakija Kuralları', titleEn: 'Rakija Rules', streetTitle: 'Pravila Rakije', emoji: '🥃', xpReward: 35,
+        id: 'culture-2', title: 'Rakija Kuralları', titleEn: 'Rakija Rules', streetTitle: 'Pravila Rakije', emoji: '🥃', xpReward: 100,
         questions: [
           { id: 'c2-q1', type: 'multiple-choice', prompt: 'Rakija ile kadeh kaldırırken altın kural nedir?', promptEn: 'What is the golden rule when toasting with Rakija?', streetPrompt: 'Kadeh tokuştururken — ne yapmalısın?', answer: 'Gözlerinin içine bak', answerEn: 'Look in their eyes', options: ['Tek dikişte iç','Gözlerinin içine bak','Kadehe bak','Yüksek sesle bağır'], optionsEn: ['Drink in one go','Look in their eyes','Look at the glass','Shout loudly'] },
           { id: 'c2-q2', type: 'translate', prompt: '"Sağlığına / Şerefe!" cümlesini çevir', promptEn: 'Translate "To your health / Cheers!"', streetPrompt: 'Nasıl kadeh kaldırırız?', answer: 'U tvoje zdravlje', hint: 'zdravlje = sağlık', hintEn: 'zdravlje = health' },
@@ -505,7 +507,7 @@ export const curriculum: LessonSet[] = [
         ],
       },
       {
-        id: 'culture-3', title: 'Kafana Hayatı', titleEn: 'Kafana Life', streetTitle: 'Noć u Kafani', emoji: '🎻', xpReward: 40,
+        id: 'culture-3', title: 'Kafana Hayatı', titleEn: 'Kafana Life', streetTitle: 'Noć u Kafani', emoji: '🎻', xpReward: 100,
         questions: [
           { id: 'c3-q1', type: 'multiple-choice', prompt: '"Kafana" nedir?', promptEn: 'What is a "Kafana"?', streetPrompt: 'En iyi gece hayatı nerede?', answer: 'Geleneksel meyhane', answerEn: 'Traditional tavern', options: ['Gece kulübü','Kafe','Süpermarket','Geleneksel meyhane'], optionsEn: ['Night club','Cafe','Supermarket','Traditional tavern'] },
           { id: 'c3-q2', type: 'multiple-choice', prompt: 'Müzisyenler masana gelirse onlara ne vermelisin?', promptEn: 'What should you give musicians if they come to your table?', streetPrompt: 'Müzik masana geldi — ne verirsin?', answer: 'Bakšiš (Bahşiş)', answerEn: 'Tip', options: ['Rakija','Bakšiš (Bahşiş)','Bir şarkı','Yemek'], optionsEn: ['Rakija','Tip','A song','Food'] },
@@ -525,7 +527,7 @@ export const curriculum: LessonSet[] = [
     isPro: true,
     lessons: [
       {
-        id: 'hobbies-1', title: 'Boş Zaman', titleEn: 'Leisure Time', streetTitle: 'Slobodno vreme', emoji: '🎸', xpReward: 30,
+        id: 'hobbies-1', title: 'Boş Zaman', titleEn: 'Leisure Time', streetTitle: 'Slobodno vreme', emoji: '🎸', xpReward: 100,
         questions: [
           { id: 'hb1-q1', type: 'multiple-choice', prompt: '"Müzik dinliyorum" nasıl denir?', promptEn: 'How to say "I am listening to music"?', streetPrompt: 'Slušalice u uši — müzik dinlediğini nasıl söylersin?', answer: 'Slušam muziku', answerEn: 'Slušam muziku', options: ['Gledam film', 'Slušam muziku', 'Igram fudbal', 'Čitam knjigu'], optionsEn: ['Gledam film', 'Slušam muziku', 'Igram fudbal', 'Čitam knjigu'] },
           { id: 'hb1-q2', type: 'translate', prompt: '"Kitap okuyorum" cümlesini çevir', promptEn: 'Translate "I am reading a book"', streetPrompt: 'Kapiram — "Kitap okuyorum" nedir?', answer: 'Čitam knjigu', hint: 'čitam = okuyorum, knjigu = kitap', hintEn: 'čitam = I am reading, knjigu = book' },
@@ -534,7 +536,7 @@ export const curriculum: LessonSet[] = [
         ],
       },
       {
-        id: 'hobbies-2', title: 'Spor & Oyun', titleEn: 'Sports & Games', streetTitle: 'Sport i Pivo', emoji: '🏆', xpReward: 35,
+        id: 'hobbies-2', title: 'Spor & Oyun', titleEn: 'Sports & Games', streetTitle: 'Sport i Pivo', emoji: '🏆', xpReward: 100,
         questions: [
           { id: 'hb2-q1', type: 'multiple-choice', prompt: '"Fudbal" nedir?', promptEn: 'What is "Fudbal"?', streetPrompt: 'Najbitnija sporedna stvar na svetu?', answer: 'Futbol', answerEn: 'Football', options: ['Basketbol', 'Tenis', 'Futbol', 'Voleybol'], optionsEn: ['Basketball', 'Tennis', 'Football', 'Volleyball'] },
           { id: 'hb2-q2', type: 'multiple-choice', prompt: '"Oyun oynuyorum" nasıl denir?', promptEn: 'How to say "I am playing games"?', streetPrompt: 'Brate — oyun oynadığını nasıl söylersin?', answer: 'Igram igrice', answerEn: 'Igram igrice', options: ['Spavam', 'Gledam TV', 'Igram igrice', 'Jedem'], optionsEn: ['Spavam', 'Gledam TV', 'Igram igrice', 'Jedem'] },
@@ -555,7 +557,7 @@ export const curriculum: LessonSet[] = [
     isPro: true,
     lessons: [
       {
-        id: 'tech-1', title: 'Cep Telefonunuz', titleEn: 'Your Mobile Phone', streetTitle: 'Mobilni', emoji: '📱', xpReward: 30,
+        id: 'tech-1', title: 'Cep Telefonunuz', titleEn: 'Your Mobile Phone', streetTitle: 'Mobilni', emoji: '📱', xpReward: 100,
         questions: [
           { id: 'tc1-q1', type: 'multiple-choice', prompt: '"Telefon" nasıl denir?', promptEn: 'How to say "Phone"?', streetPrompt: 'Brate, cebinde ne var?', answer: 'Telefon', answerEn: 'Telefon', options: ['Sat', 'Novčanik', 'Ključ', 'Telefon'], optionsEn: ['Sat', 'Novčanik', 'Ključ', 'Telefon'] },
           { id: 'tc1-q2', type: 'translate', prompt: '"Bataryam bitti" cümlesini çevir', promptEn: 'Translate "My battery is dead"', streetPrompt: 'En kötüsü — şarj bitti?', answer: 'Prazna mi je baterija', hint: 'prazna = boş, baterija = batarya', hintEn: 'prazna = empty, baterija = battery' },
@@ -564,7 +566,7 @@ export const curriculum: LessonSet[] = [
         ],
       },
       {
-        id: 'tech-2', title: 'İnternet', titleEn: 'Internet', streetTitle: 'Na internetu', emoji: '🌐', xpReward: 30,
+        id: 'tech-2', title: 'İnternet', titleEn: 'Internet', streetTitle: 'Na internetu', emoji: '🌐', xpReward: 100,
         questions: [
           { id: 'tc2-q1', type: 'multiple-choice', prompt: '"Bilgisayar" nasıl denir?', promptEn: 'How to say "Computer"?', streetPrompt: 'Evde masaüstünde ne var?', answer: 'Kompjuter', answerEn: 'Kompjuter', options: ['Kompjuter', 'Televizor', 'Radio', 'Šporet'], optionsEn: ['Kompjuter', 'Televizor', 'Radio', 'Šporet'] },
           { id: 'tc2-q2', type: 'translate', prompt: '"Wi-Fi şifresi nedir?" cümlesini çevir', promptEn: 'Translate "What is the Wi-Fi password?"', streetPrompt: 'Kafeye oturdun, net lazım. Ne sorarsın?', answer: 'Koja je šifra za internet?', hint: 'koja = nedir/hangisi, šifra = şifre', hintEn: 'koja = which/what is, šifra = password' },
@@ -585,7 +587,7 @@ export const curriculum: LessonSet[] = [
     isPro: true,
     lessons: [
       {
-        id: 'work-1', title: 'Meslekler', titleEn: 'Professions', streetTitle: 'Šta radiš u životu?', emoji: '🧑‍💼', xpReward: 35,
+        id: 'work-1', title: 'Meslekler', titleEn: 'Professions', streetTitle: 'Šta radiš u životu?', emoji: '🧑‍💼', xpReward: 100,
         questions: [
           { id: 'wk1-q1', type: 'multiple-choice', prompt: '"Şef / Patron" nasıl denir?', promptEn: 'How to say "Chef / Boss"?', streetPrompt: 'En tepedeki adama ne denir?', answer: 'Šef', answerEn: 'Šef', options: ['Radnik', 'Šef', 'Klijent', 'Praktikant'], optionsEn: ['Radnik', 'Šef', 'Klijent', 'Praktikant'] },
           { id: 'wk1-q2', type: 'multiple-choice', prompt: '"Učenik / Öğrenci" ne anlama gelir?', promptEn: 'What does "Učenik / Student" mean?', streetPrompt: '"Student" nedir?', answer: 'Üniversite Öğrencisi', answerEn: 'University Student', options: ['Öğretmen', 'Üniversite Öğrencisi', 'Doktor', 'Mühendis'], optionsEn: ['Teacher', 'University Student', 'Doctor', 'Engineer'] },
@@ -594,7 +596,7 @@ export const curriculum: LessonSet[] = [
         ],
       },
       {
-        id: 'work-2', title: 'Ofiste', titleEn: 'In the Office', streetTitle: 'Kancelarija', emoji: '🏢', xpReward: 35,
+        id: 'work-2', title: 'Ofiste', titleEn: 'In the Office', streetTitle: 'Kancelarija', emoji: '🏢', xpReward: 100,
         questions: [
           { id: 'wk2-q1', type: 'multiple-choice', prompt: '"Toplantı" nasıl denir?', promptEn: 'How to say "Meeting"?', streetPrompt: 'Patron çağırdı, ne bu?', answer: 'Sastanak', answerEn: 'Sastanak', options: ['Odmor', 'Sastanak', 'Ručak', 'Pauza'], optionsEn: ['Odmor', 'Sastanak', 'Ručak', 'Pauza'] },
           { id: 'wk2-q2', type: 'translate', prompt: '"Meşgulüm" cümlesini çevir', promptEn: 'Translate "I am busy"', streetPrompt: 'Vaktin yok, yetiştireceğin iş var, ne dersin?', answer: 'Zauzet sam', hint: 'zauzet = meşgul/dolu', hintEn: 'zauzet = busy/full' },
@@ -614,7 +616,7 @@ export const curriculum: LessonSet[] = [
     emoji: '🎨', color: '#f1c40f',
     lessons: [
       {
-        id: 'colors-1', title: 'Ana Renkler', titleEn: 'Primary Colors', streetTitle: 'Glavne boje', emoji: '🔴', xpReward: 20,
+        id: 'colors-1', title: 'Ana Renkler', titleEn: 'Primary Colors', streetTitle: 'Glavne boje', emoji: '🔴', xpReward: 100,
         questions: [
           { id: 'col1-q1', type: 'translate', prompt: '"Kırmızı" kelimesini çevir', promptEn: 'Translate the word "Red"', streetPrompt: 'Kızılyıldızın rengi!', answer: 'Crvena', hint: 'cr-ve-na', hintEn: 'cr-ve-na' },
           { id: 'col1-q2', type: 'translate', prompt: '"Siyah" kelimesini çevir', promptEn: 'Translate the word "Black"', streetPrompt: 'Partizanın rengi!', answer: 'Crna', hint: 'cr-na', hintEn: 'cr-na' },
@@ -635,7 +637,7 @@ export const curriculum: LessonSet[] = [
     isPro: true,
     lessons: [
       {
-        id: 'surv-1', title: 'Bürokrasi', titleEn: 'Bureaucracy', streetTitle: 'Fali Ti Jedan Papir (FT1P)', emoji: '📄', xpReward: 40,
+        id: 'surv-1', title: 'Bürokrasi', titleEn: 'Bureaucracy', streetTitle: 'Fali Ti Jedan Papir (FT1P)', emoji: '📄', xpReward: 100,
         questions: [
           { id: 'sv1-q1', type: 'multiple-choice', prompt: '"Šalter" ne anlama gelir?', promptEn: 'What does "Šalter" mean?', streetPrompt: 'Memurla kavga etmek için nereye gidersin?', answer: 'Vezne / Gişe', answerEn: 'Counter / Window', options: ['Banka kasası', 'Vezne / Gişe', 'Tuvalet', 'Çıkış'], optionsEn: ['Bank safe', 'Counter / Window', 'Toilet', 'Exit'] },
           { id: 'sv1-q2', type: 'translate', prompt: '"Mühür" kelimesini çevir', promptEn: 'Translate the word "Stamp/Seal"', streetPrompt: 'Bez ovoga papir ne vredi ništa!', answer: 'Pečat', hint: 'pe-čat', hintEn: 'pe-chat' },
@@ -644,7 +646,7 @@ export const curriculum: LessonSet[] = [
         ],
       },
       {
-        id: 'surv-2', title: 'Sağlık & Mitler', titleEn: 'Health & Myths', streetTitle: 'Čuvaj Se Promaje', emoji: '🥶', xpReward: 40,
+        id: 'surv-2', title: 'Sağlık & Mitler', titleEn: 'Health & Myths', streetTitle: 'Čuvaj Se Promaje', emoji: '🥶', xpReward: 100,
         questions: [
           { id: 'sv2-q1', type: 'multiple-choice', prompt: '"Promaja" nedir?', promptEn: 'What is "Promaja"?', streetPrompt: 'Balkanlardaki en ölümcül şey?', answer: 'Cereyanda kalmak', answerEn: 'Draught (of air)', options: ['Vahşi bir hayvan', 'Cereyanda kalmak', 'Bir rakı türü', 'Kötü bir büyü'], optionsEn: ['A wild animal', 'Draught (of air)', 'A type of rakija', 'A bad spell'] },
           { id: 'sv2-q2', type: 'translate', prompt: '"Hastayım" cümlesini çevir', promptEn: 'Translate "I am sick"', streetPrompt: 'Kako kažeš da si bolestan?', answer: 'Bolestan sam', hint: 'bolestan = hasta', hintEn: 'bolestan = sick' },
@@ -664,7 +666,7 @@ export const curriculum: LessonSet[] = [
     isPro: true,
     lessons: [
       {
-        id: 'sport-1', title: 'Ebedi Derbi', titleEn: 'The Eternal Derby', streetTitle: 'Večiti Derbi', emoji: '🏟️', xpReward: 35,
+        id: 'sport-1', title: 'Ebedi Derbi', titleEn: 'The Eternal Derby', streetTitle: 'Večiti Derbi', emoji: '🏟️', xpReward: 100,
         questions: [
           { id: 'sp1-q1', type: 'multiple-choice', prompt: '"Večiti Derbi" nedir?', promptEn: 'What is "Večiti Derbi"?', streetPrompt: 'Najveća utakmica u Srbiji?', answer: 'Ebedi Derbi (Kızılyıldız vs Partizan)', answerEn: 'Eternal Derby (Red Star vs Partizan)', options: ['Basketbol turnuvası', 'Ebedi Derbi (Kızılyıldız vs Partizan)', 'Ulusal kupa', 'Tenis maçı'], optionsEn: ['Basketball tournament', 'Eternal Derby (Red Star vs Partizan)', 'National cup', 'Tennis match'] },
           { id: 'sp1-q2', type: 'multiple-choice', prompt: '"Navijač" ne anlama gelir?', promptEn: 'What does "Navijač" mean?', streetPrompt: 'Ko ide na stadion?', answer: 'Taraftar', answerEn: 'Fan', options: ['Oyuncu', 'Hakem', 'Taraftar', 'Antrenör'], optionsEn: ['Player', 'Referee', 'Fan', 'Coach'] },
@@ -673,7 +675,7 @@ export const curriculum: LessonSet[] = [
         ],
       },
       {
-        id: 'sport-2', title: 'Spor Yapmak', titleEn: 'Doing Sports', streetTitle: 'Idemo na basket', emoji: '🏀', xpReward: 35,
+        id: 'sport-2', title: 'Spor Yapmak', titleEn: 'Doing Sports', streetTitle: 'Idemo na basket', emoji: '🏀', xpReward: 100,
         questions: [
           { id: 'sp2-q1', type: 'translate', prompt: '"Basketbol" kelimesini çevir', promptEn: 'Translate the word "Basketball"', streetPrompt: 'Jokićev sport!', answer: 'Košarka', hint: 'koš = pota/basket', hintEn: 'kosh = basket' },
           { id: 'sp2-q2', type: 'multiple-choice', prompt: '"Pobeda" ne anlama gelir?', promptEn: 'What does "Pobeda" mean?', streetPrompt: 'Šta želimo na kraju utakmice?', answer: 'Zafer / Galibiyet', answerEn: 'Victory / Win', options: ['Mağlubiyet', 'Beraberlik', 'Zafer / Galibiyet', 'Uzatma'], optionsEn: ['Defeat', 'Draw', 'Victory / Win', 'Overtime'] },
@@ -693,7 +695,7 @@ export const curriculum: LessonSet[] = [
     isPro: true,
     lessons: [
       {
-        id: 'rom-1', title: 'Tatlı İfadeler', titleEn: 'Sweet Expressions', streetTitle: 'Slatke Reči', emoji: '💋', xpReward: 40,
+        id: 'rom-1', title: 'Tatlı İfadeler', titleEn: 'Sweet Expressions', streetTitle: 'Slatke Reči', emoji: '💋', xpReward: 100,
         questions: [
           { id: 'ro1-q1', type: 'multiple-choice', prompt: '"Dušo" ne anlama gelir?', promptEn: 'What does "Dušo" mean?', streetPrompt: 'Kako zoveš devojku/momka?', answer: 'Canım / Ruhum', answerEn: 'My Soul / Sweetheart', options: ['Arkadaşım', 'Canım / Ruhum', 'Patronum', 'Düşmanım'], optionsEn: ['My friend', 'My Soul / Sweetheart', 'My boss', 'My enemy'] },
           { id: 'ro1-q2', type: 'translate', prompt: '"Aşkım" kelimesini çevir', promptEn: 'Translate the word "My Love"', streetPrompt: 'Ljubav moja!', answer: 'Ljubavi', hint: 'ljubav kelimesinin seslenme hali', hintEn: 'Vocative form of the word ljubavl (love)' },
@@ -701,7 +703,7 @@ export const curriculum: LessonSet[] = [
         ],
       },
       {
-        id: 'rom-2', title: 'Balkan Draması', titleEn: 'Balkan Drama', streetTitle: 'Gde si bio?!', emoji: '💔', xpReward: 45,
+        id: 'rom-2', title: 'Balkan Draması', titleEn: 'Balkan Drama', streetTitle: 'Gde si bio?!', emoji: '💔', xpReward: 100,
         questions: [
           { id: 'ro2-q1', type: 'multiple-choice', prompt: '"Neredeydin?" sorusu agresif bir şekilde nasıl sorulur?', promptEn: 'How to ask "Where were you?" aggressively?', streetPrompt: 'Problem in paradise! Ask where they were!', answer: 'Gde si bio?!', answerEn: 'Gde si bio?!', options: ['Šta radiš?!', 'Gde si bio?!', 'Ko si ti?!', 'Kada dolaziš?!'], optionsEn: ['Šta radiš?!', 'Gde si bio?!', 'Ko si ti?!', 'Kada dolaziš?!'] },
           { id: 'ro2-q2', type: 'translate', prompt: '"Kıskancım" cümlesini çevir', promptEn: 'Translate "I am jealous"', streetPrompt: 'Zašto gledaš nju? Translate "jealous"!', answer: 'Ljubomoran sam', hint: 'ljubomoran = kıskanç (erkek)', hintEn: 'ljubomoran = jealous (male)' },
@@ -720,7 +722,7 @@ export const curriculum: LessonSet[] = [
     emoji: '🏥', color: '#e74c3c',
     lessons: [
       {
-        id: 'health-1', title: 'Vücut & Ağrı', titleEn: 'Body & Pain', streetTitle: 'Šta te boli?', emoji: '🤒', xpReward: 25,
+        id: 'health-1', title: 'Vücut & Ağrı', titleEn: 'Body & Pain', streetTitle: 'Šta te boli?', emoji: '🤒', xpReward: 100,
         questions: [
           { id: 'hl1-q1', type: 'multiple-choice', prompt: '\"Başım ağrıyor\" nasıl denir?', promptEn: 'How to say "My head hurts"?', streetPrompt: 'Brate — başın mı patladı?', answer: 'Boli me glava', answerEn: 'Boli me glava', options: ['Boli me stomak', 'Boli me glava', 'Boli me zub', 'Boli me leđa'], optionsEn: ['Boli me stomak', 'Boli me glava', 'Boli me zub', 'Boli me leđa'] },
           { id: 'hl1-q2', type: 'translate', prompt: '\"Yardım edin!\" cümlesini çevir', promptEn: 'Translate "Help me!"', streetPrompt: 'Acil durum — hemen ne bağırırsın?', answer: 'Pomozite!', hint: 'pom-o-zi-te', hintEn: 'pom-o-zi-te' },
@@ -731,7 +733,7 @@ export const curriculum: LessonSet[] = [
         ],
       },
       {
-        id: 'health-2', title: 'Eczanede', titleEn: 'At the Pharmacy', streetTitle: 'U apoteci', emoji: '💊', xpReward: 25,
+        id: 'health-2', title: 'Eczanede', titleEn: 'At the Pharmacy', streetTitle: 'U apoteci', emoji: '💊', xpReward: 100,
         questions: [
           { id: 'hl2-q1', type: 'multiple-choice', prompt: '\"Eczane\" nasıl denir?', promptEn: 'How to say "Pharmacy"?', streetPrompt: 'İlaç almak için nereye gidersin?', answer: 'Apoteka', answerEn: 'Apoteka', options: ['Bolnica', 'Apoteka', 'Klinika', 'Ambulanta'], optionsEn: ['Bolnica', 'Apoteka', 'Klinika', 'Ambulanta'] },
           { id: 'hl2-q2', type: 'translate', prompt: '\"Ağrı kesici var mı?\" cümlesini çevir', promptEn: 'Translate "Is there any painkiller?"', streetPrompt: 'Eczacıya ne sorarsın?', answer: 'Imate li analgetik?', hint: 'analgetik = ağrı kesici', hintEn: 'analgetik = painkiller' },
@@ -752,7 +754,7 @@ export const curriculum: LessonSet[] = [
     emoji: '🏙️', color: '#2c3e50',
     lessons: [
       {
-        id: 'belgrade-1', title: 'Semtler & Meydanlar', titleEn: 'Neighborhoods & Squares', streetTitle: 'Kvartovi i Trg', emoji: '🗺️', xpReward: 25,
+        id: 'belgrade-1', title: 'Semtler & Meydanlar', titleEn: 'Neighborhoods & Squares', streetTitle: 'Kvartovi i Trg', emoji: '🗺️', xpReward: 100,
         questions: [
           { id: 'bg1-q1', type: 'multiple-choice', prompt: '\"Centar\" ne anlama gelir?', promptEn: 'What does "Centar" mean?', streetPrompt: 'Brate — Centar nedir?', answer: 'Şehir merkezi', answerEn: 'City center', options: ['Park', 'Şehir merkezi', 'Köprü', 'Pazar'], optionsEn: ['Park', 'City center', 'Bridge', 'Market'] },
           { id: 'bg1-q2', type: 'translate', prompt: '\"Köprü\" kelimesini çevir', promptEn: 'Translate the word "Bridge"', streetPrompt: 'Sava üzerindeki yapı?', answer: 'Most', hint: 'most — kısa!', hintEn: 'most — short!' },
@@ -762,7 +764,7 @@ export const curriculum: LessonSet[] = [
         ],
       },
       {
-        id: 'belgrade-2', title: 'Nehirler & Plajlar', titleEn: 'Rivers & Beaches', streetTitle: 'Sava i Dunav', emoji: '🏖️', xpReward: 30,
+        id: 'belgrade-2', title: 'Nehirler & Plajlar', titleEn: 'Rivers & Beaches', streetTitle: 'Sava i Dunav', emoji: '🏖️', xpReward: 100,
         questions: [
           { id: 'bg2-q1', type: 'multiple-choice', prompt: 'Belgraddan geçen iki büyük nehir hangisidir?', promptEn: 'Which are the two main rivers passing through Belgrade?', streetPrompt: 'Brate — Belgrad hangi nehirlerin kavsaginda?', answer: 'Sava ve Dunav (Tuna)', answerEn: 'Sava and Danube', options: ['Morava ve Drina', 'Sava ve Dunav (Tuna)', 'Tisa ve Nišava', 'Kolubara ve Toplica'], optionsEn: ['Morava and Drina', 'Sava and Danube', 'Tisa and Nišava', 'Kolubara and Toplica'] },
           { id: 'bg2-q2', type: 'translate', prompt: '\"Nehir\" kelimesini çevir', promptEn: 'Translate the word "River"', streetPrompt: 'Sava i Dunav su...', answer: 'Reka', hint: 're-ka', hintEn: 're-ka' },
@@ -784,7 +786,7 @@ export const curriculum: LessonSet[] = [
     isPro: true,
     lessons: [
       {
-        id: 'night-1', title: 'Gece Hazırlığı', titleEn: 'Night Prep', streetTitle: 'Šta večeras?', emoji: '🎉', xpReward: 40,
+        id: 'night-1', title: 'Gece Hazırlığı', titleEn: 'Night Prep', streetTitle: 'Šta večeras?', emoji: '🎉', xpReward: 100,
         questions: [
           { id: 'ni1-q1', type: 'multiple-choice', prompt: '\"Bu gece dışarı çıkıyoruz mu?\" nasıl denir?', promptEn: 'How to say "Are we going out tonight?"', streetPrompt: 'Brate — gece planı var mı?', answer: 'Idemo večeras van?', options: ['Spavamo večeras?', 'Idemo večeras van?', 'Jedemo večeras?', 'Radimo večeras?'] },
           { id: 'ni1-q2', type: 'translate', prompt: '\"Hazır mısın?\" cümlesini çevir', promptEn: 'Translate "Are you ready?"', streetPrompt: 'Arkadasini acele ettir!', answer: 'Jesi li spreman?', hint: 'spreman = hazır (erkek)', hintEn: 'spreman = ready (male)' },
@@ -794,7 +796,7 @@ export const curriculum: LessonSet[] = [
         ],
       },
       {
-        id: 'night-2', title: 'Kafana & Splav', titleEn: 'Kafana & Splav', streetTitle: 'Na Splavu!', emoji: '🥂', xpReward: 45,
+        id: 'night-2', title: 'Kafana & Splav', titleEn: 'Kafana & Splav', streetTitle: 'Na Splavu!', emoji: '🥂', xpReward: 100,
         questions: [
           { id: 'ni2-q1', type: 'multiple-choice', prompt: '\"Gürültü çok fazla\" nasıl söylersin?', promptEn: 'How to say "It\'s too loud"?', streetPrompt: 'Kulağın patladı mı kanka?', answer: 'Previše je buka', answerEn: 'Previše je buka', options: ['Puno je muzike', 'Previše je buka', 'Nema zvuka', 'Tiho je'], optionsEn: ['Puno je muzike', 'Previše je buka', 'Nema zvuka', 'Tiho je'] },
           { id: 'ni2-q2', type: 'translate', prompt: '\"Bir tur daha!\" cümlesini çevir', promptEn: 'Translate "One more round!"', streetPrompt: 'Üçüncü tur geldi...', answer: 'Još jedna runda!', hint: 'još = daha, runda = tur', hintEn: 'jos = more, runda = round' },
@@ -816,7 +818,7 @@ export const curriculum: LessonSet[] = [
     isPro: true,
     lessons: [
       {
-        id: 'grammar-1', title: 'Geçmiş Zaman', titleEn: 'Past Tense', streetTitle: 'Šta si radio juče?', emoji: '⏪', xpReward: 40,
+        id: 'grammar-1', title: 'Geçmiş Zaman', titleEn: 'Past Tense', streetTitle: 'Šta si radio juče?', emoji: '⏪', xpReward: 100,
         questions: [
           { id: 'gr1-q1', type: 'multiple-choice', prompt: '\"Dün gittim\" nasıl denir?', promptEn: 'How to say "I went yesterday"?', streetPrompt: 'Pazi — geçmiş zamana dikkat!', answer: 'Išao sam juče', answerEn: 'Išao sam juče', options: ['Idem juče', 'Išao sam juče', 'Idi juče', 'Ću ići juče'], optionsEn: ['Idem juče', 'Išao sam juče', 'Idi juče', 'Ću ići juče'] },
           { id: 'gr1-q2', type: 'translate', prompt: '\"Dün ne yaptın?\" cümlesini çevir', promptEn: 'Translate "What did you do yesterday?"', streetPrompt: 'Kapiram — dünü sor bakalım.', answer: 'Šta si radio juče?', hint: 'radio si = yaptın (geçmiş/erkek)', hintEn: 'radio si = you did (past/male)' },
@@ -827,7 +829,7 @@ export const curriculum: LessonSet[] = [
         ],
       },
       {
-        id: 'grammar-2', title: 'Gelecek Zaman', titleEn: 'Future Tense', streetTitle: 'Šta ces da kazes?', emoji: '🗣️', xpReward: 40,
+        id: 'grammar-2', title: 'Gelecek Zaman', titleEn: 'Future Tense', streetTitle: 'Šta ces da kazes?', emoji: '🗣️', xpReward: 100,
         questions: [
           { id: 'gr2-q1', type: 'multiple-choice', prompt: 'Gelecek zaman için hangi yardımcı fiil kullanılır?', promptEn: 'Which auxiliary verb is used for the future tense?', streetPrompt: 'Brate — yarın bir şey yapacaksan nasıl söylersin?', answer: 'Cu yardimci fiili', answerEn: 'Cu auxiliary verb', options: ['Sam', 'Jest', 'Cu yardimci fiili', 'Bi'], optionsEn: ['Sam', 'Jest', 'Cu auxiliary verb', 'Bi'] },
           { id: 'gr2-q2', type: 'translate', prompt: '\"Yarın gelirim\" cümlesini çevir', promptEn: 'Translate "I will come tomorrow"', streetPrompt: 'Söz ver birine — yarın geleceğini söyle!', answer: 'Doći ću sutra', hint: 'doći = gelmek, sutra = yarın', hintEn: 'doci = to come, sutra = tomorrow' },
@@ -849,7 +851,7 @@ export const curriculum: LessonSet[] = [
     isPro: true,
     lessons: [
       {
-        id: 'comm-1', title: 'Telefon Görüşmesi', titleEn: 'Phone Call', streetTitle: 'Alo, ko je?', emoji: '📞', xpReward: 30,
+        id: 'comm-1', title: 'Telefon Görüşmesi', titleEn: 'Phone Call', streetTitle: 'Alo, ko je?', emoji: '📞', xpReward: 100,
         questions: [
           { id: 'cm1-q1', type: 'multiple-choice', prompt: 'Telefona cevap verirken ne dersin?', promptEn: 'What do you say when answering the phone?', streetPrompt: 'Ring ring — telefon çalıyor!', answer: 'Alo!', answerEn: 'Alo!', options: ['Zdravo!', 'Alo!', 'Hej!', 'Dobro!'], optionsEn: ['Zdravo!', 'Alo!', 'Hej!', 'Dobro!'] },
           { id: 'cm1-q2', type: 'translate', prompt: '\"Şu an konuşamam\" cümlesini çevir', promptEn: 'Translate "I can\'t talk right now"', streetPrompt: 'Meşgulsün — ne dersin?', answer: 'Ne mogu sada da pričam', hint: 'ne mogu = yapamam, sada = şimdi', hintEn: 'ne mogu = I can\'t, sada = now' },
@@ -859,7 +861,7 @@ export const curriculum: LessonSet[] = [
         ],
       },
       {
-        id: 'comm-2', title: 'Sosyal Medya & Mesaj', titleEn: 'Social Media & Message', streetTitle: 'DM i Stories', emoji: '💬', xpReward: 30,
+        id: 'comm-2', title: 'Sosyal Medya & Mesaj', titleEn: 'Social Media & Message', streetTitle: 'DM i Stories', emoji: '💬', xpReward: 100,
         questions: [
           { id: 'cm2-q1', type: 'multiple-choice', prompt: '\"Mesaj attım\" nasıl denir?', promptEn: 'How to say "I sent a message"?', streetPrompt: 'DM gonderdim — nasıl söylersin?', answer: 'Poslao sam poruku', answerEn: 'Poslao sam poruku', options: ['Primio sam poruku', 'Poslao sam poruku', 'Čitao sam poruku', 'Obrisao sam poruku'], optionsEn: ['Primio sam poruku', 'Poslao sam poruku', 'Čitao sam poruku', 'Obrisao sam poruku'] },
           { id: 'cm2-q2', type: 'translate', prompt: '\"Konumunu gönder\" cümlesini çevir', promptEn: 'Translate "Send your location"', streetPrompt: 'Nerede olduğunu bilmem lazım!', answer: 'Pošalji mi lokaciju', hint: 'pošalji = gönder, lokaciju = konumu', hintEn: 'poshalji = send, lokaciju = location' },
@@ -883,7 +885,7 @@ export const curriculum: LessonSet[] = [
     isPro: true,
     lessons: [
       {
-        id: 'swear-1', title: 'Hafif Argo', titleEn: 'Mild Slang', streetTitle: 'Lagan početak', emoji: '😤', xpReward: 35,
+        id: 'swear-1', title: 'Hafif Argo', titleEn: 'Mild Slang', streetTitle: 'Lagan početak', emoji: '😤', xpReward: 100,
         questions: [
           { id: 'sw1-q1', type: 'multiple-choice', prompt: '"Jebiga" ne anlama gelir?', promptEn: 'What does "Jebiga" mean?', streetPrompt: 'Brate — "Jebiga" ne demek?', answer: 'Ne yaparsın, oldu işte / Lanet olsun', answerEn: 'What can you do / Damn it', options: ['Merhaba!', 'Ne yaparsın, oldu işte / Lanet olsun', 'Görüşürüz', 'Tamam anlaştık'], optionsEn: ['Hello!', 'What can you do / Damn it', 'See you', 'Deal'] },
           { id: 'sw1-q2', type: 'multiple-choice', prompt: '"Majmune!" kime denir?', promptEn: 'Who do you call "Majmune!"?', streetPrompt: 'Biri aptalca bir şey yaptı — ne dersin?', answer: 'Aptal / Maymun (hakaret)', answerEn: 'Idiot / Monkey (insult)', options: ['Arkadaşa övgü', 'Aptal / Maymun (hakaret)', 'Sevgiliye', 'Patrona'], optionsEn: ['Praise to a friend', 'Idiot / Monkey (insult)', 'To a lover', 'To the boss'] },
@@ -894,7 +896,7 @@ export const curriculum: LessonSet[] = [
         ],
       },
       {
-        id: 'swear-2', title: 'Orta Ağırlık', titleEn: 'Medium Weight', streetTitle: 'Srednji nivo, brate', emoji: '🤬', xpReward: 40,
+        id: 'swear-2', title: 'Orta Ağırlık', titleEn: 'Medium Weight', streetTitle: 'Srednji nivo, brate', emoji: '🤬', xpReward: 100,
         questions: [
           { id: 'sw2-q1', type: 'multiple-choice', prompt: '"Kurac!" hangi anlamda kullanılır?', promptEn: 'What does "Kurac!" express?', streetPrompt: 'Hayal kırıklığı veya red için ne dersin?', answer: 'Hayır! / Sıfır! / Hiç! (güçlü ret)', answerEn: 'No way! / Nothing! (strong refusal)', options: ['Evet tabii', 'Hayır! / Sıfır! / Hiç! (güçlü ret)', 'Belki', 'Hemen geliyorum'], optionsEn: ['Of course yes', 'No way! / Nothing! (strong refusal)', 'Maybe', 'Coming right away'] },
           { id: 'sw2-q2', type: 'translate', prompt: '"Glupo govno" kelimesini Türkçeye çevir', promptEn: 'Translate "Glupo govno"', streetPrompt: 'Biri seni çok sinirletti — ne dersin?', answer: 'Aptal pislik / Salak herif', answerEn: 'Stupid piece of crap', hint: 'glupo = aptal, govno = pislik', hintEn: 'glupo = stupid, govno = crap' },
@@ -905,7 +907,7 @@ export const curriculum: LessonSet[] = [
         ],
       },
       {
-        id: 'swear-3', title: 'Sokak Dili', titleEn: 'Street Talk', streetTitle: 'Čist ulični jezik', emoji: '🗣️', xpReward: 45,
+        id: 'swear-3', title: 'Sokak Dili', titleEn: 'Street Talk', streetTitle: 'Čist ulični jezik', emoji: '🗣️', xpReward: 100,
         questions: [
           { id: 'sw3-q1', type: 'multiple-choice', prompt: '"Lud si!" ne anlama gelir?', promptEn: 'What does "Lud si!" mean?', streetPrompt: 'Biri çıldırmış gibi davranıyor — ne dersin?', answer: 'Deli misin! / Çıldırdın!', answerEn: 'Are you crazy! / You are nuts!', options: ['Ne kadar akıllısın!', 'Deli misin! / Çıldırdın!', 'Çok güzel!', 'Yavaşla!'], optionsEn: ['How smart you are!', 'Are you crazy! / You are nuts!', 'So beautiful!', 'Slow down!'] },
           { id: 'sw3-q2', type: 'translate', prompt: '"Marš!" ne anlama gelir ve ne zaman kullanılır?', promptEn: 'What does "Marš!" mean and when is it used?', streetPrompt: 'Birisini çok sert bir şekilde kovmak?', answer: 'Defol! / Çekil karşımdan!', answerEn: 'Get lost! / Get out of my sight!', hint: 'Alman askeri komutundan gelir', hintEn: 'From German military command' },

@@ -33,10 +33,12 @@ export default function LessonClient({ id }: { id: string }) {
   const [xpEarned, setXpEarned] = useState(0);
   const [mistakes, setMistakes] = useState(0);
   const [leveledUp, setLeveledUp] = useState(false);
+  const [passed, setPassed] = useState(false);
 
   useEffect(() => { 
     setCurrent(0); 
     setFinished(false); 
+    setPassed(false);
     setMistakes(0); 
     setXpEarned(0); 
     
@@ -126,13 +128,20 @@ export default function LessonClient({ id }: { id: string }) {
   const next = () => {
     setSelected(null); setInputVal(''); setStatus('idle');
     if (current + 1 >= questions.length) {
-      const earned = Math.max(lesson.xpReward - mistakes * 5, 5);
+      const maxBaseXp = lesson.xpReward;
+      const penaltyPerMistake = maxBaseXp / questions.length;
+      const earnedBaseXP = Math.max(0, Math.round(maxBaseXp - mistakes * penaltyPerMistake));
+      const threshold = Math.round(maxBaseXp * 0.75);
+      const hasPassed = earnedBaseXP >= threshold;
+
+      setPassed(hasPassed);
       setFinished(true);
-      if (user) { 
+
+      if (hasPassed && user) { 
         (async () => {
           const streak = userData?.streak || 0;
           const bonusMultiplier = 1 + Math.min(streak * 0.05, 0.5);
-          const finalEarned = Math.round(earned * bonusMultiplier);
+          const finalEarned = Math.round(earnedBaseXP * bonusMultiplier);
           setXpEarned(finalEarned);
 
           const oldLevel = calculateLevel(userData?.xp || 0);
@@ -142,10 +151,12 @@ export default function LessonClient({ id }: { id: string }) {
             setLeveledUp(true);
           }
           
-          await completeLesson(user.uid, lesson.id, earned); 
+          await completeLesson(user.uid, lesson.id, finalEarned); 
           await updateStreak(user.uid); 
           await refreshUserData(); 
         })();
+      } else if (!hasPassed) {
+        setXpEarned(0);
       }
     } else {
       setCurrent(c => c + 1);
@@ -197,17 +208,22 @@ export default function LessonClient({ id }: { id: string }) {
 
   if (finished) return (
     <div style={{ textAlign: 'center', paddingTop: 40 }}>
-      <div style={{ fontSize: '4rem', marginBottom: 16, animation: 'pop-in 0.3s cubic-bezier(0.34,1.56,0.64,1)' }}>🎉</div>
-      <h2 style={{ fontSize: '2rem', fontWeight: 900, fontFamily: 'var(--font-display)', color: 'var(--color-foreground)', marginBottom: 8 }}>
-        {streetMode ? 'Jebiga, to je to!' : t.lessonDone}
+      <div style={{ fontSize: '4rem', marginBottom: 16, animation: 'pop-in 0.3s cubic-bezier(0.34,1.56,0.64,1)' }}>
+        {passed ? '🎉' : '💀'}
+      </div>
+      <h2 style={{ fontSize: '2rem', fontWeight: 900, fontFamily: 'var(--font-display)', color: passed ? 'var(--color-foreground)' : '#ff4757', marginBottom: 8 }}>
+        {passed 
+           ? (streetMode ? 'Jebiga, to je to!' : t.lessonDone)
+           : (streetMode ? 'Pao si brate! (%75 altı)' : (lang === 'en' ? 'You failed! (Below 75%)' : 'Başarısız! (%75 altı)'))
+        }
       </h2>
       <p style={{ color: 'var(--color-muted)', marginBottom: 32 }}>
         {streetMode 
-          ? `Bravo brate — ${mistakes} greška${mistakes !== 1 ? 'ke' : ''}!` 
+          ? `Bravo brate — ${mistakes} greška${mistakes !== 1 ? 'ke' : ''}!${!passed ? ' Moraš bolje.' : ''}` 
           : t.mistakesMade.replace('{n}', mistakes.toString())}
       </p>
       <div className={`glass ${streetMode ? 'neon-border' : ''}`} style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', gap: 8, padding: '24px 48px', marginBottom: 32, position: 'relative', background: 'var(--color-surface)', boxShadow: '0 10px 30px rgba(0,0,0,0.05)' }}>
-        {leveledUp && (
+        {leveledUp && passed && (
           <div style={{
             position: 'absolute', top: -12, right: -12,
             background: 'var(--color-neon)', color: '#fff',
@@ -220,20 +236,28 @@ export default function LessonClient({ id }: { id: string }) {
             LEVEL UP! 🚀
           </div>
         )}
-        <div style={{ fontSize: '2.5rem', fontWeight: 900, color: 'var(--color-xp)', fontFamily: 'var(--font-display)' }}>
-          +{xpEarned} XP
+        <div style={{ fontSize: '2.5rem', fontWeight: 900, color: passed ? 'var(--color-xp)' : 'var(--color-muted)', fontFamily: 'var(--font-display)' }}>
+          {passed ? `+${xpEarned} XP` : '0 XP'}
         </div>
-        {userData?.streak && userData.streak > 0 && (
+        {passed && userData?.streak && userData.streak > 0 && (
           <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#e67e22', marginTop: -4 }}>
             {lang === 'en' ? 'STREAK BONUS: ' : 'SERİ BONUSU: '} 
             +{Math.min(userData.streak * 5, 50)}% 🔥
           </div>
         )}
-        <div style={{ color: 'var(--color-muted)', fontSize: '0.85rem' }}>{t.xpEarned}</div>
+        <div style={{ color: 'var(--color-muted)', fontSize: '0.85rem' }}>
+          {passed ? t.xpEarned : (lang === 'en' ? 'Earn 75% XP to pass' : 'Geçmek için %75 XP kazanmalısın')}
+        </div>
       </div>
       <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-        <button className="btn-ghost" onClick={() => { setCurrent(0); setFinished(false); setMistakes(0); setXpEarned(0); setStatus('idle'); }}>{t.tryAgain}</button>
-        <button className="btn-primary" onClick={() => router.push('/map')}>{t.backToMap}</button>
+        <button className="btn-ghost" onClick={() => { setCurrent(0); setFinished(false); setPassed(false); setMistakes(0); setXpEarned(0); setStatus('idle'); }}>{t.tryAgain}</button>
+        {passed ? (
+          <button className="btn-primary" onClick={() => router.push('/map')}>{t.backToMap}</button>
+        ) : (
+          <button className="btn-ghost" onClick={() => router.push('/map')} style={{ color: 'var(--color-muted)', border: '1px solid var(--color-border)' }}>
+             {lang === 'en' ? 'Give up' : 'Pes et'}
+          </button>
+        )}
       </div>
     </div>
   );
