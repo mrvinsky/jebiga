@@ -1,5 +1,6 @@
 import {
-  doc, getDoc, setDoc, updateDoc, serverTimestamp, increment, onSnapshot
+  doc, getDoc, setDoc, updateDoc, serverTimestamp, increment, onSnapshot,
+  query, collection, orderBy, limit, getDocs, where, getCountFromServer
 } from 'firebase/firestore';
 import { User } from 'firebase/auth';
 import { db } from './firebase';
@@ -194,4 +195,18 @@ export const subscribeToUserData = (uid: string, callback: (data: UserData | nul
       callback(null);
     }
   });
+};
+
+export const getTopUsers = async (limitCount: number = 10): Promise<UserData[]> => {
+  const usersRef = collection(db, 'users');
+  const q = query(usersRef, orderBy('xp', 'desc'), limit(limitCount));
+  const snap = await getDocs(q);
+  return snap.docs.map(doc => doc.data() as UserData);
+};
+
+export const getUserRank = async (xp: number): Promise<number> => {
+  const usersRef = collection(db, 'users');
+  const q = query(usersRef, where('xp', '>', xp));
+  const snap = await getCountFromServer(q);
+  return snap.data().count + 1;
 };

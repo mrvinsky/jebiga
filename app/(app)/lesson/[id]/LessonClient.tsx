@@ -63,7 +63,7 @@ export default function LessonClient({ id }: { id: string }) {
   if (!lesson) return (
     <div style={{ textAlign: 'center', paddingTop: 60 }}>
       <p style={{ color: 'var(--color-muted)' }}>{t.lessonNotFound}</p>
-      <button className="btn-primary" style={{ marginTop: 20 }} onClick={() => router.push('/learn')}>{t.backToMap}</button>
+      <button className="btn-primary" style={{ marginTop: 20 }} onClick={() => router.push('/map')}>{t.backToMap}</button>
     </div>
   );
 
@@ -233,7 +233,7 @@ export default function LessonClient({ id }: { id: string }) {
       </div>
       <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
         <button className="btn-ghost" onClick={() => { setCurrent(0); setFinished(false); setMistakes(0); setXpEarned(0); setStatus('idle'); }}>{t.tryAgain}</button>
-        <button className="btn-primary" onClick={() => router.push('/learn')}>{t.backToMap}</button>
+        <button className="btn-primary" onClick={() => router.push('/map')}>{t.backToMap}</button>
       </div>
     </div>
   );
@@ -244,7 +244,7 @@ export default function LessonClient({ id }: { id: string }) {
     <div style={{ maxWidth: 640, margin: '0 auto' }}>
       <div style={{ marginBottom: 8 }}>
         <button
-          onClick={() => router.push('/learn')}
+          onClick={() => router.push('/map')}
           style={{
             background: 'none', border: 'none', cursor: 'pointer',
             color: 'var(--color-muted)', fontSize: '0.82rem', fontWeight: 600,

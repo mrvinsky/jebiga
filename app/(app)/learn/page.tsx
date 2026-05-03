@@ -1,309 +1,226 @@
 'use client';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useState } from 'react';
-import { useLanguage, UI_TEXT } from '@/hooks/useLanguage';
 import { useAuth } from '@/context/AuthContext';
+import { useLanguage, UI_TEXT, STREET_TEXT } from '@/hooks/useLanguage';
 import { useStreetMode } from '@/context/StreetModeContext';
-import { curriculum } from '@/data/curriculum';
+import { getTopUsers, getUserRank, UserData } from '@/lib/firestore';
+import { BarChart, Bar, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
-
-import { calculateLevel } from '@/lib/firestore';
-
-export default function LearnPage() {
+export default function DashboardPage() {
+  const { user, userData } = useAuth();
   const { streetMode } = useStreetMode();
-  const { userData } = useAuth();
   const lang = useLanguage();
-  const t = UI_TEXT[lang];
-  const completed = userData?.completedLessons || [];
-  const isPro = userData?.subscription === 'pro';
-  const isAdmin = userData?.role === 'admin';
-  const [expandedSet, setExpandedSet] = useState<string | null>(null);
+  const t = streetMode ? { ...UI_TEXT[lang], ...STREET_TEXT } : UI_TEXT[lang];
 
-  const xp = userData?.xp || 0;
-  const currentLevel = calculateLevel(xp);
-  
-  const totalLessons = curriculum.flatMap(s => s.lessons).length;
-  const completedCount = completed.length;
-  const progressPct = Math.round((completedCount / totalLessons) * 100);
+  const [topUsers, setTopUsers] = useState<UserData[]>([]);
+  const [userRank, setUserRank] = useState<number | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchLeaderboard = async () => {
+      try {
+        const top = await getTopUsers(10);
+        setTopUsers(top);
+
+        if (userData) {
+          // Check if current user is in top 10
+          const inTop10Index = top.findIndex(u => u.email === userData.email);
+          if (inTop10Index !== -1) {
+            setUserRank(inTop10Index + 1);
+          } else {
+            const rank = await getUserRank(userData.xp);
+            setUserRank(rank);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching leaderboard:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchLeaderboard();
+  }, [userData]);
+
+  const maskEmail = (email: string) => {
+    const [name] = email.split('@');
+    if (name.length <= 3) return name + '***';
+    return name.substring(0, 3) + '***';
+  };
+
+  const getUserDisplayName = (u: UserData) => {
+    if (u.displayName && u.displayName !== 'Stranger') return u.displayName;
+    return maskEmail(u.email);
+  };
+
+  // Mock chart data (we don't have daily progress tracking in firestore yet)
+  const chartData = [
+    { name: 'Mon', xp: 50 },
+    { name: 'Tue', xp: 120 },
+    { name: 'Wed', xp: 80 },
+    { name: 'Thu', xp: 200 },
+    { name: 'Fri', xp: 150 },
+    { name: 'Sat', xp: 0 },
+    { name: 'Sun', xp: userData?.xp || 0 }, // Just a visual mock up to current xp
+  ];
+
+  if (!user) return null;
 
   return (
-    <div style={{ maxWidth: 860, margin: '0 auto' }}>
-
-      {/* ── Hero Header ── */}
-      <div style={{
-        textAlign: 'center', marginBottom: 36,
-        padding: '32px 24px 28px',
-        background: 'var(--color-surface)',
-        border: '1px solid var(--color-border)',
-        borderRadius: 20,
-        position: 'relative', overflow: 'hidden',
-        boxShadow: '0 4px 20px rgba(0,0,0,0.03)',
-      }}>
-        {/* Subtle radial glow */}
-        <div style={{
-          position: 'absolute', inset: 0, pointerEvents: 'none',
-          background: 'radial-gradient(ellipse at 50% 0%, rgba(192,57,43,0.12) 0%, transparent 65%)',
-        }} />
-        <div style={{ position: 'relative' }}>
-          {/* User Stats Card */}
+    <div style={{ maxWidth: 860, margin: '0 auto', paddingBottom: 40, animation: 'slide-up 0.3s ease' }}>
+      
+      {/* Big Call to Action to Map */}
+      <div style={{ marginBottom: 32 }}>
+        <Link href="/map" style={{ textDecoration: 'none' }}>
           <div style={{
+            background: streetMode ? 'rgba(57,255,20,0.1)' : 'var(--color-red)',
+            border: streetMode ? '2px solid rgba(57,255,20,0.4)' : 'none',
+            borderRadius: 20,
+            padding: '28px 24px',
             display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
             justifyContent: 'center',
-            gap: 16,
-            marginBottom: 24,
-            flexWrap: 'wrap'
+            textAlign: 'center',
+            boxShadow: streetMode ? '0 0 30px rgba(57,255,20,0.2)' : '0 10px 30px rgba(192,57,43,0.3)',
+            transition: 'transform 0.2s, box-shadow 0.2s',
+            cursor: 'pointer'
           }}>
-            <div className="glass" style={{ padding: '10px 20px', display: 'flex', alignItems: 'center', gap: 10, border: '1px solid rgba(241,196,15,0.3)' }}>
-              <span style={{ fontSize: '1.2rem' }}>🏆</span>
-              <div>
-                <div style={{ fontSize: '0.65rem', fontWeight: 800, color: 'var(--color-muted)', textTransform: 'uppercase' }}>{t.levelLabel}</div>
-                <div style={{ fontSize: '1.1rem', fontWeight: 900, color: 'var(--color-xp)' }}>Lv.{currentLevel}</div>
+            <h1 style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: '2rem',
+              fontWeight: 900,
+              color: streetMode ? '#39ff14' : '#fff',
+              margin: '0 0 8px',
+            }}>
+              {lang === 'en' ? 'Continue Journey' : 'Eğitime Devam Et'}
+            </h1>
+            <p style={{ color: streetMode ? 'rgba(57,255,20,0.8)' : 'rgba(255,255,255,0.9)', margin: 0, fontWeight: 600 }}>
+              {streetMode ? 'Sokaklar seni bekliyor brate!' : 'Sıradaki derse geç ve XP kazanmaya devam et.'}
+            </p>
+          </div>
+        </Link>
+      </div>
+
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 24 }}>
+        
+        {/* Left Column: Stats & Chart */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+          {/* Quick Stats */}
+          <div className="glass" style={{ padding: 24, borderRadius: 20, border: '1px solid var(--color-border)' }}>
+            <h3 style={{ margin: '0 0 20px', fontFamily: 'var(--font-display)', color: 'var(--color-foreground)', fontSize: '1.2rem' }}>
+              {lang === 'en' ? 'Your Stats' : 'İstatistiklerin'}
+            </h3>
+            <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+              <div style={{ flex: 1, minWidth: 100, background: 'var(--color-surface-2)', padding: 16, borderRadius: 16 }}>
+                <div style={{ fontSize: '1.5rem' }}>🔥</div>
+                <div style={{ fontSize: '1.4rem', fontWeight: 900, color: 'var(--color-foreground)', marginTop: 8 }}>{userData?.streak || 0}</div>
+                <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--color-muted)', textTransform: 'uppercase' }}>{lang === 'en' ? 'Day Streak' : 'Gün Seri'}</div>
               </div>
-            </div>
-            <div className="glass" style={{ padding: '10px 20px', display: 'flex', alignItems: 'center', gap: 10, border: '1px solid rgba(192,57,43,0.3)' }}>
-              <span style={{ fontSize: '1.2rem' }}>✨</span>
-              <div>
-                <div style={{ fontSize: '0.65rem', fontWeight: 800, color: 'var(--color-muted)', textTransform: 'uppercase' }}>{lang === 'en' ? 'TOTAL XP' : 'TOPLAM XP'}</div>
-                <div style={{ fontSize: '1.1rem', fontWeight: 900, color: 'var(--color-red)' }}>{userData?.xp || 0}</div>
+              <div style={{ flex: 1, minWidth: 100, background: 'var(--color-surface-2)', padding: 16, borderRadius: 16 }}>
+                <div style={{ fontSize: '1.5rem' }}>⚡</div>
+                <div style={{ fontSize: '1.4rem', fontWeight: 900, color: 'var(--color-xp)', marginTop: 8 }}>{userData?.xp || 0}</div>
+                <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--color-muted)', textTransform: 'uppercase' }}>{lang === 'en' ? 'Total XP' : 'Toplam XP'}</div>
               </div>
-            </div>
-            <div className="glass" style={{ padding: '10px 20px', display: 'flex', alignItems: 'center', gap: 10, border: '1px solid rgba(230,126,34,0.3)' }}>
-              <span style={{ fontSize: '1.2rem' }}>🔥</span>
-              <div>
-                <div style={{ fontSize: '0.65rem', fontWeight: 800, color: 'var(--color-muted)', textTransform: 'uppercase' }}>{t.streakLabel}</div>
-                <div style={{ fontSize: '1.1rem', fontWeight: 900, color: '#e67e22' }}>{userData?.streak || 0}</div>
+              <div style={{ flex: 1, minWidth: 100, background: 'var(--color-surface-2)', padding: 16, borderRadius: 16 }}>
+                <div style={{ fontSize: '1.5rem' }}>📚</div>
+                <div style={{ fontSize: '1.4rem', fontWeight: 900, color: 'var(--color-blue)', marginTop: 8 }}>{userData?.completedLessons?.length || 0}</div>
+                <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--color-muted)', textTransform: 'uppercase' }}>{lang === 'en' ? 'Lessons' : 'Dersler'}</div>
               </div>
             </div>
           </div>
 
-          <h1 style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(1.6rem, 4vw, 2.2rem)',
-            fontWeight: 900, letterSpacing: '-0.03em',
-            margin: '0 0 8px',
-            color: 'var(--color-foreground)',
-          }}>
-            {streetMode
-              ? <><span style={{ color: '#39ff14', textShadow: '0 0 20px rgba(57,255,20,0.4)' }}>{t.streetDictionary}</span> 💀</>
-              : <><span style={{ background: 'linear-gradient(135deg, #e74c3c, #c0392b)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>{t.learningPath.split(' ')[0]}</span> {t.learningPath.split(' ').slice(1).join(' ')} 🇷🇸</>
-            }
-          </h1>
-          <p style={{ color: 'var(--color-muted)', fontSize: '0.88rem', margin: '0 0 20px' }}>
-            {streetMode ? t.streetDesc : t.learningDesc}
-          </p>
-
-          {/* Progress bar */}
-          <div style={{ maxWidth: 380, margin: '0 auto' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6, fontSize: '0.75rem', color: 'var(--color-muted)' }}>
-              <span>{t.generalProgress}</span>
-              <span style={{ color: 'var(--color-xp)', fontWeight: 700 }}>{completedCount}/{totalLessons} {t.lessons} · {progressPct}%</span>
-            </div>
-            <div style={{ height: 8, background: 'var(--color-surface-2)', borderRadius: 4, overflow: 'hidden' }}>
-              <div style={{
-                height: '100%', borderRadius: 4,
-                width: `${progressPct}%`,
-                background: 'linear-gradient(90deg, #c0392b, #e74c3c)',
-                transition: 'width 0.6s ease',
-                boxShadow: progressPct > 0 ? '0 0 12px rgba(192,57,43,0.4)' : 'none',
-              }} />
+          {/* Chart */}
+          <div className="glass" style={{ padding: 24, borderRadius: 20, border: '1px solid var(--color-border)' }}>
+            <h3 style={{ margin: '0 0 20px', fontFamily: 'var(--font-display)', color: 'var(--color-foreground)', fontSize: '1.2rem' }}>
+              {lang === 'en' ? 'Activity' : 'Aktivite'}
+            </h3>
+            <div style={{ height: 200, width: '100%' }}>
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={chartData}>
+                  <XAxis dataKey="name" stroke="var(--color-muted)" fontSize={12} tickLine={false} axisLine={false} />
+                  <Tooltip 
+                    cursor={{ fill: 'var(--color-surface-3)' }} 
+                    contentStyle={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: 8 }}
+                  />
+                  <Bar dataKey="xp" fill={streetMode ? '#39ff14' : 'var(--color-red)'} radius={[4, 4, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* ── Category Grid ── */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-        {curriculum.map((set, setIndex) => {
-          const isSetUnlocked = isAdmin || setIndex === 0 ||
-            curriculum.slice(0, setIndex).every(s => s.lessons.every(l => completed.includes(l.id)));
-          const isProLocked = set.isPro && !isPro && !isAdmin;
-          const setCompleted = set.lessons.filter(l => completed.includes(l.id)).length;
-          const setTotal = set.lessons.length;
-          const setProgress = Math.round((setCompleted / setTotal) * 100);
-          const isExpanded = expandedSet === set.id;
-          const isFullyDone = setCompleted === setTotal;
+        {/* Right Column: Leaderboard */}
+        <div className="glass" style={{ padding: 24, borderRadius: 20, border: '1px solid var(--color-border)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
+            <h3 style={{ margin: 0, fontFamily: 'var(--font-display)', color: 'var(--color-foreground)', fontSize: '1.2rem' }}>
+              {lang === 'en' ? 'Leaderboard' : 'Liderlik Tablosu'} 🏆
+            </h3>
+          </div>
 
-          return (
-            <div key={set.id} style={{ borderRadius: 18, overflow: 'hidden', border: '1px solid var(--color-border)', background: 'var(--color-surface)', boxShadow: '0 4px 12px rgba(0,0,0,0.02)' }}>
-
-              {/* Category Header — clickable */}
-              <button
-                onClick={() => {
-                  if (!isSetUnlocked && !isProLocked) return;
-                  setExpandedSet(isExpanded ? null : set.id);
-                }}
-                style={{
-                  width: '100%', textAlign: 'left', cursor: (isSetUnlocked || isProLocked) ? 'pointer' : 'not-allowed',
-                  display: 'flex', alignItems: 'center', gap: 12,
-                  padding: 'clamp(12px, 3vw, 20px) clamp(14px, 3vw, 24px)',
-                  background: isFullyDone
-                    ? 'rgba(46,204,113,0.08)'
-                    : isExpanded
-                      ? `linear-gradient(135deg, ${set.color}08, var(--color-surface))`
-                      : 'var(--color-surface)',
-                  border: 'none',
-                  borderBottom: isExpanded ? '1px solid var(--color-border)' : 'none',
-                  transition: 'background 0.25s ease',
-                  opacity: (!isSetUnlocked && !isProLocked) ? 0.45 : 1,
-                }}
-              >
-                {/* Emoji icon */}
-                <div style={{
-                  width: 'clamp(38px, 8vw, 52px)', height: 'clamp(38px, 8vw, 52px)',
-                  borderRadius: 12, flexShrink: 0,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontSize: 'clamp(1.1rem, 4vw, 1.5rem)',
-                  background: `${set.color}18`,
-                  border: `2px solid ${isFullyDone ? '#00e676' : set.color}44`,
-                  boxShadow: isExpanded ? `0 0 20px ${set.color}22` : 'none',
-                  transition: 'all 0.25s',
-                }}>
-                  {isFullyDone ? '✅' : set.emoji}
-                </div>
-
-                {/* Title + progress */}
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6, flexWrap: 'wrap' }}>
-                    <h2 style={{
-                      fontFamily: 'var(--font-display)',
-                      fontSize: 'clamp(0.88rem, 3vw, 1.05rem)', fontWeight: 800,
-                      color: isSetUnlocked ? 'var(--color-foreground)' : 'var(--color-muted)',
-                      margin: '0 0 4px',
-                    }}>
-                      {streetMode ? set.streetTitle : (lang === 'en' && set.titleEn ? set.titleEn : set.title)}
-                    </h2>
-                    <p style={{ margin: 0, fontSize: 'clamp(0.68rem, 2.5vw, 0.78rem)', color: isSetUnlocked ? 'var(--color-muted)' : '#ccc', lineHeight: 1.4 }}>
-                      {streetMode ? set.streetDescription : (lang === 'en' && set.descriptionEn ? set.descriptionEn : set.description)}
-                    </p>
-                    {isProLocked && (
-                      <span style={{
-                        background: 'linear-gradient(135deg, #f5c518, #ff8c00)',
-                        color: '#000', fontSize: '0.62rem', fontWeight: 800,
-                        padding: '2px 7px', borderRadius: 6, letterSpacing: '0.06em',
-                      }}>PRO</span>
-                    )}
-                    {!isSetUnlocked && !isProLocked && (
-                      <span style={{ fontSize: '0.75rem' }}>🔒</span>
-                    )}
-                  </div>
-                  {/* Mini progress bar */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <div style={{ flex: 1, height: 4, background: 'var(--color-surface-3)', borderRadius: 2, overflow: 'hidden' }}>
-                      <div style={{
-                        height: '100%', borderRadius: 2,
-                        width: `${setProgress}%`,
-                        background: isFullyDone ? '#00e676' : `linear-gradient(90deg, ${set.color}, ${set.color}bb)`,
-                        transition: 'width 0.4s ease',
-                      }} />
+          {loading ? (
+            <div style={{ textAlign: 'center', padding: '40px 0', color: 'var(--color-muted)' }}>
+              {lang === 'en' ? 'Loading top students...' : 'En iyiler yükleniyor...'}
+            </div>
+          ) : (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              {topUsers.map((u, i) => {
+                const isMe = u.email === userData?.email;
+                return (
+                  <div key={u.email} style={{
+                    display: 'flex', alignItems: 'center', gap: 12,
+                    padding: '12px 16px',
+                    background: isMe ? (streetMode ? 'rgba(57,255,20,0.1)' : 'rgba(192,57,43,0.1)') : 'var(--color-surface-2)',
+                    border: `1px solid ${isMe ? (streetMode ? 'rgba(57,255,20,0.3)' : 'rgba(192,57,43,0.3)') : 'transparent'}`,
+                    borderRadius: 12,
+                  }}>
+                    <div style={{ width: 24, fontWeight: 800, color: 'var(--color-muted)', textAlign: 'center' }}>
+                      {i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : i + 1}
                     </div>
-                    <span style={{ fontSize: '0.7rem', color: 'var(--color-muted)', flexShrink: 0 }}>
-                      {setCompleted}/{setTotal}
-                    </span>
+                    <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'linear-gradient(135deg, #c0392b, #003da5)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.8rem', color: '#fff', fontWeight: 700, overflow: 'hidden' }}>
+                      {u.photoURL ? <img src={u.photoURL} width="100%" height="100%" style={{ objectFit: 'cover' }} /> : getUserDisplayName(u)[0].toUpperCase()}
+                    </div>
+                    <div style={{ flex: 1, fontWeight: 700, color: 'var(--color-foreground)' }}>
+                      {getUserDisplayName(u)} {isMe && <span style={{ fontSize: '0.7rem', color: 'var(--color-muted)' }}>(Sen)</span>}
+                    </div>
+                    <div style={{ fontWeight: 800, color: 'var(--color-xp)' }}>
+                      {u.xp} XP
+                    </div>
                   </div>
-                </div>
+                );
+              })}
 
-                {/* Chevron */}
-                <div style={{
-                  fontSize: '0.8rem',
-                  transition: 'transform 0.2s, color 0.2s',
-                  transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
-                  color: isExpanded ? set.color : 'var(--color-muted)',
-                }}>
-                  ▼
-                </div>
-              </button>
-
-              {/* Lesson list — expanded */}
-              {isExpanded && (
-                <div style={{
-                  padding: '12px 16px 16px',
-                  background: 'var(--color-surface-2)',
-                  display: 'flex', flexDirection: 'column', gap: 8,
-                  animation: 'slide-up 0.2s ease',
-                }}>
-                  {set.lessons.map((lesson, lessonIndex) => {
-                    const isCompleted = completed.includes(lesson.id);
-                    const prevCompleted = lessonIndex === 0 ? isSetUnlocked : completed.includes(set.lessons[lessonIndex - 1].id);
-                    const isActive = isAdmin ? !isCompleted : (isSetUnlocked && prevCompleted && !isCompleted);
-                    const isLocked = isAdmin ? false : (!isSetUnlocked || (!isCompleted && !isActive && !prevCompleted));
-
-                    let bg = 'rgba(255,255,255,0.02)';
-                    let borderCol = 'rgba(255,255,255,0.05)';
-                    if (isCompleted) { bg = 'rgba(46,204,113,0.05)'; borderCol = 'rgba(46,204,113,0.15)'; }
-                    if (isActive) { bg = `${set.color}0d`; borderCol = `${set.color}40`; }
-                    if (isProLocked) { bg = 'rgba(241,196,15,0.04)'; borderCol = 'rgba(241,196,15,0.2)'; }
-
-                    const lessonContent = (
-                      <div style={{
-                        display: 'flex', alignItems: 'center', gap: 14,
-                        padding: '14px 18px', borderRadius: 12,
-                        border: `1.5px solid ${borderCol}`,
-                        background: bg,
-                        opacity: (isLocked && !isProLocked) ? 0.4 : 1,
-                        cursor: (isLocked && !isProLocked) ? 'not-allowed' : 'pointer',
-                        transition: 'all 0.15s ease',
-                      }}>
-                        {/* Icon */}
-                        <div style={{
-                          width: 42, height: 42, borderRadius: 10, flexShrink: 0,
-                          display: 'flex', alignItems: 'center', justifyContent: 'center',
-                          fontSize: '1.15rem',
-                          background: isCompleted ? 'rgba(46,204,113,0.1)' : isActive ? `${set.color}1a` : 'var(--color-surface)',
-                          border: `1.5px solid ${isCompleted ? '#2ecc7133' : isActive ? `${set.color}44` : 'var(--color-border)'}`,
-                        }}>
-                          {isProLocked ? '⭐' : isCompleted ? '✓' : isLocked ? '🔒' : lesson.emoji}
-                        </div>
-
-                        {/* Info */}
-                        <div style={{ flex: 1 }}>
-                          <div style={{
-                            fontFamily: 'var(--font-display)',
-                            fontSize: '0.9rem', fontWeight: 700,
-                            color: isCompleted ? 'var(--color-success)' : isLocked ? 'var(--color-muted)' : 'var(--color-foreground)'
-                          }}>
-                            {streetMode ? lesson.streetTitle : (lang === 'en' && lesson.titleEn ? lesson.titleEn : lesson.title)}
-                          </div>
-                          <div style={{ fontSize: '0.72rem', color: 'var(--color-muted)', marginTop: 2 }}>
-                            {isProLocked ? t.proContent : isCompleted ? t.completed : `+${lesson.xpReward} XP`}
-                          </div>
-                        </div>
-
-                        {/* Action badge */}
-                        {(isActive || isCompleted) && (
-                          <div style={{
-                            padding: '4px 12px', borderRadius: 20,
-                            fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em',
-                            background: isCompleted ? 'rgba(0,230,118,0.1)' : set.color,
-                            color: isCompleted ? '#00e676' : '#fff',
-                            border: isCompleted ? '1px solid rgba(0,230,118,0.2)' : 'none',
-                            whiteSpace: 'nowrap',
-                          }}>
-                            {isCompleted ? t.retry : t.start}
-                          </div>
-                        )}
-                      </div>
-                    );
-
-                    return isProLocked ? (
-                      <div key={lesson.id} onClick={() => window.location.href = '/pro'} style={{ cursor: 'pointer' }}>
-                        {lessonContent}
-                      </div>
-                    ) : isLocked ? (
-                      <div key={lesson.id}>{lessonContent}</div>
-                    ) : (
-                      <Link key={lesson.id} href={`/lesson/${lesson.id}`} style={{ textDecoration: 'none', display: 'block' }}>
-                        {lessonContent}
-                      </Link>
-                    );
-                  })}
-                </div>
+              {userRank !== null && userRank > 10 && (
+                <>
+                  <div style={{ textAlign: 'center', color: 'var(--color-muted)', padding: '4px 0' }}>...</div>
+                  <div style={{
+                    display: 'flex', alignItems: 'center', gap: 12,
+                    padding: '12px 16px',
+                    background: streetMode ? 'rgba(57,255,20,0.1)' : 'rgba(192,57,43,0.1)',
+                    border: `1px solid ${streetMode ? 'rgba(57,255,20,0.3)' : 'rgba(192,57,43,0.3)'}`,
+                    borderRadius: 12,
+                  }}>
+                    <div style={{ width: 24, fontWeight: 800, color: 'var(--color-muted)', textAlign: 'center' }}>
+                      {userRank}
+                    </div>
+                    <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'linear-gradient(135deg, #c0392b, #003da5)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.8rem', color: '#fff', fontWeight: 700, overflow: 'hidden' }}>
+                      {userData?.photoURL ? <img src={userData.photoURL} width="100%" height="100%" style={{ objectFit: 'cover' }} /> : getUserDisplayName(userData as UserData)[0].toUpperCase()}
+                    </div>
+                    <div style={{ flex: 1, fontWeight: 700, color: 'var(--color-foreground)' }}>
+                      {getUserDisplayName(userData as UserData)} <span style={{ fontSize: '0.7rem', color: 'var(--color-muted)' }}>(Sen)</span>
+                    </div>
+                    <div style={{ fontWeight: 800, color: 'var(--color-xp)' }}>
+                      {userData?.xp || 0} XP
+                    </div>
+                  </div>
+                </>
               )}
             </div>
-          );
-        })}
-      </div>
+          )}
+        </div>
 
-      <div style={{ height: 32 }} />
+      </div>
     </div>
   );
 }
