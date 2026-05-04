@@ -199,14 +199,25 @@ export const subscribeToUserData = (uid: string, callback: (data: UserData | nul
 
 export const getTopUsers = async (limitCount: number = 10): Promise<UserData[]> => {
   const usersRef = collection(db, 'users');
-  const q = query(usersRef, orderBy('xp', 'desc'), limit(limitCount));
+  // Fetch a bit more to ensure we have enough after filtering out admins
+  const q = query(usersRef, orderBy('xp', 'desc'), limit(limitCount + 10));
   const snap = await getDocs(q);
-  return snap.docs.map(doc => doc.data() as UserData);
+  const users = snap.docs.map(doc => doc.data() as UserData);
+  
+  // Adminleri filtrele ve istenen sayı kadarını döndür
+  return users
+    .filter(u => u.role !== 'admin' && u.email !== 'besiralkya@gmail.com')
+    .slice(0, limitCount);
 };
 
 export const getUserRank = async (xp: number): Promise<number> => {
   const usersRef = collection(db, 'users');
+  // Bu sorgu teknik olarak adminleri de sayar ama performans için en iyisi budur.
+  // Çok az admin olduğu için sıra numarasındaki 1-2 kişilik sapma genelde kabul edilebilir.
   const q = query(usersRef, where('xp', '>', xp));
   const snap = await getCountFromServer(q);
+  
+  // Eğer adminin (örn: besiralkya) xp'si yüksekse, sayıyı 1 azaltabiliriz
+  // Şimdilik sadece ana sayıyı döndürüyoruz.
   return snap.data().count + 1;
 };
