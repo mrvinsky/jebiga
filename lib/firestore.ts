@@ -1,5 +1,5 @@
 import {
-  doc, getDoc, setDoc, updateDoc, serverTimestamp, increment, onSnapshot,
+  doc, getDoc, setDoc, updateDoc, deleteDoc, serverTimestamp, increment, onSnapshot,
   query, collection, orderBy, limit, getDocs, where, getCountFromServer
 } from 'firebase/firestore';
 import { User } from 'firebase/auth';
@@ -230,5 +230,10 @@ export const updateUserRole = async (uid: string, role: 'admin' | 'user') => {
 export const updateUserSubscription = async (uid: string, subscription: 'free' | 'pro') => {
   const ref = doc(db, 'users', uid);
   await updateDoc(ref, { subscription });
+};
+
+export const deleteUserDoc = async (uid: string) => {
+  const ref = doc(db, 'users', uid);
+  await deleteDoc(ref);
 };
 

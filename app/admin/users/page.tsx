@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
-import { UserData, updateUserRole, updateUserSubscription } from '@/lib/firestore';
+import { UserData, updateUserRole, updateUserSubscription, deleteUserDoc } from '@/lib/firestore';
 
 interface UserWithId extends UserData {
   id: string;
@@ -60,6 +60,17 @@ export default function AdminUsers() {
     }
   };
 
+  const handleDeleteUser = async (userId: string, userName: string) => {
+    if (!window.confirm(`DİKKAT: "${userName}" isimli kullanıcının tüm ilerlemesini (XP, seri vb.) kalıcı olarak silmek istediğine emin misin? Bu işlem geri alınamaz.`)) return;
+    
+    try {
+      await deleteUserDoc(userId);
+      setUsers(prev => prev.filter(u => u.id !== userId));
+    } catch (e) {
+      alert("Kullanıcı silinirken hata oluştu. Lütfen yetkiniz olduğundan emin olun.");
+    }
+  };
+
   if (loading) return <div>Loading users...</div>;
 
   return (
@@ -77,6 +88,7 @@ export default function AdminUsers() {
               <th style={{ padding: '16px 24px', color: '#888', fontWeight: 600 }}>Level</th>
               <th style={{ padding: '16px 24px', color: '#888', fontWeight: 600 }}>XP</th>
               <th style={{ padding: '16px 24px', color: '#888', fontWeight: 600 }}>Streak</th>
+              <th style={{ padding: '16px 24px', color: '#888', fontWeight: 600, textAlign: 'right' }}>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -119,6 +131,25 @@ export default function AdminUsers() {
                 <td style={{ padding: '16px 24px', fontWeight: 700 }}>{u.level}</td>
                 <td style={{ padding: '16px 24px', color: 'var(--color-neon)', fontWeight: 700 }}>{u.xp}</td>
                 <td style={{ padding: '16px 24px', color: '#e67e22', fontWeight: 700 }}>{u.streak} 🔥</td>
+                <td style={{ padding: '16px 24px', textAlign: 'right' }}>
+                  <button 
+                    onClick={() => handleDeleteUser(u.id, u.displayName || u.email || 'Bilinmeyen Kullanıcı')}
+                    style={{
+                      background: 'rgba(255, 71, 87, 0.1)', color: '#ff4757', border: '1px solid rgba(255, 71, 87, 0.3)',
+                      padding: '6px 12px', borderRadius: '8px', cursor: 'pointer', fontWeight: 700, transition: 'all 0.2s'
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.target as HTMLButtonElement).style.background = '#ff4757';
+                      (e.target as HTMLButtonElement).style.color = '#fff';
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.target as HTMLButtonElement).style.background = 'rgba(255, 71, 87, 0.1)';
+                      (e.target as HTMLButtonElement).style.color = '#ff4757';
+                    }}
+                  >
+                    Sil
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
