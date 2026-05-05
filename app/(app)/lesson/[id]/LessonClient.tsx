@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { useLanguage, UI_TEXT, STREET_TEXT } from '@/hooks/useLanguage';
 import { useStreetMode } from '@/context/StreetModeContext';
-import { getAllLessons, Question } from '@/data/curriculum';
+import { getAllLessons, Question, curriculum } from '@/data/curriculum';
 import { completeLesson, updateStreak, calculateLevel } from '@/lib/firestore';
 import QuizCard from '@/components/lesson/QuizCard';
 import FeedbackToast from '@/components/lesson/FeedbackToast';
@@ -22,6 +22,21 @@ export default function LessonClient({ id }: { id: string }) {
 
   const allLessons = getAllLessons();
   const lesson = allLessons.find((l) => l.id === id);
+
+  // Find next lesson in curriculum
+  const nextLesson = (() => {
+    for (const set of curriculum) {
+      const idx = set.lessons.findIndex(l => l.id === id);
+      if (idx !== -1) {
+        // Next lesson in same set
+        if (idx + 1 < set.lessons.length) return set.lessons[idx + 1];
+        // First lesson of next set
+        const setIdx = curriculum.indexOf(set);
+        if (setIdx + 1 < curriculum.length) return curriculum[setIdx + 1].lessons[0];
+      }
+    }
+    return null;
+  })();
 
   const [phase, setPhase] = useState<'recap' | 'splash' | 'intro' | 'quiz'>('splash');
   const [recapWords, setRecapWords] = useState<any[]>([]);
@@ -252,7 +267,17 @@ export default function LessonClient({ id }: { id: string }) {
       <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
         <button className="btn-ghost" onClick={() => { setCurrent(0); setFinished(false); setPassed(false); setMistakes(0); setXpEarned(0); setStatus('idle'); }}>{t.tryAgain}</button>
         {passed ? (
-          <button className="btn-primary" onClick={() => router.push('/map')}>{t.backToMap}</button>
+          nextLesson ? (
+            <button
+              className="btn-primary"
+              onClick={() => router.push(`/lesson/${nextLesson.id}`)}
+              style={{ display: 'flex', alignItems: 'center', gap: 8 }}
+            >
+              {lang === 'en' ? 'Next Lesson' : 'Sonraki Ders'} →
+            </button>
+          ) : (
+            <button className="btn-primary" onClick={() => router.push('/map')}>{t.backToMap}</button>
+          )
         ) : (
           <button className="btn-ghost" onClick={() => router.push('/map')} style={{ color: 'var(--color-muted)', border: '1px solid var(--color-border)' }}>
              {lang === 'en' ? 'Give up' : 'Pes et'}
