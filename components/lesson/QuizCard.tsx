@@ -2,6 +2,7 @@
 import { Question } from '@/data/curriculum';
 import { useEffect, useState } from 'react';
 import { useLanguage, UI_TEXT, STREET_TEXT } from '@/hooks/useLanguage';
+import { getAudioUrlForQuestion } from '@/lib/audioManager';
 
 interface QuizCardProps {
   question: Question;
@@ -44,6 +45,15 @@ export default function QuizCard({
 
   const progress = ((questionIndex) / totalQuestions) * 100;
   const [shake, setShake] = useState(false);
+  const [audioUrl, setAudioUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchAudio = async () => {
+      const url = await getAudioUrlForQuestion(question.id);
+      setAudioUrl(url);
+    };
+    fetchAudio();
+  }, [question.id]);
 
   useEffect(() => {
     if (status === 'wrong') {
@@ -130,19 +140,44 @@ export default function QuizCard({
           borderRadius: 20, padding: '4px 12px',
           marginBottom: 20,
         }}>
-          {question.type === 'multiple-choice' ? t.chooseAnswer : t.translate}
+          {question.type === 'multiple-choice'
+            ? t.chooseAnswer
+            : question.type === 'fill-blank'
+              ? (lang === 'en' ? 'Fill in the Blank' : 'Boşluğu Doldur')
+              : t.translate}
         </div>
 
         {/* Question text */}
-        <p style={{
-          fontSize: 'clamp(1rem, 3.5vw, 1.15rem)', fontWeight: 700,
-          fontFamily: 'var(--font-display)',
-          color: 'var(--color-foreground)', lineHeight: 1.45,
-          marginBottom: 28,
-          wordBreak: 'break-word',
-        }}>
-          {prompt}
-        </p>
+        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 16, marginBottom: 28 }}>
+          <p 
+            onClick={() => audioUrl && new Audio(audioUrl).play()}
+            style={{
+              fontSize: 'clamp(1rem, 3.5vw, 1.15rem)', fontWeight: 700,
+              fontFamily: 'var(--font-display)',
+              color: 'var(--color-foreground)', lineHeight: 1.45,
+              wordBreak: 'break-word', margin: 0,
+              cursor: audioUrl ? 'pointer' : 'default'
+            }}
+            title={audioUrl ? "Click to hear pronunciation" : undefined}
+          >
+            {prompt}
+          </p>
+          {audioUrl && (
+            <button 
+              onClick={() => new Audio(audioUrl).play()}
+              style={{
+                background: 'var(--color-surface-2)', border: '1px solid var(--color-border)',
+                borderRadius: '50%', width: 44, height: 44, flexShrink: 0,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                cursor: 'pointer', fontSize: '1.2rem', transition: 'all 0.2s',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+              }}
+              title="Play Pronunciation"
+            >
+              🔊
+            </button>
+          )}
+        </div>
 
         {/* ── Multiple Choice ── */}
         {question.type === 'multiple-choice' && (
@@ -281,6 +316,72 @@ export default function QuizCard({
             />
           </div>
         )}
+
+        {/* ── Fill in the Blank ── */}
+        {question.type === 'fill-blank' && (() => {
+          const displayPrompt = (lang === 'en' && question.promptEn) ? question.promptEn : question.prompt;
+          const parts = displayPrompt.split('___');
+          return (
+            <div>
+              {hint && (
+                <div style={{
+                  display: 'flex', alignItems: 'center', gap: 6,
+                  fontSize: '0.78rem', color: 'var(--color-muted)',
+                  marginBottom: 12,
+                  padding: '8px 12px',
+                  background: 'var(--color-surface-2)',
+                  borderRadius: 8,
+                }}>
+                  <span>💡</span>
+                  <span>{t.hint}: <em style={{ color: '#666' }}>{hint}</em></span>
+                </div>
+              )}
+              <div style={{
+                display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 6,
+                fontSize: 'clamp(0.95rem, 3vw, 1.1rem)', fontWeight: 600,
+                lineHeight: 1.8,
+              }}>
+                {parts.map((part, i) => (
+                  <span key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                    <span>{part}</span>
+                    {i < parts.length - 1 && (
+                      <input
+                        id="fill-blank-input"
+                        type="text"
+                        placeholder="..."
+                        value={inputVal}
+                        onChange={e => status === 'idle' && onInputChange(e.target.value)}
+                        onKeyDown={e => e.key === 'Enter' && status === 'idle' && onCheck()}
+                        disabled={status !== 'idle'}
+                        style={{
+                          display: 'inline-block',
+                          width: 'clamp(80px, 20vw, 140px)',
+                          padding: '4px 10px',
+                          borderRadius: 8,
+                          border: `2px solid ${
+                            status === 'correct' ? 'var(--color-success)'
+                            : status === 'wrong' ? 'var(--color-error)'
+                            : inputVal ? color : 'var(--color-border)'
+                          }`,
+                          background: 'var(--color-surface-2)',
+                          color: 'var(--color-foreground)',
+                          fontFamily: 'var(--font-display)',
+                          fontWeight: 700,
+                          fontSize: 'clamp(0.9rem, 2.5vw, 1rem)',
+                          textAlign: 'center',
+                          outline: 'none',
+                          transition: 'border-color 0.2s',
+                          boxShadow: status === 'correct' ? '0 0 0 3px rgba(0,230,118,0.12)'
+                            : status === 'wrong' ? '0 0 0 3px rgba(255,23,68,0.12)' : 'none',
+                        }}
+                      />
+                    )}
+                  </span>
+                ))}
+              </div>
+            </div>
+          );
+        })()}
 
         {/* ── Result feedback inline ── */}
         {status !== 'idle' && (
