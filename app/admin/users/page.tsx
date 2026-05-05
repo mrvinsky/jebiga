@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
-import { UserData, updateUserRole } from '@/lib/firestore';
+import { UserData, updateUserRole, updateUserSubscription } from '@/lib/firestore';
 
 interface UserWithId extends UserData {
   id: string;
@@ -48,6 +48,18 @@ export default function AdminUsers() {
     }
   };
 
+  const handleSubscriptionChange = async (userId: string, currentSub: string | undefined, newSub: 'free' | 'pro') => {
+    if (currentSub === newSub || (currentSub === undefined && newSub === 'free')) return;
+    if (!window.confirm(`Bu kullanıcının aboneliğini "${newSub.toUpperCase()}" olarak değiştirmek istediğine emin misin?`)) return;
+    
+    try {
+      await updateUserSubscription(userId, newSub);
+      setUsers(prev => prev.map(u => u.id === userId ? { ...u, subscription: newSub } : u));
+    } catch (e) {
+      alert("Abonelik güncellenirken hata oluştu.");
+    }
+  };
+
   if (loading) return <div>Loading users...</div>;
 
   return (
@@ -89,13 +101,20 @@ export default function AdminUsers() {
                   </select>
                 </td>
                 <td style={{ padding: '16px 24px' }}>
-                  <span style={{ 
-                    background: u.subscription === 'pro' ? 'rgba(241, 196, 15, 0.1)' : 'transparent', 
-                    color: u.subscription === 'pro' ? '#f1c40f' : '#666', 
-                    padding: '4px 12px', borderRadius: '20px', fontSize: '0.8rem', fontWeight: 700 
-                  }}>
-                    {u.subscription?.toUpperCase()}
-                  </span>
+                  <select 
+                    value={u.subscription || 'free'}
+                    onChange={(e) => handleSubscriptionChange(u.id, u.subscription, e.target.value as 'free' | 'pro')}
+                    style={{ 
+                      background: u.subscription === 'pro' ? 'rgba(241, 196, 15, 0.1)' : 'transparent', 
+                      color: u.subscription === 'pro' ? '#f1c40f' : '#666', 
+                      padding: '4px 12px', borderRadius: '8px', fontSize: '0.8rem', fontWeight: 700,
+                      border: `1px solid ${u.subscription === 'pro' ? 'rgba(241, 196, 15, 0.3)' : 'rgba(255, 255, 255, 0.1)'}`,
+                      cursor: 'pointer', outline: 'none'
+                    }}
+                  >
+                    <option value="free" style={{ background: '#222', color: '#fff' }}>FREE</option>
+                    <option value="pro" style={{ background: '#222', color: '#fff' }}>PRO</option>
+                  </select>
                 </td>
                 <td style={{ padding: '16px 24px', fontWeight: 700 }}>{u.level}</td>
                 <td style={{ padding: '16px 24px', color: 'var(--color-neon)', fontWeight: 700 }}>{u.xp}</td>

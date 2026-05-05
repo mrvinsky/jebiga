@@ -226,3 +226,9 @@ export const updateUserRole = async (uid: string, role: 'admin' | 'user') => {
   const ref = doc(db, 'users', uid);
   await updateDoc(ref, { role });
 };
+
+export const updateUserSubscription = async (uid: string, subscription: 'free' | 'pro') => {
+  const ref = doc(db, 'users', uid);
+  await updateDoc(ref, { subscription });
+};
+

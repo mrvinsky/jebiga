@@ -2,15 +2,34 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Users can only read and write their own profile and progress
+    
+    // Function to check if user is admin
+    function isAdmin() {
+      let userDoc = get(/databases/$(database)/documents/users/$(request.auth.uid));
+      return request.auth != null && userDoc != null && userDoc.data.get('role', '') == 'admin';
+    }
+
+    // Users can read/write their own profile, Admins can read all profiles
     match /users/{userId} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
+      allow read: if (request.auth != null && request.auth.uid == userId) || isAdmin();
+      allow write: if isAdmin() || (
+        request.auth != null && 
+        request.auth.uid == userId && 
+        (!request.resource.data.keys().hasAll(['role']) || request.resource.data.role == resource.data.role) &&
+        (!request.resource.data.keys().hasAll(['subscription']) || request.resource.data.subscription == resource.data.subscription)
+      );
     }
     
     // Lessons are readable by all authenticated users
     match /lessons/{lessonId} {
       allow read: if request.auth != null;
-      allow write: if false; // Lessons are only created via admin/AI system (not client-side)
+      allow write: if isAdmin();
+    }
+    
+    // Audio URLs are readable by all, writable by admins
+    match /audio_urls/{audioId} {
+      allow read: if true;
+      allow write: if isAdmin();
     }
   }
 }
