@@ -1,12 +1,13 @@
 'use client';
 
 import { useAuth } from '@/context/AuthContext';
+import { signInWithGoogle } from '@/lib/auth';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import Image from 'next/image';
 
 export default function AdminLogin() {
-  const { user, userData, signInWithGoogle, loading } = useAuth();
+  const { user, userData, loading } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
