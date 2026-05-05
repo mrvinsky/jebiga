@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import { UserData } from '@/lib/firestore';
+import { curriculum } from '@/data/curriculum';
 
 export default function AdminDashboard() {
   const [totalUsers, setTotalUsers] = useState<number>(0);
@@ -14,6 +15,17 @@ export default function AdminDashboard() {
   const [avgCompleted, setAvgCompleted] = useState<number>(0);
   const [topStreakUser, setTopStreakUser] = useState({ name: '-', streak: 0 });
   const [loading, setLoading] = useState(true);
+
+  // Calculate curriculum stats
+  let totalLessonsCurriculum = 0;
+  let totalWordsCurriculum = 0;
+  
+  curriculum.forEach(set => {
+    totalLessonsCurriculum += set.lessons.length;
+    set.lessons.forEach(lesson => {
+      totalWordsCurriculum += lesson.questions.length;
+    });
+  });
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -99,6 +111,16 @@ export default function AdminDashboard() {
         <div style={{ background: '#111', padding: 24, borderRadius: 16, border: '1px solid #333' }}>
           <div style={{ color: '#888', marginBottom: 8, fontWeight: 600 }}>Pro Subscribers</div>
           <div style={{ fontSize: '3rem', fontWeight: 900, color: '#f1c40f', fontFamily: 'var(--font-display)' }}>{proUsers}</div>
+        </div>
+
+        <div style={{ background: '#111', padding: 24, borderRadius: 16, border: '1px solid #333' }}>
+          <div style={{ color: '#888', marginBottom: 8, fontWeight: 600 }}>Total Curriculum Lessons</div>
+          <div style={{ fontSize: '3rem', fontWeight: 900, color: '#1abc9c', fontFamily: 'var(--font-display)' }}>{totalLessonsCurriculum}</div>
+        </div>
+
+        <div style={{ background: '#111', padding: 24, borderRadius: 16, border: '1px solid #333' }}>
+          <div style={{ color: '#888', marginBottom: 8, fontWeight: 600 }}>Total Curriculum Words</div>
+          <div style={{ fontSize: '3rem', fontWeight: 900, color: '#1abc9c', fontFamily: 'var(--font-display)' }}>{totalWordsCurriculum}</div>
         </div>
 
         <div style={{ background: '#111', padding: 24, borderRadius: 16, border: '1px solid #333' }}>
