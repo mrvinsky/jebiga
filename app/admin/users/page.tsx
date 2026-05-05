@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
-import { UserData } from '@/lib/firestore';
+import { UserData, updateUserRole } from '@/lib/firestore';
 
 interface UserWithId extends UserData {
   id: string;
@@ -36,6 +36,18 @@ export default function AdminUsers() {
     fetchUsers();
   }, []);
 
+  const handleRoleChange = async (userId: string, currentRole: string | undefined, newRole: 'admin' | 'user') => {
+    if (currentRole === newRole || (currentRole === undefined && newRole === 'user')) return;
+    if (!window.confirm(`Bu kullanıcının rolünü "${newRole.toUpperCase()}" olarak değiştirmek istediğine emin misin?`)) return;
+    
+    try {
+      await updateUserRole(userId, newRole);
+      setUsers(prev => prev.map(u => u.id === userId ? { ...u, role: newRole } : u));
+    } catch (e) {
+      alert("Rol güncellenirken hata oluştu. Lütfen yetkiniz olduğundan emin olun.");
+    }
+  };
+
   if (loading) return <div>Loading users...</div>;
 
   return (
@@ -61,13 +73,20 @@ export default function AdminUsers() {
                 <td style={{ padding: '16px 24px', fontWeight: 600 }}>{u.displayName || 'Stranger'}</td>
                 <td style={{ padding: '16px 24px', color: '#aaa' }}>{u.email}</td>
                 <td style={{ padding: '16px 24px' }}>
-                  <span style={{ 
-                    background: u.role === 'admin' ? 'rgba(255, 71, 87, 0.1)' : 'rgba(255, 255, 255, 0.1)', 
-                    color: u.role === 'admin' ? '#ff4757' : '#aaa', 
-                    padding: '4px 12px', borderRadius: '20px', fontSize: '0.8rem', fontWeight: 700 
-                  }}>
-                    {u.role?.toUpperCase() || 'USER'}
-                  </span>
+                  <select 
+                    value={u.role || 'user'}
+                    onChange={(e) => handleRoleChange(u.id, u.role, e.target.value as 'admin' | 'user')}
+                    style={{ 
+                      background: u.role === 'admin' ? 'rgba(255, 71, 87, 0.1)' : 'rgba(255, 255, 255, 0.1)', 
+                      color: u.role === 'admin' ? '#ff4757' : '#aaa', 
+                      padding: '4px 12px', borderRadius: '8px', fontSize: '0.8rem', fontWeight: 700,
+                      border: `1px solid ${u.role === 'admin' ? 'rgba(255, 71, 87, 0.3)' : 'rgba(255, 255, 255, 0.2)'}`,
+                      cursor: 'pointer', outline: 'none'
+                    }}
+                  >
+                    <option value="user" style={{ background: '#222', color: '#fff' }}>USER</option>
+                    <option value="admin" style={{ background: '#222', color: '#fff' }}>ADMIN</option>
+                  </select>
                 </td>
                 <td style={{ padding: '16px 24px' }}>
                   <span style={{ 

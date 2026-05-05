@@ -219,5 +219,10 @@ export const getUserRank = async (xp: number): Promise<number> => {
   
   // Eğer adminin (örn: besiralkya) xp'si yüksekse, sayıyı 1 azaltabiliriz
   // Şimdilik sadece ana sayıyı döndürüyoruz.
-  return snap.data().count + 1;
+  return Number(snap.data().count) + 1;
+};
+
+export const updateUserRole = async (uid: string, role: 'admin' | 'user') => {
+  const ref = doc(db, 'users', uid);
+  await updateDoc(ref, { role });
 };
