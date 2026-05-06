@@ -1,530 +1,184 @@
 'use client';
 
-import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
-import { useAuth } from '@/context/AuthContext';
-import { useStreetMode } from '@/context/StreetModeContext';
-import { useLanguage, UI_TEXT } from '@/hooks/useLanguage';
-import { useLanguageContext } from '@/context/LanguageContext';
+export default function MaintenancePage() {
+  const [mounted, setMounted] = useState(false);
 
-const TYPING_WORDS = ['Zdravo!', 'Šta ima?', 'Brate!', 'Ajde!', 'Jebiga.'];
-
-const FEATURES = [
-  {
-    emoji: '🔥',
-    title: 'Sokak Sırpçası',
-    titleEn: 'Street Serbian',
-    desc: 'Ders kitabı değil, gerçek kafana argolarıyla öğren. "Šta ima brate?" diyebilmek için.',
-    descEn: 'Not a textbook, learn with real kafana slang. So you can say "Šta ima brate?".',
-  },
-  {
-    emoji: '🎮',
-    title: 'Oyun Mantığıyla',
-    titleEn: 'Gamified Learning',
-    desc: 'XP kazan, seri tut, ders düğümleri arasında ilerle. Sıkılmak yok.',
-    descEn: 'Earn XP, keep your streak, advance through lesson nodes. No boredom.',
-  },
-  {
-    emoji: '🧔🏻‍♂️',
-    title: 'Kafana Dayısı AI',
-    titleEn: 'Kafana Uncle AI',
-    desc: 'Pipo içen Sırp dayın her an hazır. Sorularını sorabilir, argo öğrenebilirsin.',
-    descEn: 'Your pipe-smoking Serbian uncle is always ready. Ask questions, learn slang.',
-  },
-  {
-    emoji: '🍺',
-    title: '18+ Kategori',
-    titleEn: '18+ Category',
-    desc: 'Selamlaşma, sokak argonu, gece hayatı, Belgrad, sağlık — her konu Türkçe anlatımla.',
-    descEn: 'Greetings, street slang, nightlife, Belgrade, health — every topic explained simply.',
-  },
-  {
-    emoji: '⚡',
-    title: 'Pro Street Mode',
-    titleEn: 'Pro Street Mode',
-    desc: 'Küfürler, flört, Balkan draması ve kafana kültürü sadece Pro\'ya özel.',
-    descEn: 'Swearing, flirting, Balkan drama, and kafana culture exclusive to Pro.',
-  },
-  {
-    emoji: '🎯',
-    title: 'Konu Anlatımlı Dersler',
-    titleEn: 'Topic-Based Lessons',
-    desc: 'Her derste senaryo, kelime listesi, diyalog ve kültürel ipuçları var.',
-    descEn: 'Every lesson has a scenario, vocabulary list, dialogue, and cultural tips.',
-  },
-];
-
-const STATS = [
-  { value: '18+', label: 'Kategori', labelEn: 'Categories' },
-  { value: '56+', label: 'Ders', labelEn: 'Lessons' },
-  { value: '500+', label: 'Kelime', labelEn: 'Words' },
-  { value: '100%', label: 'Türkçe Anlatım', labelEn: 'Bilingual Support' },
-];
-
-const TESTIMONIALS = [
-  { 
-    text: '"Kafanaya girdim, garson Sırpçama bayıldı. Jebiga dedim ve kahraman oldum."', 
-    textEn: '"I walked into a kafana, the waiter loved my Serbian. I said jebiga and became a hero."',
-    author: 'Mert, 24' 
-  },
-  { 
-    text: '"Kafana Dayısı benim rakija içmeden konuşmayacağımı söyledi. Haklı."', 
-    textEn: '"Kafana Uncle said I wouldn\'t talk without drinking rakija. He was right."',
-    author: 'Zeynep, 28' 
-  },
-  { 
-    text: '"Bir haftada ćevap siparişi verebiliyorum. Bu uygulama beni kurtardı."', 
-    textEn: '"I can order ćevapi in a week. This app saved me."',
-    author: 'Burak, 31' 
-  },
-];
-
-export default function LandingPage() {
-  const { user } = useAuth();
-  const { streetMode, toggleStreetMode } = useStreetMode();
-  const lang = useLanguage();
-  const { toggleLang } = useLanguageContext();
-  const t = UI_TEXT[lang];
-  const [typingIndex, setTypingIndex] = useState(0);
-  const [displayed, setDisplayed] = useState('');
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [charIndex, setCharIndex] = useState(0);
-
-  // Typewriter effect
   useEffect(() => {
-    const current = TYPING_WORDS[typingIndex];
-    const delay = isDeleting ? 60 : charIndex === current.length ? 1800 : 90;
+    setMounted(true);
+  }, []);
 
-    const timer = setTimeout(() => {
-      if (!isDeleting && charIndex < current.length) {
-        setDisplayed(current.slice(0, charIndex + 1));
-        setCharIndex((c) => c + 1);
-      } else if (!isDeleting && charIndex === current.length) {
-        setIsDeleting(true);
-      } else if (isDeleting && charIndex > 0) {
-        setDisplayed(current.slice(0, charIndex - 1));
-        setCharIndex((c) => c - 1);
-      } else {
-        setIsDeleting(false);
-        setTypingIndex((i) => (i + 1) % TYPING_WORDS.length);
-        setCharIndex(0);
-      }
-    }, delay);
-
-    return () => clearTimeout(timer);
-  }, [charIndex, isDeleting, typingIndex]);
+  if (!mounted) return null;
 
   return (
-    <div style={{ minHeight: '100dvh', background: 'var(--color-background)', color: 'var(--color-foreground)', fontFamily: 'var(--font-sans)', overflowX: 'hidden' }}>
+    <div style={{
+      minHeight: '100dvh',
+      background: '#050505',
+      color: '#fff',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '20px',
+      textAlign: 'center',
+      fontFamily: 'var(--font-sans)',
+      position: 'relative',
+      overflow: 'hidden'
+    }}>
+      {/* Background Glows - subtle and premium */}
+      <div style={{
+        position: 'absolute', top: '15%', left: '5%',
+        width: '50vw', height: '50vw',
+        background: 'radial-gradient(circle, rgba(192,57,43,0.12) 0%, transparent 70%)',
+        filter: 'blur(80px)',
+        zIndex: 0,
+        pointerEvents: 'none'
+      }} />
+      <div style={{
+        position: 'absolute', bottom: '10%', right: '5%',
+        width: '40vw', height: '40vw',
+        background: 'radial-gradient(circle, rgba(0,61,165,0.08) 0%, transparent 70%)',
+        filter: 'blur(80px)',
+        zIndex: 0,
+        pointerEvents: 'none'
+      }} />
 
-      {/* ── NAV ── */}
-      <nav className="glass" style={{
-        position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
-        padding: '10px 12px',
-        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        borderBottom: '1px solid var(--color-border)',
-        borderRadius: 0, borderLeft: 'none', borderRight: 'none', borderTop: 'none',
+      {/* Serbian Flag Accent (Top Stripe) */}
+      <div style={{
+        position: 'absolute', top: 0, left: 0, right: 0, height: 4,
+        background: 'linear-gradient(90deg, #c0392b 33.3%, #f5f5f5 33.3% 66.6%, #003da5 66.6%)',
+        zIndex: 10
+      }} />
+
+      <div style={{ 
+        position: 'relative', 
+        zIndex: 1, 
+        maxWidth: 500,
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-          <span style={{ fontSize: '1.2rem' }}>🇷🇸</span>
-          <span style={{ fontWeight: 800, fontSize: '1.05rem', letterSpacing: '-0.02em' }}>
-            <span style={{ color: '#e74c3c' }}>Jebiga</span>
-          </span>
-        </div>
-        <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
-          {/* Street Mode Toggle */}
-          <button
-            onClick={toggleStreetMode}
-            style={{
-              background: streetMode ? 'rgba(39,174,96,0.1)' : 'var(--color-surface-2)',
-              border: `1.5px solid ${streetMode ? 'var(--color-neon)' : 'var(--color-border)'}`,
-              borderRadius: '8px',
-              padding: '6px 8px',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              gap: 4,
-              transition: 'all 0.2s',
-              boxShadow: streetMode ? '0 0 10px rgba(57,255,20,0.3)' : 'none',
-            }}
-            title={streetMode ? 'Standard Mod' : 'Street Mode 🔥'}
-          >
-            <span style={{ fontSize: '0.9rem', filter: streetMode ? 'none' : 'grayscale(1)' }}>🔥</span>
-            <span className="hide-xsmall" style={{ 
-              fontSize: '0.6rem', 
-              fontWeight: 800, 
-              color: streetMode ? 'var(--color-neon)' : 'var(--color-muted)',
-              letterSpacing: '0.05em'
-            }}>
-              STREET
-            </span>
-          </button>
-
-          {/* Language Toggle */}
-          <button 
-            onClick={toggleLang}
-            style={{
-              background: 'var(--color-surface-2)',
-              border: '1px solid var(--color-border)',
-              borderRadius: '8px',
-              padding: '6px 8px',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              gap: 4,
-            }}
-          >
-            <span style={{ fontSize: '0.9rem' }}>{lang === 'tr' ? '🇹🇷' : '🇬🇧'}</span>
-            <span style={{ fontSize: '0.6rem', fontWeight: 800, color: 'var(--color-muted)' }}>{lang.toUpperCase()}</span>
-          </button>
-
-          {user ? (
-            <Link href="/learn" className="btn-primary" style={{
-              padding: '8px 12px', fontSize: '0.8rem', minHeight: '36px'
-            }}>
-              {lang === 'tr' ? 'Öğren' : 'Learn'}
-            </Link>
-          ) : (
-            <Link href="/login" className="btn-primary" style={{
-              padding: '8px 12px', fontSize: '0.8rem', minHeight: '36px'
-            }}>{t.getStarted}</Link>
-          )}
-        </div>
-      </nav>
-
-      {/* ── HERO ── */}
-      <section style={{
-        minHeight: '100dvh',
-        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-        textAlign: 'center', padding: '100px 16px 40px',
-        position: 'relative',
-        background: streetMode ? 'var(--color-background)' : `
-          radial-gradient(ellipse at 20% 40%, rgba(192,57,43,0.1) 0%, transparent 55%),
-          radial-gradient(ellipse at 80% 20%, rgba(41,128,185,0.08) 0%, transparent 55%),
-          var(--color-background)
-        `,
-      }}>
-        {/* Flag stripe */}
+        {/* Animated Icon */}
         <div style={{
-          position: 'absolute', top: 0, left: 0, right: 0, height: 3,
-          background: 'linear-gradient(90deg, #c0392b 33.3%, #f5f5f5 33.3% 66.6%, #003da5 66.6%)',
-        }} />
-
-        {/* Floating badge */}
-        <div style={{
-          display: 'inline-flex', alignItems: 'center', gap: 6,
-          background: 'var(--color-neon-glow)',
-          border: '1px solid var(--color-neon)',
-          borderRadius: 40, padding: '6px 12px',
-          fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.04em',
-          color: 'var(--color-neon)', marginBottom: 20,
-          animation: 'pulse 3s ease-in-out infinite',
+          fontSize: 'clamp(3.5rem, 15vw, 5rem)', 
+          marginBottom: 20,
+          animation: 'float 4s ease-in-out infinite',
+          filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.5))'
         }}>
-          <span>⚡</span> {t.firstAppBadge}
+          🇷🇸
         </div>
 
-        {/* Main headline */}
         <h1 style={{
-          fontSize: 'clamp(2.2rem, 10vw, 4.5rem)',
+          fontSize: 'clamp(2.2rem, 9vw, 3.8rem)',
           fontWeight: 900,
-          lineHeight: 1.1,
-          letterSpacing: '-0.03em',
+          letterSpacing: '-0.05em',
+          lineHeight: 0.95,
           marginBottom: 16,
-          maxWidth: 900,
+          fontFamily: 'var(--font-display)',
+          textTransform: 'uppercase'
         }}>
-          {lang === 'en' ? 'Learn Serbian ' : 'Sırpçayı '}
-          <span style={{
-            background: 'linear-gradient(135deg, #e74c3c, #c0392b)',
+          <span style={{ color: '#e74c3c' }}>Jebiga</span> <br />
+          <span style={{ 
+            background: 'linear-gradient(135deg, #ffffff, #888888)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text'
+          }}>WE ARE</span> <br />
+          <span style={{ 
+            background: 'linear-gradient(135deg, #ffffff, #666666)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
-          }}>
-          {lang === 'en' ? 'The Street Way.' : 'Sokak Ağzıyla'}
-          </span>{' '}
-          {lang === 'en' ? '' : 'Öğren.'} <br />
-          <span style={{
-            background: 'linear-gradient(135deg, var(--color-neon), var(--color-neon-orange))',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-          }}>
-            {displayed}
-            <span style={{ opacity: 0.5, animation: 'blink 1s step-end infinite' }}>|</span>
-          </span>
+            fontSize: '0.6em',
+            letterSpacing: '0.2em',
+            opacity: 0.8
+          }}>COMING BACK</span>
         </h1>
 
-        <p style={{
-          fontSize: 'clamp(0.95rem, 3vw, 1.15rem)',
-          color: 'var(--color-muted)', lineHeight: 1.5,
-          maxWidth: 450, marginBottom: 32,
-        }}>
-          {t.heroSubtitle1} {t.heroSubtitle2}
-        </p>
-
-        {/* CTA Buttons */}
-        <div style={{ display: 'flex', gap: 10, flexDirection: 'column', alignItems: 'center', marginBottom: 40, width: '100%', maxWidth: 320 }}>
-          <Link href={user ? "/learn" : "/login"} className="btn-primary" style={{
-            padding: '16px 32px', fontSize: '1.05rem', width: '100%'
-          }}>
-            {user ? (lang === 'tr' ? 'Öğrenmeye Devam Et' : 'Continue Learning') : t.freeStart}
-          </Link>
-          <Link href="#features" className="btn-neon" style={{
-            padding: '14px 28px', fontSize: '0.9rem', width: '100%'
-          }}>
-            {t.howItWorks}
-          </Link>
-        </div>
-
-        {/* Stats row */}
         <div style={{
-          display: 'flex', flexDirection: 'column', gap: 0,
-          background: 'var(--color-surface)',
-          border: '1px solid var(--color-border)',
-          borderRadius: 20, padding: '10px',
-          boxShadow: '0 10px 30px rgba(0,0,0,0.05)',
-          width: '100%', maxWidth: 320
-        }}>
-          {STATS.map((stat, i) => (
-            <div key={i} style={{
-              padding: '12px 16px', textAlign: 'center',
-              borderBottom: i < STATS.length - 1 ? '1px solid var(--color-border)' : 'none',
-            }}>
-              <div style={{ fontSize: '1.25rem', fontWeight: 900, color: 'var(--color-foreground)', letterSpacing: '-0.02em' }}>
-                {stat.value}
-              </div>
-              <div style={{ fontSize: '0.65rem', color: 'var(--color-muted)', fontWeight: 600, marginTop: 1, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                {lang === 'en' ? stat.labelEn : stat.label}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Scroll indicator */}
-        <div style={{ position: 'absolute', bottom: 32, left: '50%', transform: 'translateX(-50%)', animation: 'bounce 2s ease-in-out infinite', opacity: 0.4 }}>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M7 10l5 5 5-5" />
-          </svg>
-        </div>
-      </section>
-
-      {/* ── FEATURES ── */}
-      <section id="features" style={{ padding: '100px 24px', maxWidth: 1100, margin: '0 auto' }}>
-        <div style={{ textAlign: 'center', marginBottom: 64 }}>
-          <p style={{ color: 'var(--color-red)', fontWeight: 700, fontSize: '0.85rem', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 12 }}>
-            {t.whyJebiga}
-          </p>
-          <h2 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', fontWeight: 900, letterSpacing: '-0.02em', lineHeight: 1.2 }}>
-            {lang === 'en' ? "We do what Duolingo doesn't" : "Duolingo'nun yapmadığını biz yapıyoruz"}
-          </h2>
-        </div>
-
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: 16,
-        }}>
-          {FEATURES.map((f, i) => (
-            <div key={i} style={{
-              background: 'var(--color-surface)',
-              border: '1px solid var(--color-border)',
-              borderRadius: 18,
-              padding: '28px 24px',
-              position: 'relative',
-              overflow: 'hidden',
-              transition: 'all 0.3s ease',
-              boxShadow: '0 4px 12px rgba(0,0,0,0.03)',
-            }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLDivElement).style.borderColor = 'var(--color-red)';
-                (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-4px)';
-                (e.currentTarget as HTMLDivElement).style.boxShadow = '0 10px 30px rgba(0,0,0,0.08)';
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLDivElement).style.borderColor = 'var(--color-border)';
-                (e.currentTarget as HTMLDivElement).style.transform = 'translateY(0)';
-                (e.currentTarget as HTMLDivElement).style.boxShadow = '0 4px 12px rgba(0,0,0,0.03)';
-              }}
-            >
-              <div style={{
-                position: 'absolute', top: 0, left: 0, right: 0, height: 2,
-                background: 'linear-gradient(90deg, #c0392b, #003da5)',
-                opacity: 0.5,
-              }} />
-              <div style={{ fontSize: '2rem', marginBottom: 14 }}>{f.emoji}</div>
-              <h3 style={{ fontWeight: 800, fontSize: '1.05rem', marginBottom: 8, letterSpacing: '-0.01em', color: 'var(--color-foreground)' }}>{lang === 'en' ? f.titleEn : f.title}</h3>
-              <p style={{ color: 'var(--color-muted)', fontSize: '0.9rem', lineHeight: 1.65 }}>{lang === 'en' ? f.descEn : f.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── HOW IT WORKS ── */}
-      <section style={{
-        padding: '80px 24px',
-        background: 'var(--color-surface-2)',
-        borderTop: '1px solid var(--color-border)',
-        borderBottom: '1px solid var(--color-border)',
-      }}>
-        <div style={{ maxWidth: 900, margin: '0 auto', textAlign: 'center' }}>
-          <p style={{ color: 'var(--color-red)', fontWeight: 700, fontSize: '0.85rem', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 12 }}>
-            {t.howItWorks}
-          </p>
-          <h2 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.6rem)', fontWeight: 900, letterSpacing: '-0.02em', marginBottom: 60 }}>
-            {t.threeStepsTitle}
-          </h2>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 32 }}>
-            {[
-              { step: '01', emoji: '📖', title: t.step1Title, desc: t.step1Desc },
-              { step: '02', emoji: '🎯', title: t.step2Title, desc: t.step2Desc },
-              { step: '03', emoji: '🏆', title: t.step3Title, desc: t.step3Desc },
-            ].map((item, i) => (
-              <div key={i} style={{ textAlign: 'center' }}>
-                <div style={{
-                  display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                  width: 64, height: 64, borderRadius: '50%',
-                  background: 'var(--color-surface)',
-                  border: '2px solid var(--color-border)',
-                  fontSize: '1.6rem', marginBottom: 20,
-                  boxShadow: '0 8px 16px rgba(0,0,0,0.04)',
-                }}>
-                  {item.emoji}
-                </div>
-                <div style={{ fontSize: '0.7rem', fontWeight: 800, color: 'var(--color-red)', letterSpacing: '0.1em', marginBottom: 8 }}>
-                  {lang === 'en' ? `STEP ${item.step}` : `ADIM ${item.step}`}
-                </div>
-                <h3 style={{ fontWeight: 800, fontSize: '1.05rem', marginBottom: 10, color: 'var(--color-foreground)' }}>{item.title}</h3>
-                <p style={{ color: 'var(--color-muted)', fontSize: '0.88rem', lineHeight: 1.65 }}>{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── TESTIMONIALS ── */}
-      <section style={{ padding: '100px 24px', maxWidth: 1000, margin: '0 auto' }}>
-        <div style={{ textAlign: 'center', marginBottom: 56 }}>
-          <h2 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.4rem)', fontWeight: 900, letterSpacing: '-0.02em' }}>
-            {t.testimonialsTitle}
-          </h2>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 16 }}>
-          {TESTIMONIALS.map((test, i) => (
-            <div key={i} style={{
-              background: 'var(--color-surface)',
-              border: '1px solid var(--color-border)',
-              borderRadius: 18, padding: '28px 24px',
-              boxShadow: '0 4px 12px rgba(0,0,0,0.02)',
-            }}>
-              <div style={{ color: 'var(--color-red)', fontSize: '1.5rem', marginBottom: 12 }}>❝</div>
-              <p style={{ color: 'var(--color-foreground)', opacity: 0.8, fontSize: '0.92rem', lineHeight: 1.7, marginBottom: 16, fontStyle: 'italic' }}>
-                {lang === 'en' ? test.textEn : test.text}
-              </p>
-              <p style={{ color: 'var(--color-muted)', fontSize: '0.82rem', fontWeight: 700 }}>— {test.author}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── CTA BANNER ── */}
-      <section style={{
-        padding: '80px 24px',
-        textAlign: 'center',
-        background: `
-          radial-gradient(ellipse at 50% 50%, rgba(192,57,43,0.08) 0%, transparent 65%),
-          var(--color-surface)
-        `,
-        borderTop: '1px solid var(--color-border)',
-      }}>
-        <div style={{ maxWidth: 600, margin: '0 auto' }}>
-          <div style={{ fontSize: '3rem', marginBottom: 20 }}>🇷🇸</div>
-          <h2 style={{
-            fontSize: 'clamp(2rem, 5vw, 3rem)',
-            fontWeight: 900, letterSpacing: '-0.03em',
-            lineHeight: 1.1, marginBottom: 16,
-          }}>
-            {lang === 'en' ? 'Are you ready, ' : 'Hazır mısın, '}
-            <span className="gradient-text-red">brate?</span>
-          </h2>
-          <p style={{ color: 'var(--color-muted)', fontSize: '1.05rem', marginBottom: 40, lineHeight: 1.6 }}>
-            {t.registerNow} {t.noCardRequired}
-          </p>
-          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', justifyContent: 'center' }}>
-            <Link href={user ? "/learn" : "/login"} style={{
-              display: 'inline-flex', alignItems: 'center', gap: 10,
-              background: 'linear-gradient(135deg, var(--color-red), var(--color-red-bright))',
-              color: '#fff', fontWeight: 800, fontSize: '1.1rem',
-              textDecoration: 'none', padding: '18px 44px',
-              borderRadius: '14px',
-              boxShadow: '0 8px 32px rgba(192,57,43,0.3)',
-              letterSpacing: '-0.01em',
-            }}>
-              {user ? (lang === 'tr' ? 'Eğitime Başla' : 'Start Learning') : t.registerNow}
-            </Link>
-          </div>
-          <p style={{ color: '#444', fontSize: '0.8rem', marginTop: 16 }}>
-            {t.noCardRequired}
-          </p>
-        </div>
-      </section>
-
-      {/* ── FOOTER ── */}
-      <footer style={{
-        padding: '64px 24px 32px',
-        borderTop: '1px solid var(--color-border)',
-        textAlign: 'center',
-        background: 'var(--color-background)',
-      }}>
-        {/* Flag stripe */}
-        <div style={{
-          height: 3, marginBottom: 24,
-          background: 'linear-gradient(90deg, var(--color-red) 33.3%, var(--color-white) 33.3% 66.6%, var(--color-blue) 66.6%)',
-          borderRadius: 2,
-          maxWidth: 200, margin: '0 auto 24px',
+          height: 2,
+          width: 60,
+          background: 'linear-gradient(90deg, transparent, #c0392b, transparent)',
+          marginBottom: 24
         }} />
-        <p style={{ color: 'var(--color-muted)', fontSize: '0.85rem' }}>
-          🇷🇸 <strong style={{ color: 'var(--color-foreground)' }}>Jebiga</strong> — {t.footerDesc}
-          <span style={{ margin: '0 8px' }}>·</span>
-          <Link href="/login" style={{ color: 'var(--color-muted)', textDecoration: 'none' }}>{t.login}</Link>
-          <span style={{ margin: '0 8px' }}>·</span>
-          <Link href="/login" style={{ color: 'var(--color-muted)', textDecoration: 'none' }}>{t.signup}</Link>
+
+        <p style={{
+          fontSize: 'clamp(0.95rem, 4vw, 1.1rem)',
+          color: 'rgba(255,255,255,0.7)',
+          lineHeight: 1.6,
+          marginBottom: 40,
+          fontWeight: 500,
+          padding: '0 10px'
+        }}>
+          Brate, we're currently updating the system and adding new lessons. <br />
+          We've taken a short break to take your Serbian learning experience to the next level. <br />
+          <span style={{ color: '#fff', fontWeight: 800, marginTop: 12, display: 'block' }}>
+            We'll be back very soon! 🥙
+          </span>
         </p>
-        <p style={{ color: '#383838', fontSize: '0.75rem', marginTop: 12 }}>
-          Design by{' '}
-          <a
-            href="https://www.instagram.com/mr.vinsky/"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              color: '#555',
-              textDecoration: 'none',
-              fontWeight: 600,
-              transition: 'color 0.2s',
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = '#e1306c')}
-            onMouseLeave={(e) => (e.currentTarget.style.color = '#555')}
-          >
-            mr.vinsky
-          </a>
-        </p>
-      </footer>
 
+        {/* Stats / Teaser Card */}
+        <div style={{
+          background: 'rgba(255,255,255,0.03)',
+          border: '1px solid rgba(255,255,255,0.08)',
+          borderRadius: 24,
+          padding: '24px 16px',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 20,
+          backdropFilter: 'blur(16px)',
+          width: '100%',
+          boxShadow: '0 20px 50px rgba(0,0,0,0.3)'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, justifyContent: 'center' }}>
+            <div style={{
+              width: 8, height: 8, borderRadius: '50%',
+              background: '#f1c40f',
+              boxShadow: '0 0 12px #f1c40f',
+              animation: 'pulse-glow 2s infinite'
+            }} />
+            <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#f1c40f', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+              Preparation in Progress
+            </span>
+          </div>
+          
+          <div style={{ display: 'flex', justifyContent: 'space-between', textAlign: 'center' }}>
+            <div style={{ flex: 1 }}>
+              <div style={{ fontSize: '1.4rem', fontWeight: 900, color: '#fff' }}>368+</div>
+              <div style={{ fontSize: '0.6rem', color: 'rgba(255,255,255,0.4)', fontWeight: 800, letterSpacing: '0.05em' }}>QUESTIONS</div>
+            </div>
+            <div style={{ width: 1, background: 'rgba(255,255,255,0.1)' }} />
+            <div style={{ flex: 1 }}>
+              <div style={{ fontSize: '1.4rem', fontWeight: 900, color: '#fff' }}>18+</div>
+              <div style={{ fontSize: '0.6rem', color: 'rgba(255,255,255,0.4)', fontWeight: 800, letterSpacing: '0.05em' }}>CATEGORIES</div>
+            </div>
+            <div style={{ width: 1, background: 'rgba(255,255,255,0.1)' }} />
+            <div style={{ flex: 1 }}>
+              <div style={{ fontSize: '1.4rem', fontWeight: 900, color: '#fff' }}>100%</div>
+              <div style={{ fontSize: '0.6rem', color: 'rgba(255,255,255,0.4)', fontWeight: 800, letterSpacing: '0.05em' }}>STREET SLANG</div>
+            </div>
+          </div>
+        </div>
 
+        {/* Small Footer Text */}
+        <div style={{ marginTop: 48, opacity: 0.3, fontSize: '0.7rem', fontWeight: 600, letterSpacing: '0.05em' }}>
+          JEBIGA © 2026
+        </div>
+      </div>
 
+      {/* Global CSS for Animations */}
       <style>{`
-        @keyframes pulse {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.7; }
+        @keyframes float {
+          0%, 100% { transform: translateY(0) rotate(0); }
+          50% { transform: translateY(-15px) rotate(2deg); }
         }
-        @keyframes blink {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0; }
+        @keyframes pulse-glow {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.5; transform: scale(1.2); }
         }
-        @keyframes bounce {
-          0%, 100% { transform: translateX(-50%) translateY(0); }
-          50% { transform: translateX(-50%) translateY(8px); }
-        }
+        body { margin: 0; background: #050505; }
       `}</style>
     </div>
   );
