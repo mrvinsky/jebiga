@@ -18,14 +18,45 @@ export default function AdminDashboard() {
 
   // Calculate curriculum stats
   let totalLessonsCurriculum = 0;
-  let totalWordsCurriculum = 0;
+  let totalQuestionsCount = 0; // "Cümleler"
+  const seenWords = new Set<string>();
+
+  // Helper to check if text is Turkish
+  const isTurkish = (text: string) => /[ıİğĞ]/.test(text) || /^\d+$/.test(text);
   
+  // Helper to extract quoted part
+  const extractQuoted = (text: string) => {
+    const m = text.match(/["""«»]([^"""«»]+)["""«»]/);
+    return m ? m[1].trim() : null;
+  };
+
   curriculum.forEach(set => {
     totalLessonsCurriculum += set.lessons.length;
     set.lessons.forEach(lesson => {
-      totalWordsCurriculum += lesson.questions.length;
+      totalQuestionsCount += lesson.questions.length;
+      lesson.questions.forEach(q => {
+        let serbian = '';
+        if (q.type === 'translate' || q.type === 'fill-blank') {
+          if (!isTurkish(q.answer) && q.answer.length > 1) serbian = q.answer.trim();
+        } else if (q.type === 'multiple-choice') {
+          const isMeaningQ = /ne anlama gelir|what does.*mean|nedir\?/i.test((q.prompt || '') + (q.promptEn || ''));
+          const isHowToSayQ = /nasıl denir|how do you say|how do you ask/i.test((q.prompt || '') + (q.promptEn || ''));
+          if (isMeaningQ) {
+            const quoted = extractQuoted(q.prompt || '') || extractQuoted(q.promptEn || '');
+            if (quoted && !isTurkish(quoted) && quoted.length > 1) serbian = quoted;
+          } else if (isHowToSayQ) {
+            if (!isTurkish(q.answer) && q.answer.length > 1) serbian = q.answer.trim();
+          }
+        }
+        if (serbian) {
+          const key = serbian.toLowerCase().replace(/[^a-zšđčćžа-я0-9]/gi, '');
+          if (key.length >= 2) seenWords.add(key);
+        }
+      });
     });
   });
+
+  const totalWordsCount = seenWords.size;
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -114,13 +145,18 @@ export default function AdminDashboard() {
         </div>
 
         <div style={{ background: '#111', padding: 24, borderRadius: 16, border: '1px solid #333' }}>
-          <div style={{ color: '#888', marginBottom: 8, fontWeight: 600 }}>Total Curriculum Lessons</div>
+          <div style={{ color: '#888', marginBottom: 8, fontWeight: 600 }}>Total Lessons</div>
           <div style={{ fontSize: '3rem', fontWeight: 900, color: '#1abc9c', fontFamily: 'var(--font-display)' }}>{totalLessonsCurriculum}</div>
         </div>
 
         <div style={{ background: '#111', padding: 24, borderRadius: 16, border: '1px solid #333' }}>
-          <div style={{ color: '#888', marginBottom: 8, fontWeight: 600 }}>Total Curriculum Words</div>
-          <div style={{ fontSize: '3rem', fontWeight: 900, color: '#1abc9c', fontFamily: 'var(--font-display)' }}>{totalWordsCurriculum}</div>
+          <div style={{ color: '#888', marginBottom: 8, fontWeight: 600 }}>Total Unique Words</div>
+          <div style={{ fontSize: '3rem', fontWeight: 900, color: '#1abc9c', fontFamily: 'var(--font-display)' }}>{totalWordsCount}</div>
+        </div>
+
+        <div style={{ background: '#111', padding: 24, borderRadius: 16, border: '1px solid #333' }}>
+          <div style={{ color: '#888', marginBottom: 8, fontWeight: 600 }}>Total Sentences / Exercises</div>
+          <div style={{ fontSize: '3rem', fontWeight: 900, color: '#1abc9c', fontFamily: 'var(--font-display)' }}>{totalQuestionsCount}</div>
         </div>
 
         <div style={{ background: '#111', padding: 24, borderRadius: 16, border: '1px solid #333' }}>
