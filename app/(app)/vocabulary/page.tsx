@@ -14,6 +14,37 @@ type WordEntry = {
   emoji: string;
 };
 
+/** True if text looks like a Turkish word (contains Turkish-only chars) */
+function isTurkish(text: string): boolean {
+  return /[ıİğĞ]/.test(text) || /^\d+$/.test(text);
+}
+
+/** Extract the quoted word/phrase from prompts like «"Kako si?" ne anlama gelir?» */
+function extractQuoted(text: string): string | null {
+  const m = text.match(/["""«»]([^"""«»]+)["""«»]/);
+  return m ? m[1].trim() : null;
+}
+
+/** Strip Turkish question boilerplate from prompts to get a short meaning */
+function extractMeaningTR(prompt: string): string {
+  return prompt
+    .replace(/["""«»][^"""«»]+["""«»]\s*/g, '') // remove quoted Serbian part
+    .replace(/nasıl denir\??|ne anlama gelir\??|kelimesini çevir|cümlesini çevir|sayısını Sırpçaya çevir|Sırpçada .* kelimesi .* dir\.?|Boşluğu doldur.*\??|sorusu nasıl sorulur\??|demek için .* deriz\./gi, '')
+    .replace(/Sırpçada|Türkçede|demektir\.?|anlamına gelir\.?/gi, '')
+    .trim()
+    .replace(/^[".\s]+|[".\s]+$/g, '')
+    .trim();
+}
+
+function extractMeaningEN(prompt: string): string {
+  return prompt
+    .replace(/["""«»][^"""«»]+["""«»]\s*/g, '')
+    .replace(/How do you say\??|What does .* mean\??|Translate( the (word|phrase|question|number))?|How do you ask\??|in Serbian( is| means)?\.?|The word for .* in Serbian is/gi, '')
+    .trim()
+    .replace(/^[".\s]+|[".\s]+$/g, '')
+    .trim();
+}
+
 function extractVocabulary(): WordEntry[] {
   const seen = new Set<string>();
   const words: WordEntry[] = [];
@@ -21,21 +52,67 @@ function extractVocabulary(): WordEntry[] {
   for (const set of curriculum) {
     for (const lesson of set.lessons) {
       for (const q of lesson.questions) {
-        // Collect the answer (Serbian word/phrase)
-        const serbian = q.answer?.trim();
-        if (!serbian || seen.has(serbian.toLowerCase())) continue;
-        seen.add(serbian.toLowerCase());
+        const prompt = q.prompt || '';
+        const promptEn = q.promptEn || '';
+        const type = q.type;
 
-        // Derive Turkish and English from prompts
-        const turkish = extractMeaning(q.prompt || '', q.answer);
-        const english = extractMeaning(q.promptEn || '', q.answer);
+        let serbian = '';
+        let turkish = '';
+        let english = '';
 
-        if (serbian.length < 2) continue;
+        if (type === 'translate') {
+          // answer is always the Serbian phrase; meaning comes from prompt
+          if (!isTurkish(q.answer) && q.answer.length > 1) {
+            serbian = q.answer.trim();
+            turkish = extractMeaningTR(prompt) || prompt.replace(/kelimesini çevir|cümlesini çevir/gi, '').replace(/["""]/g, '').trim();
+            english = extractMeaningEN(promptEn) || promptEn.replace(/Translate( the (word|phrase|question|number))?/gi, '').replace(/["""]/g, '').trim();
+          }
+
+        } else if (type === 'fill-blank') {
+          // answer is the missing Serbian word/particle
+          if (!isTurkish(q.answer) && q.answer.length > 1) {
+            serbian = q.answer.trim();
+            // Use hint as meaning if available, else extract from prompt
+            turkish = q.hint || extractMeaningTR(prompt);
+            english = q.hintEn || extractMeaningEN(promptEn);
+          }
+
+        } else if (type === 'multiple-choice') {
+          const isMeaningQ = /ne anlama gelir|what does.*mean|hangi sayı|kaçtır|kaç eder|nedir\?/i.test(prompt + promptEn);
+          const isHowToSayQ = /nasıl denir|how do you say|how do you ask/i.test(prompt + promptEn);
+
+          if (isMeaningQ) {
+            // Serbian word is inside quotes in prompt; answer is the TR/EN meaning
+            const quoted = extractQuoted(prompt) || extractQuoted(promptEn);
+            if (quoted && !isTurkish(quoted) && quoted.length > 1) {
+              serbian = quoted;
+              turkish = q.answer;      // answer = Turkish meaning
+              english = q.answerEn || q.answer;
+            }
+          } else if (isHowToSayQ) {
+            // answer IS the Serbian word
+            if (!isTurkish(q.answer) && q.answer.length > 1) {
+              serbian = q.answer.trim();
+              const quoted = extractQuoted(prompt);
+              turkish = quoted || extractMeaningTR(prompt);
+              const quotedEn = extractQuoted(promptEn);
+              english = quotedEn || extractMeaningEN(promptEn);
+            }
+          }
+          // other MC question types → skip (too ambiguous)
+        }
+
+        // Deduplicate + filter noise
+        if (!serbian) continue;
+        const key = serbian.toLowerCase().replace(/[^a-zšđčćžа-я0-9]/gi, '');
+        if (key.length < 2) continue;
+        if (seen.has(key)) continue;
+        seen.add(key);
 
         words.push({
           serbian,
-          turkish: turkish || q.answer,
-          english: english || q.answerEn || q.answer,
+          turkish: turkish || serbian,
+          english: english || q.answerEn || serbian,
           category: set.title,
           categoryEn: set.titleEn || set.title,
           emoji: set.emoji,
@@ -47,19 +124,6 @@ function extractVocabulary(): WordEntry[] {
   return words;
 }
 
-function extractMeaning(prompt: string, answer: string): string {
-  // Try to extract meaning from prompts like "«X» ne anlama gelir?" → answer
-  // or "X kelimesini çevir" → answer
-  // We just use the answer itself as it is the Serbian word
-  // And display the prompt-derived context
-  const cleaned = prompt
-    .replace(/["«»""]/g, '')
-    .replace(/nasıl denir\?|ne anlama gelir\?|kelimesini çevir|cümlesini çevir|sayısını Sırpçaya çevir|Translate|How do you say|What does.*mean\?/gi, '')
-    .replace(/Sırpçada.*kelimesi.*dir\./gi, '')
-    .replace(/Boşluğu doldur.*\?/gi, '')
-    .trim();
-  return cleaned.length > 2 && cleaned.length < 60 ? cleaned : '';
-}
 
 // ─── Category colors ──────────────────────────────────────────────────────────
 const CATEGORY_COLORS: Record<string, string> = {
