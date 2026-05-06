@@ -145,6 +145,7 @@ export default function Navbar() {
       }}>
         {[
           { href: '/learn', icon: '🗺️', label: t.learn },
+          { href: '/vocabulary', icon: '📖', label: lang === 'en' ? 'Words' : 'Kelimeler' },
           { href: '/profile', icon: '👤', label: t.profile },
           { href: '/pro', icon: '⚡', label: t.pro },
         ].map(({ href, icon, label }) => (
